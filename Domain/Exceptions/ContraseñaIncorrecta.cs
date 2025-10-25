@@ -2,5 +2,5 @@
 
 public class ContraseñaIncorrecta : Exception
 {
-    
+    public ContraseñaIncorrecta(string mensaje) : base(mensaje){}
 }
