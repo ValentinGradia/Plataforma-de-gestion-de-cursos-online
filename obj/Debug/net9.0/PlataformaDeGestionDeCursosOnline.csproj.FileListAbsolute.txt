@@ -1,0 +1,15 @@
+C:\Users\valen\RiderProjects\PlataformaDeGestionDeCursosOnline\bin\Debug\net9.0\PlataformaDeGestionDeCursosOnline.exe
+C:\Users\valen\RiderProjects\PlataformaDeGestionDeCursosOnline\bin\Debug\net9.0\PlataformaDeGestionDeCursosOnline.deps.json
+C:\Users\valen\RiderProjects\PlataformaDeGestionDeCursosOnline\bin\Debug\net9.0\PlataformaDeGestionDeCursosOnline.runtimeconfig.json
+C:\Users\valen\RiderProjects\PlataformaDeGestionDeCursosOnline\bin\Debug\net9.0\PlataformaDeGestionDeCursosOnline.dll
+C:\Users\valen\RiderProjects\PlataformaDeGestionDeCursosOnline\bin\Debug\net9.0\PlataformaDeGestionDeCursosOnline.pdb
+C:\Users\valen\RiderProjects\PlataformaDeGestionDeCursosOnline\obj\Debug\net9.0\PlataformaDeGestionDeCursosOnline.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\valen\RiderProjects\PlataformaDeGestionDeCursosOnline\obj\Debug\net9.0\PlataformaDeGestionDeCursosOnline.AssemblyInfoInputs.cache
+C:\Users\valen\RiderProjects\PlataformaDeGestionDeCursosOnline\obj\Debug\net9.0\PlataformaDeGestionDeCursosOnline.AssemblyInfo.cs
+C:\Users\valen\RiderProjects\PlataformaDeGestionDeCursosOnline\obj\Debug\net9.0\PlataformaDeGestionDeCursosOnline.csproj.CoreCompileInputs.cache
+C:\Users\valen\RiderProjects\PlataformaDeGestionDeCursosOnline\obj\Debug\net9.0\PlataformaDeGestionDeCursosOnline.sourcelink.json
+C:\Users\valen\RiderProjects\PlataformaDeGestionDeCursosOnline\obj\Debug\net9.0\PlataformaDeGestionDeCursosOnline.dll
+C:\Users\valen\RiderProjects\PlataformaDeGestionDeCursosOnline\obj\Debug\net9.0\refint\PlataformaDeGestionDeCursosOnline.dll
+C:\Users\valen\RiderProjects\PlataformaDeGestionDeCursosOnline\obj\Debug\net9.0\PlataformaDeGestionDeCursosOnline.pdb
+C:\Users\valen\RiderProjects\PlataformaDeGestionDeCursosOnline\obj\Debug\net9.0\PlataformaDeGestionDeCursosOnline.genruntimeconfig.cache
+C:\Users\valen\RiderProjects\PlataformaDeGestionDeCursosOnline\obj\Debug\net9.0\ref\PlataformaDeGestionDeCursosOnline.dll
