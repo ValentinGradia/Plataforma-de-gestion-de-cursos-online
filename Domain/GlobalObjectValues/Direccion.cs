@@ -17,7 +17,7 @@ public record Direccion
         this.Altura = altura;
     }
 
-    //static factory method
+    //static factory method -> separar responasbilidades (el constructor solo crea el objeto sin validar)
     public static Direccion CrearDireccion(string pais, string ciudad, string calle, int altura)
     {
         if (string.IsNullOrEmpty(pais))

@@ -1,21 +1,45 @@
-﻿using PlataformaDeGestionDeCursosOnline.Domain.Enum;
+﻿using System.ComponentModel.DataAnnotations;
+using System.Net.Http.Json;
+using System.Reflection;
+using System.Text;
+using System.Text.Json;
+using PlataformaDeGestionDeCursosOnline.Domain.Enum;
 using PlataformaDeGestionDeCursosOnline.Domain.GlobalObjectValues;
 
 namespace PlataformaDeGestionDeCursosOnline.Domain;
 
 public abstract class Usuario
 {
-    public Guid Id { get; protected init; } // -> el ID nunca cambia una vez que definimos la entidad
+    protected Guid Id { get; init; } // -> el ID nunca cambia una vez que definimos la entidad
     
-    public Direccion Direccion { get; protected set; }
+    protected Direccion Direccion { get; set; }
     
-    public DNI Dni { get; protected set; }
+    protected Email Email { get; set; } 
     
-    public string Nombre { get; protected set; }
+    protected Contraseña Contraseña { get; init; }
     
-    public string Apellido { get; protected set; }
+    protected DNI Dni { get; set; }
     
-    public DateTime FechaRegistro { get; protected set; }
+    protected string Nombre { get; set; }
+    
+    protected string Apellido { get; set; }
+    
+    protected DateTime FechaRegistro { get; set; }
     
     public Roles Rol { get; protected set; }
+
+    public virtual string ObtenerInformacion()
+    {
+        StringBuilder sb =  new StringBuilder();
+        PropertyInfo[] properties =  this.GetType().GetProperties();
+        foreach (PropertyInfo property in properties)
+        {
+            sb.Append($"{property.Name} : {property.GetValue(this)} \n");
+        }
+
+        return JsonSerializer.Serialize(sb.ToString(), new JsonSerializerOptions
+        {
+            WriteIndented = true 
+        });
+    }
 }
