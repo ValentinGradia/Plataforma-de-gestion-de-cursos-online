@@ -16,7 +16,7 @@ public abstract class Usuario
     
     protected Email Email { get; set; } 
     
-    protected Contraseña Contraseña { get; init; }
+    protected Contraseña Contraseña { get; set; }
     
     protected DNI Dni { get; set; }
     
@@ -24,31 +24,60 @@ public abstract class Usuario
     
     protected string Apellido { get; set; }
     
-    protected DateTime FechaRegistro { get; set; }
+    protected DateTime FechaRegistro { get; init; }
     
     protected Roles Rol { get; set; }
     
     protected Usuario(
         Guid id,
-        Direccion direccion,
-        Email email,
-        Contraseña contraseña,
-        DNI dni,
+        string pais,
+        string ciudad,
+        string calle,
+        int altura,
+        string email,
+        string contraseña,
+        string dni,
         string nombre,
         string apellido,
         DateTime fechaRegistro,
         Roles rol)
     {
         this.Id = id;
-        this.Direccion = direccion;
-        this.Email = email;
-        this.Contraseña = contraseña;
-        this.Dni = dni;
+        this.Direccion = Direccion.CrearDireccion(pais, ciudad, calle, altura);
+        this.Email = Email.CrearEmail(email);
+        this.Contraseña = Contraseña.CrearContraseña(contraseña);
+        this.Dni = DNI.CrearDNI(dni);
         this.Nombre = nombre;
         this.Apellido = apellido;
         this.FechaRegistro = fechaRegistro;
         this.Rol = rol;
     }
+    
+    public void CambiarContraseña(string nuevaContraseña)
+    {
+        this.Contraseña = Contraseña.CrearContraseña(nuevaContraseña);
+    }
+
+    public void CambiarDni(string nuevoDni)
+    {
+        this.Dni = DNI.CrearDNI(nuevoDni);
+    }
+    
+    public void CambiarEmail(string email)
+    {
+        this.Email = Email.CrearEmail(email);
+    }
+
+    public void CambiarNombre(string nuevoNombre)
+    {
+        this.Nombre = nuevoNombre;
+    }
+
+    public void CambiarApellido(string nuevoApellido)
+    {
+        this.Apellido = nuevoApellido;
+    }
+
     
     public virtual string ObtenerInformacionDeMiUsuario()
     {

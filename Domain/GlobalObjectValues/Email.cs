@@ -6,7 +6,7 @@ public record Email
 
     private Email(string valorEmail) => this.valorEmail = valorEmail;
 
-    private static Email CrearEmail(string valor)
+    public static Email CrearEmail(string valor)
     {
         if (string.IsNullOrWhiteSpace(valor))
             throw new ArgumentNullException("El email no puede estar vacío.", nameof(valor));
