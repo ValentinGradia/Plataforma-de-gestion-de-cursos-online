@@ -26,9 +26,31 @@ public abstract class Usuario
     
     protected DateTime FechaRegistro { get; set; }
     
-    public Roles Rol { get; protected set; }
-
-    public virtual string ObtenerInformacion()
+    protected Roles Rol { get; set; }
+    
+    protected Usuario(
+        Guid id,
+        Direccion direccion,
+        Email email,
+        Contraseña contraseña,
+        DNI dni,
+        string nombre,
+        string apellido,
+        DateTime fechaRegistro,
+        Roles rol)
+    {
+        this.Id = id;
+        this.Direccion = direccion;
+        this.Email = email;
+        this.Contraseña = contraseña;
+        this.Dni = dni;
+        this.Nombre = nombre;
+        this.Apellido = apellido;
+        this.FechaRegistro = fechaRegistro;
+        this.Rol = rol;
+    }
+    
+    public virtual string ObtenerInformacionDeMiUsuario()
     {
         StringBuilder sb =  new StringBuilder();
         PropertyInfo[] properties =  this.GetType().GetProperties();
@@ -42,4 +64,14 @@ public abstract class Usuario
             WriteIndented = true 
         });
     }
+
+    // public static string ObtenerInformacionDeUnUsuario(Guid id)
+    // {    
+    //     
+    // }
+    //
+    // public static string ObtenerInformacionDeTodosUsuarios()
+    // {
+    //     
+    // }
 }
