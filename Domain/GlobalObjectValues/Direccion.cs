@@ -4,10 +4,10 @@ namespace PlataformaDeGestionDeCursosOnline.Domain.GlobalObjectValues;
 
 public record Direccion
 {
-    public string Pais { get; }
-    public string Ciudad { get; }
-    public string Calle { get; }
-    public int Altura { get; }
+    public string Pais { get; private set; }
+    public string Ciudad { get; private set; }
+    public string Calle { get; private set; }
+    public int Altura { get; private set; }
 
     private Direccion(string pais, string ciudad, string calle, int altura)
     {
@@ -15,6 +15,26 @@ public record Direccion
         this.Ciudad = ciudad;
         this.Calle = calle;
         this.Altura = altura;
+    }
+
+    public void CambiarPais(string pais)
+    {
+        this.Pais = pais;   
+    }
+    
+    public void CambiarCalle(string calle)
+    {
+        this.Calle = calle;   
+    }
+    
+    public void CambiarAltura(int altura)
+    {
+        this.Altura = altura;   
+    }
+    
+    public void CambiarCiudad(string ciudad)
+    {
+        this.Ciudad = ciudad;   
     }
 
     //static factory method -> separar responasbilidades (el constructor solo crea el objeto sin validar)

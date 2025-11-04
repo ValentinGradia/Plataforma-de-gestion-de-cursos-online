@@ -60,7 +60,22 @@ public abstract class Usuario
 
     public void CambiarPais(string pais)
     {
-        
+        this.Direccion.CambiarPais(pais);
+    }
+    
+    public void CambiarCiudad(string ciudad)
+    {
+        this.Direccion.CambiarCiudad(ciudad);
+    }
+    
+    public void CambiarCalle(string calle)
+    {
+        this.Direccion.CambiarCalle(calle);
+    }
+    
+    public void CambiarAltura(int altura)
+    {
+        this.Direccion.CambiarAltura(altura);
     }
 
     public void CambiarDni(string nuevoDni)
