@@ -58,6 +58,11 @@ public abstract class Usuario
         this.Contraseña = Contraseña.CrearContraseña(nuevaContraseña);
     }
 
+    public void CambiarPais(string pais)
+    {
+        
+    }
+
     public void CambiarDni(string nuevoDni)
     {
         this.Dni = DNI.CrearDNI(nuevoDni);
