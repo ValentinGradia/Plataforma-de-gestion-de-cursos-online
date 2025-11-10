@@ -3,14 +3,14 @@ using System.Net.Http.Json;
 using System.Reflection;
 using System.Text;
 using System.Text.Json;
+using PlataformaDeGestionDeCursosOnline.Domain.Abstractions;
 using PlataformaDeGestionDeCursosOnline.Domain.Enum;
 using PlataformaDeGestionDeCursosOnline.Domain.GlobalObjectValues;
 
 namespace PlataformaDeGestionDeCursosOnline.Domain;
 
-public abstract class Usuario
+public abstract class Usuario : Entity
 {
-    protected Guid Id { get; init; } // -> el ID nunca cambia una vez que definimos la entidad
     
     protected Direccion Direccion { get; set; }
     
@@ -39,17 +39,15 @@ public abstract class Usuario
         string dni,
         string nombre,
         string apellido,
-        DateTime fechaRegistro,
-        Roles rol)
+        Roles rol) : base(id)
     {
-        this.Id = id;
         this.Direccion = Direccion.CrearDireccion(pais, ciudad, calle, altura);
         this.Email = Email.CrearEmail(email);
         this.Contraseña = Contraseña.CrearContraseña(contraseña);
         this.Dni = DNI.CrearDNI(dni);
         this.Nombre = nombre;
         this.Apellido = apellido;
-        this.FechaRegistro = fechaRegistro;
+        this.FechaRegistro = DateTime.Now;
         this.Rol = rol;
     }
     
