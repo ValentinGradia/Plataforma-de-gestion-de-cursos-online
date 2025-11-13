@@ -13,11 +13,20 @@ public class Curso : Entity
     
     public List<Estudiante> estudiantes;
     
-    private Curso(Guid id) : base(id)
+    private Curso(Guid id, Profesor profesor) : base(id)
     {
+        this.profesor = profesor;
         this.calificacionEstudiante = new CalificacionEstudianteService<Curso>();
     }
+    public static void CrearCurso(Guid id ,Profesor profesor)
+    {
+        //validaciones
+        if (profesor == null)
+            throw new ArgumentNullException(nameof(profesor));
 
+        new Curso(id, profesor);
+    }
+    
     private void AsignarNotaEstudiante(Guid idEstudiante, int nota)
     {
         this.calificacionEstudiante.AsignarCalificacion(idEstudiante, nota);
