@@ -111,14 +111,5 @@ public abstract class Usuario : Entity
             WriteIndented = true 
         });
     }
-
-    // public static string ObtenerInformacionDeUnUsuario(Guid id)
-    // {    
-    //     
-    // }
-    //
-    // public static string ObtenerInformacionDeTodosUsuarios()
-    // {
-    //     
-    // }
+    
 }
