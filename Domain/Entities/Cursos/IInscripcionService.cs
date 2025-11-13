@@ -1,8 +1,10 @@
-﻿namespace PlataformaDeGestionDeCursosOnline.Domain.Entities.Cursos;
+﻿using PlataformaDeGestionDeCursosOnline.Domain.Entities.Estudiantes;
 
+namespace PlataformaDeGestionDeCursosOnline.Domain.Entities.Cursos;
+
+//creamos una interfaz para el servicio de inscripcion
 public interface IInscripcionService
 {
-    void InscribirEstudiante(Guid estudianteId, Curso curso);
-    
-    void DesinscribirEstudiante(Guid estudianteId, Curso curso);
+    void InscribirEstudiante(Estudiante estudiante, Curso curso);
+    void DesinscribirEstudiante(Estudiante estudiante, Curso curso);
 }
