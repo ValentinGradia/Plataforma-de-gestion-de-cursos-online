@@ -1,5 +1,6 @@
 ﻿using System.Runtime.CompilerServices;
 using PlataformaDeGestionDeCursosOnline.Domain.Abstractions;
+using PlataformaDeGestionDeCursosOnline.Domain.Entities.Cursos.ObjectValues;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Profesores;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Estudiantes;
 
@@ -11,7 +12,10 @@ public class Curso : Entity
     private CalificacionEstudianteService<Curso> calificacionEstudiante;
     public Profesor profesor;
     public EstadoCurso estadoCurso;
-    
+    public DateRange duracionCurso;
+    public string nombreCurso;
+    public string temarioCurso;
+    //aca se implementaria las clases
     
     public List<Estudiante> estudiantes;
     

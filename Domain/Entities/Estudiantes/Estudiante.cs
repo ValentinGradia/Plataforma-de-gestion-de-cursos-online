@@ -3,7 +3,7 @@ using PlataformaDeGestionDeCursosOnline.Domain.Entities.Cursos;
 
 namespace PlataformaDeGestionDeCursosOnline.Domain.Entities.Estudiantes;
 
-public sealed class Estudiante : Entity 
+public class Estudiante : Entity 
 {
     private List<Curso> cursosInscritosActualmente = new();
     private List<Curso> historialDeCursos = new();
