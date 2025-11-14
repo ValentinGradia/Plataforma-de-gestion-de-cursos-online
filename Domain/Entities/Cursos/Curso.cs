@@ -9,13 +9,12 @@ namespace PlataformaDeGestionDeCursosOnline.Domain.Entities.Cursos;
 public class Curso : Entity 
 {
     private Guid idCurso;
-    private CalificacionEstudianteService<Curso> calificacionEstudiante;
     public Profesor profesor;
     public EstadoCurso estadoCurso;
     public DateRange duracionCurso;
     public string nombreCurso;
     public string temarioCurso;
-    //aca se implementaria las clases
+    
     
     public List<Estudiante> estudiantes;
     
@@ -23,7 +22,6 @@ public class Curso : Entity
     {
         this.profesor = profesor;
         this.estudiantes = new List<Estudiante>();
-        this.calificacionEstudiante = new CalificacionEstudianteService<Curso>();
     }
     public static void CrearCurso(Guid id ,Profesor profesor)
     {
@@ -32,11 +30,6 @@ public class Curso : Entity
             throw new ArgumentNullException(nameof(profesor));
 
         new Curso(id, profesor);
-    }
-    
-    private void AsignarNotaEstudiante(Guid idEstudiante, int nota)
-    {
-        this.calificacionEstudiante.AsignarCalificacion(idEstudiante, nota);
     }
     
     public void AgregarEstudiante(Estudiante estudiante)
