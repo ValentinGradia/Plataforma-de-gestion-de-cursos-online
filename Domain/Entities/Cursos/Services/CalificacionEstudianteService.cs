@@ -6,6 +6,8 @@ public class CalificacionEstudianteService<T> where T : Curso
 {
     private T curso;
     private Guid IdEstudiante;
+    //usamos una cola para que este ordenado en base que examen rindio primero -> FIFO 
+    //el primer valor sera la nota del primer examen rendido
     private Queue<int> calificaciones = new();
     
     public void AsignarCalificacion(Guid estudiante, int calificacion)

@@ -10,12 +10,15 @@ public class Curso : Entity
     private Guid idCurso;
     private CalificacionEstudianteService<Curso> calificacionEstudiante;
     public Profesor profesor;
+    public EstadoCurso estadoCurso;
+    
     
     public List<Estudiante> estudiantes;
     
     private Curso(Guid id, Profesor profesor) : base(id)
     {
         this.profesor = profesor;
+        this.estudiantes = new List<Estudiante>();
         this.calificacionEstudiante = new CalificacionEstudianteService<Curso>();
     }
     public static void CrearCurso(Guid id ,Profesor profesor)
