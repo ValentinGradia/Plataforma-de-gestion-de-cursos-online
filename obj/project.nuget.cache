@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "sEP7YTghzvE=",
+  "dgSpecHash": "RI9YD/3sM40=",
   "success": true,
   "projectFilePath": "C:\\Users\\valen\\RiderProjects\\PlataformaDeGestionDeCursosOnline\\PlataformaDeGestionDeCursosOnline.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\valen\\.nuget\\packages\\mediatr.contracts\\2.0.1\\mediatr.contracts.2.0.1.nupkg.sha512"
+  ],
   "logs": []
 }
