@@ -29,7 +29,6 @@ public abstract class Usuario : Entity
     protected Roles Rol { get; set; }
     
     protected Usuario(
-        Guid id,
         string pais,
         string ciudad,
         string calle,
@@ -39,7 +38,7 @@ public abstract class Usuario : Entity
         string dni,
         string nombre,
         string apellido,
-        Roles rol) : base(id)
+        Roles rol) : base(Guid.NewGuid())
     {
         this.Direccion = Direccion.CrearDireccion(pais, ciudad, calle, altura);
         this.Email = Email.CrearEmail(email);

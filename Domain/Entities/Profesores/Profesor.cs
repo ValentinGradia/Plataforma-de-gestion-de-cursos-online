@@ -9,7 +9,7 @@ public sealed class Profesor : Usuario
     private List<Curso> CursosQueEstaACargo;
     private string Especialidad;
     
-    private Profesor(Guid id, 
+    private Profesor( 
         string pais,
         string ciudad,
         string calle,
@@ -20,12 +20,12 @@ public sealed class Profesor : Usuario
         string nombre,
         string apellido,
         string especialidad,
-        Roles rol) : base(id, pais, ciudad, calle, altura, email, contraseña, dni, nombre, apellido, rol)
+        Roles rol) : base(pais, ciudad, calle, altura, email, contraseña, dni, nombre, apellido, rol)
     {
         this.Especialidad = especialidad;
     }
 
-    public static Profesor CrearProfesor(Guid id,
+    public static Profesor CrearProfesor(
         string pais,
         string ciudad,
         string calle,
@@ -41,7 +41,7 @@ public sealed class Profesor : Usuario
         if (string.IsNullOrEmpty(especialidad))
             throw new ArgumentNullException(nameof(especialidad));
         
-        return new Profesor(id, pais, ciudad, calle, altura, email, contraseña, dni, nombre, apellido, especialidad, Roles.Profesor);
+        return new Profesor( pais, ciudad, calle, altura, email, contraseña, dni, nombre, apellido, especialidad, Roles.Profesor);
     }
     
     public void CambiarEspecialidad(string nuevaEspecialidad)
