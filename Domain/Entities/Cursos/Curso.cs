@@ -20,18 +20,18 @@ public class Curso : Entity
     
     public List<Estudiante> estudiantes;
     
-    private Curso(Guid id, Profesor profesor) : base(id)
+    private Curso(Profesor profesor) : base(Guid.NewGuid())
     {
         this.profesor = profesor;
         this.estudiantes = new List<Estudiante>();
     }
-    public static void CrearCurso(Guid id ,Profesor profesor)
+    public static void CrearCurso(Profesor profesor)
     {
         //validaciones
         if (profesor == null)
             throw new ArgumentNullException(nameof(profesor));
 
-        new Curso(id, profesor);
+        new Curso(profesor);
     }
     
     public void AgregarEstudiante(Estudiante estudiante)

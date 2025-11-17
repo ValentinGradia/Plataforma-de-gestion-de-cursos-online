@@ -11,22 +11,20 @@ public class Examen : Entity
     public DateTime fechaExamen;
     private Nota notaExamen;
 
-    private Examen(Guid id, Guid idCurso, string temaExamen) : base(id)
+    private Examen(Guid idCurso, string temaExamen) : base(Guid.NewGuid())
     {
         this.IdCurso = idCurso;
         this.temaExamen = temaExamen;
         this.fechaExamen = DateTime.UtcNow;
     }
 
-
-
-    public static Examen Create(Guid idCurso, string temaExamen)
+    public static Examen CrearNota(Guid idCurso, string temaExamen)
     {
         
         if (string.IsNullOrEmpty(temaExamen))
             throw new ArgumentNullException(nameof(temaExamen));
 
-        var examen = new Examen(Guid.NewGuid(), idCurso, temaExamen);
+        var examen = new Examen(idCurso, temaExamen);
         return examen;
     }
 }
