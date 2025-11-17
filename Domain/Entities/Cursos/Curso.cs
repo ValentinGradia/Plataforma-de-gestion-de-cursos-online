@@ -1,5 +1,6 @@
 ﻿using System.Runtime.CompilerServices;
 using PlataformaDeGestionDeCursosOnline.Domain.Abstractions;
+using PlataformaDeGestionDeCursosOnline.Domain.Entities.Cursos.Notas;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Cursos.ObjectValues;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Profesores;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Estudiantes;
@@ -14,7 +15,9 @@ public class Curso : Entity
     public DateRange duracionCurso;
     public string nombreCurso;
     public string temarioCurso;
-    
+    //FIFO -> primer valor de la cola es la primera nota o examen que se agrego
+    private Queue<Nota> notas;
+    private Queue<Examen> examenes;
     
     public List<Estudiante> estudiantes;
     
