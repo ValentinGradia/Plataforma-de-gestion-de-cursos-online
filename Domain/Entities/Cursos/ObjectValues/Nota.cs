@@ -9,13 +9,13 @@ namespace PlataformaDeGestionDeCursosOnline.Domain.Entities.Cursos.Notas;
 public record Nota
 {
     public Guid IdCurso { get; init; }
-    public Guid EstudianteId { get; init; }
+    public Guid IdEstudiante { get; init; }
     public decimal ValorNota { get; init; } 
 
     private Nota(Guid idCurso, Guid estudianteId, decimal valorNota)
     {
         this.IdCurso = idCurso;
-        this.EstudianteId = estudianteId;
+        this.IdEstudiante = estudianteId;
         this.ValorNota = valorNota;
     }
 

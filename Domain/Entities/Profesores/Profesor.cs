@@ -1,11 +1,12 @@
 ﻿using System.Runtime.CompilerServices;
+using PlataformaDeGestionDeCursosOnline.Domain.Entities.Cursos;
 using PlataformaDeGestionDeCursosOnline.Domain.Enum;
 
 namespace PlataformaDeGestionDeCursosOnline.Domain.Entities.Profesores;
 
 public sealed class Profesor : Usuario
 {
-    //private List<Curso> CursosQueEstaACargo;
+    private List<Curso> CursosQueEstaACargo;
     private string Especialidad;
     
     private Profesor(Guid id, 

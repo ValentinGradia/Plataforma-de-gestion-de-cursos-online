@@ -7,7 +7,7 @@ public class Estudiante : Entity
 {
     private List<Curso> cursosInscritosActualmente = new();
     private List<Curso> historialDeCursos = new();
-    private Guid usuarioId { get; init; }
+    private Guid IdUsuario { get; init; }
     
     public Estudiante(Guid id) : base(id)
     {

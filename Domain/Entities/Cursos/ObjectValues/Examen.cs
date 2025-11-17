@@ -1,9 +1,16 @@
-﻿namespace PlataformaDeGestionDeCursosOnline.Domain.Entities.Cursos.ObjectValues;
+﻿using PlataformaDeGestionDeCursosOnline.Domain.Abstractions;
+using PlataformaDeGestionDeCursosOnline.Domain.Entities.Cursos.Notas;
 
-public class Examen
+namespace PlataformaDeGestionDeCursosOnline.Domain.Entities.Cursos.ObjectValues;
+
+public class Examen : Entity
 {
-    private Guid idExamen;
     public Guid idCurso;
     public string temaExamen;
     public DateTime fechaExamen;
+    private Nota notaExamen;
+    
+    public Examen(Guid id) : base(id)
+    {
+    }
 }

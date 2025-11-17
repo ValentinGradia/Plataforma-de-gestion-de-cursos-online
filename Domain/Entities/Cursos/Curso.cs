@@ -9,7 +9,6 @@ namespace PlataformaDeGestionDeCursosOnline.Domain.Entities.Cursos;
 
 public class Curso : Entity 
 {
-    private Guid idCurso;
     public Profesor profesor;
     public EstadoCurso estadoCurso;
     public DateRange duracionCurso;
