@@ -1,7 +1,6 @@
 ﻿namespace PlataformaDeGestionDeCursosOnline.Domain.Entities.Enums;
 
-public enum Asistencia
-{
-    Presente = 1,
-    Ausente = 2
-}
+public record Asistencia(
+    Guid IdEstudiante,
+    bool Presente
+);

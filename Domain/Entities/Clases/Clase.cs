@@ -1,6 +1,7 @@
 ﻿using System.Runtime.InteropServices.JavaScript;
 using PlataformaDeGestionDeCursosOnline.Domain.Abstractions;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Enums;
+using PlataformaDeGestionDeCursosOnline.Domain.Entities.Exceptions;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.ObjectValues;
 
 namespace PlataformaDeGestionDeCursosOnline.Domain.Entities;
@@ -37,6 +38,23 @@ public class Clase : Entity
         Estado = EstadoClase.Completada;
     }
     
+    public void DarPresente(Guid IdEstudiante)
+    {
+        if (_asistencias.Any(a => a.IdEstudiante == IdEstudiante))
+            throw new AsistenciaYaCargada();
+
+        Asistencia asistencia = new Asistencia(IdEstudiante, true);
+        _asistencias.Add(asistencia);
+    }
+    
+    public void DarAusente(Guid IdEstudiante)
+    {
+        if (_asistencias.Any(a => a.IdEstudiante == IdEstudiante))
+            throw new AsistenciaYaCargada();
+
+        Asistencia asistencia = new Asistencia(IdEstudiante, false);
+        _asistencias.Add(asistencia);
+    }
 
     public void AgregarConsulta(string titulo, string descripcion,  Guid IdEstudiante)
     {
