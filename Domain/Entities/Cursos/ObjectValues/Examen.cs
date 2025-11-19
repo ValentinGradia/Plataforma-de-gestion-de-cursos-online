@@ -4,15 +4,15 @@ using PlataformaDeGestionDeCursosOnline.Domain.Entities.Cursos.Notas;
 
 namespace PlataformaDeGestionDeCursosOnline.Domain.Entities.Cursos.ObjectValues;
 
-public class Examen : Entity
+public record Examen
 {
     public Guid IdCurso;
     public string temaExamen;
     public DateTime fechaExamen;
-    private Nota notaExamen;
+    private Nota notaExamenAlumno;
     private TipoExamen tipoExamen;
 
-    private Examen(Guid idCurso, TipoExamen tipoExamen ,string temaExamen) : base(Guid.NewGuid())
+    private Examen(Guid idCurso, TipoExamen tipoExamen ,string temaExamen)
     {
         this.IdCurso = idCurso;
         this.temaExamen = temaExamen;
@@ -20,7 +20,7 @@ public class Examen : Entity
         this.tipoExamen = tipoExamen;
     }
 
-    public static Examen CrearNota(Guid idCurso, TipoExamen tipoExamen ,string temaExamen)
+    public static Examen CrearExamen(Guid idCurso, TipoExamen tipoExamen ,string temaExamen)
     {
         
         if (string.IsNullOrEmpty(temaExamen))
