@@ -7,18 +7,24 @@ namespace PlataformaDeGestionDeCursosOnline.Domain.Entities;
 public class Clase : Entity
 {
     public string Material;
-    public Guid IdCurso { get; }
+    public static Guid IdCurso { get; private set; }
     public DateTime Fecha { get; }
     private Asistencia asistenciaAlumno;
     
     //se van a mostrar en orden de cual fue la ultima 
     public Queue<string> consultasDeAlumnos;
 
-    public Clase(string material, Guid idCurso) : base(Guid.NewGuid())
+    private Clase(string material) : base(Guid.NewGuid())
     {
         Material = material;
-        IdCurso = idCurso;
         Fecha = DateTime.UtcNow;
     }
+
+    public void AsignarIdCurso(Guid idCurso)
+    {
+        Clase.IdCurso = idCurso;
+    }
+    
+    public Clase IniciarClase(string material)
 
 }
