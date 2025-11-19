@@ -8,6 +8,7 @@ public class InscripcionService : IInscripcionService
 {
     public void InscribirEstudiante(Estudiante estudiante, Curso curso)
     {
+        
         curso.AgregarEstudiante(estudiante);
     }
 
