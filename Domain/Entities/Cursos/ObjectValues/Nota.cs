@@ -8,23 +8,12 @@ namespace PlataformaDeGestionDeCursosOnline.Domain.Entities.Cursos.Notas;
 //aggregate de curso
 public record Nota
 {
-    public Guid IdCurso { get; init; }
-    public Guid IdEstudiante { get; init; }
-    public decimal ValorNota { get; init; } 
+    private Guid IdEstudiante { get; init; }
+    private decimal ValorNota { get; init; } 
 
-    private Nota(Guid idCurso, Guid estudianteId, decimal valorNota)
+    public Nota(Guid estudianteId, decimal valorNota)
     {
-        this.IdCurso = idCurso;
         this.IdEstudiante = estudianteId;
         this.ValorNota = valorNota;
-    }
-
-    public static Nota AsignarNota(Guid idCurso, Guid estudianteId, decimal valorNota)
-    {
-        //validaciones de negocio
-        if (valorNota < 0 || valorNota > 10)
-            throw new ArgumentOutOfRangeException(nameof(valorNota), "La nota debe estar entre 0 y 10.");
-
-        return new Nota(idCurso, estudianteId, valorNota);
     }
 }
