@@ -1,10 +1,9 @@
-﻿using System.Runtime.CompilerServices;
-using PlataformaDeGestionDeCursosOnline.Domain.Abstractions;
+﻿using PlataformaDeGestionDeCursosOnline.Domain.Entities.Cursos;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Cursos.Notas;
 
-namespace PlataformaDeGestionDeCursosOnline.Domain.Entities.Cursos.ObjectValues;
+namespace PlataformaDeGestionDeCursosOnline.Domain.Entities.Examen;
 
-public record Examen
+public class Examen
 {
     public Guid IdCurso;
     public string temaExamen;

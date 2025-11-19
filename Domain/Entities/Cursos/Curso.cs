@@ -16,7 +16,7 @@ public class Curso : Entity
     public string temarioCurso;
     //FIFO -> primer valor de la cola es la primera nota o examen que se agrego
     private Queue<Nota> notas;
-    private Queue<Examen> examenes;
+    // private Queue<Examen> examenes;
     
     public List<Estudiante> estudiantes;
     
