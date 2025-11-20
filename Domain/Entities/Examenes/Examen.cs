@@ -35,10 +35,10 @@ public class Examen : Entity
         return examen;
     }
     
-    public void EntregarExamen(Guid idEstudiante, string respuesta)
+    public void EntregarExamen(Guid idEstudiante, string respuesta, TipoExamen tipo)
     {
         bool entregadoFueraDeTiempo = DateTime.UtcNow > FechaLimiteDeEntrega;
-        EntregaDelExamen entrega = new EntregaDelExamen(idEstudiante, this.Id, DateTime.UtcNow, respuesta, entregadoFueraDeTiempo);
+        EntregaDelExamen entrega = new EntregaDelExamen(idEstudiante, this.Id, DateTime.UtcNow,tipo ,respuesta, entregadoFueraDeTiempo, EstadoEntregaDelExamen.SinCorregir);
         EntregasDelExamen.Add(entrega);
     }
     
