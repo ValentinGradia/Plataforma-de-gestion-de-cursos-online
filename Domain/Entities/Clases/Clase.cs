@@ -6,6 +6,9 @@ using PlataformaDeGestionDeCursosOnline.Domain.Entities.ObjectValues;
 
 namespace PlataformaDeGestionDeCursosOnline.Domain.Entities;
 
+//Los metodos de iniciar clase, finalizar y demas los va a menajar el curso porque
+//es el curso quien asigna las clases y cambia los estados. La clase no puede existir sin
+//el curso
 public class Clase : Entity
 {
     public string Material;
@@ -26,23 +29,19 @@ public class Clase : Entity
         this.Estado = estado;
     }
 
-    public static Clase IniciarClase(Guid idCurso, string material)
+    public static Clase CrearClase(Guid idCurso, string material)
     {
         return new Clase(idCurso, material, EstadoClase.EnCurso);
     }
-
-    public void FinalizarClase()
-    {
-        if (Estado == EstadoClase.Completada)
-            throw new InvalidOperationException("La clase ya fue finalizada");
-
-        Estado = EstadoClase.Completada;
-    }
+    
     
     public void DarPresente(Guid IdEstudiante)
     {
         if (_asistencias.Any(a => a.IdEstudiante == IdEstudiante))
-            throw new AsistenciaYaCargada();
+            throw new AsistenciaYaCargadaException();
+        
+        if(Estado == EstadoClase.Completada)
+            throw new ClaseFinalizadaNoSePuedeMarcarAusenteException();
 
         Asistencia asistencia = new Asistencia(IdEstudiante, true);
         _asistencias.Add(asistencia);
@@ -51,7 +50,7 @@ public class Clase : Entity
     public void DarAusente(Guid IdEstudiante)
     {
         if (_asistencias.Any(a => a.IdEstudiante == IdEstudiante))
-            throw new AsistenciaYaCargada();
+            throw new AsistenciaYaCargadaException();
 
         Asistencia asistencia = new Asistencia(IdEstudiante, false);
         _asistencias.Add(asistencia);

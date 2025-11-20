@@ -1,7 +1,7 @@
 ﻿using PlataformaDeGestionDeCursosOnline.Domain.Entities.Cursos;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Cursos.Notas;
 
-namespace PlataformaDeGestionDeCursosOnline.Domain.Entities.Examen;
+namespace PlataformaDeGestionDeCursosOnline.Domain.Entities.Examenes;
 
 public class Examen
 {
