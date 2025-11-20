@@ -82,5 +82,11 @@ public class Curso : Entity
         clase.Estado = EstadoClase.Completada;
     }
     
+    //EXAMEN
+    public Examen CargarExamen(TipoExamen tipoExamen, string temaExamen)
+    {
+        return Examen.CrearExamen(this.Id, tipoExamen, temaExamen);
+    }
+    
 
 }

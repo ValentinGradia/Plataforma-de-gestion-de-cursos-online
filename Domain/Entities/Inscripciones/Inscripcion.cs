@@ -1,5 +1,6 @@
 ﻿using PlataformaDeGestionDeCursosOnline.Domain.Abstractions;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Cursos;
+using PlataformaDeGestionDeCursosOnline.Domain.Entities.Cursos.Notas;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Enums;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Examenes;
 
@@ -53,5 +54,15 @@ public class Inscripcion : Entity
         int clasespresentes = _asistenciasDelEstudiante.Count(a => a.Presente);
 
         this.porcentajeAsistencia = (double)clasespresentes / clasesTotal * 100;
+    }
+    
+    public void AgregarNotaAHistorial(Examen examen, double valorNota)
+    {
+        Dictionary<Examen,double> notaDict = new Dictionary<Examen, double>
+        {
+            { examen, valorNota }
+        };
+        
+        _historialNotas.Add(notaDict);
     }
 }
