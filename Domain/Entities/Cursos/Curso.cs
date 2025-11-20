@@ -83,9 +83,9 @@ public class Curso : Entity
     }
     
     //EXAMEN
-    public Examen CargarExamen(TipoExamen tipoExamen, string temaExamen)
+    public Examen CargarExamen(TipoExamen tipoExamen, string temaExamen, DateTime fechaLimiteDeEntrega)
     {
-        return Examen.CrearExamen(this.Id, tipoExamen, temaExamen);
+        return Examen.CrearExamen(this.Id, tipoExamen, temaExamen, fechaLimiteDeEntrega);
     }
     
 

@@ -7,26 +7,28 @@ public class Examen
 {
     private Guid IdCurso;
     public string TemaExamen { get; private set; }
+    public DateTime FechaLimiteDeEntrega { get; private set; }
     public DateTime FechaExamen { get; private set; }
     private readonly List<Nota> _notas = new List<Nota>();
     public IReadOnlyCollection<Nota> Notas => this._notas;
     public TipoExamen Tipo { get; private set; }
 
-    private Examen(Guid idCurso, TipoExamen tipoExamen ,string temaExamen)
+    private Examen(Guid idCurso, TipoExamen tipoExamen ,string temaExamen, DateTime fechaLimiteDeEntrega)
     {
         this.IdCurso = idCurso;
         this.TemaExamen = temaExamen;
         this.FechaExamen = DateTime.UtcNow;
         this.Tipo = tipoExamen;
+        this.FechaLimiteDeEntrega = fechaLimiteDeEntrega;
     }
 
-    public static Examen CrearExamen(Guid idCurso, TipoExamen tipoExamen ,string temaExamen)
+    public static Examen CrearExamen(Guid idCurso, TipoExamen tipoExamen ,string temaExamen, DateTime fechaLimiteDeEntrega)
     {
         
         if (string.IsNullOrEmpty(temaExamen))
             throw new ArgumentNullException(nameof(temaExamen));
 
-        var examen = new Examen(idCurso, tipoExamen ,temaExamen);
+        var examen = new Examen(idCurso, tipoExamen ,temaExamen, fechaLimiteDeEntrega);
         return examen;
     }
     
