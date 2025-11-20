@@ -62,7 +62,7 @@ public class Curso : Entity
     //CLASE
     public Clase IniciarClase(string material)
     {
-        var clase = Clase.CrearClase(this.Id, material);
+        var clase = Clase.CrearClase(this, material);
         this.clases.Add(clase);
         return clase;
     }
@@ -75,6 +75,8 @@ public class Curso : Entity
         
         if (clase.Estado == EstadoClase.Completada)
             throw new InvalidOperationException("La clase ya fue finalizada");
+        
+        int totalClases = this.clases.Count;
 
         clase.Estado = EstadoClase.Completada;
     }
