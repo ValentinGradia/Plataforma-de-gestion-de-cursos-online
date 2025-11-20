@@ -19,18 +19,17 @@ public class Curso : Entity
     public DateRange Duracion;
     public string Nombre;
     public string Temario;
-    private List<Nota> notas;
-    private List<Examen> examenes;
-    public List<Clase> clases;
+    private readonly List<Examen> _examenes;
+    public readonly List<Clase> _clases;
     
-    private List<Inscripcion> InscripcionesEstudiantes;
+    private readonly List<Inscripcion> _inscripcionesEstudiantes;
     
     private Curso(Profesor profesor, string temario, string nombre) : base(Guid.NewGuid())
     {
         this.Profesor = profesor;
         this.Temario = temario;
         this.Nombre = nombre;
-        this.InscripcionesEstudiantes = new List<Inscripcion>();
+        this._inscripcionesEstudiantes = new List<Inscripcion>();
     }
     public static void CrearCurso(Profesor profesor, string temario, string nombreCurso)
     {
@@ -49,7 +48,7 @@ public class Curso : Entity
         if (inscripcionEstudiante ==  null)
             throw new ArgumentNullException(nameof(inscripcionEstudiante));
         
-        this.InscripcionesEstudiantes.Add(inscripcionEstudiante);
+        this._inscripcionesEstudiantes.Add(inscripcionEstudiante);
     }
     
     public void RemoverEstudiante(Inscripcion inscripcionEstudiante)
@@ -57,19 +56,19 @@ public class Curso : Entity
         if (inscripcionEstudiante == null)
             throw new ArgumentNullException(nameof(inscripcionEstudiante));
         
-        this.InscripcionesEstudiantes.Remove(inscripcionEstudiante);
+        this._inscripcionesEstudiantes.Remove(inscripcionEstudiante);
     }
     
     //CLASE
     public Clase IniciarClase(string material)
     {
         var clase = Clase.CrearClase(this, material);
-        this.clases.Add(clase);
+        this._clases.Add(clase);
         return clase;
     }
     public void FinalizarClase(Guid idClase)
     {
-        Clase clase = this.clases.FirstOrDefault(c => c.Id == idClase);
+        Clase clase = this._clases.FirstOrDefault(c => c.Id == idClase)!;
         
         if (clase == null)
             throw new InvalidOperationException("Clase no encontrada en este curso");
@@ -77,7 +76,7 @@ public class Curso : Entity
         if (clase.Estado == EstadoClase.Completada)
             throw new InvalidOperationException("La clase ya fue finalizada");
         
-        int totalClases = this.clases.Count;
+        int totalClases = this._clases.Count;
 
         clase.Estado = EstadoClase.Completada;
     }
