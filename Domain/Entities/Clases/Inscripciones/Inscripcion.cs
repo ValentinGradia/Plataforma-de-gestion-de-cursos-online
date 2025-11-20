@@ -17,7 +17,7 @@ public class Inscripcion : Entity
     public bool Activa { get; private set; }
     private readonly List<Dictionary<TipoExamen, double>> _historialNotas;
     private readonly List<Asistencia> _asistenciasDelEstudiante;
-    public double porcentajeAsistencia { get; set; }
+    public double porcentajeAsistencia { get; private set; }
     
     public Inscripcion() : base(Guid.NewGuid())
     {
@@ -45,8 +45,9 @@ public class Inscripcion : Entity
         return inscripcion;
     }
 
-    public void RegistrarAsistencia(bool presente)
+    public void ActualizarPorcentajeAsistencia()
     {
-        
+        porcentajeAsistencia =
+            (double)_asistenciasDelEstudiante.Count(a => a.Presente) / _asistenciasDelEstudiante.Count * 100;
     }
 }
