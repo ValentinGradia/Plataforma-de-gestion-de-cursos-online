@@ -1,19 +1,22 @@
-﻿using PlataformaDeGestionDeCursosOnline.Domain.Entities.Cursos;
+﻿using PlataformaDeGestionDeCursosOnline.Domain.Abstractions;
+using PlataformaDeGestionDeCursosOnline.Domain.Entities.Cursos;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Cursos.Notas;
+using PlataformaDeGestionDeCursosOnline.Domain.Entities.Examenes.ObjectValues;
 
 namespace PlataformaDeGestionDeCursosOnline.Domain.Entities.Examenes;
 
-public class Examen
+public class Examen : Entity
 {
     private Guid IdCurso;
     public string TemaExamen { get; private set; }
+    public List<EntregaDelExamen?> EntregasDelExamen;
     public DateTime FechaLimiteDeEntrega { get; private set; }
     public DateTime FechaExamen { get; private set; }
     private readonly List<Nota> _notas = new List<Nota>();
     public IReadOnlyCollection<Nota> Notas => this._notas;
     public TipoExamen Tipo { get; private set; }
 
-    private Examen(Guid idCurso, TipoExamen tipoExamen ,string temaExamen, DateTime fechaLimiteDeEntrega)
+    private Examen(Guid idCurso, TipoExamen tipoExamen ,string temaExamen, DateTime fechaLimiteDeEntrega) : base(Guid.NewGuid())
     {
         this.IdCurso = idCurso;
         this.TemaExamen = temaExamen;
@@ -30,6 +33,13 @@ public class Examen
 
         var examen = new Examen(idCurso, tipoExamen ,temaExamen, fechaLimiteDeEntrega);
         return examen;
+    }
+    
+    public void EntregarExamen(Guid idEstudiante, string respuesta)
+    {
+        bool entregadoFueraDeTiempo = DateTime.UtcNow > FechaLimiteDeEntrega;
+        EntregaDelExamen entrega = new EntregaDelExamen(idEstudiante, this.Id, DateTime.UtcNow, respuesta, entregadoFueraDeTiempo);
+        EntregasDelExamen.Add(entrega);
     }
     
     public void AsignarNota(Guid IdEstudiante, decimal valor)
