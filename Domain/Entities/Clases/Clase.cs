@@ -12,7 +12,8 @@ public class Clase : Entity
     public EstadoClase Estado;
     public Guid IdCurso { get; private set; }
     public DateTime Fecha { get; }
-    private readonly List<Asistencia> _asistencias;
+    private readonly List<Asistencia> _asistencias = new List<Asistencia>();
+    public IReadOnlyCollection<Asistencia> Asistencias => this._asistencias;
     
     //se van a mostrar en orden de cual fue la ultima 
     public Queue<Consulta> consultasDeAlumnos;

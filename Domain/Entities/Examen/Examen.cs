@@ -5,10 +5,11 @@ namespace PlataformaDeGestionDeCursosOnline.Domain.Entities.Examen;
 
 public class Examen
 {
-    public Guid IdCurso;
+    private Guid IdCurso;
     public string TemaExamen;
     public DateTime FechaExamen;
-    private readonly List<Nota> _notas;
+    private readonly List<Nota> _notas = new List<Nota>();
+    public IReadOnlyCollection<Nota> Notas => this._notas;
     private TipoExamen Tipo;
 
     private Examen(Guid idCurso, TipoExamen tipoExamen ,string temaExamen)
@@ -29,5 +30,9 @@ public class Examen
         return examen;
     }
     
-    
+    public void AsignarNota(Guid IdEstudiante, decimal valor)
+    {
+        var nota = new Nota(IdEstudiante, valor);
+        _notas.Add(nota);
+    }
 }
