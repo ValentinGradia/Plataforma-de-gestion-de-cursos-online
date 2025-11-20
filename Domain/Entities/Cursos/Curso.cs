@@ -15,33 +15,34 @@ namespace PlataformaDeGestionDeCursosOnline.Domain.Entities.Cursos;
 public class Curso : Entity 
 {
     public Profesor Profesor;
-    public EstadoCurso EstadoCurso;
-    public DateRange DuracionCurso;
-    public string NombreCurso;
-    public string TemarioCurso;
-    //FIFO -> primer valor de la cola es la primera nota o examen que se agrego
+    public EstadoCurso Estado;
+    public DateRange Duracion;
+    public string Nombre;
+    public string Temario;
     private List<Nota> notas;
-    private Queue<Examen> examenes;
+    private List<Examen> examenes;
     public List<Clase> clases;
     
     private List<Inscripcion> InscripcionesEstudiantes;
     
-    private Curso(Profesor profesor) : base(Guid.NewGuid())
+    private Curso(Profesor profesor, string temario, string nombre) : base(Guid.NewGuid())
     {
         this.Profesor = profesor;
+        this.Temario = temario;
+        this.Nombre = nombre;
         this.InscripcionesEstudiantes = new List<Inscripcion>();
     }
-    public static void CrearCurso(Profesor profesor)
+    public static void CrearCurso(Profesor profesor, string temario, string nombreCurso)
     {
         //validaciones
         if (profesor == null)
             throw new ArgumentNullException(nameof(profesor));
 
-        new Curso(profesor);
+        new Curso(profesor,temario,nombreCurso);
     }
     
     //INSCRIPCION ESTUDIANTE
-    //nostros agreamos Inscripciones de los estudiantes, no el estudiante directamente
+    //nostros agregamos Inscripciones de los estudiantes, no el estudiante directamente
     //la relacion entre estudiante y curso es la inscripcion
     public void AgregarEstudiante(Inscripcion inscripcionEstudiante)
     {

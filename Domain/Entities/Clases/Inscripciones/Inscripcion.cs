@@ -1,6 +1,7 @@
 ﻿using PlataformaDeGestionDeCursosOnline.Domain.Abstractions;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Cursos;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Enums;
+using PlataformaDeGestionDeCursosOnline.Domain.Entities.Examenes;
 
 namespace PlataformaDeGestionDeCursosOnline.Domain.Entities.Inscripciones;
 
@@ -15,13 +16,13 @@ public class Inscripcion : Entity
     public Guid IdCurso { get; private set; }
     public DateTime FechaInscripcion { get; private set; }
     public bool Activa { get; private set; }
-    private readonly List<Dictionary<TipoExamen, double>> _historialNotas;
+    private readonly List<Dictionary<Examen,double>> _historialNotas;
     private readonly List<Asistencia> _asistenciasDelEstudiante;
     public double porcentajeAsistencia { get; private set; }
     
     public Inscripcion() : base(Guid.NewGuid())
     {
-        this._historialNotas = new List<Dictionary<TipoExamen, double>>();
+        this._historialNotas = new List<Dictionary<Examen, double>>();
         this._asistenciasDelEstudiante = new List<Asistencia>();
     }
     
