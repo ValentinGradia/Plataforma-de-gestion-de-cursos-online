@@ -38,13 +38,14 @@ public class Examen : Entity
     public void EntregarExamen(Guid idEstudiante, string respuesta, TipoExamen tipo)
     {
         bool entregadoFueraDeTiempo = DateTime.UtcNow > FechaLimiteDeEntrega;
-        EntregaDelExamen entrega = new EntregaDelExamen(idEstudiante, this.Id, DateTime.UtcNow,tipo ,respuesta, entregadoFueraDeTiempo, EstadoEntregaDelExamen.SinCorregir);
+        EntregaDelExamen entrega = new EntregaDelExamen(idEstudiante, this.Id, DateTime.UtcNow,tipo ,respuesta, entregadoFueraDeTiempo);
         EntregasDelExamen.Add(entrega);
     }
     
-    public void AsignarNota(Guid IdEstudiante, decimal valor)
+    
+    public void AsignarNota(decimal valor)
     {
-        Nota nota = new Nota(IdEstudiante, valor);
+        Nota nota = new Nota(this.Id, valor);
         _notas.Add(nota);
     }
 }

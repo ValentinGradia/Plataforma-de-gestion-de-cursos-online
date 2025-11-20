@@ -9,6 +9,5 @@ public record EntregaDelExamen
     DateTime FechaEntrega,
     TipoExamen tipo,
     string Respuesta,
-    bool EntregadoFueraDeTiempo,
-    EstadoEntregaDelExamen estadoEntrega
+    bool EntregadoFueraDeTiempo
 );
