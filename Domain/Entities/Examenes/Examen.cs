@@ -7,7 +7,6 @@ namespace PlataformaDeGestionDeCursosOnline.Domain.Entities.Examenes;
 
 public class Examen : Entity
 {
-    private Guid IdCurso;
     public string TemaExamen { get; private set; }
     public List<EntregaDelExamen?> EntregasDelExamen;
     public DateTime FechaLimiteDeEntrega { get; private set; }
@@ -16,9 +15,8 @@ public class Examen : Entity
     public IReadOnlyCollection<Nota> Notas => this._notas;
     public TipoExamen Tipo { get; private set; }
 
-    private Examen(Guid idCurso, TipoExamen tipoExamen ,string temaExamen, DateTime fechaLimiteDeEntrega) : base(Guid.NewGuid())
+    private Examen(TipoExamen tipoExamen ,string temaExamen, DateTime fechaLimiteDeEntrega) : base(Guid.NewGuid())
     {
-        this.IdCurso = idCurso;
         this.TemaExamen = temaExamen;
         this.FechaExamen = DateTime.UtcNow;
         this.Tipo = tipoExamen;
@@ -31,21 +29,20 @@ public class Examen : Entity
         if (string.IsNullOrEmpty(temaExamen))
             throw new ArgumentNullException(nameof(temaExamen));
 
-        var examen = new Examen(idCurso, tipoExamen ,temaExamen, fechaLimiteDeEntrega);
+        var examen = new Examen( tipoExamen ,temaExamen, fechaLimiteDeEntrega);
         return examen;
     }
     
     public void EntregarExamen(Guid idEstudiante, string respuesta, TipoExamen tipo)
     {
-        bool entregadoFueraDeTiempo = DateTime.UtcNow > FechaLimiteDeEntrega;
-        EntregaDelExamen entrega = new EntregaDelExamen(idEstudiante, this.Id, DateTime.UtcNow,tipo ,respuesta, entregadoFueraDeTiempo);
-        EntregasDelExamen.Add(entrega);
+        // bool entregadoFueraDeTiempo = DateTime.UtcNow > FechaLimiteDeEntrega;
+        // EntregaDelExamen entrega = new EntregaDelExamen(idEstudiante, this.Id, DateTime.UtcNow,tipo ,respuesta, entregadoFueraDeTiempo);
+        // EntregasDelExamen.Add(entrega);
     }
-    
     
     public void AsignarNota(decimal valor)
     {
-        Nota nota = new Nota(this.Id, valor);
+        Nota nota = new Nota(valor);
         _notas.Add(nota);
     }
 }

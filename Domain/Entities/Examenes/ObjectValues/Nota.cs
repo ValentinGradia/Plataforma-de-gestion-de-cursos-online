@@ -8,12 +8,12 @@ namespace PlataformaDeGestionDeCursosOnline.Domain.Entities.Cursos.Notas;
 //aggregate de curso
 public record Nota
 {
-    private Guid IdExamen { get; init; }
-    private decimal ValorNota { get; init; } 
+    private decimal ValorNota { get; set; } 
 
-    public Nota(Guid idExamen, decimal valorNota)
+    public Nota(decimal valorNota)
     {
-        this.IdExamen = idExamen;
         this.ValorNota = valorNota;
     }
+
+    public void AsignarNota(decimal valor) => this.ValorNota = valor;
 }

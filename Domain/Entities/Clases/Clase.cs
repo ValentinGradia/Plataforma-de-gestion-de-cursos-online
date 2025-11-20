@@ -14,7 +14,6 @@ public class Clase : Entity
 {
     public string Material;
     public EstadoClase Estado;
-    public Curso curso { get; private set; }
     public DateTime Fecha { get; }
     private readonly List<Asistencia> _asistencias = new List<Asistencia>();
     public IReadOnlyCollection<Asistencia> Asistencias => this._asistencias;
@@ -22,9 +21,8 @@ public class Clase : Entity
     //se van a mostrar en orden de cual fue la ultima 
     public Queue<Consulta> consultasDeAlumnos;
 
-    private Clase(Curso curso, string material, EstadoClase estado) : base(Guid.NewGuid())
+    private Clase(string material, EstadoClase estado) : base(Guid.NewGuid())
     {
-        this.curso = curso;
         this.Material = material;
         this.Fecha = DateTime.UtcNow;
         this.Estado = estado;
@@ -32,7 +30,7 @@ public class Clase : Entity
 
     public static Clase CrearClase(Curso curso, string material)
     {
-        return new Clase(curso, material, EstadoClase.EnCurso);
+        return new Clase(material, EstadoClase.EnCurso);
     }
     
     public ICollection<Asistencia> ObtenerAsistencias()
