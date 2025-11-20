@@ -47,7 +47,10 @@ public class Inscripcion : Entity
 
     public void ActualizarPorcentajeAsistencia()
     {
-        porcentajeAsistencia =
-            (double)_asistenciasDelEstudiante.Count(a => a.Presente) / _asistenciasDelEstudiante.Count * 100;
+        int clasesTotal = _asistenciasDelEstudiante.Count;
+        
+        int clasespresentes = _asistenciasDelEstudiante.Count(a => a.Presente);
+
+        this.porcentajeAsistencia = (double)clasespresentes / clasesTotal * 100;
     }
 }
