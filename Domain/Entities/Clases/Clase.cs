@@ -13,13 +13,13 @@ namespace PlataformaDeGestionDeCursosOnline.Domain.Entities;
 public class Clase : Entity
 {
     public string Material;
+    //Quien maneja el estado de las clases es el curso
     public EstadoClase Estado;
     public DateTime Fecha { get; }
     private readonly List<Asistencia> _asistencias = new List<Asistencia>();
     public IReadOnlyCollection<Asistencia> Asistencias => this._asistencias;
     
-    //se van a mostrar en orden de cual fue la ultima 
-    public Queue<Consulta> consultasDeAlumnos;
+    public  List<Consulta> _consultas;
 
     private Clase(string material, EstadoClase estado) : base(Guid.NewGuid())
     {
@@ -64,11 +64,11 @@ public class Clase : Entity
     
     public void AgregarConsulta(string titulo, string descripcion,  Guid IdEstudiante)
     {
-        if (consultasDeAlumnos == null)
-            consultasDeAlumnos = new Queue<Consulta>();
+        if (this._consultas == null)
+            this._consultas = new List<Consulta>();
         
-        var consulta = new Consulta(IdEstudiante, titulo, descripcion, DateTime.UtcNow);
-        consultasDeAlumnos.Enqueue(consulta);
+        Consulta consulta = new Consulta(IdEstudiante, titulo, descripcion, DateTime.UtcNow);
+        this._consultas.Add(consulta);
     }
 
 }
