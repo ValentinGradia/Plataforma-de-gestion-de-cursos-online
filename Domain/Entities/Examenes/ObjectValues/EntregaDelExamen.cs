@@ -7,15 +7,28 @@ namespace PlataformaDeGestionDeCursosOnline.Domain.Entities.Examenes.ObjectValue
 public class EntregaDelExamen : Entity
 {
     public Guid IdEstudiante{ get; }
-    private Nota? Nota { get; }
+    public TipoExamen Tipo { get; }
+    public string Respuesta { get; private set; }
+    public Nota? Nota { get; private set; }
     public DateTime FechaEntrega { get; private set; }
     public string? ComentarioDocente { get; private set; }
 
-    public EntregaDelExamen(Guid estudianteId ) : base(Guid.NewGuid())
+    public EntregaDelExamen(Guid estudianteId, TipoExamen tipo , string respuesta) : base(Guid.NewGuid())
     {
         this.IdEstudiante = estudianteId;
         this.FechaEntrega = DateTime.UtcNow;
+        this.Tipo = tipo;
+        this.Respuesta = respuesta;
     }
     
+    internal void AsignarNotaInterna(Nota nota)
+    {   
+        Nota = nota;
+    }
+    
+    public void AgregarComentario(string comentario)
+    {
+        this.ComentarioDocente = comentario;
+    }
     
 }

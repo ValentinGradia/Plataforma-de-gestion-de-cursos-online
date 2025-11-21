@@ -8,11 +8,9 @@ namespace PlataformaDeGestionDeCursosOnline.Domain.Entities.Examenes;
 public class Examen : Entity
 {
     public string TemaExamen { get; private set; }
-    public List<EntregaDelExamen?> EntregasDelExamen;
+    private readonly List<EntregaDelExamen?> _entregasDelExamen;
     public DateTime FechaLimiteDeEntrega { get; private set; }
     public DateTime FechaExamen { get; private set; }
-    private readonly List<Nota> _notas = new List<Nota>();
-    public IReadOnlyCollection<Nota> Notas => this._notas;
     public TipoExamen Tipo { get; private set; }
 
     private Examen(TipoExamen tipoExamen ,string temaExamen, DateTime fechaLimiteDeEntrega) : base(Guid.NewGuid())
@@ -35,14 +33,17 @@ public class Examen : Entity
     
     public void EntregarExamen(Guid idEstudiante, string respuesta, TipoExamen tipo)
     {
-        // bool entregadoFueraDeTiempo = DateTime.UtcNow > FechaLimiteDeEntrega;
-        // EntregaDelExamen entrega = new EntregaDelExamen(idEstudiante, this.Id, DateTime.UtcNow,tipo ,respuesta, entregadoFueraDeTiempo);
-        // EntregasDelExamen.Add(entrega);
+        bool entregadoFueraDeTiempo = DateTime.UtcNow > FechaLimiteDeEntrega;
+        EntregaDelExamen entrega = new EntregaDelExamen(idEstudiante, tipo ,respuesta);
+        _entregasDelExamen.Add(entrega);
     }
     
-    public void AsignarNota(decimal valor)
+    public void AsignarNota(Guid idEstudiante, decimal valor)
     {
+        EntregaDelExamen entrega = _entregasDelExamen.FirstOrDefault(e => e != null && e.IdEstudiante == idEstudiante)
+            ?? throw new InvalidOperationException("El estudiante no ha entregado el examen.");
+        
         Nota nota = new Nota(valor);
-        _notas.Add(nota);
+        entrega.AsignarNotaInterna(nota);
     }
 }
