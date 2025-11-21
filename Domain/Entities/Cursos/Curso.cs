@@ -1,5 +1,6 @@
 ﻿using System.Runtime.CompilerServices;
 using PlataformaDeGestionDeCursosOnline.Domain.Abstractions;
+using PlataformaDeGestionDeCursosOnline.Domain.Entities.Cursos.Exceptions;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Cursos.Notas;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Cursos.ObjectValues;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Enums;
@@ -14,39 +15,81 @@ namespace PlataformaDeGestionDeCursosOnline.Domain.Entities.Cursos;
 
 public class Curso : Entity 
 {
-    public Profesor Profesor;
-    public EstadoCurso Estado;
-    public DateRange Duracion;
-    public string Nombre;
-    public string Temario;
+    public Profesor Profesor { get; private set; }
+    public EstadoCurso Estado { get; private set; }
+    public DateRange Duracion { get; private set; }
+    public string Nombre { get; private set; }
+    public string Temario { get; private set; }
     private readonly List<Examen> _examenes;
     public readonly List<Clase> _clases;
+    private int limiteDeEstudiantes = 30;
+    public int cantidadDeInscriptos => this._inscripcionesEstudiantes.Count;
     
-    private readonly List<Inscripcion> _inscripcionesEstudiantes;
+    private readonly List<Inscripcion> _inscripcionesEstudiantes = new();
+    public IReadOnlyCollection<Inscripcion> Inscripciones => _inscripcionesEstudiantes.AsReadOnly();
     
-    private Curso(Profesor profesor, string temario, string nombre) : base(Guid.NewGuid())
+    private Curso(Profesor profesor, string temario, string nombre, DateTime inicio, DateTime fin) : base(Guid.NewGuid())
     {
         this.Profesor = profesor;
         this.Temario = temario;
         this.Nombre = nombre;
+        this.Estado = EstadoCurso.Disponible;
+        this.Duracion = DateRange.CrearDateRange(inicio, fin);
         this._inscripcionesEstudiantes = new List<Inscripcion>();
+        this._examenes = new List<Examen>();
+        this._clases = new List<Clase>();
     }
-    public static void CrearCurso(Profesor profesor, string temario, string nombreCurso)
+    public static Curso CrearCurso(Profesor profesor, string temario, string nombreCurso, DateTime inicio, DateTime fin)
     {
         //validaciones
         if (profesor == null)
             throw new ArgumentNullException(nameof(profesor));
 
-        new Curso(profesor,temario,nombreCurso);
+        return new Curso(profesor,temario,nombreCurso,inicio,fin);
+    }
+
+    public void IniciarCurso()
+    {
+        this.Estado = EstadoCurso.EnProgreso;
     }
     
-    //INSCRIPCION ESTUDIANTE
+    public void FinalizarCurso()
+    {
+        this.Estado = EstadoCurso.Finalizado;
+    }
+    
+    public void ActualizarNombre(string nuevoNombre)
+    {
+        if (string.IsNullOrWhiteSpace(nuevoNombre))
+            throw new ArgumentException("Nombre inválido", nameof(nuevoNombre));
+
+        this.Nombre = nuevoNombre.Trim();
+    }
+    
+    public void ActualizarTemario(string nuevoTemario)
+    {
+        if (string.IsNullOrWhiteSpace(nuevoTemario))
+            throw new ArgumentException("Temario inválido", nameof(nuevoTemario));
+
+        this.Temario = nuevoTemario.Trim();
+    }
+    
+    public IReadOnlyList<Clase> ObtenerClases()
+    {
+        return this._clases.AsReadOnly();
+    }
+    
+    //INSCRIPCION -> ESTUDIANTE
     //nostros agregamos Inscripciones de los estudiantes, no el estudiante directamente
     //la relacion entre estudiante y curso es la inscripcion
     public void AgregarEstudiante(Inscripcion inscripcionEstudiante)
     {
         if (inscripcionEstudiante ==  null)
             throw new ArgumentNullException(nameof(inscripcionEstudiante));
+        
+        this.ValidarSiElCursoEstaDisponible();
+        this.ValidarLimiteDeEstudiantes();
+        this.ValidarSiElEstudianteYaPerteneceAlCurso(inscripcionEstudiante.IdEstudiante);
         
         this._inscripcionesEstudiantes.Add(inscripcionEstudiante);
     }
@@ -67,6 +110,26 @@ public class Curso : Entity
         inscripcionEstudiante.DarseDeBaja();
     }
     
+    //VALIDACIONES
+    
+    public void ValidarLimiteDeEstudiantes()
+    {
+        if (this._inscripcionesEstudiantes.Count == this.limiteDeEstudiantes)
+            throw new LimiteDeEstudiantesAlcanzadoException();
+    }
+    
+    public void ValidarSiElCursoEstaDisponible()
+    {
+        if (this.Estado != EstadoCurso.Disponible)
+            throw new CursoNoDisponibleException();
+    }
+    
+    public void ValidarSiElEstudianteYaPerteneceAlCurso(Guid idEstudiante)
+    {
+        if (this._inscripcionesEstudiantes.Any(i => i.IdEstudiante == idEstudiante))
+            throw new EstudianteYaInscriptoException();
+    }
+    
     //CLASES
     public Clase IniciarClase(string material)
     {
@@ -83,8 +146,6 @@ public class Curso : Entity
         
         if (clase.Estado == EstadoClase.Completada)
             throw new InvalidOperationException("La clase ya fue finalizada");
-        
-        int totalClases = this._clases.Count;
 
         clase.Estado = EstadoClase.Completada;
     }
@@ -92,8 +153,20 @@ public class Curso : Entity
     //EXAMENES
     public Examen CargarExamen(TipoExamen tipoExamen, string temaExamen, DateTime fechaLimiteDeEntrega)
     {
-        return Examen.CrearExamen(this.Id, tipoExamen, temaExamen, fechaLimiteDeEntrega);
+        Examen examen =  Examen.CrearExamen(this.Id, tipoExamen, temaExamen, fechaLimiteDeEntrega);
+        this._examenes.Add(examen);
+        return examen;
     }
+    
+    //PROFESORES
+    public void CambiarProfesor(Profesor nuevoProfesor)
+    {
+        if (nuevoProfesor == null)
+            throw new ArgumentNullException(nameof(nuevoProfesor));
+
+        this.Profesor = nuevoProfesor;
+    }
+    
     
 
 }

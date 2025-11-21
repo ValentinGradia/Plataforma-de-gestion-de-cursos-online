@@ -10,6 +10,7 @@ public class Examen : Entity
     public string TemaExamen { get; private set; }
     private readonly List<EntregaDelExamen?> _entregasDelExamen;
     public DateTime FechaLimiteDeEntrega { get; private set; }
+    
     public DateTime FechaExamen { get; private set; }
     public TipoExamen Tipo { get; private set; }
 
