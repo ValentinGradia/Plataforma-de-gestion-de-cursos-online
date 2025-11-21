@@ -38,6 +38,9 @@ public class Clase : Entity
         return _asistencias.AsReadOnly();
     }
     
+    
+    //ACTUALIZAR ESTO EN LAS ASISTENCIAS DE LAS INSCRIPCIONES DE LOS ESTUDIANTES
+    //(El dar presente y ausante)
     public void DarPresente(Guid IdEstudiante)
     {
         if (_asistencias.Any(a => a.IdEstudiante == IdEstudiante))

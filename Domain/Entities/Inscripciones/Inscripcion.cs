@@ -62,4 +62,9 @@ public class Inscripcion : Entity
         
         _historialEntregas.Add(entrega);
     }
+    
+    internal void DarseDeBaja()
+    {
+        this.Activa = false;
+    }
 }

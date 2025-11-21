@@ -59,7 +59,15 @@ public class Curso : Entity
         this._inscripcionesEstudiantes.Remove(inscripcionEstudiante);
     }
     
-    //CLASE
+    public void DarseDeBajaEstudiante(Guid IdEstudiante)
+    {
+        Inscripcion inscripcionEstudiante =
+            this._inscripcionesEstudiantes.FirstOrDefault(i => i.IdEstudiante == IdEstudiante);
+
+        inscripcionEstudiante.DarseDeBaja();
+    }
+    
+    //CLASES
     public Clase IniciarClase(string material)
     {
         var clase = Clase.CrearClase(this, material);
@@ -81,7 +89,7 @@ public class Curso : Entity
         clase.Estado = EstadoClase.Completada;
     }
     
-    //EXAMEN
+    //EXAMENES
     public Examen CargarExamen(TipoExamen tipoExamen, string temaExamen, DateTime fechaLimiteDeEntrega)
     {
         return Examen.CrearExamen(this.Id, tipoExamen, temaExamen, fechaLimiteDeEntrega);
