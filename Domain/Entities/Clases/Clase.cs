@@ -38,7 +38,6 @@ public class Clase : Entity
         return _asistencias.AsReadOnly();
     }
     
-    
     public void DarPresente(Guid IdEstudiante)
     {
         if (_asistencias.Any(a => a.IdEstudiante == IdEstudiante))

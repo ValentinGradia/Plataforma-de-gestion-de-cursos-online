@@ -3,6 +3,7 @@ using PlataformaDeGestionDeCursosOnline.Domain.Entities.Cursos;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Cursos.Notas;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Enums;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Examenes;
+using PlataformaDeGestionDeCursosOnline.Domain.Entities.Examenes.ObjectValues;
 
 namespace PlataformaDeGestionDeCursosOnline.Domain.Entities.Inscripciones;
 
@@ -17,13 +18,13 @@ public class Inscripcion : Entity
     public Guid IdCurso { get; private set; }
     public DateTime FechaInscripcion { get; private set; }
     public bool Activa { get; private set; }
-    private readonly List<Dictionary<Examen,double>> _historialNotas;
+    private readonly List<EntregaDelExamen> _historialEntregas;
     private readonly List<Asistencia> _asistenciasDelEstudiante;
     public double porcentajeAsistencia { get; private set; }
     
     public Inscripcion() : base(Guid.NewGuid())
     {
-        this._historialNotas = new List<Dictionary<Examen, double>>();
+        this._historialEntregas = new List<EntregaDelExamen>();
         this._asistenciasDelEstudiante = new List<Asistencia>();
     }
     
@@ -56,13 +57,9 @@ public class Inscripcion : Entity
         this.porcentajeAsistencia = (double)clasespresentes / clasesTotal * 100;
     }
     
-    public void AgregarNotaAHistorial(Examen examen, double valorNota)
+    public void AgregarEntregaAlHistorial(EntregaDelExamen entrega)
     {
-        Dictionary<Examen,double> notaDict = new Dictionary<Examen, double>
-        {
-            { examen, valorNota }
-        };
         
-        _historialNotas.Add(notaDict);
+        _historialEntregas.Add(entrega);
     }
 }
