@@ -3,6 +3,7 @@ using PlataformaDeGestionDeCursosOnline.Domain.Abstractions;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Cursos.Exceptions;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Cursos.Notas;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Cursos.ObjectValues;
+using PlataformaDeGestionDeCursosOnline.Domain.Entities.Encuestas;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Enums;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Profesores;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Estudiantes;
@@ -22,6 +23,7 @@ public class Curso : Entity
     public string Temario { get; private set; }
     private readonly List<Examen> _examenes;
     public readonly List<Clase> _clases;
+    public readonly List<Encuesta> _encuestas = new List<Encuesta>();
     private int limiteDeEstudiantes = 30;
     public int cantidadDeInscriptos => this._inscripcionesEstudiantes.Count;
     
@@ -166,6 +168,34 @@ public class Curso : Entity
             throw new ArgumentNullException(nameof(nuevoProfesor));
 
         this.Profesor = nuevoProfesor;
+    }
+    
+    //ENCUESTAS
+    //Recibimos los parametros para crear la encuesta (y no recibir
+    // el objeto Encuesta) aca para poder
+    //cambiar reglas o logica de negocio dentro del metodo del curso
+    public void AgregarEncuesta(
+        Guid? idEstudiante,
+        int calificacionCurso,
+        int calificacionMaterial,
+        int calificacionDocente,
+        string comentarios = null)
+    {
+        Encuesta encuesta = Encuesta.Crear(
+            this.Id,
+            idEstudiante,
+            calificacionCurso,
+            calificacionMaterial,
+            calificacionDocente,
+            comentarios);
+        
+        //un estudiante no puede repetir encuesta
+        if (_encuestas.Any(e => e.IdEstudiante == idEstudiante))
+        {
+            throw new EstudianteYaCreoEncuestaException();
+        }
+
+        this._encuestas.Add(encuesta);
     }
     
 }
