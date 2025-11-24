@@ -13,25 +13,27 @@ namespace PlataformaDeGestionDeCursosOnline.Domain.Entities;
 //el curso
 public class Clase : Entity
 {
+    private Guid IdCurso;
     public string Material;
     //Quien maneja el estado de las clases es el curso
     public EstadoClase Estado;
-    public DateTime Fecha { get; }
+    public DateTime Fecha { get; private set; }
     private readonly List<Asistencia> _asistencias = new List<Asistencia>();
     public IReadOnlyCollection<Asistencia> Asistencias => this._asistencias;
     
     public  List<Consulta> _consultas;
 
-    private Clase(string material, EstadoClase estado) : base(Guid.NewGuid())
+    private Clase(Guid Idcurso, string material, EstadoClase estado) : base(Guid.NewGuid())
     {
+        this.IdCurso = Idcurso;
         this.Material = material;
         this.Fecha = DateTime.UtcNow;
         this.Estado = estado;
     }
 
-    public static Clase CrearClase(Curso curso, string material)
+    public static Clase CrearClase(Guid IdCurso, string material)
     {
-        return new Clase(material, EstadoClase.EnCurso);
+        return new Clase(IdCurso, material, EstadoClase.EnCurso);
     }
     
     public ICollection<Asistencia> ObtenerAsistencias()
@@ -51,6 +53,10 @@ public class Clase : Entity
         this.RaiseDomainEvent(new ClaseFinalizada(this.Id, DateTime.Now));
     }
     
+    public void ReprogramarClase(DateTime nuevaFecha)
+    {
+        this.Fecha = nuevaFecha;
+    }
     
     //ACTUALIZAR ESTO EN LAS ASISTENCIAS DE LAS INSCRIPCIONES DE LOS ESTUDIANTES
     //(El dar presente y ausante)

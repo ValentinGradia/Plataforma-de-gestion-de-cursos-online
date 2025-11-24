@@ -7,14 +7,16 @@ namespace PlataformaDeGestionDeCursosOnline.Domain.Entities.Examenes;
 
 public class Examen : Entity
 {
+    private Guid IdCurso;
     public string TemaExamen { get; private set; }
     // private readonly List<EntregaDelExamen?> _entregasDelExamen;
     public DateTime FechaLimiteDeEntrega { get; private set; }
     public DateTime FechaExamenCargado { get; private set; }
     public TipoExamen Tipo { get; private set; }
 
-    private Examen(TipoExamen tipoExamen ,string temaExamen, DateTime fechaLimiteDeEntrega) : base(Guid.NewGuid())
+    private Examen(Guid idCurso ,TipoExamen tipoExamen ,string temaExamen, DateTime fechaLimiteDeEntrega) : base(Guid.NewGuid())
     {
+        this.IdCurso = idCurso;
         this.TemaExamen = temaExamen;
         this.FechaExamenCargado = DateTime.UtcNow;
         this.Tipo = tipoExamen;
@@ -26,7 +28,7 @@ public class Examen : Entity
         if (string.IsNullOrEmpty(temaExamen))
             throw new ArgumentNullException(nameof(temaExamen));
 
-        var examen = new Examen( tipoExamen ,temaExamen, fechaLimiteDeEntrega);
+        var examen = new Examen(idCurso,tipoExamen ,temaExamen, fechaLimiteDeEntrega);
         return examen;
     }
     
