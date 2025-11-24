@@ -32,6 +32,7 @@ public class EntregaDelExamen : Entity
     {
         return new EntregaDelExamen(idExamen, idEstudiante, tipo, respuesta, fechaLimite);
     }
+    
     public void AsignarNota(decimal valor)
     {
         Nota nota = new Nota(valor);

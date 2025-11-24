@@ -54,6 +54,7 @@ public class Curso : Entity
     public void IniciarCurso()
     {
         this.Estado = EstadoCurso.EnProgreso;
+        this.RaiseDomainEvent(new CursoIniciado(this.Id, DateTime.Now));
     }
     
     public void FinalizarCurso()
@@ -95,6 +96,7 @@ public class Curso : Entity
         this.ValidarSiElEstudianteYaPerteneceAlCurso(inscripcionEstudiante.IdEstudiante);
         
         this._inscripcionesEstudiantes.Add(inscripcionEstudiante);
+        this.RaiseDomainEvent(new UsuarioInscriptoEnCurso(inscripcionEstudiante.IdEstudiante, DateTime.Now));
     }
     
     public void RemoverEstudiante(Inscripcion inscripcionEstudiante)
