@@ -158,6 +158,7 @@ public class Curso : Entity
         return examen;
     }
     
+    
     //PROFESORES
     public void CambiarProfesor(Profesor nuevoProfesor)
     {
@@ -167,6 +168,4 @@ public class Curso : Entity
         this.Profesor = nuevoProfesor;
     }
     
-    
-
 }
