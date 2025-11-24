@@ -1,5 +1,6 @@
 ﻿using PlataformaDeGestionDeCursosOnline.Domain.Abstractions;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Cursos;
+using PlataformaDeGestionDeCursosOnline.Domain.Entities.Cursos.Events;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Cursos.Notas;
 
 namespace PlataformaDeGestionDeCursosOnline.Domain.Entities.Examenes.ObjectValues;
@@ -31,9 +32,10 @@ public class EntregaDelExamen : Entity
     {
         return new EntregaDelExamen(idExamen, idEstudiante, tipo, respuesta, fechaLimite);
     }
-    public void AsignarNota(Guid idEstudiante, decimal valor)
+    public void AsignarNota(decimal valor)
     {
         Nota nota = new Nota(valor);
+        this.RaiseDomainEvent(new NotaCargada(this.Id, DateTime.UtcNow));
         this.AsignarNotaInterna(nota);
     }
     
