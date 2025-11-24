@@ -1,5 +1,6 @@
 ﻿using System.Runtime.CompilerServices;
 using PlataformaDeGestionDeCursosOnline.Domain.Abstractions;
+using PlataformaDeGestionDeCursosOnline.Domain.Entities.Cursos.Events;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Cursos.Exceptions;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Cursos.Notas;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Cursos.ObjectValues;
@@ -153,11 +154,12 @@ public class Curso : Entity
     }
     
     //EXAMENES
-    public Examen CargarExamen(TipoExamen tipoExamen, string temaExamen, DateTime fechaLimiteDeEntrega)
+    public Guid CargarExamen(TipoExamen tipoExamen, string temaExamen, DateTime fechaLimiteDeEntrega)
     {
         Examen examen =  Examen.CrearExamen(this.Id, tipoExamen, temaExamen, fechaLimiteDeEntrega);
         this._examenes.Add(examen);
-        return examen;
+        this.RaiseDomainEvent(new ExamenSubido(examen.Id, examen.FechaExamenCargado));
+        return examen.Id;
     }
     
     
