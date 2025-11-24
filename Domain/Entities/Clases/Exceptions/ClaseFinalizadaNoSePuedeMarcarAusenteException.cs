@@ -1,8 +1,8 @@
 ﻿namespace PlataformaDeGestionDeCursosOnline.Domain.Entities.Exceptions;
 
-public class ClaseFinalizadaNoSePuedeMarcarAusenteException : Exception
+public class ClaseFinalizadaNoSePuedeMarcarPresenteException : Exception
 {
-    public ClaseFinalizadaNoSePuedeMarcarAusenteException() : base("No se puede dar presente una vez finalizada la clase")
+    public ClaseFinalizadaNoSePuedeMarcarPresenteException() : base("No se puede dar presente una vez finalizada la clase")
     {
         
     }

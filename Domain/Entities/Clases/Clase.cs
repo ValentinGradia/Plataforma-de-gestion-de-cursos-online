@@ -2,6 +2,7 @@
 using PlataformaDeGestionDeCursosOnline.Domain.Abstractions;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Cursos;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Enums;
+using PlataformaDeGestionDeCursosOnline.Domain.Entities.Events;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Exceptions;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.ObjectValues;
 
@@ -38,6 +39,18 @@ public class Clase : Entity
         return _asistencias.AsReadOnly();
     }
     
+    public void IniciarClase()
+    {
+        this.Estado = EstadoClase.EnCurso;
+        this.RaiseDomainEvent(new ClaseIniciada(this.Id, DateTime.Now));
+    }
+    
+    public void FinalizarClase()
+    {
+        this.Estado = EstadoClase.Finalizada;
+        this.RaiseDomainEvent(new ClaseFinalizada(this.Id, DateTime.Now));
+    }
+    
     
     //ACTUALIZAR ESTO EN LAS ASISTENCIAS DE LAS INSCRIPCIONES DE LOS ESTUDIANTES
     //(El dar presente y ausante)
@@ -46,8 +59,8 @@ public class Clase : Entity
         if (_asistencias.Any(a => a.IdEstudiante == IdEstudiante))
             throw new AsistenciaYaCargadaException();
         
-        if(Estado == EstadoClase.Completada)
-            throw new ClaseFinalizadaNoSePuedeMarcarAusenteException();
+        if(Estado == EstadoClase.Finalizada)
+            throw new ClaseFinalizadaNoSePuedeMarcarPresenteException();
 
         Asistencia asistencia = new Asistencia(IdEstudiante, true);
         _asistencias.Add(asistencia);

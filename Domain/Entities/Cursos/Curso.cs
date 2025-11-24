@@ -60,6 +60,7 @@ public class Curso : Entity
     public void FinalizarCurso()
     {
         this.Estado = EstadoCurso.Finalizado;
+        this.RaiseDomainEvent(new CursoFinalizado(this.Id, DateTime.Now));
     }
     
     public void ActualizarNombre(string nuevoNombre)
@@ -138,8 +139,9 @@ public class Curso : Entity
     //CLASES
     public Guid IniciarClase(string material)
     {
-        var clase = Clase.CrearClase(this, material);
+        Clase clase = Clase.CrearClase(this, material);
         this._clases.Add(clase);
+        clase.IniciarClase();
         return clase.Id;
     }
     public void FinalizarClase(Guid idClase)
@@ -149,10 +151,10 @@ public class Curso : Entity
         if (clase == null)
             throw new InvalidOperationException("Clase no encontrada en este curso");
         
-        if (clase.Estado == EstadoClase.Completada)
+        if (clase.Estado == EstadoClase.Finalizada)
             throw new InvalidOperationException("La clase ya fue finalizada");
 
-        clase.Estado = EstadoClase.Completada;
+        clase.FinalizarClase();
     }
     
     //EXAMENES

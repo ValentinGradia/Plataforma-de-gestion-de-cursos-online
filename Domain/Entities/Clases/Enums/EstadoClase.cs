@@ -3,5 +3,5 @@
 public enum EstadoClase
 {
     EnCurso = 1,
-    Completada = 2
+    Finalizada = 2
 }
