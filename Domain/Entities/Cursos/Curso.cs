@@ -134,11 +134,11 @@ public class Curso : Entity
     }
     
     //CLASES
-    public Clase IniciarClase(string material)
+    public Guid IniciarClase(string material)
     {
         var clase = Clase.CrearClase(this, material);
         this._clases.Add(clase);
-        return clase;
+        return clase.Id;
     }
     public void FinalizarClase(Guid idClase)
     {
