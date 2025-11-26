@@ -113,6 +113,7 @@ public class Curso : Entity
         Inscripcion inscripcionEstudiante =
             this._inscripcionesEstudiantes.FirstOrDefault(i => i.IdEstudiante == IdEstudiante);
 
+        this.RemoverEstudiante(inscripcionEstudiante);
         inscripcionEstudiante.DarseDeBaja();
     }
     

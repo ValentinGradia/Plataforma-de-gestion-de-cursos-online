@@ -8,3 +8,10 @@ C:\Users\valen\RiderProjects\Plataforma-de-gestion-de-cursos-online\Application\
 C:\Users\valen\RiderProjects\Plataforma-de-gestion-de-cursos-online\Application\obj\Debug\net8.0\refint\Application.dll
 C:\Users\valen\RiderProjects\Plataforma-de-gestion-de-cursos-online\Application\obj\Debug\net8.0\Application.pdb
 C:\Users\valen\RiderProjects\Plataforma-de-gestion-de-cursos-online\Application\obj\Debug\net8.0\ref\Application.dll
+C:\Users\valen\RiderProjects\Plataforma-de-gestion-de-cursos-online\Application\bin\Debug\net8.0\PlataformaDeGestionDeCursosOnline.deps.json
+C:\Users\valen\RiderProjects\Plataforma-de-gestion-de-cursos-online\Application\bin\Debug\net8.0\PlataformaDeGestionDeCursosOnline.runtimeconfig.json
+C:\Users\valen\RiderProjects\Plataforma-de-gestion-de-cursos-online\Application\bin\Debug\net8.0\PlataformaDeGestionDeCursosOnline.exe
+C:\Users\valen\RiderProjects\Plataforma-de-gestion-de-cursos-online\Application\bin\Debug\net8.0\PlataformaDeGestionDeCursosOnline.dll
+C:\Users\valen\RiderProjects\Plataforma-de-gestion-de-cursos-online\Application\bin\Debug\net8.0\PlataformaDeGestionDeCursosOnline.pdb
+C:\Users\valen\RiderProjects\Plataforma-de-gestion-de-cursos-online\Application\obj\Debug\net8.0\Application.csproj.AssemblyReference.cache
+C:\Users\valen\RiderProjects\Plataforma-de-gestion-de-cursos-online\Application\obj\Debug\net8.0\Applicat.44B5EDA2.Up2Date

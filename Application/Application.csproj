@@ -8,4 +8,13 @@
         <GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute> 
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\PlataformaDeGestionDeCursosOnline.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="MediatR" Version="14.0.0-beta-1" />
+      <PackageReference Include="MediatR.Contracts" Version="2.0.1" />
+    </ItemGroup>
+
 </Project>
