@@ -1,30 +1,30 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\valen\\RiderProjects\\PlataformaDeGestionDeCursosOnline\\PlataformaDeGestionDeCursosOnline.csproj": {}
+    "C:\\Users\\valen\\RiderProjects\\Plataforma-de-gestion-de-cursos-online\\PlataformaDeGestionDeCursosOnline.csproj": {}
   },
   "projects": {
-    "C:\\Users\\valen\\RiderProjects\\PlataformaDeGestionDeCursosOnline\\PlataformaDeGestionDeCursosOnline.csproj": {
+    "C:\\Users\\valen\\RiderProjects\\Plataforma-de-gestion-de-cursos-online\\PlataformaDeGestionDeCursosOnline.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\valen\\RiderProjects\\PlataformaDeGestionDeCursosOnline\\PlataformaDeGestionDeCursosOnline.csproj",
+        "projectUniqueName": "C:\\Users\\valen\\RiderProjects\\Plataforma-de-gestion-de-cursos-online\\PlataformaDeGestionDeCursosOnline.csproj",
         "projectName": "PlataformaDeGestionDeCursosOnline",
-        "projectPath": "C:\\Users\\valen\\RiderProjects\\PlataformaDeGestionDeCursosOnline\\PlataformaDeGestionDeCursosOnline.csproj",
+        "projectPath": "C:\\Users\\valen\\RiderProjects\\Plataforma-de-gestion-de-cursos-online\\PlataformaDeGestionDeCursosOnline.csproj",
         "packagesPath": "C:\\Users\\valen\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\valen\\RiderProjects\\PlataformaDeGestionDeCursosOnline\\obj\\",
+        "outputPath": "C:\\Users\\valen\\RiderProjects\\Plataforma-de-gestion-de-cursos-online\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\valen\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
-          "net9.0"
+          "net8.0"
         ],
         "sources": {
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "net9.0": {
-            "targetAlias": "net9.0",
+          "net8.0": {
+            "targetAlias": "net8.0",
             "projectReferences": {}
           }
         },
@@ -41,8 +41,8 @@
         "SdkAnalysisLevel": "9.0.300"
       },
       "frameworks": {
-        "net9.0": {
-          "targetAlias": "net9.0",
+        "net8.0": {
+          "targetAlias": "net8.0",
           "dependencies": {
             "MediatR": {
               "target": "Package",
@@ -64,6 +64,24 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[8.0.22, 8.0.22]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Host.win-x64",
+              "version": "[8.0.22, 8.0.22]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[8.0.22, 8.0.22]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Ref",
+              "version": "[8.0.22, 8.0.22]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"

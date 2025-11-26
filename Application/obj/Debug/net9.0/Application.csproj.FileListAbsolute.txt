@@ -1,0 +1,12 @@
+C:\Users\valen\RiderProjects\Plataforma-de-gestion-de-cursos-online\Application\bin\Debug\net9.0\Application.deps.json
+C:\Users\valen\RiderProjects\Plataforma-de-gestion-de-cursos-online\Application\bin\Debug\net9.0\Application.dll
+C:\Users\valen\RiderProjects\Plataforma-de-gestion-de-cursos-online\Application\bin\Debug\net9.0\Application.pdb
+C:\Users\valen\RiderProjects\Plataforma-de-gestion-de-cursos-online\Application\obj\Debug\net9.0\Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\valen\RiderProjects\Plataforma-de-gestion-de-cursos-online\Application\obj\Debug\net9.0\Application.AssemblyInfoInputs.cache
+C:\Users\valen\RiderProjects\Plataforma-de-gestion-de-cursos-online\Application\obj\Debug\net9.0\Application.AssemblyInfo.cs
+C:\Users\valen\RiderProjects\Plataforma-de-gestion-de-cursos-online\Application\obj\Debug\net9.0\Application.csproj.CoreCompileInputs.cache
+C:\Users\valen\RiderProjects\Plataforma-de-gestion-de-cursos-online\Application\obj\Debug\net9.0\Application.sourcelink.json
+C:\Users\valen\RiderProjects\Plataforma-de-gestion-de-cursos-online\Application\obj\Debug\net9.0\Application.dll
+C:\Users\valen\RiderProjects\Plataforma-de-gestion-de-cursos-online\Application\obj\Debug\net9.0\refint\Application.dll
+C:\Users\valen\RiderProjects\Plataforma-de-gestion-de-cursos-online\Application\obj\Debug\net9.0\Application.pdb
+C:\Users\valen\RiderProjects\Plataforma-de-gestion-de-cursos-online\Application\obj\Debug\net9.0\ref\Application.dll
