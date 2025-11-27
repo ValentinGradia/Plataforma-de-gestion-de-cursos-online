@@ -21,7 +21,7 @@ public class Clase : Entity
     private readonly List<Asistencia> _asistencias = new List<Asistencia>();
     public IReadOnlyCollection<Asistencia> Asistencias => this._asistencias;
     
-    public  List<Consulta> _consultas;
+    public  List<Consulta> _consultas { get; private set; } 
 
     private Clase(Guid Idcurso, string material, EstadoClase estado) : base(Guid.NewGuid())
     {
