@@ -13,8 +13,8 @@ namespace PlataformaDeGestionDeCursosOnline.Domain.Entities;
 //el curso
 public class Clase : Entity
 {
-    private Guid IdCurso;
-    public string Material;
+    private Guid IdCurso { get; }
+    public string Material { get; private set; }
     //Quien maneja el estado de las clases es el curso
     public EstadoClase Estado;
     public DateTime Fecha { get; private set; }

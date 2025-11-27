@@ -2,4 +2,4 @@
 
 namespace PlataformaDeGestionDeCursosOnline.Application.Commands.Examenes;
 
-public record SubirCorrecionEntregaExamen(Guid IdEntregaExamen, double Nota, string comentario = null) : ICommand;
+public record SubirCorrecionEntregaExamenCommand(Guid IdEntregaExamen, double Nota, string comentario = null) : ICommand;

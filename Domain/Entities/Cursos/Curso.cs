@@ -145,6 +145,7 @@ public class Curso : Entity
         clase.IniciarClase();
         return clase.Id;
     }
+    
     public void FinalizarClase(Guid idClase)
     {
         Clase clase = this._clases.FirstOrDefault(c => c.Id == idClase)!;

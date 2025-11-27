@@ -10,6 +10,10 @@
   <component name="ChangeListManager">
     <list default="true" id="4cca0346-ece8-48e6-a84f-8553af71af3a" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.PlataformaDeGestionDeCursosOnline/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PlataformaDeGestionDeCursosOnline/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/Commands/Cursos/SubirExamen.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/Commands/Cursos/SubirExamen.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/Commands/Examenes/SubirEntregaExamen.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/Commands/Examenes/SubirEntregaExamen.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Domain/Entities/Cursos/Curso.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/Entities/Cursos/Curso.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Domain/Entities/Examenes/Examen.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/Entities/Examenes/Examen.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,6 +32,8 @@
     <setting file="file://$PROJECT_DIR$/Application/Commands/Cursos/InicarCursoCommand.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Application/Commands/Cursos/InscribirEstudianteACursoCommand.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Application/Commands/Cursos/SubirExamen.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Application/Commands/Examenes/SubirCorrecionEntregaExamen.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Application/Commands/Examenes/SubirEntregaExamen.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Application/DependencyInjection.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
@@ -116,7 +122,7 @@
       <workItem from="1764136020670" duration="36000" />
       <workItem from="1764136334991" duration="221000" />
       <workItem from="1764136607095" duration="67000" />
-      <workItem from="1764173173398" duration="7442000" />
+      <workItem from="1764173173398" duration="8331000" />
     </task>
     <servers />
   </component>
