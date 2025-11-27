@@ -17,7 +17,7 @@ public class EntregaDelExamen : Entity
     public string? ComentarioDocente { get; private set; }
     public bool FueEntregadoTarde => this.FechaEntregado > this.FechaLimiteExamen;
 
-    public EntregaDelExamen(Guid idExamen, Guid estudianteId, TipoExamen tipo , string respuesta, DateTime fechaLimite) : base(Guid.NewGuid())
+    private EntregaDelExamen(Guid idExamen, Guid estudianteId, TipoExamen tipo , string respuesta, DateTime fechaLimite) : base(Guid.NewGuid())
     {
         this.IdExamen = idExamen;
         this.IdEstudiante = estudianteId;
