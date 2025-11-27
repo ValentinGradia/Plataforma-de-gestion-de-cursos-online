@@ -1,0 +1,5 @@
+using PlataformaDeGestionDeCursosOnline.Application.Abstractions.Messaging;
+
+namespace PlataformaDeGestionDeCursosOnline.Application.Cursos.InscribirEstudianteACurso;
+
+public record FinalizarClaseCommand(Guid IdClase) : ICommand;
