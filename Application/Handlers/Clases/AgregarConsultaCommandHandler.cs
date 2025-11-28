@@ -3,6 +3,7 @@ using PlataformaDeGestionDeCursosOnline.Application.Commands.Clases;
 using PlataformaDeGestionDeCursosOnline.Domain;
 using PlataformaDeGestionDeCursosOnline.Domain.Abstractions;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities;
+using PlataformaDeGestionDeCursosOnline.Domain.Entities.Cursos.Exceptions;
 using PlataformaDeGestionDeCursosOnline.Domain.GlobalInterfaces;
 
 namespace PlataformaDeGestionDeCursosOnline.Application.Exceptions.Clases;
@@ -31,6 +32,11 @@ internal class AgregarConsultaCommandHandler : ICommandHandler<AgregarConsultaCo
         if (user is null || clase is null)
         {
             throw new NotFoundException();
+        }
+
+        if (!(this._claseRepository.EstudiantePerteneceAClase(user.Id, clase.Id)))
+        {
+            throw new EstudianteNoPerteneceAlCurso();
         }
         
         clase.AgregarConsulta(request.Titulo,request.Descripcion, user.Id);

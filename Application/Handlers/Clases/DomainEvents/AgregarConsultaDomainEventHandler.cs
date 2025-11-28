@@ -20,6 +20,17 @@ internal class AgregarConsultaDomainEventHandler : INotificationHandler<Consulta
     
     public async Task Handle(ConsultaCargada notification, CancellationToken cancellationToken)
     {
-        Task<Usuario> TaskUser = this._usuarioRepository.ObtenerPorIdAsync(notification.)
+        Usuario usuario = await this._usuarioRepository.ObtenerPorIdAsync(notification.IdUsuarioQueCargoLaConsulta, cancellationToken);
+
+        if (usuario is null)
+            throw new NotFoundException();
+        
+        await this._emailService.EnviarEmailAsync(
+            usuario.Email,
+            "Consulta cargada",
+            $"{usuario.Nombre}, Tu consulta ya fue cargada en la clase " +
+            cancellationToken
+        );
+
     }
 }

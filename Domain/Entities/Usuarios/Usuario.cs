@@ -12,21 +12,21 @@ namespace PlataformaDeGestionDeCursosOnline.Domain;
 public abstract class Usuario : Entity
 {
     
-    protected Direccion Direccion { get; set; }
+    public Direccion Direccion { get; protected set; }
     
-    protected Email Email { get; set; } 
+    public Email Email { get; protected set; } 
     
-    protected Contraseña Contraseña { get; set; }
+    public Contraseña Contraseña { get; protected set; }
     
-    protected DNI Dni { get; set; }
+    public DNI Dni { get; protected set; }
     
-    protected string Nombre { get; set; }
+    public string Nombre { get; protected set; }
     
-    protected string Apellido { get; set; }
+    public string Apellido { get; protected set; }
     
     protected DateTime FechaRegistro { get; init; }
     
-    protected Roles Rol { get; set; }
+    public Roles Rol { get; protected set; }
     
     protected Usuario(
         string pais,
