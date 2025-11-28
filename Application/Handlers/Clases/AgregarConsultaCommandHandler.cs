@@ -1,6 +1,7 @@
 using PlataformaDeGestionDeCursosOnline.Application.Abstractions.Messaging;
 using PlataformaDeGestionDeCursosOnline.Application.Commands.Clases;
 using PlataformaDeGestionDeCursosOnline.Domain;
+using PlataformaDeGestionDeCursosOnline.Domain.Abstractions;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities;
 using PlataformaDeGestionDeCursosOnline.Domain.GlobalInterfaces;
 
@@ -10,11 +11,13 @@ internal class AgregarConsultaCommandHandler : ICommandHandler<AgregarConsultaCo
 {
     private readonly IClaseRepository _claseRepository;
     private readonly IUsuarioRepository _usuarioRepository;
+    private readonly IUnitOfWork _unitOfWork;
 
-    public AgregarConsultaCommandHandler(IClaseRepository claseRepository, IUsuarioRepository usuarioRepository)
+    public AgregarConsultaCommandHandler(IClaseRepository claseRepository, IUsuarioRepository usuarioRepository, IUnitOfWork unitOfWork)
     {
         this._claseRepository = claseRepository;
         this._usuarioRepository = usuarioRepository;
+        this._unitOfWork = unitOfWork;
     }
 
     public async Task Handle(AgregarConsultaCommand request, CancellationToken cancellationToken)
@@ -30,6 +33,8 @@ internal class AgregarConsultaCommandHandler : ICommandHandler<AgregarConsultaCo
             throw new NotFoundException();
         }
         
-         clase.AgregarConsulta(request.Titulo,request.Descripcion, user.Id);
+        clase.AgregarConsulta(request.Titulo,request.Descripcion, user.Id);
+
+        await this._unitOfWork.SaveChangesAsync();
     }
 }
