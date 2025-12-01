@@ -53,6 +53,11 @@ public class Clase : Entity
         this.RaiseDomainEvent(new ClaseFinalizada(this.Id, DateTime.Now));
     }
     
+    public void ActualizarMaterial(string nuevoMaterial)
+    {
+        this.Material = nuevoMaterial;
+    }
+    
     public void ReprogramarClase(DateTime nuevaFecha)
     {
         this.Fecha = nuevaFecha;

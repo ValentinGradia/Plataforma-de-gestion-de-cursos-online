@@ -31,6 +31,6 @@ internal class AgregarConsultaDomainEventHandler : INotificationHandler<Consulta
             $"{usuario.Nombre}, Tu consulta ya fue cargada en la clase " +
             cancellationToken
         );
-
+    
     }
 }
