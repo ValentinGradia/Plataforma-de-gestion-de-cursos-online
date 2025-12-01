@@ -28,5 +28,6 @@ internal class ReprogramarFechaDeClaseCommandHandler : ICommandHandler<Reprogram
         }
         
         clase.ReprogramarClase(request.NuevaFecha);
+        await this._unitOfWork.SaveChangesAsync();
     }
 }

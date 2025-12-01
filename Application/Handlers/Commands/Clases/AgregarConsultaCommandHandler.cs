@@ -5,6 +5,7 @@ using PlataformaDeGestionDeCursosOnline.Domain.Abstractions;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Cursos.Exceptions;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Estudiantes;
+using PlataformaDeGestionDeCursosOnline.Domain.Entities.ObjectValues;
 using PlataformaDeGestionDeCursosOnline.Domain.GlobalInterfaces;
 
 namespace PlataformaDeGestionDeCursosOnline.Application.Exceptions.Clases;
@@ -40,7 +41,7 @@ internal class AgregarConsultaCommandHandler : ICommandHandler<AgregarConsultaCo
             throw new EstudianteNoPerteneceAlCurso();
         }
         
-        clase.AgregarConsulta(request.Titulo,request.Descripcion, user.Id);
+        Consulta consulta = clase.AgregarConsulta(request.Titulo,request.Descripcion, user.Id);
 
         await this._unitOfWork.SaveChangesAsync();
     }
