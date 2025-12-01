@@ -4,6 +4,7 @@ using PlataformaDeGestionDeCursosOnline.Domain;
 using PlataformaDeGestionDeCursosOnline.Domain.Abstractions;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Cursos.Exceptions;
+using PlataformaDeGestionDeCursosOnline.Domain.Entities.Estudiantes;
 using PlataformaDeGestionDeCursosOnline.Domain.GlobalInterfaces;
 
 namespace PlataformaDeGestionDeCursosOnline.Application.Exceptions.Clases;
@@ -11,22 +12,22 @@ namespace PlataformaDeGestionDeCursosOnline.Application.Exceptions.Clases;
 internal class AgregarConsultaCommandHandler : ICommandHandler<AgregarConsultaCommand>
 {
     private readonly IClaseRepository _claseRepository;
-    private readonly IUsuarioRepository _usuarioRepository;
+    private readonly IEstudianteRepository _estudianteRepository;
     private readonly IUnitOfWork _unitOfWork;
 
-    public AgregarConsultaCommandHandler(IClaseRepository claseRepository, IUsuarioRepository usuarioRepository, IUnitOfWork unitOfWork)
+    public AgregarConsultaCommandHandler(IClaseRepository claseRepository, IEstudianteRepository estudianteRepository, IUnitOfWork unitOfWork)
     {
         this._claseRepository = claseRepository;
-        this._usuarioRepository = usuarioRepository;
+        this._estudianteRepository = estudianteRepository;
         this._unitOfWork = unitOfWork;
     }
 
     public async Task Handle(AgregarConsultaCommand request, CancellationToken cancellationToken)
     {
-        Task<Usuario> TaskUser = this._usuarioRepository.ObtenerPorIdAsync(request.IdUsuario, cancellationToken);
+        Task<Estudiante> TaskEstudiante = this._estudianteRepository.ObtenerPorIdAsync(request.IdEstudiante, cancellationToken);
         Task<Clase> TaskClase = this._claseRepository.ObtenerPorIdAsync(request.IdClase, cancellationToken);
 
-        Usuario user = await TaskUser;
+        Usuario user = await TaskEstudiante;
         Clase clase = await TaskClase;
 
         if (user is null || clase is null)

@@ -9,18 +9,18 @@ namespace PlataformaDeGestionDeCursosOnline.Application.Exceptions.Clases.Domain
 internal class AgregarConsultaDomainEventHandler : INotificationHandler<ConsultaCargada>
 {
 
-    private readonly IUsuarioRepository _usuarioRepository;
+    private readonly IEstudianteRepository _estudianteRepository;
     private readonly IEmailService _emailService;
     
-    public AgregarConsultaDomainEventHandler(IUsuarioRepository usuarioRepository, IEmailService emailService)
+    public AgregarConsultaDomainEventHandler(IEstudianteRepository estudianteRepository, IEmailService emailService)
     {
-        _usuarioRepository = usuarioRepository;
+        _estudianteRepository = estudianteRepository;
         _emailService = emailService;
     }
     
     public async Task Handle(ConsultaCargada notification, CancellationToken cancellationToken)
     {
-        Usuario usuario = await this._usuarioRepository.ObtenerPorIdAsync(notification.IdUsuarioQueCargoLaConsulta, cancellationToken);
+        Usuario usuario = await this._estudianteRepository.ObtenerPorIdAsync(notification.IdUsuarioQueCargoLaConsulta, cancellationToken);
 
         if (usuario is null)
             throw new NotFoundException();

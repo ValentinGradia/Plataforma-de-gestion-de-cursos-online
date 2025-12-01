@@ -86,14 +86,14 @@ public class Clase : Entity
         _asistencias.Add(asistencia);
     }
     
-    public void AgregarConsulta(string titulo, string descripcion,  Guid IdUsuario)
+    public void AgregarConsulta(string titulo, string descripcion,  Guid IdEstudiante)
     {
         if (this._consultas == null)
             this._consultas = new List<Consulta>();
         
-        Consulta consulta = new Consulta(IdUsuario,titulo, descripcion, DateTime.UtcNow);
+        Consulta consulta = new Consulta(IdEstudiante,titulo, descripcion, DateTime.UtcNow);
         this._consultas.Add(consulta);
-        this.RaiseDomainEvent(new ConsultaCargada(this.Id,IdUsuario ,consulta.FechaConsulta));
+        this.RaiseDomainEvent(new ConsultaCargada(this.Id, IdEstudiante ,consulta.FechaConsulta));
     }
 
 }
