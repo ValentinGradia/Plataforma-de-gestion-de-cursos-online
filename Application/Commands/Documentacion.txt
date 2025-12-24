@@ -6,4 +6,6 @@ en el patrón CQRS (Command Query Responsibility Segregation). Es decir, estamos
 que representa una accion del dominio.
 
 El IRequest es una interfaz propia de MediatR que indica que es lo que devuelve el handler, indicando que este command
-puede ser enviado y va a devolver un Guid. Es un request manejado por un handler.
+puede ser enviado. Basicamente es un request manejado por un handler. En nuestro caso, el ICommand implementa
+IRequest indicando que el command va a ser manejado por un handler. Esto para que MediatR identifica que command
+va a ser manejado por el handler. Y ademas permite la comunicacion entre el command / query y su handler.
