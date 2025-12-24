@@ -8,7 +8,7 @@ using PlataformaDeGestionDeCursosOnline.Domain.GlobalInterfaces;
 
 namespace PlataformaDeGestionDeCursosOnline.Application.Exceptions.Clases;
 
-internal class AsignarAusenteCommandHandler : ICommandHandler<AsignarAusenteCommand>
+internal class AsignarAusenteCommandHandler : ICommandHandler<AsignarAusenteCommand,Result>
 {
     private readonly IEstudianteRepository _estudianteRepository;
     private readonly IClaseRepository _claseRepository;
@@ -22,7 +22,7 @@ internal class AsignarAusenteCommandHandler : ICommandHandler<AsignarAusenteComm
     }
 
     
-    public async Task Handle(AsignarAusenteCommand request, CancellationToken cancellationToken)
+    public async Task<Result> Handle(AsignarAusenteCommand request, CancellationToken cancellationToken)
     {
         Task<Estudiante> TaskEstudiante = this._estudianteRepository.ObtenerPorIdAsync(request.IdEstudiante, cancellationToken);
         Task<Clase> TaskClase = this._claseRepository.ObtenerPorIdAsync(request.IdClase, cancellationToken);
@@ -32,14 +32,16 @@ internal class AsignarAusenteCommandHandler : ICommandHandler<AsignarAusenteComm
         
         if (user is null || clase is null)
         {
-            throw new NotFoundException();
+            return Result.Failure(new NotFoundException());
         }
         
         if (!(this._claseRepository.EstudiantePerteneceAClase(user.Id, clase.Id)))
         {
-            throw new EstudianteNoPerteneceAlCurso();
+            return Result.Failure(new EstudianteNoPerteneceAlCurso());
         }
         
         clase.DarAusente(user.Id);
+        await this._unitOfWork.SaveChangesAsync();
+        return Result.Success();
     }
 }

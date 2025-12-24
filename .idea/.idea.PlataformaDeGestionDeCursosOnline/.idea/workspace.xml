@@ -8,7 +8,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4cca0346-ece8-48e6-a84f-8553af71af3a" name="Changes" comment="" />
+    <list default="true" id="4cca0346-ece8-48e6-a84f-8553af71af3a" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.PlataformaDeGestionDeCursosOnline/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PlataformaDeGestionDeCursosOnline/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/Commands/Clases/DarPresenteCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/Commands/Clases/DarPresenteCommand.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/Handlers/Commands/Clases/DarPresenteCommandHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/Handlers/Commands/Clases/DarPresenteCommandHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Domain/Abstractions/Result.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/Abstractions/Result.cs" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -27,6 +32,7 @@
     <setting file="file://$PROJECT_DIR$/Application/Commands/Clases/AgregarConsultaCommand.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Application/Commands/Clases/AsignarAusenteCommand.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Application/Commands/Clases/DarPresenteCommand.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Application/Commands/Clases/ReprogramarFechaDeClaseCommand.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Application/Commands/Cursos/ActualizarDuracionCommand.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Application/Commands/Cursos/ActualizarTemarioCommand.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Application/Commands/Cursos/CambiarProfesorCommand.cs" root0="FORCE_HIGHLIGHTING" />
@@ -44,13 +50,18 @@
     <setting file="file://$PROJECT_DIR$/Application/Commands/Examenes/SubirEntregaExamenCommand.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Application/DependencyInjection.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Application/Exceptions/NotFoundException.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Application/Handlers/Clases/AgregarConsultaCommandHandler.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Application/Handlers/Clases/DomainEvents/AgregarConsultaDomainEventHandler.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Application/Handlers/Commands/Clases/ActualizarMaterialCommandHandler.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Application/Handlers/Commands/Clases/AgregarConsultaCommandHandler.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Application/Handlers/Commands/Clases/AsignarAusenteCommandHandler.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Application/Handlers/Commands/Clases/DarPresenteCommandHandler.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Application/Handlers/Commands/Clases/DomainEvents/AgregarConsultaDomainEventHandler.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Application/Handlers/Commands/Clases/ReprogramarFechaDeClaseCommandHandler.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Domain/Abstractions/IUnitOfWork.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Domain/Abstractions/Result.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Domain/Entities/Cursos/Exceptions/EstudianteNoPerteneceAlCurso.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Domain/SharedInterfaces/IClaseRepository.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Domain/SharedInterfaces/ICursoRepository.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Domain/SharedInterfaces/IUsuarioRepository.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Domain/SharedInterfaces/IEstudianteRepository.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProjectColorInfo">{

@@ -6,7 +6,7 @@ using PlataformaDeGestionDeCursosOnline.Domain.GlobalInterfaces;
 
 namespace PlataformaDeGestionDeCursosOnline.Application.Exceptions.Clases;
 
-internal class ActualizarMaterialCommandHandler : ICommandHandler<ActualizarMaterialCommand>
+internal class ActualizarMaterialCommandHandler : ICommandHandler<ActualizarMaterialCommand, Result>
 {
     private readonly IUnitOfWork _unitOfWork;
     private readonly IClaseRepository _claseRepository;
@@ -17,17 +17,18 @@ internal class ActualizarMaterialCommandHandler : ICommandHandler<ActualizarMate
         _claseRepository = claseRepository;
     }
     
-    public async Task Handle(ActualizarMaterialCommand request, CancellationToken cancellationToken)
+    public async Task<Result> Handle(ActualizarMaterialCommand request, CancellationToken cancellationToken)
     {
         Clase clase = await this._claseRepository.ObtenerPorIdAsync(request.IdClase, cancellationToken);
         
         if (clase is null)
         {
-            throw new NotFoundException();
+            return Result.Failure(new NotFoundException());
         }
         
         clase.ActualizarMaterial(request.NuevoMaterial);
         
         this._unitOfWork.SaveChangesAsync();
+        return Result.Success();
     }
 }

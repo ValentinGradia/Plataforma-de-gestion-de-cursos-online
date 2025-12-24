@@ -10,7 +10,7 @@ using PlataformaDeGestionDeCursosOnline.Domain.GlobalInterfaces;
 
 namespace PlataformaDeGestionDeCursosOnline.Application.Exceptions.Clases;
 
-internal class AgregarConsultaCommandHandler : ICommandHandler<AgregarConsultaCommand>
+internal class AgregarConsultaCommandHandler : ICommandHandler<AgregarConsultaCommand,Result>
 {
     private readonly IClaseRepository _claseRepository;
     private readonly IEstudianteRepository _estudianteRepository;
@@ -23,7 +23,7 @@ internal class AgregarConsultaCommandHandler : ICommandHandler<AgregarConsultaCo
         this._unitOfWork = unitOfWork;
     }
 
-    public async Task Handle(AgregarConsultaCommand request, CancellationToken cancellationToken)
+    public async Task<Result> Handle(AgregarConsultaCommand request, CancellationToken cancellationToken)
     {
         Task<Estudiante> TaskEstudiante = this._estudianteRepository.ObtenerPorIdAsync(request.IdEstudiante, cancellationToken);
         Task<Clase> TaskClase = this._claseRepository.ObtenerPorIdAsync(request.IdClase, cancellationToken);
@@ -33,16 +33,17 @@ internal class AgregarConsultaCommandHandler : ICommandHandler<AgregarConsultaCo
 
         if (user is null || clase is null)
         {
-            throw new NotFoundException();
+            return Result.Failure(new NotFoundException());
         }
 
         if (!(this._claseRepository.EstudiantePerteneceAClase(user.Id, clase.Id)))
         {
-            throw new EstudianteNoPerteneceAlCurso();
+            return Result.Failure(new EstudianteNoPerteneceAlCurso());
         }
         
         Consulta consulta = clase.AgregarConsulta(request.Titulo,request.Descripcion, user.Id);
 
         await this._unitOfWork.SaveChangesAsync();
+        return Result.Success();
     }
 }

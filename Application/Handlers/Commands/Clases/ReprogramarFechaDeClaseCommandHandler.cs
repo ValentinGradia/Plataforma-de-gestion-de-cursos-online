@@ -6,7 +6,7 @@ using PlataformaDeGestionDeCursosOnline.Domain.GlobalInterfaces;
 
 namespace PlataformaDeGestionDeCursosOnline.Application.Exceptions.Clases;
 
-internal class ReprogramarFechaDeClaseCommandHandler : ICommandHandler<ReprogramarFechaDeClaseCommand>
+internal class ReprogramarFechaDeClaseCommandHandler : ICommandHandler<ReprogramarFechaDeClaseCommand, Result>
 {
 
     private readonly IUnitOfWork _unitOfWork;
@@ -18,16 +18,17 @@ internal class ReprogramarFechaDeClaseCommandHandler : ICommandHandler<Reprogram
         _claseRepository = claseRepository;
     }
     
-    public async Task Handle(ReprogramarFechaDeClaseCommand request, CancellationToken cancellationToken)
+    public async Task<Result> Handle(ReprogramarFechaDeClaseCommand request, CancellationToken cancellationToken)
     {
         Clase clase = await this._claseRepository.ObtenerPorIdAsync(request.IdClase, cancellationToken);
         
         if (clase is null)
         {
-            throw new NotFoundException();
+            return Result.Failure(new NotFoundException());
         }
         
         clase.ReprogramarClase(request.NuevaFecha);
         await this._unitOfWork.SaveChangesAsync();
+        return Result.Success(); 
     }
 }

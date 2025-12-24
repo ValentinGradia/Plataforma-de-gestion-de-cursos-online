@@ -4,17 +4,18 @@ using PlataformaDeGestionDeCursosOnline.Domain;
 using PlataformaDeGestionDeCursosOnline.Domain.Abstractions;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Estudiantes;
+using PlataformaDeGestionDeCursosOnline.Domain.Entities.Exceptions;
 using PlataformaDeGestionDeCursosOnline.Domain.GlobalInterfaces;
 
 namespace PlataformaDeGestionDeCursosOnline.Application.Exceptions.Clases;
 
-internal class DarPresenteCommandHandler : ICommandHandler<DarPresenteCommand>
+internal class DarPresenteCommandHandler : ICommandHandler<DarPresenteCommand, Result>
 {
     private readonly IClaseRepository _claseRepository;
     private readonly IUnitOfWork _unitOfWork;
     private readonly IEstudianteRepository _estudianteRepository;
     
-    public async Task Handle(DarPresenteCommand request, CancellationToken cancellationToken)
+    public async Task<Result> Handle(DarPresenteCommand request, CancellationToken cancellationToken)
     {
         Task<Estudiante> TaskEstudiante = this._estudianteRepository.ObtenerPorIdAsync(request.IdEstudiante, cancellationToken);
         Task<Clase> TaskClase = this._claseRepository.ObtenerPorIdAsync(request.IdClase, cancellationToken);
@@ -26,8 +27,17 @@ internal class DarPresenteCommandHandler : ICommandHandler<DarPresenteCommand>
         {
             throw new NotFoundException();
         }
+
+        try
+        {
+            clase.DarPresente(request.IdEstudiante);
+        }
+        catch (AsistenciaYaCargadaException e)
+        {
+            return Result.Failure(e);
+        }
         
-        clase.DarPresente(request.IdEstudiante);
         await this._unitOfWork.SaveChangesAsync();
+        return Result.Success();
     }
 }

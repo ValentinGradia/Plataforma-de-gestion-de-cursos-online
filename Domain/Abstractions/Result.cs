@@ -1,5 +1,6 @@
 namespace PlataformaDeGestionDeCursosOnline.Domain.Abstractions;
 
+//Creamos una clase Result para representar el resultado de una operación y mapear objetos tipo Exception
 public class Result
 {
     protected internal Result(bool isSuccess, Exception? exception = null)
