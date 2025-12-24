@@ -1,4 +1,5 @@
 using PlataformaDeGestionDeCursosOnline.Application.Abstractions.Messaging;
+using PlataformaDeGestionDeCursosOnline.Domain.Abstractions;
 
 namespace PlataformaDeGestionDeCursosOnline.Application.Cursos.InscribirEstudianteACurso;
 
@@ -7,5 +8,5 @@ public record SubirEncuestaCommand(Guid IdCurso,
             int calificacionCurso,
             int calificacionMaterial,
             int calificacionDocente,
-            string comentarios) : ICommand;
+            string comentarios) : ICommand<Result>;
             

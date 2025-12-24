@@ -1,6 +1,6 @@
-﻿using System.Windows.Input;
-using ICommand = PlataformaDeGestionDeCursosOnline.Application.Abstractions.Messaging.ICommand;
+﻿using PlataformaDeGestionDeCursosOnline.Application.Abstractions.Messaging;
+using PlataformaDeGestionDeCursosOnline.Domain.Abstractions;
 
 namespace PlataformaDeGestionDeCursosOnline.Application.Cursos.InscribirEstudianteACurso;
 
-public record InscribirEstudianteACursoCommand(Guid IdEstudiante, Guid IdCurso) : ICommand;
+public record InscribirEstudianteACursoCommand(Guid IdEstudiante, Guid IdCurso) : ICommand<Result>;

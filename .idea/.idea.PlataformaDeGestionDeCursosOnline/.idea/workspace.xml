@@ -10,9 +10,6 @@
   <component name="ChangeListManager">
     <list default="true" id="4cca0346-ece8-48e6-a84f-8553af71af3a" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.PlataformaDeGestionDeCursosOnline/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PlataformaDeGestionDeCursosOnline/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Application/Commands/Clases/DarPresenteCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/Commands/Clases/DarPresenteCommand.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Application/Handlers/Commands/Clases/DarPresenteCommandHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/Handlers/Commands/Clases/DarPresenteCommandHandler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Domain/Abstractions/Result.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/Abstractions/Result.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -153,6 +150,7 @@
       <workItem from="1764173173398" duration="8331000" />
       <workItem from="1764255602303" duration="8059000" />
       <workItem from="1764350760666" duration="8575000" />
+      <workItem from="1766601237662" duration="703000" />
     </task>
     <servers />
   </component>

@@ -1,0 +1,9 @@
+Cuando el Command implementa tanto la interfaz ICommand como la interfaz IRequest cada una significa
+algo diferente:
+
+El ICommand no es propio de MediatR, es una convención que se utiliza para marcar o idententificar como un command 
+en el patrón CQRS (Command Query Responsibility Segregation). Es decir, estamos diciendo que el command es un comando
+que representa una accion del dominio.
+
+El IRequest es una interfaz propia de MediatR que indica que es lo que devuelve el handler, indicando que este command
+puede ser enviado y va a devolver un Guid. Es un request manejado por un handler.

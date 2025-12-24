@@ -1,6 +1,7 @@
 using PlataformaDeGestionDeCursosOnline.Application.Abstractions.Messaging;
+using PlataformaDeGestionDeCursosOnline.Domain.Abstractions;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Cursos.ObjectValues;
 
 namespace PlataformaDeGestionDeCursosOnline.Application.Cursos.InscribirEstudianteACurso;
 
-public record ActualizarDuracionCommand(Guid IdCurso, DateRange NuevaDuracion) : ICommand;
+public record ActualizarDuracionCommand(Guid IdCurso, DateRange NuevaDuracion) : ICommand<Result>;
