@@ -6,6 +6,7 @@ using PlataformaDeGestionDeCursosOnline.Domain.GlobalInterfaces;
 
 namespace PlataformaDeGestionDeCursosOnline.Application.Exceptions.Clases.DomainEvents;
 
+//Componente que consume el domain event de consulta cargada
 internal class AgregarConsultaDomainEventHandler : INotificationHandler<ConsultaCargada>
 {
 

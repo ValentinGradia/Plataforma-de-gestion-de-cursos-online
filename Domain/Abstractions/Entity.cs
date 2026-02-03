@@ -4,6 +4,7 @@
 public abstract class Entity
 {
     public Guid Id { get; init; } 
+    //Lista de eventos que luego seran publicados para que los handlers los capturen y se suscriban a ellos.
     private readonly List<IDomainEvent> _domainEvents = new();
     
     protected Entity(Guid id)
