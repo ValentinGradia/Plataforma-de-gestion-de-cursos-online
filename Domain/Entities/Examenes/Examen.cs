@@ -5,6 +5,7 @@ using PlataformaDeGestionDeCursosOnline.Domain.Entities.Examenes.ObjectValues;
 
 namespace PlataformaDeGestionDeCursosOnline.Domain.Entities.Examenes;
 
+//Este seria el modelo del examen, luego el estudiante sube su propio examen para ser corregido.
 public class Examen : Entity
 {
     private Guid IdCurso { get; }
