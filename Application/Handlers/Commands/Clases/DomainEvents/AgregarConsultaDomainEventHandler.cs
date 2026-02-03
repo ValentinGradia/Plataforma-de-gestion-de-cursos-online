@@ -19,6 +19,7 @@ internal class AgregarConsultaDomainEventHandler : INotificationHandler<Consulta
         _emailService = emailService;
     }
     
+    //Solo una responsabilidad, cuando se carga la consulta -> avisamos al usuario via email que ya fue cargada.
     public async Task Handle(ConsultaCargada notification, CancellationToken cancellationToken)
     {
         Usuario usuario = await this._estudianteRepository.ObtenerPorIdAsync(notification.IdUsuarioQueCargoLaConsulta, cancellationToken);
