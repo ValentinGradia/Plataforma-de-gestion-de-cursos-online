@@ -13,7 +13,7 @@ namespace PlataformaDeGestionDeCursosOnline.Domain.Entities;
 //el curso
 public class Clase : Entity
 {
-    private Guid IdCurso { get; }
+    public Guid IdCurso { get; private set; }
     public string Material { get; private set; }
     //Quien maneja el estado de las clases es el curso
     public EstadoClase Estado;
@@ -44,13 +44,11 @@ public class Clase : Entity
     public void IniciarClase()
     {
         this.Estado = EstadoClase.EnCurso;
-        this.RaiseDomainEvent(new ClaseIniciada(this.Id, DateTime.Now));
     }
     
     public void FinalizarClase()
     {
         this.Estado = EstadoClase.Finalizada;
-        this.RaiseDomainEvent(new ClaseFinalizada(this.Id, DateTime.Now));
     }
     
     public void ActualizarMaterial(string nuevoMaterial)
