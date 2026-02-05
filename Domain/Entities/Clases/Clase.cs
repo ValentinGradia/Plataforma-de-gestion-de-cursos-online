@@ -23,7 +23,7 @@ public class Clase : Entity
     
     public  List<Consulta> _consultas { get; private set; } 
 
-    private Clase(Guid Idcurso, string material, EstadoClase estado) : base(Guid.NewGuid())
+    private Clase(Guid Idcurso, string material) : base(Guid.NewGuid())
     {
         this.IdCurso = Idcurso;
         this.Material = material;
@@ -33,7 +33,7 @@ public class Clase : Entity
 
     public static Clase CrearClase(Guid IdCurso, string material)
     {
-        return new Clase(IdCurso, material, EstadoClase.EnCurso);
+        return new Clase(IdCurso, material);
     }
     
     public ICollection<Asistencia> ObtenerAsistencias()
