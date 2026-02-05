@@ -2,7 +2,7 @@
 
 public interface ICicloDeVidaDelCurso
 {
-    public void IniciarCurso(Curso curso);
+    public void IniciarCurso();
     
-    public void FinalizarCurso(Curso curso);
+    public void FinalizarCurso();
 }

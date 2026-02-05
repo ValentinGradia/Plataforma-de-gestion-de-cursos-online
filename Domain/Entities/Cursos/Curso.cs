@@ -15,7 +15,7 @@ using PlataformaDeGestionDeCursosOnline.Domain.Entities.ObjectValues;
 
 namespace PlataformaDeGestionDeCursosOnline.Domain.Entities.Cursos;
 
-public class Curso : Entity 
+public class Curso : Entity, ICicloDeVidaDelCurso
 {
     public Profesor Profesor { get; private set; }
     public EstadoCurso Estado { get; private set; }
