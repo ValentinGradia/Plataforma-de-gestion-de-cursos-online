@@ -1,0 +1,6 @@
+using PlataformaDeGestionDeCursosOnline.Application.Abstractions.Messaging;
+using PlataformaDeGestionDeCursosOnline.Domain.Entities.Examenes.ObjectValues;
+
+namespace PlataformaDeGestionDeCursosOnline.Application.Querys.Examenes;
+
+public record ObtenerDetalleEntregaExamenQuery(Guid IdEntregaExamen) : IQuery<EntregaDelExamen>;
