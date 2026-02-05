@@ -3,4 +3,4 @@ using PlataformaDeGestionDeCursosOnline.Application.DTOs;
 
 namespace PlataformaDeGestionDeCursosOnline.Application.Querys.Estudiantes;
 
-public record ObtenerPerfilEstudianteQuery(Guid IdEstudiante) : IQuery<EstudianteDTO>;
+public record ObtenerPerfilEstudiantePorIdQuery(Guid IdEstudiante) : IQuery<EstudianteDTO>;
