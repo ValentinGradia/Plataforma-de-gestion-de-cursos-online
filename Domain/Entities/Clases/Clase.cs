@@ -28,7 +28,7 @@ public class Clase : Entity
         this.IdCurso = Idcurso;
         this.Material = material;
         this.Fecha = DateTime.UtcNow;
-        this.Estado = estado;
+        this.Estado = EstadoClase.EnCurso;
     }
 
     public static Clase CrearClase(Guid IdCurso, string material)

@@ -13,4 +13,4 @@ public record CrearEstudianteCommand(
     string Dni,
     string Nombre,
     string Apellido
-) : ICommand<Result>;
+) : ICommand<Guid>;

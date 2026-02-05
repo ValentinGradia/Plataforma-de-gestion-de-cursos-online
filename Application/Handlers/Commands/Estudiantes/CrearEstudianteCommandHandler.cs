@@ -6,7 +6,7 @@ using PlataformaDeGestionDeCursosOnline.Domain.GlobalInterfaces;
 
 namespace PlataformaDeGestionDeCursosOnline.Application.Handlers.Commands.Estudiantes;
 
-internal class CrearEstudianteCommandHandler : ICommandHandler<CrearEstudianteCommand, Result>
+internal class CrearEstudianteCommandHandler : ICommandHandler<CrearEstudianteCommand, Guid>
 {
     private readonly IEstudianteRepository _estudianteRepository;
     private readonly IUnitOfWork _unitOfWork;
@@ -17,7 +17,7 @@ internal class CrearEstudianteCommandHandler : ICommandHandler<CrearEstudianteCo
         _unitOfWork = unitOfWork;
     }
     
-    public async Task<Result> Handle(CrearEstudianteCommand request, CancellationToken cancellationToken)
+    public async Task<Guid> Handle(CrearEstudianteCommand request, CancellationToken cancellationToken)
     {
         Estudiante estudiante = new Estudiante(
             request.Pais,
@@ -33,6 +33,6 @@ internal class CrearEstudianteCommandHandler : ICommandHandler<CrearEstudianteCo
         
         await this._estudianteRepository.GuardarAsync(estudiante);
         await this._unitOfWork.SaveChangesAsync();
-        return new Result(true,null,estudiante.Id);
+        return estudiante.Id;
     }
 }

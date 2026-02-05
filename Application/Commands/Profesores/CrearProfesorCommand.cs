@@ -14,4 +14,4 @@ public record CrearProfesorCommand(
     string Nombre,
     string Apellido,
     string Especialidad
-) : ICommand<Result>;
+) : ICommand<Guid>;

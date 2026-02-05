@@ -7,12 +7,18 @@ using PlataformaDeGestionDeCursosOnline.Domain.GlobalInterfaces;
 
 namespace PlataformaDeGestionDeCursosOnline.Application.Handlers.Commands.Profesores;
 
-internal class CrearProfesorCommandHandler : ICommandHandler<CrearProfesorCommand,Result>
+internal class CrearProfesorCommandHandler : ICommandHandler<CrearProfesorCommand, Guid>
 {
     private readonly IProfesorRepository _profesorRepository;
     private readonly IUnitOfWork _unitOfWork;
+
+    public CrearProfesorCommandHandler(IProfesorRepository profesorRepository, IUnitOfWork unitOfWork)
+    {
+        this._profesorRepository = profesorRepository;
+        this._unitOfWork = unitOfWork;
+    }
     
-    public async Task<Result> Handle(CrearProfesorCommand request, CancellationToken cancellationToken)
+    public async Task<Guid> Handle(CrearProfesorCommand request, CancellationToken cancellationToken)
     {
         Profesor profesor = Profesor.CrearProfesor(
         request.Pais,
@@ -30,6 +36,6 @@ internal class CrearProfesorCommandHandler : ICommandHandler<CrearProfesorComman
         //Aca EF no trackea la entidad por lo que tenemos que guardarla explicitamente
         await this._profesorRepository.GuardarAsync(profesor);
         await this._unitOfWork.SaveChangesAsync();
-        return new Result(true,null,profesor.Id);
+        return profesor.Id;
     }
 }
