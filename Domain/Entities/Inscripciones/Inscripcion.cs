@@ -47,6 +47,11 @@ public class Inscripcion : Entity
         
         return inscripcion;
     }
+    
+    public List<EntregaDelExamen> ObtenerHistorialDeEntregas()
+    {
+        return this._historialEntregas;
+    }
 
     public void ActualizarPorcentajeAsistencia()
     {

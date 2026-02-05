@@ -1,0 +1,5 @@
+using PlataformaDeGestionDeCursosOnline.Application.Abstractions.Messaging;
+
+namespace PlataformaDeGestionDeCursosOnline.Application.Querys.Inscripciones;
+
+public record ObtenerPorcentajeDeAsistenciaPorCursoQuery(Guid IdInscripcion) : IQuery<double>;
