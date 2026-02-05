@@ -11,6 +11,7 @@ where TCommand : ICommand
 }
 
 //Para comandos que devuelven un valor
+//El TCommand seria el comando que maneja el handler, y el TResponse es el tipo de dato que devuelve
 public interface ICommandHandler<TCommand, TResponse> : IRequestHandler<TCommand, TResponse>
 where TCommand : ICommand<TResponse>
 {    
