@@ -15,7 +15,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Application\Handlers\Commands\" />
+      <Folder Include="Application\Handlers\Commands\Profesores\" />
     </ItemGroup>
 
 </Project>

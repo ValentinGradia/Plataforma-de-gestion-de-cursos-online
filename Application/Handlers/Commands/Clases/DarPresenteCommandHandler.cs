@@ -15,6 +15,16 @@ internal class DarPresenteCommandHandler : ICommandHandler<DarPresenteCommand, R
     private readonly IUnitOfWork _unitOfWork;
     private readonly IEstudianteRepository _estudianteRepository;
     
+    public DarPresenteCommandHandler(
+        IClaseRepository claseRepository,
+        IUnitOfWork unitOfWork,
+        IEstudianteRepository estudianteRepository)
+    {
+        _claseRepository = claseRepository;
+        _unitOfWork = unitOfWork;
+        _estudianteRepository = estudianteRepository;
+    }
+    
     public async Task<Result> Handle(DarPresenteCommand request, CancellationToken cancellationToken)
     {
         Task<Estudiante> TaskEstudiante = this._estudianteRepository.ObtenerPorIdAsync(request.IdEstudiante, cancellationToken);

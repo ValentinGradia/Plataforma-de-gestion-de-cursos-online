@@ -5,5 +5,6 @@ namespace PlataformaDeGestionDeCursosOnline.Domain.Abstractions;
 public interface IUnitOfWork
 {
     //el cancellation token es para cancelar la operación si es necesario
+    //Los cambios se van a persistir en nuestra BBDD cuando se llame a este método
     Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
 }
