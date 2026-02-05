@@ -27,11 +27,11 @@ public class EntregaDelExamen : Entity
         this.FechaLimiteExamen = fechaLimite;
     }
     
-    public static Guid EntregarExamen(Guid idExamen, Guid idEstudiante, 
+    public static EntregaDelExamen Crear(Guid idExamen, Guid idEstudiante, 
         TipoExamen tipo, string respuesta, DateTime fechaLimite)
     {
         EntregaDelExamen entrega =  new EntregaDelExamen(idExamen, idEstudiante, tipo, respuesta, fechaLimite);
-        return entrega.Id;
+        return entrega;
     }
     
     public void AsignarNota(decimal valor)
