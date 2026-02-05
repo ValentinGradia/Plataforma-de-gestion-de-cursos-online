@@ -16,7 +16,6 @@
 
     <ItemGroup>
       <Folder Include="Application\Handlers\Commands\" />
-      <Folder Include="Application\Querys\Usuarios\" />
     </ItemGroup>
 
 </Project>
