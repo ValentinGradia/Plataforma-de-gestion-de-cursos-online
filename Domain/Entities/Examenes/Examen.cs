@@ -8,7 +8,7 @@ namespace PlataformaDeGestionDeCursosOnline.Domain.Entities.Examenes;
 //Este seria el modelo del examen, luego el estudiante sube su propio examen para ser corregido.
 public class Examen : Entity
 {
-    private Guid IdCurso { get; }
+    public Guid IdCurso { get; private set; }
     public string TemaExamen { get; private set; }
     // private readonly List<EntregaDelExamen?> _entregasDelExamen;
     public DateTime FechaLimiteDeEntrega { get; private set; }

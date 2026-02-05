@@ -160,13 +160,8 @@ public class Curso : Entity, ICicloDeVidaDelCurso
     }
     
     //EXAMENES
-    public Guid CargarExamen(TipoExamen tipoExamen, string temaExamen, DateTime fechaLimiteDeEntrega)
+    public Guid CargarExamen(Examen examen)
     {
-        
-        if (fechaLimiteDeEntrega < this.Duracion.Inicio || fechaLimiteDeEntrega > this.Duracion.Fin)
-            throw new ArgumentOutOfRangeException("La fecha límite debe estar dentro del período del curso");
-        
-        Examen examen =  Examen.CrearExamen(this.Id, tipoExamen, temaExamen, fechaLimiteDeEntrega);
         this._examenes.Add(examen);
         this.RaiseDomainEvent(new ExamenSubido(examen.Id, examen.FechaExamenCargado));
         return examen.Id;

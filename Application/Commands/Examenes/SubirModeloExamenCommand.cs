@@ -5,5 +5,4 @@ using PlataformaDeGestionDeCursosOnline.Domain.Entities.Cursos;
 
 namespace PlataformaDeGestionDeCursosOnline.Application.Commands.Examenes;
 
-public record SubirModeloExamenCommand(Guid idExamen, Guid idEstudiante, 
-    TipoExamen tipo, string respuesta, DateTime fechaLimite) : ICommand<Result>;
+public record SubirModeloExamenCommand(Guid idExamen) : ICommand<Result>;

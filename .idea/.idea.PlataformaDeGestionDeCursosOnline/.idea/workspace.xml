@@ -9,12 +9,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4cca0346-ece8-48e6-a84f-8553af71af3a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Application/Handlers/Commands/Examenes/CrearEntregaExamenCommandHandler.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Application/Handlers/Commands/Examenes/CrearModeloExamenCommandHandler.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Domain/SharedInterfaces/IEntregasDeExamenes.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Domain/SharedInterfaces/IExamenRepository.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Application/Handlers/Commands/Examenes/PonerNotaEntregaExamenCommandHandler.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Application/Handlers/Commands/Examenes/SubirEntregaExamenCommandHandler.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Application/Handlers/Commands/Examenes/SubirModeloExamenCommandHandler.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Domain/SharedInterfaces/IInscripcionRepository.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.PlataformaDeGestionDeCursosOnline/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PlataformaDeGestionDeCursosOnline/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlataformaDeGestionDeCursosOnline.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/PlataformaDeGestionDeCursosOnline.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/Commands/Examenes/PonerNotaEntregaExamenCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/Commands/Examenes/PonerNotaEntregaExamenCommand.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/Commands/Examenes/SubirEntregaExamenCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/Commands/Examenes/SubirEntregaExamenCommand.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/Commands/Examenes/SubirModeloExamenCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/Commands/Examenes/SubirModeloExamenCommand.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Domain/Entities/Cursos/Curso.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/Entities/Cursos/Curso.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Domain/Entities/Examenes/EntregaDelExamen.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/Entities/Examenes/EntregaDelExamen.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Domain/Entities/Examenes/Examen.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/Entities/Examenes/Examen.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,6 +81,9 @@
     <setting file="file://$PROJECT_DIR$/Application/Handlers/Commands/Estudiantes/CrearEstudianteCommandHandler.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Application/Handlers/Commands/Examenes/CrearEntregaExamenCommandHandler.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Application/Handlers/Commands/Examenes/CrearModeloExamenCommandHandler.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Application/Handlers/Commands/Examenes/PonerNotaEntregaExamenCommandHandler.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Application/Handlers/Commands/Examenes/SubirEntregaExamenCommandHandler.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Application/Handlers/Commands/Examenes/SubirModeloExamenCommandHandler.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Application/Handlers/Commands/Profesores/CrearProfesorCommandHandler.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Application/Querys/Clases/ObtenerAsistenciasDeClase.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Application/Querys/Clases/ObtenerConsultasDeClaseQuery.cs" root0="FORCE_HIGHLIGHTING" />
@@ -111,6 +119,7 @@
     <setting file="file://$PROJECT_DIR$/Domain/SharedInterfaces/IEntregasDeExamenes.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Domain/SharedInterfaces/IEstudianteRepository.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Domain/SharedInterfaces/IExamenRepository.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Domain/SharedInterfaces/IInscripcionRepository.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Domain/SharedInterfaces/IProfesorRepository.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
@@ -210,7 +219,7 @@
       <workItem from="1770156505926" duration="4738000" />
       <workItem from="1770258568205" duration="2240000" />
       <workItem from="1770297165082" duration="7893000" />
-      <workItem from="1770326470708" duration="3368000" />
+      <workItem from="1770326470708" duration="5890000" />
     </task>
     <servers />
   </component>
