@@ -2,6 +2,7 @@ using PlataformaDeGestionDeCursosOnline.Application.Abstractions.Messaging;
 using PlataformaDeGestionDeCursosOnline.Application.Commands.Examenes;
 using PlataformaDeGestionDeCursosOnline.Domain.Abstractions;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Examenes.ObjectValues;
+using PlataformaDeGestionDeCursosOnline.Domain.Entities.Inscripciones;
 using PlataformaDeGestionDeCursosOnline.Domain.GlobalInterfaces;
 
 namespace PlataformaDeGestionDeCursosOnline.Application.Handlers.Commands.Examenes;
@@ -9,17 +10,17 @@ namespace PlataformaDeGestionDeCursosOnline.Application.Handlers.Commands.Examen
 internal class PonerNotaEntregaExamenCommandHandler : ICommandHandler<PonerNotaEntregaExamenCommand, Result>
 {
     private IUnitOfWork _unitOfWork;
-    private IEntregasDeExamenes _entregasDeExamenes;
+    private IEntregasExamenes _entregasExamenes;
 
-    public PonerNotaEntregaExamenCommandHandler(IUnitOfWork unitOfWork, IEntregasDeExamenes entregasDeExamenes)
+    public PonerNotaEntregaExamenCommandHandler(IUnitOfWork unitOfWork, IEntregasExamenes _entregasExamenes)
     {
         this._unitOfWork = unitOfWork;
-        this._entregasDeExamenes = entregasDeExamenes;
+        this._entregasExamenes = _entregasExamenes;
     }
     
     public async Task<Result> Handle(PonerNotaEntregaExamenCommand request, CancellationToken cancellationToken)
     {
-        EntregaDelExamen entrega = await this._entregasDeExamenes.ObtenerPorIdAsync(request.IdEntregaExamen);
+        EntregaDelExamen entrega = await this._entregasExamenes.ObtenerPorIdAsync(request.IdEntregaExamen);
         
         entrega.AsignarNota(request.NuevaNota);
 

@@ -64,7 +64,6 @@ public class Inscripcion : Entity
     
     public void AgregarEntregaAlHistorial(EntregaDelExamen entrega)
     {
-        
         _historialEntregas.Add(entrega);
     }
     
