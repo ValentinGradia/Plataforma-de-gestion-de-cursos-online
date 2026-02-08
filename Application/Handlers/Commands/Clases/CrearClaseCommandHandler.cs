@@ -24,7 +24,7 @@ internal class CrearClaseCommandHandler : ICommandHandler<CrearClaseCommand, Gui
         Curso curso = await this._cursoRepository.ObtenerPorIdAsync(request.IdCurso, cancellationToken);
         Guid IdClase = curso.IniciarClase(request.Material);
         
-        this._unitOfWork.SaveChangesAsync();
+        await this._unitOfWork.SaveChangesAsync();
         return IdClase;
     }
 }

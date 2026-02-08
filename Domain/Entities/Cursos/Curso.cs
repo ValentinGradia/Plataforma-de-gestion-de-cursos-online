@@ -107,7 +107,6 @@ public class Curso : Entity, ICicloDeVidaDelCurso
         this.ValidarSiElEstudianteYaPerteneceAlCurso(inscripcionEstudiante.IdEstudiante);
         
         this._inscripcionesEstudiantes.Add(inscripcionEstudiante);
-        this.RaiseDomainEvent(new UsuarioInscriptoEnCurso(inscripcionEstudiante.IdEstudiante, DateTime.Now));
     }
     
     public void RemoverEstudiante(Inscripcion inscripcionEstudiante)

@@ -26,7 +26,7 @@ internal class ActualizarMaterialCommandHandler : ICommandHandler<ActualizarMate
         
         clase.ActualizarMaterial(request.NuevoMaterial);
         
-        this._unitOfWork.SaveChangesAsync();
+        await this._unitOfWork.SaveChangesAsync();
         return Result.Success();
     }
 }

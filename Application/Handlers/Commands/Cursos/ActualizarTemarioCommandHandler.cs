@@ -1,4 +1,5 @@
 using PlataformaDeGestionDeCursosOnline.Application.Abstractions.Messaging;
+using PlataformaDeGestionDeCursosOnline.Application.Commands.Cursos;
 using PlataformaDeGestionDeCursosOnline.Application.Cursos.InscribirEstudianteACurso;
 using PlataformaDeGestionDeCursosOnline.Domain.Abstractions;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Cursos;
