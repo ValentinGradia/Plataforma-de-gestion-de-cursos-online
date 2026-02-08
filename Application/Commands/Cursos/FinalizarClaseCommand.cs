@@ -3,4 +3,4 @@ using PlataformaDeGestionDeCursosOnline.Domain.Abstractions;
 
 namespace PlataformaDeGestionDeCursosOnline.Application.Cursos.InscribirEstudianteACurso;
 
-public record FinalizarClaseCommand(Guid IdClase) : ICommand<Result>;
+public record FinalizarClaseCommand(Guid IdCurso, Guid IdClase) : ICommand<Result>;

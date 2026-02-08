@@ -9,19 +9,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4cca0346-ece8-48e6-a84f-8553af71af3a" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Application/Commands/Clases/FinalizarClaseCommand.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Application/Handlers/Commands/Clases/FinalizarClaseCommandHandler.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.PlataformaDeGestionDeCursosOnline/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PlataformaDeGestionDeCursosOnline/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Application/Commands/Clases/ActualizarMaterialCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/Commands/Clases/ActualizarMaterialCommand.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Application/Commands/Clases/AgregarConsultaCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/Commands/Clases/AgregarConsultaCommand.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Application/Commands/Clases/AsignarAusenteCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/Commands/Clases/AsignarAusenteCommand.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Application/Commands/Clases/DarPresenteCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/Commands/Clases/DarPresenteCommand.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Application/Commands/Clases/ReprogramarFechaDeClaseCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/Commands/Clases/ReprogramarFechaDeClaseCommand.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Application/Handlers/Commands/Clases/ActualizarMaterialCommandHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/Handlers/Commands/Clases/ActualizarMaterialCommandHandler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Application/Handlers/Commands/Clases/AgregarConsultaCommandHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/Handlers/Commands/Clases/AgregarConsultaCommandHandler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Application/Handlers/Commands/Clases/AsignarAusenteCommandHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/Handlers/Commands/Clases/AsignarAusenteCommandHandler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Application/Handlers/Commands/Examenes/SubirModeloExamenCommandHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/Handlers/Commands/Examenes/SubirModeloExamenCommandHandler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Domain/Entities/Clases/Clase.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/Entities/Clases/Clase.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Domain/Entities/Cursos/Curso.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/Entities/Cursos/Curso.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Domain/SharedInterfaces/IExamenRepository.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/Commands/Cursos/FinalizarClaseCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/Commands/Cursos/FinalizarClaseCommand.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/Handlers/Commands/Clases/CrearClaseCommandHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/Handlers/Commands/Clases/CrearClaseCommandHandler.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,6 +35,7 @@
     <setting file="file://$PROJECT_DIR$/Application/Commands/Clases/AsignarAusenteCommand.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Application/Commands/Clases/CrearClaseCommand.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Application/Commands/Clases/DarPresenteCommand.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Application/Commands/Clases/FinalizarClaseCommand.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Application/Commands/Clases/ReprogramarFechaDeClaseCommand.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Application/Commands/Cursos/ActualizarDuracionCommand.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Application/Commands/Cursos/ActualizarTemarioCommand.cs" root0="FORCE_HIGHLIGHTING" />
@@ -59,7 +52,6 @@
     <setting file="file://$PROJECT_DIR$/Application/Commands/Encuestas/CrearEncuestaCommand.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Application/Commands/Encuestas/ModificarEncuestaCommand.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Application/Commands/Estudiantes/CrearEstudianteCommand.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Application/Commands/Examenes/CrearModeloExamenCommand.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Application/Commands/Examenes/PonerNotaEntregaExamenCommand.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Application/Commands/Examenes/SubirEntregaExamenCommand.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Application/Commands/Examenes/SubirModeloExamenCommand.cs" root0="FORCE_HIGHLIGHTING" />
@@ -75,6 +67,7 @@
     <setting file="file://$PROJECT_DIR$/Application/Handlers/Commands/Clases/CrearClaseCommandHandler.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Application/Handlers/Commands/Clases/DarPresenteCommandHandler.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Application/Handlers/Commands/Clases/DomainEvents/AgregarConsultaDomainEventHandler.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Application/Handlers/Commands/Clases/FinalizarClaseCommandHandler.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Application/Handlers/Commands/Clases/ReprogramarFechaDeClaseCommandHandler.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Application/Handlers/Commands/Cursos/ActualizarDuracionCommandHandler.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Application/Handlers/Commands/Cursos/CambiarProfesorCommandHandler.cs" root0="FORCE_HIGHLIGHTING" />
@@ -83,7 +76,6 @@
     <setting file="file://$PROJECT_DIR$/Application/Handlers/Commands/Encuestas/CrearEncuestaCommandHandler.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Application/Handlers/Commands/Encuestas/ModificarEncuestaCommandHandler.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Application/Handlers/Commands/Estudiantes/CrearEstudianteCommandHandler.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Application/Handlers/Commands/Examenes/CrearModeloExamenCommandHandler.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Application/Handlers/Commands/Examenes/PonerNotaEntregaExamenCommandHandler.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Application/Handlers/Commands/Examenes/SubirEntregaExamenCommandHandler.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Application/Handlers/Commands/Examenes/SubirModeloExamenCommandHandler.cs" root0="FORCE_HIGHLIGHTING" />
@@ -118,13 +110,9 @@
     <setting file="file://$PROJECT_DIR$/Domain/DTOs/ProfesorDTO.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Domain/DTOs/UsuarioDTO.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Domain/Entities/Cursos/Exceptions/EstudianteNoPerteneceAlCurso.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Domain/SharedInterfaces/IClaseRepository.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Domain/SharedInterfaces/ICursoRepository.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Domain/SharedInterfaces/IEncuestasRepository.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Domain/SharedInterfaces/IEntregasExamenes.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Domain/SharedInterfaces/IEstudianteRepository.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Domain/SharedInterfaces/IExamenRepository.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Domain/SharedInterfaces/IInscripcionRepository.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Domain/SharedInterfaces/IProfesorRepository.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Domain/SharedInterfaces/IUsuarioRepository.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
@@ -231,7 +219,7 @@
       <workItem from="1770326470708" duration="7069000" />
       <workItem from="1770349228551" duration="3813000" />
       <workItem from="1770520749208" duration="6587000" />
-      <workItem from="1770577292288" duration="5047000" />
+      <workItem from="1770577292288" duration="6209000" />
     </task>
     <servers />
   </component>

@@ -18,17 +18,13 @@ internal class CrearClaseCommandHandler : ICommandHandler<CrearClaseCommand, Gui
         this._cursoRepository = cursoRepository;
     }
     
-    public Task<Guid> Handle(CrearClaseCommand request, CancellationToken cancellationToken)
+    public async Task<Guid> Handle(CrearClaseCommand request, CancellationToken cancellationToken)
     {
-        Clase clase = Clase.CrearClase(
-            request.IdCurso,
-            request.Material
-        );
         
-        Curso curso = this._cursoRepository.ObtenerPorIdAsync(request.IdCurso, cancellationToken).Result;
-        curso.AgregarClase(clase);
+        Curso curso = await this._cursoRepository.ObtenerPorIdAsync(request.IdCurso, cancellationToken);
+        Guid IdClase = curso.IniciarClase(request.Material);
         
         this._unitOfWork.SaveChangesAsync();
-        return Task.FromResult(clase.Id);
+        return IdClase;
     }
 }
