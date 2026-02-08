@@ -63,13 +63,6 @@ public class Curso : Entity, ICicloDeVidaDelCurso
         this.RaiseDomainEvent(new CursoFinalizado(this.Id, DateTime.Now));
     }
     
-    public void ActualizarNombre(string nuevoNombre)
-    {
-        if (string.IsNullOrWhiteSpace(nuevoNombre))
-            throw new ArgumentException("Nombre inválido", nameof(nuevoNombre));
-
-        this.Nombre = nuevoNombre.Trim();
-    }
     
     public void ActualizarTemario(string nuevoTemario)
     {
@@ -78,7 +71,17 @@ public class Curso : Entity, ICicloDeVidaDelCurso
 
         this.Temario = nuevoTemario.Trim();
     }
-    
+
+    // Nuevo: permitir actualizar la duración del curso
+    public void ActualizarDuracion(ObjectValues.DateRange nuevaDuracion)
+    {
+        if (nuevaDuracion is null)
+            throw new ArgumentNullException(nameof(nuevaDuracion));
+
+        // Reutilizamos la validación de DateRange al crear uno nuevo a partir de las fechas
+        this.Duracion = ObjectValues.DateRange.CrearDateRange(nuevaDuracion.Inicio, nuevaDuracion.Fin);
+    }
+
     public IReadOnlyList<Clase> ObtenerClases()
     {
         return this._clases.AsReadOnly();
