@@ -9,6 +9,7 @@ using PlataformaDeGestionDeCursosOnline.Domain.Entities.Enums;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Profesores;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Estudiantes;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Examenes;
+using PlataformaDeGestionDeCursosOnline.Domain.Entities.Examenes.ObjectValues;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Exceptions;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Inscripciones;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.ObjectValues;
@@ -175,6 +176,35 @@ public class Curso : Entity, ICicloDeVidaDelCurso
         this.RaiseDomainEvent(new ExamenSubido(examen.Id, examen.FechaExamenCargado));
         return examen.Id;
     }
+    
+    //Metodo por el cual asignamos la nota de una entrega a traves del curso
+    public void CargarCalificacionAEntregaDeExamen(Guid idEntregaDelExamen, Guid idProfesor, decimal nuevaNota)
+    {
+        if (this.Profesor.Id == idProfesor)
+        {
+            EntregaDelExamen entrega = this.ObtenerEntregaDeExamen(idEntregaDelExamen);
+            entrega.AsignarNota(nuevaNota);
+        }
+        else
+        {
+            throw new UnauthorizedAccessException("Solo el profesor del curso puede asignar notas a las entregas de los examenes");
+        }
+        
+    }
+    
+    public EntregaDelExamen ObtenerEntregaDeExamen(Guid idEntregaDelExamen)
+    {
+        foreach (Inscripcion inscripcion in _inscripcionesEstudiantes)
+        {
+            EntregaDelExamen entrega = inscripcion.ObtenerEntregaDeExamen(idEntregaDelExamen);
+            if (entrega != null)
+                return entrega;
+        }
+
+        throw new ArgumentOutOfRangeException("Entrega no encontrada.");
+
+    }
+    
     
     
     //PROFESORES

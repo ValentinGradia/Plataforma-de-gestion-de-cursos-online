@@ -11,19 +11,14 @@ namespace PlataformaDeGestionDeCursosOnline.Application.Handlers.Commands.Examen
 
 internal class SubirEntregaExamenCommandHandler : ICommandHandler<SubirEntregaExamenCommand, Guid>
 {
-    public SubirEntregaExamenCommandHandler(IUnitOfWork unitOfWork, IInscripcionRepository inscripcionRepository, 
-        IEntregasExamenes entregasExamenes, ICursoRepository cursoRepository, IEstudianteRepository estudianteRepository)
+    public SubirEntregaExamenCommandHandler(IUnitOfWork unitOfWork, ICursoRepository cursoRepository, IEstudianteRepository estudianteRepository)
     {
         _unitOfWork = unitOfWork;
-        _inscripcionRepository = inscripcionRepository;
-        this._entregasExamenes = entregasExamenes;
         this._cursoRepository = cursoRepository;
         this._estudianteRepository = estudianteRepository;
     }
 
     private readonly IUnitOfWork _unitOfWork;
-    private readonly IInscripcionRepository _inscripcionRepository;
-    private readonly IEntregasExamenes _entregasExamenes;
     private readonly ICursoRepository _cursoRepository;
     private readonly IEstudianteRepository _estudianteRepository;
     

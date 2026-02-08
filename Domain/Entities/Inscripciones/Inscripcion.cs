@@ -53,6 +53,11 @@ public class Inscripcion : Entity
         return this._historialEntregas;
     }
 
+    public EntregaDelExamen ObtenerEntregaDeExamen(Guid idEntregaExamen)
+    {
+        return this._historialEntregas.FirstOrDefault(e => e.Id == idEntregaExamen);
+    }
+
     public void ActualizarPorcentajeAsistencia()
     {
         int clasesTotal = _asistenciasDelEstudiante.Count;
