@@ -7,9 +7,10 @@ using PlataformaDeGestionDeCursosOnline.Domain.GlobalInterfaces;
 
 namespace PlataformaDeGestionDeCursosOnline.Application.Handlers.Commands.Examenes;
 
-internal class SubirModeloExamenCommandHandler : ICommandHandler<SubirModeloExamenCommand, Result>
+internal class SubirModeloExamenCommandHandler : ICommandHandler<SubirModeloExamenCommand, Guid>
 {
-    public SubirModeloExamenCommandHandler(IUnitOfWork unitOfWork, IExamenRepository examenes, ICursoRepository cursos)
+    public SubirModeloExamenCommandHandler(IUnitOfWork unitOfWork, IExamenRepository examenes, 
+        ICursoRepository cursos)
     {
         _unitOfWork = unitOfWork;
         _examenes = examenes;
@@ -19,17 +20,22 @@ internal class SubirModeloExamenCommandHandler : ICommandHandler<SubirModeloExam
     private readonly IUnitOfWork _unitOfWork;
     private readonly IExamenRepository _examenes;
     private readonly ICursoRepository _cursos;
-    
-    public async Task<Result> Handle(SubirModeloExamenCommand request, CancellationToken cancellationToken)
+
+    public async Task<Guid> Handle(SubirModeloExamenCommand request, CancellationToken cancellationToken)
     {
-        Examen examen = await this._examenes.ObtenerPorIdAsync(request.idExamen);
         
-        Curso curso = await this._cursos.ObtenerPorIdAsync(examen.IdCurso);
-
-        curso.CargarExamen(examen);
-
-        this._unitOfWork.SaveChangesAsync();
-        return Result.Success();
+        Examen modeloExamen = Examen.CrearExamen(
+            request.IdCurso,
+            request.Tipo,
+            request.TemaExamen,
+            request.FechaLimite
+        );
+        
+        Curso curso = await _cursos.ObtenerPorIdAsync(request.IdCurso, cancellationToken);
+        curso.CargarExamen(modeloExamen);
+        _unitOfWork.SaveChangesAsync();
+        
+        return modeloExamen.Id;
 
     }
 }
