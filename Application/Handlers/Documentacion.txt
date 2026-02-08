@@ -1,0 +1,2 @@
+Declaramos los handlers internal para encapsularlos y que solo sean accesibles por los commands o querys. La
+API los usa a traves del Mediator.
