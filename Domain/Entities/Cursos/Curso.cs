@@ -30,7 +30,13 @@ public class Curso : Entity, ICicloDeVidaDelCurso
     
     private readonly List<Inscripcion> _inscripcionesEstudiantes = new();
     public IReadOnlyCollection<Inscripcion> Inscripciones => _inscripcionesEstudiantes.AsReadOnly();
-    
+
+    // Nuevo: obtener la inscripción correspondiente a un estudiante por su Id
+    public Inscripcion? ObtenerInscripcionPorEstudiante(Guid idEstudiante)
+    {
+        return this._inscripcionesEstudiantes.FirstOrDefault(i => i.IdEstudiante == idEstudiante);
+    }
+
     private Curso(Profesor profesor, string temario, string nombre, DateTime inicio, DateTime fin) : base(Guid.NewGuid())
     {
         this.Profesor = profesor;
