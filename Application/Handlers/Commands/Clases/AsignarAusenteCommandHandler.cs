@@ -2,6 +2,7 @@ using PlataformaDeGestionDeCursosOnline.Application.Abstractions.Messaging;
 using PlataformaDeGestionDeCursosOnline.Application.Commands.Clases;
 using PlataformaDeGestionDeCursosOnline.Domain.Abstractions;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities;
+using PlataformaDeGestionDeCursosOnline.Domain.Entities.Cursos;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Cursos.Exceptions;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Estudiantes;
 using PlataformaDeGestionDeCursosOnline.Domain.GlobalInterfaces;
@@ -11,13 +12,13 @@ namespace PlataformaDeGestionDeCursosOnline.Application.Exceptions.Clases;
 internal class AsignarAusenteCommandHandler : ICommandHandler<AsignarAusenteCommand,Result>
 {
     private readonly IEstudianteRepository _estudianteRepository;
-    private readonly IClaseRepository _claseRepository;
+    private readonly ICursoRepository _cursoRepository;
     private readonly IUnitOfWork _unitOfWork;
     
-    public AsignarAusenteCommandHandler(IEstudianteRepository estudianteRepository, IClaseRepository claseRepository, IUnitOfWork unitOfWork)
+    public AsignarAusenteCommandHandler(IEstudianteRepository estudianteRepository, ICursoRepository cursoRepository, IUnitOfWork unitOfWork)
     {
         _estudianteRepository = estudianteRepository;
-        _claseRepository = claseRepository;
+        _cursoRepository = cursoRepository;
         _unitOfWork = unitOfWork;
     }
 
@@ -25,23 +26,25 @@ internal class AsignarAusenteCommandHandler : ICommandHandler<AsignarAusenteComm
     public async Task<Result> Handle(AsignarAusenteCommand request, CancellationToken cancellationToken)
     {
         Task<Estudiante> TaskEstudiante = this._estudianteRepository.ObtenerPorIdAsync(request.IdEstudiante, cancellationToken);
-        Task<Clase> TaskClase = this._claseRepository.ObtenerPorIdAsync(request.IdClase, cancellationToken);
+        Task<Curso> TaskCurso = this._cursoRepository.ObtenerPorIdAsync(request.IdCurso, cancellationToken);
         
-        Estudiante user = await TaskEstudiante;
-        Clase clase = await TaskClase;
+        Estudiante estudiante = await TaskEstudiante;
+        Curso curso = await TaskCurso;
         
-        if (user is null || clase is null)
+        Clase clase = curso.ObtenerClase(request.IdClase);
+
+        try
         {
-            return Result.Failure(new NotFoundException());
+            curso.ValidarSiElEstudianteNoPerteneceAlCurso(estudiante.Id);
+            
+            clase.DarAusente(estudiante.Id);
+            await this._unitOfWork.SaveChangesAsync();
+            return Result.Success();
+        }
+        catch (EstudianteNoPerteneceAlCurso e)
+        {
+            return Result.Failure(e);
         }
         
-        if (!(this._claseRepository.EstudiantePerteneceAClase(user.Id, clase.Id)))
-        {
-            return Result.Failure(new EstudianteNoPerteneceAlCurso());
-        }
-        
-        clase.DarAusente(user.Id);
-        await this._unitOfWork.SaveChangesAsync();
-        return Result.Success();
     }
 }

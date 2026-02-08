@@ -2,6 +2,7 @@ using PlataformaDeGestionDeCursosOnline.Application.Abstractions.Messaging;
 using PlataformaDeGestionDeCursosOnline.Application.Commands.Clases;
 using PlataformaDeGestionDeCursosOnline.Domain.Abstractions;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities;
+using PlataformaDeGestionDeCursosOnline.Domain.Entities.Cursos;
 using PlataformaDeGestionDeCursosOnline.Domain.GlobalInterfaces;
 
 namespace PlataformaDeGestionDeCursosOnline.Application.Exceptions.Clases;
@@ -9,22 +10,19 @@ namespace PlataformaDeGestionDeCursosOnline.Application.Exceptions.Clases;
 internal class ActualizarMaterialCommandHandler : ICommandHandler<ActualizarMaterialCommand, Result>
 {
     private readonly IUnitOfWork _unitOfWork;
-    private readonly IClaseRepository _claseRepository;
+    private readonly ICursoRepository _cursoRepository;
     
-    public ActualizarMaterialCommandHandler(IUnitOfWork unitOfWork, IClaseRepository claseRepository)
+    public ActualizarMaterialCommandHandler(IUnitOfWork unitOfWork, ICursoRepository cursoRepository)
     {
         _unitOfWork = unitOfWork;
-        _claseRepository = claseRepository;
+        _cursoRepository = cursoRepository;
     }
     
     public async Task<Result> Handle(ActualizarMaterialCommand request, CancellationToken cancellationToken)
     {
-        Clase clase = await this._claseRepository.ObtenerPorIdAsync(request.IdClase, cancellationToken);
+        Curso curso = await this._cursoRepository.ObtenerPorIdAsync(request.IdCurso, cancellationToken);
         
-        if (clase is null)
-        {
-            return Result.Failure(new NotFoundException());
-        }
+        Clase clase = curso.ObtenerClase(request.IdClase);
         
         clase.ActualizarMaterial(request.NuevoMaterial);
         

@@ -3,4 +3,4 @@ using PlataformaDeGestionDeCursosOnline.Domain.Abstractions;
 
 namespace PlataformaDeGestionDeCursosOnline.Application.Commands.Clases;
 
-public record DarPresenteCommand(Guid IdClase, Guid IdEstudiante) : ICommand<Result>;
+public record DarPresenteCommand(Guid IdCurso, Guid IdClase, Guid IdEstudiante) : ICommand<Result>;

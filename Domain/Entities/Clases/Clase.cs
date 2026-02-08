@@ -84,7 +84,7 @@ public class Clase : Entity
         _asistencias.Add(asistencia);
     }
     
-    public Consulta AgregarConsulta(string titulo, string descripcion,  Guid IdEstudiante)
+    public void AgregarConsulta(string titulo, string descripcion,  Guid IdEstudiante)
     {
         if (this._consultas == null)
             this._consultas = new List<Consulta>();
@@ -92,8 +92,7 @@ public class Clase : Entity
         Consulta consulta = new Consulta(IdEstudiante,titulo, descripcion, DateTime.UtcNow);
         this._consultas.Add(consulta);
         this.RaiseDomainEvent(new ConsultaCargada(this.Id, IdEstudiante ,consulta.FechaConsulta));
-
-        return consulta;
+        
     }
 
 }

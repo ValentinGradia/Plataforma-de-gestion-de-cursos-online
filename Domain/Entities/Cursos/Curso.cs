@@ -147,6 +147,12 @@ public class Curso : Entity, ICicloDeVidaDelCurso
             throw new EstudianteYaInscriptoException();
     }
     
+    public void ValidarSiElEstudianteNoPerteneceAlCurso(Guid idEstudiante)
+    {
+        if (!(this._inscripcionesEstudiantes.Any(i => i.IdEstudiante == idEstudiante)))
+            throw new EstudianteNoPerteneceAlCurso();
+    }
+    
     //CLASES
     public Guid IniciarClase(string material)
     {
@@ -167,6 +173,21 @@ public class Curso : Entity, ICicloDeVidaDelCurso
             throw new InvalidOperationException("La clase ya fue finalizada");
 
         clase.FinalizarClase();
+    }
+    
+    public Clase ObtenerClase(Guid idClase)
+    {
+        Clase clase = this._clases.FirstOrDefault(c => c.Id == idClase)!;
+        
+        return clase;
+    }
+    
+    public void AgregarClase(Clase clase)
+    {
+        if (clase == null)
+            throw new ArgumentNullException(nameof(clase));
+
+        this._clases.Add(clase);
     }
     
     //EXAMENES

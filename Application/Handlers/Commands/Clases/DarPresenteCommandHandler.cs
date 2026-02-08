@@ -3,6 +3,7 @@ using PlataformaDeGestionDeCursosOnline.Application.Commands.Clases;
 using PlataformaDeGestionDeCursosOnline.Domain;
 using PlataformaDeGestionDeCursosOnline.Domain.Abstractions;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities;
+using PlataformaDeGestionDeCursosOnline.Domain.Entities.Cursos;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Estudiantes;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Exceptions;
 using PlataformaDeGestionDeCursosOnline.Domain.GlobalInterfaces;
@@ -11,16 +12,16 @@ namespace PlataformaDeGestionDeCursosOnline.Application.Exceptions.Clases;
 
 internal class DarPresenteCommandHandler : ICommandHandler<DarPresenteCommand, Result>
 {
-    private readonly IClaseRepository _claseRepository;
+    private readonly ICursoRepository _cursoRepository;
     private readonly IUnitOfWork _unitOfWork;
     private readonly IEstudianteRepository _estudianteRepository;
     
     public DarPresenteCommandHandler(
-        IClaseRepository claseRepository,
+        ICursoRepository cursoRepository,
         IUnitOfWork unitOfWork,
         IEstudianteRepository estudianteRepository)
     {
-        _claseRepository = claseRepository;
+        _cursoRepository = cursoRepository;
         _unitOfWork = unitOfWork;
         _estudianteRepository = estudianteRepository;
     }
@@ -28,18 +29,16 @@ internal class DarPresenteCommandHandler : ICommandHandler<DarPresenteCommand, R
     public async Task<Result> Handle(DarPresenteCommand request, CancellationToken cancellationToken)
     {
         Task<Estudiante> TaskEstudiante = this._estudianteRepository.ObtenerPorIdAsync(request.IdEstudiante, cancellationToken);
-        Task<Clase> TaskClase = this._claseRepository.ObtenerPorIdAsync(request.IdClase, cancellationToken);
+        Task<Curso> TaskCurso = this._cursoRepository.ObtenerPorIdAsync(request.IdCurso, cancellationToken);
 
         Estudiante user = await TaskEstudiante;
-        Clase clase = await TaskClase;
+        Curso curso = await TaskCurso;
         
-        if (user is null || clase is null)
-        {
-            throw new NotFoundException();
-        }
 
         try
         {
+            Clase clase = curso.ObtenerClase(request.IdClase);
+            
             clase.DarPresente(request.IdEstudiante);
         }
         catch (AsistenciaYaCargadaException e)

@@ -2,6 +2,7 @@ using PlataformaDeGestionDeCursosOnline.Application.Abstractions.Messaging;
 using PlataformaDeGestionDeCursosOnline.Application.Commands.Clases;
 using PlataformaDeGestionDeCursosOnline.Domain.Abstractions;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities;
+using PlataformaDeGestionDeCursosOnline.Domain.Entities.Cursos;
 using PlataformaDeGestionDeCursosOnline.Domain.GlobalInterfaces;
 
 namespace PlataformaDeGestionDeCursosOnline.Application.Exceptions.Clases;
@@ -9,12 +10,12 @@ namespace PlataformaDeGestionDeCursosOnline.Application.Exceptions.Clases;
 internal class CrearClaseCommandHandler : ICommandHandler<CrearClaseCommand, Guid>
 {
     private readonly IUnitOfWork _unitOfWork;
-    private readonly IClaseRepository _claseRepository;
+    private readonly ICursoRepository _cursoRepository;
 
-    public CrearClaseCommandHandler(IUnitOfWork unitOfWork, IClaseRepository claseRepository)
+    public CrearClaseCommandHandler(IUnitOfWork unitOfWork, ICursoRepository cursoRepository)
     {
         this._unitOfWork = unitOfWork;
-        this._claseRepository = claseRepository;
+        this._cursoRepository = cursoRepository;
     }
     
     public Task<Guid> Handle(CrearClaseCommand request, CancellationToken cancellationToken)
@@ -24,7 +25,9 @@ internal class CrearClaseCommandHandler : ICommandHandler<CrearClaseCommand, Gui
             request.Material
         );
         
-        this._claseRepository.GuardarAsync(clase);
+        Curso curso = this._cursoRepository.ObtenerPorIdAsync(request.IdCurso, cancellationToken).Result;
+        curso.AgregarClase(clase);
+        
         this._unitOfWork.SaveChangesAsync();
         return Task.FromResult(clase.Id);
     }

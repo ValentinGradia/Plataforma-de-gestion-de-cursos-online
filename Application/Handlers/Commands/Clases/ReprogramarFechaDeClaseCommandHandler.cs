@@ -2,6 +2,7 @@ using PlataformaDeGestionDeCursosOnline.Application.Abstractions.Messaging;
 using PlataformaDeGestionDeCursosOnline.Application.Commands.Clases;
 using PlataformaDeGestionDeCursosOnline.Domain.Abstractions;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities;
+using PlataformaDeGestionDeCursosOnline.Domain.Entities.Cursos;
 using PlataformaDeGestionDeCursosOnline.Domain.GlobalInterfaces;
 
 namespace PlataformaDeGestionDeCursosOnline.Application.Exceptions.Clases;
@@ -10,22 +11,19 @@ internal class ReprogramarFechaDeClaseCommandHandler : ICommandHandler<Reprogram
 {
 
     private readonly IUnitOfWork _unitOfWork;
-    private readonly IClaseRepository _claseRepository;
+    private readonly ICursoRepository _curseRepository;
     
-    public ReprogramarFechaDeClaseCommandHandler(IUnitOfWork unitOfWork, IClaseRepository claseRepository)
+    public ReprogramarFechaDeClaseCommandHandler(IUnitOfWork unitOfWork, ICursoRepository cursoRepository)
     {
         _unitOfWork = unitOfWork;
-        _claseRepository = claseRepository;
+        _curseRepository = cursoRepository;
     }
     
     public async Task<Result> Handle(ReprogramarFechaDeClaseCommand request, CancellationToken cancellationToken)
     {
-        Clase clase = await this._claseRepository.ObtenerPorIdAsync(request.IdClase, cancellationToken);
+        Curso curso = await this._curseRepository.ObtenerPorIdAsync(request.IdCurso, cancellationToken);
         
-        if (clase is null)
-        {
-            return Result.Failure(new NotFoundException());
-        }
+        Clase clase = curso.ObtenerClase(request.IdClase);
         
         clase.ReprogramarClase(request.NuevaFecha);
         

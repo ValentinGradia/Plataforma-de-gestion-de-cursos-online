@@ -3,4 +3,4 @@ using PlataformaDeGestionDeCursosOnline.Domain.Abstractions;
 
 namespace PlataformaDeGestionDeCursosOnline.Application.Commands.Clases;
 
-public record ActualizarMaterialCommand(Guid IdClase, string NuevoMaterial) : ICommand<Result>;
+public record ActualizarMaterialCommand(Guid IdCurso,Guid IdClase, string NuevoMaterial) : ICommand<Result>;

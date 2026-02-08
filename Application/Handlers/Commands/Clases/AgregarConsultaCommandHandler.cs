@@ -3,6 +3,7 @@ using PlataformaDeGestionDeCursosOnline.Application.Commands.Clases;
 using PlataformaDeGestionDeCursosOnline.Domain;
 using PlataformaDeGestionDeCursosOnline.Domain.Abstractions;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities;
+using PlataformaDeGestionDeCursosOnline.Domain.Entities.Cursos;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Cursos.Exceptions;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Estudiantes;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.ObjectValues;
@@ -12,13 +13,13 @@ namespace PlataformaDeGestionDeCursosOnline.Application.Exceptions.Clases;
 
 internal class AgregarConsultaCommandHandler : ICommandHandler<AgregarConsultaCommand,Result>
 {
-    private readonly IClaseRepository _claseRepository;
+    private readonly ICursoRepository _cursoRepository;
     private readonly IEstudianteRepository _estudianteRepository;
     private readonly IUnitOfWork _unitOfWork;
 
-    public AgregarConsultaCommandHandler(IClaseRepository claseRepository, IEstudianteRepository estudianteRepository, IUnitOfWork unitOfWork)
+    public AgregarConsultaCommandHandler(ICursoRepository cursoRepository, IEstudianteRepository estudianteRepository, IUnitOfWork unitOfWork)
     {
-        this._claseRepository = claseRepository;
+        this._cursoRepository = cursoRepository;
         this._estudianteRepository = estudianteRepository;
         this._unitOfWork = unitOfWork;
     }
@@ -26,24 +27,31 @@ internal class AgregarConsultaCommandHandler : ICommandHandler<AgregarConsultaCo
     public async Task<Result> Handle(AgregarConsultaCommand request, CancellationToken cancellationToken)
     {
         Task<Estudiante> TaskEstudiante = this._estudianteRepository.ObtenerPorIdAsync(request.IdEstudiante, cancellationToken);
-        Task<Clase> TaskClase = this._claseRepository.ObtenerPorIdAsync(request.IdClase, cancellationToken);
+        Task<Curso> TaskCurso = this._cursoRepository.ObtenerPorIdAsync(request.IdCurso, cancellationToken);
 
-        Usuario user = await TaskEstudiante;
-        Clase clase = await TaskClase;
+        Estudiante user = await TaskEstudiante;
+        Curso curso = await TaskCurso;
 
-        if (user is null || clase is null)
+        if (user is null || curso is null)
         {
             return Result.Failure(new NotFoundException());
         }
+        
+        Clase clase = curso.ObtenerClase(request.IdClase);
 
-        if (!(this._claseRepository.EstudiantePerteneceAClase(user.Id, clase.Id)))
+        try
         {
-            return Result.Failure(new EstudianteNoPerteneceAlCurso());
+            curso.ValidarSiElEstudianteNoPerteneceAlCurso(user.Id);
+            
+            clase.AgregarConsulta(request.Titulo,request.Descripcion, user.Id);
+
+            await this._unitOfWork.SaveChangesAsync();
+            return Result.Success();
+        }
+        catch (EstudianteNoPerteneceAlCurso e)
+        {
+            return Result.Failure(e);
         }
         
-        Consulta consulta = clase.AgregarConsulta(request.Titulo,request.Descripcion, user.Id);
-
-        await this._unitOfWork.SaveChangesAsync();
-        return Result.Success();
     }
 }

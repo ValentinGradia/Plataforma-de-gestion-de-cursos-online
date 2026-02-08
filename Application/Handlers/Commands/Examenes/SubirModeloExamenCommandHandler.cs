@@ -9,16 +9,14 @@ namespace PlataformaDeGestionDeCursosOnline.Application.Handlers.Commands.Examen
 
 internal class SubirModeloExamenCommandHandler : ICommandHandler<SubirModeloExamenCommand, Guid>
 {
-    public SubirModeloExamenCommandHandler(IUnitOfWork unitOfWork, IExamenRepository examenes, 
+    public SubirModeloExamenCommandHandler(IUnitOfWork unitOfWork, 
         ICursoRepository cursos)
     {
         _unitOfWork = unitOfWork;
-        _examenes = examenes;
         _cursos = cursos;
     }
 
     private readonly IUnitOfWork _unitOfWork;
-    private readonly IExamenRepository _examenes;
     private readonly ICursoRepository _cursos;
 
     public async Task<Guid> Handle(SubirModeloExamenCommand request, CancellationToken cancellationToken)
