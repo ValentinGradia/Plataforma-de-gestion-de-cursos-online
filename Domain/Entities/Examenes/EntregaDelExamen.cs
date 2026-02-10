@@ -39,7 +39,7 @@ public class EntregaDelExamen : Entity
     public void AsignarNota(decimal valor)
     {
         Nota nota = new Nota(valor);
-        this.RaiseDomainEvent(new NotaCargada(this.Id, DateTime.UtcNow));
+        this.RaiseDomainEvent(new NotaCargada(this.Id, this.IdExamen, this.IdInscripcionEstudiante,DateTime.UtcNow));
         this.AsignarNotaInterna(nota);
     }
     

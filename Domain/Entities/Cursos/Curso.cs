@@ -124,6 +124,12 @@ public class Curso : Entity, ICicloDeVidaDelCurso
         inscripcionEstudiante.DarseDeBaja();
     }
     
+    public Inscripcion ObtenerInscripcionPorId(Guid idInscripcion)
+    {
+        Inscripcion inscripcion = this._inscripcionesEstudiantes.FirstOrDefault(i => i.Id == idInscripcion)!;
+        
+        return inscripcion;
+    }
     //VALIDACIONES
     
     public void ValidarLimiteDeEstudiantes()
@@ -221,6 +227,13 @@ public class Curso : Entity, ICicloDeVidaDelCurso
 
         throw new ArgumentOutOfRangeException("Entrega no encontrada.");
 
+    }
+    
+    public Examen ObtenerModeloExamen(Guid idExamen)
+    {
+        Examen examen = this._examenes.FirstOrDefault(e => e.Id == idExamen)!;
+
+        return examen;
     }
     
     

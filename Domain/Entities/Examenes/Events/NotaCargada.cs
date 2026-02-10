@@ -2,7 +2,7 @@
 
 namespace PlataformaDeGestionDeCursosOnline.Domain.Entities.Cursos.Events;
 
-public sealed record NotaCargada(Guid IdExamenEntregado, DateTime fechaNotaCargada) : IDomainEvent
+public sealed record NotaCargada(Guid IdExamenEntregado,Guid IdModeloExamen , Guid IdInscripcionEstudiante, DateTime fechaNotaCargada) : IDomainEvent
 {
     
 }
