@@ -1,5 +1,8 @@
-﻿using PlataformaDeGestionDeCursosOnline.Domain.Abstractions;
+using PlataformaDeGestionDeCursosOnline.Domain.Abstractions;
 
 namespace PlataformaDeGestionDeCursosOnline.Domain.Entities.Cursos.Events;
 
-public sealed record CursoIniciado(Guid IdCurso, DateTime Inicio) : IDomainEvent;
+public record CursoIniciado(Guid IdCurso, DateTime FechaInicio) : IDomainEvent
+{
+    
+}

@@ -7,14 +7,14 @@ using PlataformaDeGestionDeCursosOnline.Domain.GlobalInterfaces;
 
 namespace PlataformaDeGestionDeCursosOnline.Application.Handlers.Commands.Cursos;
 
-internal class InscribirEstudianteACursoCommandHandler(IUnitOfWork unitOfWork, ICursoRepository cursoRepository) : ICommandHandler<InscribirEstudianteACursoCommand, Result>
+internal class InscribirEstudianteACursoCommandHandler(IUnitOfWork unitOfWork, ICursoRepository cursoRepository, IInscripcionService inscripcionService) : ICommandHandler<InscribirEstudianteACursoCommand, Result>
 {
     public async Task<Result> Handle(InscribirEstudianteACursoCommand request, CancellationToken cancellationToken)
     {
         Curso curso = await cursoRepository.ObtenerPorIdAsync(request.IdCurso, cancellationToken);
         
         Inscripcion inscripcion = Inscripcion.CrearInscripcion(request.IdEstudiante, request.IdCurso);
-        curso.AgregarEstudiante(inscripcion);
+        inscripcionService.InscribirEstudiante(inscripcion,curso!);
         await unitOfWork.SaveChangesAsync(cancellationToken);
         return Result.Success();
     }

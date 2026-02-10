@@ -91,7 +91,7 @@ public class Clase : Entity
         
         Consulta consulta = new Consulta(IdEstudiante,titulo, descripcion, DateTime.UtcNow);
         this._consultas.Add(consulta);
-        this.RaiseDomainEvent(new ConsultaCargada(this.Id, IdEstudiante ,consulta.FechaConsulta));
+        this.RaiseDomainEvent(new ConsultaCargada(this.IdCurso, IdEstudiante ,consulta.FechaConsulta));
         
     }
 

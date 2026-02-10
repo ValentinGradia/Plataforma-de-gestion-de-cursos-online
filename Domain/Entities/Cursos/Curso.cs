@@ -61,13 +61,11 @@ public class Curso : Entity, ICicloDeVidaDelCurso
     public void IniciarCurso()
     {
         this.Estado = EstadoCurso.EnProgreso;
-        this.RaiseDomainEvent(new CursoIniciado(this.Id, DateTime.Now));
     }
     
     public void FinalizarCurso()
     {
         this.Estado = EstadoCurso.Finalizado;
-        this.RaiseDomainEvent(new CursoFinalizado(this.Id, DateTime.Now));
     }
     
     
@@ -156,7 +154,7 @@ public class Curso : Entity, ICicloDeVidaDelCurso
     public Guid IniciarClase(string material)
     {
         Clase clase = Clase.CrearClase(this.Id, material);
-        this._clases.Add(clase);
+        this.AgregarClase(clase);
         clase.IniciarClase();
         return clase.Id;
     }
@@ -193,7 +191,7 @@ public class Curso : Entity, ICicloDeVidaDelCurso
     public Guid CargarExamen(Examen examen)
     {
         this._examenes.Add(examen);
-        this.RaiseDomainEvent(new ExamenSubido(examen.Id, examen.FechaExamenCargado));
+        this.RaiseDomainEvent(new ExamenSubido(this.Id,examen.Id, examen.FechaExamenCargado));
         return examen.Id;
     }
     

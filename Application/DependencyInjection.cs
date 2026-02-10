@@ -19,7 +19,7 @@ public static class DependencyInjection
             cfg.RegisterServicesFromAssembly(typeof(DependencyInjection).Assembly));
         
         //Aca vamos a registrar todos los servicios de aplicacion
-        services.AddTransient<InscripcionService>();
+        services.AddScoped<IInscripcionService,InscripcionService>();
         return services;
     }
 }
