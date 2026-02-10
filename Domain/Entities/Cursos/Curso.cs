@@ -102,7 +102,7 @@ public class Curso : Entity, ICicloDeVidaDelCurso
         
         this.ValidarSiElCursoEstaDisponible();
         this.ValidarLimiteDeEstudiantes();
-        this.ValidarSiElEstudianteYaPerteneceAlCurso(inscripcionEstudiante.IdEstudiante);
+        this.ValidarSiElEstudianteYaPerteneceAlCurso(inscripcionEstudiante.Id);
         
         this._inscripcionesEstudiantes.Add(inscripcionEstudiante);
     }
@@ -144,15 +144,15 @@ public class Curso : Entity, ICicloDeVidaDelCurso
             throw new CursoNoDisponibleException();
     }
     
-    public void ValidarSiElEstudianteYaPerteneceAlCurso(Guid idEstudiante)
+    public void ValidarSiElEstudianteYaPerteneceAlCurso(Guid idInscripcionEstudiante)
     {
-        if (this._inscripcionesEstudiantes.Any(i => i.IdEstudiante == idEstudiante))
+        if (this._inscripcionesEstudiantes.Any(i => i.Id == idInscripcionEstudiante))
             throw new EstudianteYaInscriptoException();
     }
     
-    public void ValidarSiElEstudianteNoPerteneceAlCurso(Guid idEstudiante)
+    public void ValidarSiElEstudianteNoPerteneceAlCurso(Guid idInscripcionEstudiante)
     {
-        if (!(this._inscripcionesEstudiantes.Any(i => i.IdEstudiante == idEstudiante)))
+        if (!(this._inscripcionesEstudiantes.Any(i => i.Id == idInscripcionEstudiante)))
             throw new EstudianteNoPerteneceAlCurso();
     }
     

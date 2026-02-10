@@ -4,8 +4,11 @@ using PlataformaDeGestionDeCursosOnline.Domain;
 using PlataformaDeGestionDeCursosOnline.Domain.Abstractions;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Cursos;
+using PlataformaDeGestionDeCursosOnline.Domain.Entities.Cursos.Exceptions;
+using PlataformaDeGestionDeCursosOnline.Domain.Entities.Enums;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Estudiantes;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Exceptions;
+using PlataformaDeGestionDeCursosOnline.Domain.Entities.Inscripciones;
 using PlataformaDeGestionDeCursosOnline.Domain.GlobalInterfaces;
 
 namespace PlataformaDeGestionDeCursosOnline.Application.Exceptions.Clases;
@@ -14,39 +17,43 @@ internal class DarPresenteCommandHandler : ICommandHandler<DarPresenteCommand, R
 {
     private readonly ICursoRepository _cursoRepository;
     private readonly IUnitOfWork _unitOfWork;
-    private readonly IEstudianteRepository _estudianteRepository;
     
     public DarPresenteCommandHandler(
         ICursoRepository cursoRepository,
-        IUnitOfWork unitOfWork,
-        IEstudianteRepository estudianteRepository)
+        IUnitOfWork unitOfWork)
     {
         _cursoRepository = cursoRepository;
         _unitOfWork = unitOfWork;
-        _estudianteRepository = estudianteRepository;
     }
     
     public async Task<Result> Handle(DarPresenteCommand request, CancellationToken cancellationToken)
     {
-        Task<Estudiante> TaskEstudiante = this._estudianteRepository.ObtenerPorIdAsync(request.IdEstudiante, cancellationToken);
         Task<Curso> TaskCurso = this._cursoRepository.ObtenerPorIdAsync(request.IdCurso, cancellationToken);
-
-        Estudiante user = await TaskEstudiante;
-        Curso curso = await TaskCurso;
         
-
+        Curso curso = await TaskCurso;
         try
         {
+            curso.ValidarSiElEstudianteNoPerteneceAlCurso(request.IdInscripcionEstudiante);
+
             Clase clase = curso.ObtenerClase(request.IdClase);
+
+            Asistencia asistenciaEstudiante = clase.DarPresente(request.IdInscripcionEstudiante);
+
+            Inscripcion inscripcion = curso.ObtenerInscripcionPorId(request.IdInscripcionEstudiante);
+            inscripcion.AgregarAsistencia(asistenciaEstudiante);
             
-            clase.DarPresente(request.IdEstudiante);
+                    
+            await this._unitOfWork.SaveChangesAsync();
+            return Result.Success();
         }
         catch (AsistenciaYaCargadaException e)
         {
             return Result.Failure(e);
         }
-        
-        await this._unitOfWork.SaveChangesAsync();
-        return Result.Success();
+        catch (EstudianteNoPerteneceAlCurso e)
+        {
+            return Result.Failure(e);
+        }
+
     }
 }

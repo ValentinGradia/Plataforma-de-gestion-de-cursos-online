@@ -27,7 +27,5 @@ internal class NotaCargadaDomainEventHandler(ICursoRepository cursoRepository, I
             $" {curso.Nombre} ha sido cargada. " + cancellationToken
         );
         
-        
-        
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace PlataformaDeGestionDeCursosOnline.Domain.Entities.Enums;
 
 public record Asistencia(
-    Guid IdEstudiante,
+    Guid IdInscripcionEstudiante,
     bool Presente
 );

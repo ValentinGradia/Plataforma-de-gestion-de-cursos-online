@@ -18,6 +18,8 @@ public class Clase : Entity
     //Quien maneja el estado de las clases es el curso
     public EstadoClase Estado;
     public DateTime Fecha { get; private set; }
+    //Lo manejamos dentro de clase y no de curso porque estariamos duplicando informacion. Ademas,
+    //quien maneja las asistencias es la clase.
     private readonly List<Asistencia> _asistencias = new List<Asistencia>();
     public IReadOnlyCollection<Asistencia> Asistencias => this._asistencias;
     
@@ -61,27 +63,29 @@ public class Clase : Entity
         this.Fecha = nuevaFecha;
     }
     
-    //ACTUALIZAR ESTO EN LAS ASISTENCIAS DE LAS INSCRIPCIONES DE LOS ESTUDIANTES
-    //(El dar presente y ausante)
-    public void DarPresente(Guid IdEstudiante)
+    //Recibimos el id de inscripcion, no el id del estudiante porque en la inscripcion
+    //guardamos el historial de asistencias
+    public Asistencia DarPresente(Guid IdInscripcionDeEstudiante)
     {
-        if (_asistencias.Any(a => a.IdEstudiante == IdEstudiante))
+        if (_asistencias.Any(a => a.IdInscripcionEstudiante == IdInscripcionDeEstudiante))
             throw new AsistenciaYaCargadaException();
         
         if(Estado == EstadoClase.Finalizada)
             throw new ClaseFinalizadaNoSePuedeMarcarPresenteException();
 
-        Asistencia asistencia = new Asistencia(IdEstudiante, true);
+        Asistencia asistencia = new Asistencia(IdInscripcionDeEstudiante,true);
         _asistencias.Add(asistencia);
+        return asistencia;
     }
     
-    public void DarAusente(Guid IdEstudiante)
+    public Asistencia DarAusente(Guid IdInscripcionEstudiante)
     {
-        if (_asistencias.Any(a => a.IdEstudiante == IdEstudiante))
+        if (_asistencias.Any(a => a.IdInscripcionEstudiante == IdInscripcionEstudiante))
             throw new AsistenciaYaCargadaException();
 
-        Asistencia asistencia = new Asistencia(IdEstudiante, false);
+        Asistencia asistencia = new Asistencia(IdInscripcionEstudiante,false);
         _asistencias.Add(asistencia);
+        return asistencia;
     }
     
     public void AgregarConsulta(string titulo, string descripcion,  Guid IdEstudiante)

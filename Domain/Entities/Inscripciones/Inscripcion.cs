@@ -67,6 +67,12 @@ public class Inscripcion : Entity
         this.porcentajeAsistencia = (double)clasespresentes / clasesTotal * 100;
     }
     
+    public void AgregarAsistencia(Asistencia asistencia)
+    {
+        _asistenciasDelEstudiante.Add(asistencia);
+        ActualizarPorcentajeAsistencia();
+    }
+    
     public void AgregarEntregaAlHistorial(EntregaDelExamen entrega)
     {
         _historialEntregas.Add(entrega);
