@@ -32,6 +32,6 @@ internal class CrearEncuestaCommandHandler : ICommandHandler<CrearEncuestaComman
         //Aca EF no trackea la entidad por lo que tenemos que guardarla explicitamente
         await this._encuestasRepository.GuardarAsync(encuesta);
         await this._unitOfWork.SaveChangesAsync();
-        return new Result(true,null,encuesta.Id);
+        return new Result(true,encuesta.Id);
     }
 }

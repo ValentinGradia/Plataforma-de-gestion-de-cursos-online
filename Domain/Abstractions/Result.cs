@@ -3,15 +3,18 @@ namespace PlataformaDeGestionDeCursosOnline.Domain.Abstractions;
 //Creamos una clase Result para representar el resultado de una operación y mapear objetos tipo Exception
 public class Result
 {
-    
-    private Result(bool isSuccess, Exception? exception)
+    private Result(bool isSuccess)
     {
-        Exception = exception;
         IsSuccess = isSuccess;
     }
 
+    private Result(bool isSuccess, Exception? exception): this(isSuccess)
+    {
+        Exception = exception;
+    }
+
     
-    protected internal Result(bool isSuccess, Exception? exception = null, object? dato = null) : this(isSuccess, exception)
+    public Result(bool isSuccess, object? dato = null) : this(isSuccess)
     {
         Data = dato;
     }
@@ -35,5 +38,5 @@ public class Result
         => new Result(false, exception);
     
     public static Result Failure(Exception e, string errorMessage) 
-        => new Result(false,e, errorMessage);
+        => new Result(false, errorMessage,e);
 }
