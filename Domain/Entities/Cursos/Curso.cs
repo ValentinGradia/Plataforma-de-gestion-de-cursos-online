@@ -236,8 +236,6 @@ public class Curso : Entity, ICicloDeVidaDelCurso
         return examen;
     }
     
-    
-    
     //PROFESORES
     public void CambiarProfesor(Profesor nuevoProfesor)
     {
@@ -248,26 +246,11 @@ public class Curso : Entity, ICicloDeVidaDelCurso
     }
     
     //ENCUESTAS
-    //Recibimos los parametros para crear la encuesta (y no recibir
-    // el objeto Encuesta) aca para poder
-    //cambiar reglas o logica de negocio dentro del metodo del curso
-    public void AgregarEncuesta(
-        Guid? idEstudiante,
-        int calificacionCurso,
-        int calificacionMaterial,
-        int calificacionDocente,
-        string comentarios = null)
+    public void AgregarEncuesta(Encuesta encuesta)
     {
-        Encuesta encuesta = Encuesta.Crear(
-            this.Id,
-            idEstudiante,
-            calificacionCurso,
-            calificacionMaterial,
-            calificacionDocente,
-            comentarios);
         
         //un estudiante no puede repetir encuesta
-        if (_encuestas.Any(e => e.IdEstudiante == idEstudiante))
+        if (_encuestas.Any(e => e.IdEstudiante == encuesta.IdEstudiante))
         {
             throw new EstudianteYaCreoEncuestaException();
         }
