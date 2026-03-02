@@ -1,8 +1,6 @@
 using PlataformaDeGestionDeCursosOnline.Application.Abstractions.Messaging;
-using PlataformaDeGestionDeCursosOnline.Application.DTOs;
-using PlataformaDeGestionDeCursosOnline.Domain;
 using PlataformaDeGestionDeCursosOnline.Domain.Abstractions;
 
 namespace PlataformaDeGestionDeCursosOnline.Application.Querys.Usuarios;
 
-public record ObtenerPerfilUsuarioQuery(Guid IdUsuario) : IQuery<UsuarioDTO>;
+public record ObtenerPerfilUsuarioQuery(Guid IdUsuario) : IQuery<Result>;

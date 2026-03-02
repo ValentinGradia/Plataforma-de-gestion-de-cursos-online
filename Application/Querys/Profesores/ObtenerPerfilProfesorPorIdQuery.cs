@@ -1,6 +1,6 @@
 using PlataformaDeGestionDeCursosOnline.Application.Abstractions.Messaging;
-using PlataformaDeGestionDeCursosOnline.Application.DTOs;
+using PlataformaDeGestionDeCursosOnline.Domain.Abstractions;
 
 namespace PlataformaDeGestionDeCursosOnline.Application.Querys.Profesores;
 
-public record ObtenerPerfilProfesorPorIdQuery(Guid IdProfesor) : IQuery<ProfesorDTO>;
+public record ObtenerPerfilProfesorPorIdQuery(Guid IdProfesor) : IQuery<Result>;

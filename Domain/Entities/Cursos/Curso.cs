@@ -128,6 +128,9 @@ public class Curso : Entity, ICicloDeVidaDelCurso
     {
         Inscripcion inscripcion = this._inscripcionesEstudiantes.FirstOrDefault(i => i.Id == idInscripcion)!;
         
+        if(inscripcion is null)
+            throw new ArgumentOutOfRangeException("No se encontró la inscripción con el ID proporcionado.");
+        
         return inscripcion;
     }
     //VALIDACIONES
@@ -233,6 +236,10 @@ public class Curso : Entity, ICicloDeVidaDelCurso
     {
         Examen examen = this._examenes.FirstOrDefault(e => e.Id == idExamen)!;
 
+        if (examen is null)
+        {
+            throw new ArgumentOutOfRangeException("Examen no encontrado en este curso.");
+        }
         return examen;
     }
     

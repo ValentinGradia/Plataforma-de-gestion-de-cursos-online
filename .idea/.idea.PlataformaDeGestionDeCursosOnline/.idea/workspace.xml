@@ -8,17 +8,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4cca0346-ece8-48e6-a84f-8553af71af3a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Application/Handlers/Querys/Cursos/ObtenerClasesPorCursoQueryHandler.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Application/Handlers/Querys/Cursos/ObtenerEstudiantesInscriptosCursoQueryHandler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.PlataformaDeGestionDeCursosOnline/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PlataformaDeGestionDeCursosOnline/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Application/Handlers/Querys/ObtenerAsistenciasDeClaseQueryHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/Handlers/Querys/Clases/ObtenerAsistenciasDeClaseQueryHandler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Application/Handlers/Querys/ObtenerConsultasDeClaseQueryHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/Handlers/Querys/Clases/ObtenerConsultasDeClaseQueryHandler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Application/Handlers/Querys/ObtenerInformacionClaseQueryHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/Handlers/Querys/Clases/ObtenerInformacionClaseQueryHandler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Application/Querys/Cursos/ObtenerClasesPorCursoQuery.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/Querys/Cursos/ObtenerClasesPorCursoQuery.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Application/Querys/Cursos/ObtenerEstudiantesInscriptosCursoQuery.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/Querys/Cursos/ObtenerEstudiantesInscriptosCursoQuery.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/rider.project.model.nuget.info" beforeDir="false" afterPath="$PROJECT_DIR$/obj/rider.project.model.nuget.info" afterDir="false" />
-    </list>
+    <list default="true" id="4cca0346-ece8-48e6-a84f-8553af71af3a" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -90,6 +80,7 @@
     <setting file="file://$PROJECT_DIR$/Application/Handlers/Querys/Clases/ObtenerInformacionClaseQueryHandler.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Application/Handlers/Querys/Cursos/ObtenerClasesPorCursoQueryHandler.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Application/Handlers/Querys/Cursos/ObtenerEstudiantesInscriptosCursoQueryHandler.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Application/Handlers/Querys/Cursos/ObtenerInformacionCursoPorIdQueryHandler.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Application/Querys/Clases/ObtenerAsistenciasDeClase.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Application/Querys/Clases/ObtenerConsultasDeClaseQuery.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Application/Querys/Clases/ObtenerInformacionClaseQuery.cs" root0="FORCE_HIGHLIGHTING" />
@@ -233,7 +224,7 @@
       <workItem from="1771446252968" duration="3230000" />
       <workItem from="1771468507673" duration="562000" />
       <workItem from="1771503675586" duration="364000" />
-      <workItem from="1771504808563" duration="296000" />
+      <workItem from="1771504808563" duration="1351000" />
     </task>
     <servers />
   </component>

@@ -1,6 +1,7 @@
 using PlataformaDeGestionDeCursosOnline.Application.Abstractions.Messaging;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Cursos.Notas;
+using PlataformaDeGestionDeCursosOnline.Domain.Abstractions;
 
 namespace PlataformaDeGestionDeCursosOnline.Application.Querys.Examenes;
 
-public record ObtenerNotaDeEntregaExamenQuery(Guid IdEntregaExamen) : IQuery<Nota>;
+public record ObtenerNotaDeEntregaExamenQuery(Guid IdCurso, Guid IdEntregaExamen) : IQuery<Result>;
