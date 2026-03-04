@@ -82,7 +82,7 @@ public class Clase : Entity
         if(Estado == EstadoClase.Finalizada)
             throw new ClaseFinalizadaNoSePuedeMarcarPresenteException();
 
-        Asistencia asistencia = new Asistencia(IdInscripcionDeEstudiante,true);
+        Asistencia asistencia = new Asistencia(this.Id,IdInscripcionDeEstudiante,true);
         _asistencias.Add(asistencia);
         return asistencia;
     }
@@ -92,7 +92,7 @@ public class Clase : Entity
         if (_asistencias.Any(a => a.IdInscripcionEstudiante == IdInscripcionEstudiante))
             throw new AsistenciaYaCargadaException();
 
-        Asistencia asistencia = new Asistencia(IdInscripcionEstudiante,false);
+        Asistencia asistencia = new Asistencia(this.Id,IdInscripcionEstudiante,false);
         _asistencias.Add(asistencia);
         return asistencia;
     }

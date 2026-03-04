@@ -2,22 +2,20 @@ using System.Data;
 using Dapper;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Cursos;
+using PlataformaDeGestionDeCursosOnline.Domain.Entities.Enums;
 using PlataformaDeGestionDeCursosOnline.Domain.GlobalInterfaces;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Estudiantes;
+using PlataformaDeGestionDeCursosOnline.Domain.Entities.Examenes;
+using PlataformaDeGestionDeCursosOnline.Domain.Entities.Examenes.ObjectValues;
+using PlataformaDeGestionDeCursosOnline.Domain.Entities.Inscripciones;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Profesores;
 using static PlataformaDeGestionDeCursosOnline.Domain.Entities.Clase;
 
 namespace PlataformaDeGestionDeCursosOnline.Infrastructure.Data.Repositories;
 
-public class CursoRepository : ICursoRepository
+public class CursoRepository(IDbConnectionFactory _connectionFactory) : ICursoRepository
 {
-    private readonly IDbConnectionFactory _connectionFactory;
-
-    public CursoRepository(IDbConnectionFactory connectionFactory)
-    {
-        _connectionFactory = connectionFactory;
-    }
-
+    
     public async Task GuardarAsync(Curso curso)
     {
         using var connection = _connectionFactory.CreateConnection();
@@ -34,56 +32,40 @@ public class CursoRepository : ICursoRepository
 
     public async Task<Curso?> ObtenerPorIdAsync(Guid id, CancellationToken cancellationToken = default)
     {
+        
         using var connection = _connectionFactory.CreateConnection();
-        var sql = @"
-            SELECT
-              c.Id                      AS CursoId,
-              c.Nombre                  AS CursoNombre,
-              c.Temario                 AS CursoTemario,
-              c.FechaInicio             AS CursoFechaInicio,
-              c.FechaFin                AS CursoFechaFin,
-              c.Estado                  AS CursoEstado,
-              c.ProfesorId              AS CursoProfesorId,
 
-              p.Id                      AS Profesor_Id,
+        //query para el curso + profesor
+        var sqlCurso = @"
+            SELECT c.*, p.* from Cursos c LEFT JOIN Profesores p on p.Id == c.IdProfesor WHERE c.Id = @Id";
 
-              cl.Id                     AS ClaseId,
-              cl.CursoId                AS ClaseCursoId,
-              cl.Material               AS ClaseMaterial,
-              cl.Fecha                  AS ClaseFecha,
-              cl.Estado                 AS ClaseEstado,
+        //query para el curso + clases
+        var sqlClases = @"
+            SELECT * FROM Clases WHERE IdCurso = @Id";
+        
+        //query para el curso + examenes
+        var sqlExamenes = @"
+            SELECT * FROM Examenes WHERE IdCurso = @Id";
+        
+        //query para el curso + inscripciones + asistencias + entregas del examen
+        var sqlInscripciones = @"
+            SELECT i.*, a.*, e.* FROM Inscripciones i
+            LEFT JOIN Asistencias a ON a.IdInscripcionEstudiante == i.Id
+            LEFT JOIN EntregasDelExamen e on e.IdInscripcionEstudiante == i.Id
+            WHERE i.IdCurso = @Id";
+        
+        var sql = sqlCurso + ";" + sqlClases + ";" + sqlExamenes + ";" + sqlInscripciones;
 
-              ex.Id                     AS ExamenId,
-              ex.CursoId                AS ExamenCursoId,
-              ex.TemaExamen             AS ExamenTema,
-              ex.Tipo                   AS ExamenTipo,
-              ex.FechaLimiteDeEntrega   AS ExamenFechaLimite,
-              ex.FechaExamenCargado     AS ExamenFechaCargado,
+        //Ejecutamos las 4 queries en una sola llamada a la base de datos.
+        using var multi = await connection.QueryMultipleAsync(sql, new { Id = id });
 
-              i.Id                      AS InscripcionId,
-              i.CursoId                 AS InscripcionCursoId,
-              i.EstudianteId            AS InscripcionEstudianteId,
-              i.FechaInscripcion        AS InscripcionFechaInscripcion,
-              i.Activa                  AS InscripcionActiva,
-              i.PorcentajeAsistencia    AS InscripcionPorcentajeAsistencia
+        var cursoRow        = await multi.ReadFirstOrDefaultAsync();//devuelve solo una fila, la del curso + profesor
+        var clasesRows      = (await multi.ReadAsync()).ToList();
+        var examenesRows    = (await multi.ReadAsync()).ToList();
+        var inscripcionRows = (await multi.ReadAsync()).ToList();
 
-            FROM Cursos c
-            LEFT JOIN Profesores p   ON p.Id = c.ProfesorId
-            LEFT JOIN Clases cl      ON cl.CursoId = c.Id
-            LEFT JOIN Examenes ex ON ex.CursoId = c.Id
-            LEFT JOIN Inscripciones i ON i.CursoId = c.Id
-            WHERE c.Id = @Id
-            ";
-
-        var rows = await connection.QueryAsync(sql, new { Id = id });
-
-        if(!rows.Any())
-            return null;
-
-        List<Clase> clases = rows
+        List<Clase> clases = clasesRows
             .Where(r => r.ClaseId != null)
-            //agrupamos por id para que no haya clases repetidas (por el join con examenes e inscripciones)
-            .GroupBy(r => (Guid)r.ClaseId)
             .Select(g =>
                 {
                     var row = g.First();
@@ -91,6 +73,47 @@ public class CursoRepository : ICursoRepository
                 }
             )
             .ToList<Clase>();
+        
+        List<Examen> examenes = examenesRows
+            .Where(r => r.IdExamen != null)
+            .Select(g =>
+                {
+                    var row = g.First();
+                    return new Examen(row.IdExamen,row.IdCurso, row.TipoExamen, row.TemaExamen, row.FechaLimiteDeEntrega, row.FechaExamenCargado);
+                }
+            )
+            .ToList<Examen>();
+        
+        List<Inscripcion> inscripciones = inscripcionRows
+            .GroupBy(r => (Guid)r.Id)
+            .Select(g =>
+            {
+                var first = g.First();
+                var asistencias = g
+                        .Where(r => r.AsistenciaId != null)
+                        .Select(g =>
+                        {
+                            var row = g.First();
+                            return new Asistencia(row.AsistenciaId, row.AsistenciaClaseId, row.AsistenciaPresente);
+                        })
+                    
+                var entregas = g
+                        .Where(r => r.EntregaId != null)
+                        .Select(r => EntregaDelExamen.Reconstruir(...))
+                    .ToList();
+
+                return Inscripcion.Reconstruir(
+                    id:                   (Guid)first.Id,
+                    idEstudiante:         (Guid)first.EstudianteId,
+                    idCurso:              (Guid)first.CursoId,
+                    fechaInscripcion:     (DateTime)first.FechaInscripcion,
+                    activa:               (bool)first.Activa,
+                    porcentajeAsistencia: (double)first.PorcentajeAsistencia,
+                    asistencias:          asistencias,
+                    entregas:             entregas
+                );
+            })
+            .ToList();
         
 
 

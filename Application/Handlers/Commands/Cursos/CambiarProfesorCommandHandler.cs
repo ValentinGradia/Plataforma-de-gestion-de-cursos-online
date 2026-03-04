@@ -14,10 +14,9 @@ internal class CambiarProfesorCommandHandler(ICursoRepository cursoRepository, I
     public async Task<Result> Handle(CambiarProfesorCommand request, CancellationToken cancellationToken)
     {
         Curso? curso = await cursoRepository.ObtenerPorIdAsync(request.IdCurso, cancellationToken);
-
-        Profesor? profesor = await profesorRepository.ObtenerPorIdAsync(request.IdProfesor, cancellationToken);
         
-        curso.CambiarProfesor(profesor);
+        
+        curso.CambiarProfesor(request.IdProfesor);
 
         await _unitOfWork.SaveChangesAsync();
         return Result.Success();
