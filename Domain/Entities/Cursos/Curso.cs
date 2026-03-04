@@ -18,7 +18,7 @@ namespace PlataformaDeGestionDeCursosOnline.Domain.Entities.Cursos;
 
 public class Curso : Entity, ICicloDeVidaDelCurso
 {
-    public Profesor Profesor { get; private set; }
+    public Guid IdProfesor { get; private set; }
     public EstadoCurso Estado { get; private set; }
     public DateRange Duracion { get; private set; }
     public string Nombre { get; private set; }
@@ -37,10 +37,10 @@ public class Curso : Entity, ICicloDeVidaDelCurso
         return this._inscripcionesEstudiantes.FirstOrDefault(i => i.IdEstudiante == idEstudiante);
     }
 
-    private Curso(Profesor profesor, string temario, string nombre, DateTime inicio, DateTime fin) : base(
+    private Curso(Guid profesorId, string temario, string nombre, DateTime inicio, DateTime fin) : base(
         Guid.NewGuid())
     {
-        this.Profesor = profesor;
+        this.IdProfesor = profesorId;
         this.Temario = temario;
         this.Nombre = nombre;
         this.Estado = EstadoCurso.Disponible;
@@ -50,11 +50,11 @@ public class Curso : Entity, ICicloDeVidaDelCurso
         this._clases = new List<Clase>();
     }
     
-    internal Curso(Guid Id, Profesor profesor, string temario, string nombre, EstadoCurso estado ,DateRange duracion, List<Inscripcion> inscripciones,
+    internal Curso(Guid Id, Guid profesorId, string temario, string nombre, EstadoCurso estado ,DateRange duracion, List<Inscripcion> inscripciones,
         List<Examen> examenes, List<Clase> clases) : base(
         Id)
     {
-        this.Profesor = profesor;
+        this.IdProfesor = profesorId;
         this.Temario = temario;
         this.Nombre = nombre;
         this.Estado = estado;
@@ -64,13 +64,13 @@ public class Curso : Entity, ICicloDeVidaDelCurso
         this._clases = clases;
     }
 
-    public static Curso CrearCurso(Profesor profesor, string temario, string nombreCurso, DateTime inicio, DateTime fin)
+    public static Curso CrearCurso(Guid profesorId, string temario, string nombreCurso, DateTime inicio, DateTime fin)
     {
         //validaciones
-        if (profesor == null)
-            throw new ArgumentNullException(nameof(profesor));
+        if (profesorId == null)
+            throw new ArgumentNullException("El profesorId no puede ser nulo");
 
-        return new Curso(profesor, temario, nombreCurso, inicio, fin);
+        return new Curso(profesorId,temario, nombreCurso, inicio, fin);
     }
     
     public void IniciarCurso()
@@ -222,7 +222,7 @@ public class Curso : Entity, ICicloDeVidaDelCurso
     //Metodo por el cual asignamos la nota de una entrega a traves del curso
     public void CargarCalificacionAEntregaDeExamen(Guid idEntregaDelExamen, Guid idProfesor, decimal nuevaNota)
     {
-        if (this.Profesor.Id == idProfesor)
+        if (this.IdProfesor == idProfesor)
         {
             EntregaDelExamen entrega = this.ObtenerEntregaDeExamen(idEntregaDelExamen);
             entrega.AsignarNota(nuevaNota);
@@ -259,13 +259,11 @@ public class Curso : Entity, ICicloDeVidaDelCurso
     }
     
     //PROFESORES
-    public void CambiarProfesor(Profesor nuevoProfesor)
+    public void CambiarProfesor(Guid nuevoProfesor)
     {
-        if (nuevoProfesor == null)
-            throw new ArgumentNullException(nameof(nuevoProfesor));
-
-        this.Profesor = nuevoProfesor;
+        
+        this.IdProfesor = nuevoProfesor;
     }
     
-    
+
 }
