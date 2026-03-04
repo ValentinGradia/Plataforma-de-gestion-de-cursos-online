@@ -4,6 +4,7 @@ using PlataformaDeGestionDeCursosOnline.Domain;
 using PlataformaDeGestionDeCursosOnline.Domain.Abstractions;
 using PlataformaDeGestionDeCursosOnline.Domain.GlobalInterfaces;
 using PlataformaDeGestionDeCursosOnline.Application.Exceptions;
+using PlataformaDeGestionDeCursosOnline.Domain.Entities.Usuarios;
 
 namespace PlataformaDeGestionDeCursosOnline.Application.Handlers.Commands.Usuarios;
 

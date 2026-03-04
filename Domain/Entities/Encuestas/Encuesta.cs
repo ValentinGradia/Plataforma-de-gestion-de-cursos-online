@@ -32,6 +32,18 @@ public class Encuesta : Entity
         FechaCreacion = DateTime.UtcNow;
     }
 
+    // Constructor interno para reconstrucción desde BD
+    internal Encuesta(Guid id, Guid cursoId, Guid? idEstudiante, Calificacion calCurso, Calificacion calMaterial, Calificacion calDocente, string comentarios, DateTime fechaCreacion) : base(id)
+    {
+        IdCurso = cursoId;
+        IdEstudiante = idEstudiante;
+        CalificacionCurso = calCurso;
+        CalificacionMaterial = calMaterial;
+        CalificacionDocente = calDocente;
+        Comentarios = comentarios;
+        FechaCreacion = fechaCreacion;
+    }
+
     public static Encuesta Crear(
         Guid idCurso,
         Guid? idEstudiante,

@@ -12,18 +12,15 @@ internal class CrearEncuestaCommandHandler : ICommandHandler<CrearEncuestaComman
 {
     private readonly IUnitOfWork _unitOfWork;
     private readonly IEncuestasRepository _encuestasRepository;
-    private readonly ICursoRepository _cursoRepository;
 
     public CrearEncuestaCommandHandler(IUnitOfWork unitOfWork, IEncuestasRepository encuestasRepository, ICursoRepository cursoRepository)
     {
         this._unitOfWork = unitOfWork;
-        this._cursoRepository = cursoRepository;
         this._encuestasRepository = encuestasRepository;
     }
     
     public async Task<Result> Handle(CrearEncuestaCommand request, CancellationToken cancellationToken)
     {
-        Curso ? curso = await this._cursoRepository.ObtenerPorIdAsync(request.idCurso, cancellationToken);
         
         Encuesta encuesta = Encuesta.Crear(
             request.idCurso,
@@ -33,8 +30,7 @@ internal class CrearEncuestaCommandHandler : ICommandHandler<CrearEncuestaComman
             request.calificacionDocente,
             request.comentarios
         );
-
-        curso.AgregarEncuesta(encuesta);
+        
         //Aca EF no trackea la entidad por lo que tenemos que guardarla explicitamente
         await this._encuestasRepository.GuardarAsync(encuesta);
         await this._unitOfWork.SaveChangesAsync();

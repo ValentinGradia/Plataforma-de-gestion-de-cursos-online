@@ -1,6 +1,8 @@
 ﻿using PlataformaDeGestionDeCursosOnline.Domain.Abstractions;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Cursos;
+using PlataformaDeGestionDeCursosOnline.Domain.Entities.Usuarios;
 using PlataformaDeGestionDeCursosOnline.Domain.Enum;
+using PlataformaDeGestionDeCursosOnline.Domain.GlobalObjectValues;
 
 namespace PlataformaDeGestionDeCursosOnline.Domain.Entities.Estudiantes;
 
@@ -15,6 +17,9 @@ public class Estudiante : Usuario
         
     }
 
-    
+    // Constructor interno para reconstrucción desde BD
+    internal Estudiante(Guid id, Direccion direccion, Email email, Contraseña contraseña, DNI dni, string nombre, string apellido, DateTime fechaRegistro) : base(id, direccion, email, contraseña, dni, nombre, apellido, fechaRegistro, Roles.Estudiante)
+    {
+    }
 
 }

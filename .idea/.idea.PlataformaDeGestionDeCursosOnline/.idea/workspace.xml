@@ -8,7 +8,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4cca0346-ece8-48e6-a84f-8553af71af3a" name="Changes" comment="" />
+    <list default="true" id="4cca0346-ece8-48e6-a84f-8553af71af3a" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.PlataformaDeGestionDeCursosOnline/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PlataformaDeGestionDeCursosOnline/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/rider.project.model.nuget.info" beforeDir="false" afterPath="$PROJECT_DIR$/obj/rider.project.model.nuget.info" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -81,6 +84,14 @@
     <setting file="file://$PROJECT_DIR$/Application/Handlers/Querys/Cursos/ObtenerClasesPorCursoQueryHandler.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Application/Handlers/Querys/Cursos/ObtenerEstudiantesInscriptosCursoQueryHandler.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Application/Handlers/Querys/Cursos/ObtenerInformacionCursoPorIdQueryHandler.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Application/Handlers/Querys/Encuestas/ObtenerEncuestaPorIdQueryHandler.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Application/Handlers/Querys/Encuestas/ObtenerEncuestasPorCursoQueryHandler.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Application/Handlers/Querys/Encuestas/ObtenerMejoresReseñasPorCursoQueryHandler.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Application/Handlers/Querys/Encuestas/ObtenerPeoresReseñasPorCursoQueryHandler.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Application/Handlers/Querys/Inscripciones/ObtenerEntregasDeCursadaQueryHandler.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Application/Handlers/Querys/Inscripciones/ObtenerInformacionDeInscripcionQueryHandler.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Application/Handlers/Querys/Inscripciones/ObtenerPorcentajeDeAsistenciaPorCursoQueryHandler.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Application/Handlers/Querys/Profesores/ObtenerPerfilProfesorPorIdQueryHandler.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Application/Querys/Clases/ObtenerAsistenciasDeClase.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Application/Querys/Clases/ObtenerConsultasDeClaseQuery.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Application/Querys/Clases/ObtenerInformacionClaseQuery.cs" root0="FORCE_HIGHLIGHTING" />
@@ -225,6 +236,8 @@
       <workItem from="1771468507673" duration="562000" />
       <workItem from="1771503675586" duration="364000" />
       <workItem from="1771504808563" duration="1351000" />
+      <workItem from="1772473734513" duration="5401000" />
+      <workItem from="1772593112414" duration="84000" />
     </task>
     <servers />
   </component>

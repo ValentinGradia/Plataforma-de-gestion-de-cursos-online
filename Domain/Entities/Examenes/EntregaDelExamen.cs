@@ -28,7 +28,20 @@ public class EntregaDelExamen : Entity
         this.Respuesta = respuesta;
         this.FechaLimiteExamen = fechaLimite;
     }
-    
+
+    // Constructor interno para reconstrucción desde BD
+    internal EntregaDelExamen(Guid id, Guid idExamen, Guid estudianteIdInscripcion, TipoExamen tipo, string respuesta, DateTime fechaEntregado, DateTime fechaLimite, Nota? nota, string? comentarioDocente) : base(id)
+    {
+        this.IdExamen = idExamen;
+        this.IdInscripcionEstudiante = estudianteIdInscripcion;
+        this.Tipo = tipo;
+        this.Respuesta = respuesta;
+        this.FechaEntregado = fechaEntregado;
+        this.FechaLimiteExamen = fechaLimite;
+        this.Nota = nota;
+        this.ComentarioDocente = comentarioDocente;
+    }
+
     public static EntregaDelExamen Crear(Guid idExamen, Guid IdInscripcionEstudiante, 
         TipoExamen tipo, string respuesta, DateTime fechaLimite)
     {

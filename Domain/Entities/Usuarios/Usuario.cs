@@ -7,7 +7,7 @@ using PlataformaDeGestionDeCursosOnline.Domain.Abstractions;
 using PlataformaDeGestionDeCursosOnline.Domain.Enum;
 using PlataformaDeGestionDeCursosOnline.Domain.GlobalObjectValues;
 
-namespace PlataformaDeGestionDeCursosOnline.Domain;
+namespace PlataformaDeGestionDeCursosOnline.Domain.Entities.Usuarios;
 
 public abstract class Usuario : Entity
 {
@@ -49,7 +49,20 @@ public abstract class Usuario : Entity
         this.FechaRegistro = DateTime.Now;
         this.Rol = rol;
     }
-    
+
+    // Constructor interno para reconstrucción desde persistencia (BD)
+    internal Usuario(Guid id, Direccion direccion, Email email, Contraseña contraseña, DNI dni, string nombre, string apellido, DateTime fechaRegistro, Roles rol) : base(id)
+    {
+        this.Direccion = direccion;
+        this.Email = email;
+        this.Contraseña = contraseña;
+        this.Dni = dni;
+        this.Nombre = nombre;
+        this.Apellido = apellido;
+        this.FechaRegistro = fechaRegistro;
+        this.Rol = rol;
+    }
+
     public void CambiarContraseña(string nuevaContraseña)
     {
         this.Contraseña = Contraseña.CrearContraseña(nuevaContraseña);

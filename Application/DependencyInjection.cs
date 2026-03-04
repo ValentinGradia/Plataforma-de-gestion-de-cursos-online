@@ -1,5 +1,8 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Cursos;
+using PlataformaDeGestionDeCursosOnline.Domain.GlobalInterfaces;
+using PlataformaDeGestionDeCursosOnline.Infrastructure.Data;
+using PlataformaDeGestionDeCursosOnline.Infrastructure.Data.Repositories;
 
 namespace PlataformaDeGestionDeCursosOnline.Application;
 
@@ -20,6 +23,14 @@ public static class DependencyInjection
         
         //Aca vamos a registrar todos los servicios de aplicacion
         services.AddScoped<IInscripcionService,InscripcionService>();
+
+        // --- Registramos fábrica de conexiones y repositorios Dapper (Infrastructure) ---
+        services.AddSingleton<IDbConnectionFactory, DbConnectionFactory>();
+
+        services.AddScoped<ICursoRepository, CursoRepository>();
+        services.AddScoped<IUsuarioRepository, UsuarioRepository>();
+        services.AddScoped<IEncuestasRepository, EncuestasRepository>();
+
         return services;
     }
 }

@@ -27,7 +27,20 @@ public class Inscripcion : Entity
         this._historialEntregas = new List<EntregaDelExamen>();
         this._asistenciasDelEstudiante = new List<Asistencia>();
     }
-    
+
+    // Constructor interno para reconstrucción desde BD
+    internal Inscripcion(Guid id, Guid idEstudiante, Guid idCurso, DateTime fechaInscripcion, bool activa, double porcentajeAsistencia, List<EntregaDelExamen>? entregas,
+        List<Asistencia>? asistencias) : base(id)
+    {
+        this._historialEntregas = entregas ?? new List<EntregaDelExamen>();
+        this._asistenciasDelEstudiante = asistencias ?? new List<Asistencia>();
+        this.IdEstudiante = idEstudiante;
+        this.IdCurso = idCurso;
+        this.FechaInscripcion = fechaInscripcion;
+        this.Activa = activa;
+        this.porcentajeAsistencia = porcentajeAsistencia;
+    }
+
     public static Inscripcion CrearInscripcion(Guid idEstudiante, Guid idCurso)
     {
         if (idEstudiante == Guid.Empty)
@@ -47,7 +60,7 @@ public class Inscripcion : Entity
         
         return inscripcion;
     }
-    
+
     public List<EntregaDelExamen> ObtenerHistorialDeEntregas()
     {
         return this._historialEntregas;
@@ -66,7 +79,7 @@ public class Inscripcion : Entity
 
         this.porcentajeAsistencia = (double)clasespresentes / clasesTotal * 100;
     }
-    
+
     public void AgregarAsistencia(Asistencia asistencia)
     {
         _asistenciasDelEstudiante.Add(asistencia);

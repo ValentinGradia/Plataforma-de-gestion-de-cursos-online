@@ -5,6 +5,7 @@ using PlataformaDeGestionDeCursosOnline.Application.Querys.Usuarios;
 using PlataformaDeGestionDeCursosOnline.Domain.Abstractions;
 using PlataformaDeGestionDeCursosOnline.Domain.GlobalInterfaces;
 using PlataformaDeGestionDeCursosOnline.Domain;
+using PlataformaDeGestionDeCursosOnline.Domain.Entities.Usuarios;
 
 namespace PlataformaDeGestionDeCursosOnline.Application.Handlers.Querys.Usuarios;
 

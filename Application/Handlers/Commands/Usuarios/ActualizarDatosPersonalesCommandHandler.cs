@@ -1,3 +1,5 @@
+using PlataformaDeGestionDeCursosOnline.Domain.Entities.Usuarios;
+
 namespace PlataformaDeGestionDeCursosOnline.Application.Handlers.Commands.Usuarios;
 
 using PlataformaDeGestionDeCursosOnline.Application.Abstractions.Messaging;

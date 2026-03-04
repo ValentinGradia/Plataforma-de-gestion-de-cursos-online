@@ -25,10 +25,9 @@ public class Curso : Entity, ICicloDeVidaDelCurso
     public string Temario { get; private set; }
     private readonly List<Examen> _examenes;
     public readonly List<Clase> _clases;
-    public readonly List<Encuesta> _encuestas = new List<Encuesta>();
     private int limiteDeEstudiantes = 30;
     public int cantidadDeInscriptos => this._inscripcionesEstudiantes.Count;
-    
+
     private readonly List<Inscripcion> _inscripcionesEstudiantes = new();
     public IReadOnlyCollection<Inscripcion> Inscripciones => _inscripcionesEstudiantes.AsReadOnly();
 
@@ -38,7 +37,8 @@ public class Curso : Entity, ICicloDeVidaDelCurso
         return this._inscripcionesEstudiantes.FirstOrDefault(i => i.IdEstudiante == idEstudiante);
     }
 
-    private Curso(Profesor profesor, string temario, string nombre, DateTime inicio, DateTime fin) : base(Guid.NewGuid())
+    private Curso(Profesor profesor, string temario, string nombre, DateTime inicio, DateTime fin) : base(
+        Guid.NewGuid())
     {
         this.Profesor = profesor;
         this.Temario = temario;
@@ -49,15 +49,30 @@ public class Curso : Entity, ICicloDeVidaDelCurso
         this._examenes = new List<Examen>();
         this._clases = new List<Clase>();
     }
+    
+    internal Curso(Guid Id, Profesor profesor, string temario, string nombre, EstadoCurso estado ,DateRange duracion, List<Inscripcion> inscripciones,
+        List<Examen> examenes, List<Clase> clases) : base(
+        Id)
+    {
+        this.Profesor = profesor;
+        this.Temario = temario;
+        this.Nombre = nombre;
+        this.Estado = estado;
+        this.Duracion = duracion;
+        this._inscripcionesEstudiantes = inscripciones;
+        this._examenes = examenes;
+        this._clases = clases;
+    }
+
     public static Curso CrearCurso(Profesor profesor, string temario, string nombreCurso, DateTime inicio, DateTime fin)
     {
         //validaciones
         if (profesor == null)
             throw new ArgumentNullException(nameof(profesor));
 
-        return new Curso(profesor,temario,nombreCurso,inicio,fin);
+        return new Curso(profesor, temario, nombreCurso, inicio, fin);
     }
-
+    
     public void IniciarCurso()
     {
         this.Estado = EstadoCurso.EnProgreso;
@@ -252,17 +267,5 @@ public class Curso : Entity, ICicloDeVidaDelCurso
         this.Profesor = nuevoProfesor;
     }
     
-    //ENCUESTAS
-    public void AgregarEncuesta(Encuesta encuesta)
-    {
-        
-        //un estudiante no puede repetir encuesta
-        if (_encuestas.Any(e => e.IdEstudiante == encuesta.IdEstudiante))
-        {
-            throw new EstudianteYaCreoEncuestaException();
-        }
-
-        this._encuestas.Add(encuesta);
-    }
     
 }

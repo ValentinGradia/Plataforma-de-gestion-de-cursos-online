@@ -12,6 +12,7 @@ public abstract class Entity
         Id = id;
     }
     
+    
     //agregamos los metodos correspondientes al patron publish-suscriber
     
     public IReadOnlyList<IDomainEvent> GetDomainEvents()

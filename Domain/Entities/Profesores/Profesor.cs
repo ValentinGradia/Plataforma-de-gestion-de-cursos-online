@@ -1,6 +1,8 @@
 ﻿using System.Runtime.CompilerServices;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Cursos;
+using PlataformaDeGestionDeCursosOnline.Domain.Entities.Usuarios;
 using PlataformaDeGestionDeCursosOnline.Domain.Enum;
+using PlataformaDeGestionDeCursosOnline.Domain.GlobalObjectValues;
 
 namespace PlataformaDeGestionDeCursosOnline.Domain.Entities.Profesores;
 
@@ -21,6 +23,12 @@ public sealed class Profesor : Usuario
         string apellido,
         string especialidad,
         Roles rol) : base(pais, ciudad, calle, altura, email, contraseña, dni, nombre, apellido, rol)
+    {
+        this.Especialidad = especialidad;
+    }
+
+    // Constructor interno para reconstrucción desde BD
+    internal Profesor(Guid id, Direccion direccion, Email email, Contraseña contraseña, DNI dni, string nombre, string apellido, DateTime fechaRegistro, string especialidad) : base(id, direccion, email, contraseña, dni, nombre, apellido, fechaRegistro, Roles.Profesor)
     {
         this.Especialidad = especialidad;
     }

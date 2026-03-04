@@ -33,11 +33,20 @@ public class Clase : Entity
         this.Estado = EstadoClase.EnCurso;
     }
 
+    // Constructor interno para reconstrucción desde BD
+    internal Clase(Guid id, Guid idCurso, string material, DateTime fecha, EstadoClase estado) : base(id)
+    {
+        this.IdCurso = idCurso;
+        this.Material = material;
+        this.Fecha = fecha;
+        this.Estado = estado;
+    }
+
     public static Clase CrearClase(Guid IdCurso, string material)
     {
         return new Clase(IdCurso, material);
     }
-    
+
     public ICollection<Asistencia> ObtenerAsistencias()
     {
         return _asistencias.AsReadOnly();
