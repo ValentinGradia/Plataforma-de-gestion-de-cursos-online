@@ -34,12 +34,17 @@ public class Clase : Entity
     }
 
     // Constructor interno para reconstrucción desde BD
-    internal Clase(Guid id, Guid idCurso, string material, DateTime fecha, EstadoClase estado) : base(id)
+    private Clase(Guid id, Guid idCurso, string material, DateTime fecha, EstadoClase estado) : base(id)
     {
         this.IdCurso = idCurso;
         this.Material = material;
         this.Fecha = fecha;
         this.Estado = estado;
+    }
+    
+    public static Clase ReconstruirClase(Guid id, Guid idCurso, string material, DateTime fecha, EstadoClase estado)
+    {
+        return new Clase(id, idCurso, material, fecha, estado);
     }
 
     public static Clase CrearClase(Guid IdCurso, string material)

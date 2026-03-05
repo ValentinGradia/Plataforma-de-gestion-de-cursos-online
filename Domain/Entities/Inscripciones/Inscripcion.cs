@@ -29,7 +29,7 @@ public class Inscripcion : Entity
     }
 
     // Constructor interno para reconstrucción desde BD
-    internal Inscripcion(Guid id, Guid idEstudiante, Guid idCurso, DateTime fechaInscripcion, bool activa, double porcentajeAsistencia, List<EntregaDelExamen>? entregas,
+    private Inscripcion(Guid id, Guid idEstudiante, Guid idCurso, DateTime fechaInscripcion, bool activa, double porcentajeAsistencia, List<EntregaDelExamen>? entregas,
         List<Asistencia>? asistencias) : base(id)
     {
         this._historialEntregas = entregas ?? new List<EntregaDelExamen>();
@@ -39,6 +39,12 @@ public class Inscripcion : Entity
         this.FechaInscripcion = fechaInscripcion;
         this.Activa = activa;
         this.porcentajeAsistencia = porcentajeAsistencia;
+    }
+    
+    public static Inscripcion ReconstruirInscripcion(Guid id, Guid idEstudiante, Guid idCurso, DateTime fechaInscripcion, bool activa, double porcentajeAsistencia, List<EntregaDelExamen>? entregas,
+        List<Asistencia>? asistencias)
+    {
+        return new Inscripcion(id, idEstudiante, idCurso, fechaInscripcion, activa, porcentajeAsistencia, entregas, asistencias);
     }
 
     public static Inscripcion CrearInscripcion(Guid idEstudiante, Guid idCurso)

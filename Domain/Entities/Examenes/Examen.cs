@@ -25,13 +25,18 @@ public class Examen : Entity
     }
 
     // Constructor interno para reconstrucción desde BD
-    internal Examen(Guid id, Guid idCurso, TipoExamen tipoExamen, string temaExamen, DateTime fechaLimiteDeEntrega, DateTime fechaExamenCargado) : base(id)
+    private Examen(Guid id, Guid idCurso, TipoExamen tipoExamen, string temaExamen, DateTime fechaLimiteDeEntrega, DateTime fechaExamenCargado) : base(id)
     {
         this.IdCurso = idCurso;
         this.TemaExamen = temaExamen;
         this.FechaExamenCargado = fechaExamenCargado;
         this.Tipo = tipoExamen;
         this.FechaLimiteDeEntrega = fechaLimiteDeEntrega;
+    }
+    
+    public static Examen ReconstruirExamen(Guid id, Guid idCurso, TipoExamen tipoExamen, string temaExamen, DateTime fechaLimiteDeEntrega, DateTime fechaExamenCargado)
+    {
+        return new Examen(id, idCurso, tipoExamen, temaExamen, fechaLimiteDeEntrega, fechaExamenCargado);
     }
 
     public static Examen CrearExamen(Guid idCurso, TipoExamen tipoExamen ,string temaExamen, DateTime fechaLimiteDeEntrega)

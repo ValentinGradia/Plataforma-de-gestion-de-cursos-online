@@ -50,18 +50,23 @@ public class Curso : Entity, ICicloDeVidaDelCurso
         this._clases = new List<Clase>();
     }
     
-    internal Curso(Guid Id, Guid profesorId, string temario, string nombre, EstadoCurso estado ,DateRange duracion, List<Inscripcion> inscripciones,
-        List<Examen> examenes, List<Clase> clases) : base(
-        Id)
+    private Curso(Guid Id, Guid profesorId, string temario, string nombre, EstadoCurso estado ,DateRange duracion, List<Inscripcion> inscripciones,
+        List<Examen> examenes, List<Clase> clases): base(Id)
     {
         this.IdProfesor = profesorId;
         this.Temario = temario;
         this.Nombre = nombre;
         this.Estado = estado;
         this.Duracion = duracion;
-        this._inscripcionesEstudiantes = inscripciones;
-        this._examenes = examenes;
-        this._clases = clases;
+        this.SetearInscripciones(inscripciones);
+        this.SetearExamenes(examenes);
+        this.SetearClases(clases);
+    }
+    
+    public static Curso ReconstruirCurso(Guid id, Guid idProfesor, string temario, string nombre, EstadoCurso estado ,DateRange duracion, List<Inscripcion> inscripciones,
+        List<Examen> examenes, List<Clase> clases)
+    {
+        return new Curso(id, idProfesor, temario, nombre, estado ,duracion, inscripciones, examenes, clases);
     }
 
     public static Curso CrearCurso(Guid profesorId, string temario, string nombreCurso, DateTime inicio, DateTime fin)
@@ -71,6 +76,25 @@ public class Curso : Entity, ICicloDeVidaDelCurso
             throw new ArgumentNullException("El profesorId no puede ser nulo");
 
         return new Curso(profesorId,temario, nombreCurso, inicio, fin);
+    }
+    
+    // Setear entidades
+    private void SetearInscripciones(List<Inscripcion> inscripciones)
+    {
+        this._inscripcionesEstudiantes.Clear();
+        this._inscripcionesEstudiantes.AddRange(inscripciones);
+    }
+    
+    private void SetearExamenes(List<Examen> examenes)
+    {
+        this._examenes.Clear();
+        this._examenes.AddRange(examenes);
+    }
+    
+    private void SetearClases(List<Clase> clases)
+    {
+        this._clases.Clear();
+        this._clases.AddRange(clases);
     }
     
     public void IniciarCurso()

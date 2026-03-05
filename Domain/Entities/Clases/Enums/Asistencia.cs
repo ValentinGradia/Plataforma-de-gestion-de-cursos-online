@@ -17,10 +17,16 @@ public class Asistencia : Entity
     }
     
     // Constructor interno para reconstrucción desde BD
-    internal Asistencia(Guid id,Guid idClase ,Guid idInscripcionEstudiante, bool presente) : base(id)
+    private Asistencia(Guid id,Guid idClase ,Guid idInscripcionEstudiante, bool presente) : base(id)
     {
         IdInscripcionEstudiante = idInscripcionEstudiante;
         Presente = presente;
+        IdClase = idClase;
+    }
+    
+    public static Asistencia ReconstruirAsistencia(Guid id, Guid idClase, Guid idInscripcionEstudiante, bool presente)
+    {
+        return new Asistencia(id, idClase, idInscripcionEstudiante, presente);
     }
 
 }
