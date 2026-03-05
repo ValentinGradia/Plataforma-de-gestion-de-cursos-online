@@ -8,10 +8,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4cca0346-ece8-48e6-a84f-8553af71af3a" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Domain/Entities/Clases/Enums/Asistencia.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/Entities/Clases/Enums/Asistencia.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Infrastructure/Data/Repositories/CursoRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastructure/Data/Repositories/CursoRepository.cs" afterDir="false" />
-    </list>
+    <list default="true" id="4cca0346-ece8-48e6-a84f-8553af71af3a" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -241,6 +238,7 @@
       <workItem from="1772473734513" duration="5401000" />
       <workItem from="1772593112414" duration="84000" />
       <workItem from="1772625902715" duration="15140000" />
+      <workItem from="1772677477916" duration="4283000" />
     </task>
     <servers />
   </component>
@@ -249,6 +247,17 @@
   </component>
   <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
   </component>

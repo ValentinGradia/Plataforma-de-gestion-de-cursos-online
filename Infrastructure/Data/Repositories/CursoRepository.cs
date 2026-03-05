@@ -190,6 +190,11 @@ public class CursoRepository(IDbConnectionFactory _connectionFactory) : ICursoRe
         return curso;
     }
 
+    Task<IEnumerable<Curso>> IRepository<Curso>.ObtenerTodosAsync()
+    {
+        throw new NotImplementedException();
+    }
+
     public async Task<IEnumerable<CursoDTO>> ObtenerTodosAsync()
     {
         using var connection = _connectionFactory.CreateConnection();
@@ -201,26 +206,23 @@ public class CursoRepository(IDbConnectionFactory _connectionFactory) : ICursoRe
     {
         using var connection = _connectionFactory.CreateConnection();
         var sql = "SELECT c.Id, c.Nombre, c.Temario FROM Cursos c JOIN ModelosExamen me ON me.CursoId = c.Id WHERE me.Id = @IdModeloExamen";
-        var row = await connection.QuerySingleOrDefaultAsync(new CommandDefinition(sql, new { IdModeloExamen }, cancellationToken: cancellationToken));
-        // Placeholder: no mapeo completo
-        return null!;
+        return await connection.QuerySingleOrDefaultAsync<Curso>(sql, new { IdModeloExamen });
     }
 
     public async Task<Clase?> ObtenerClasePorId(Guid IdClase, CancellationToken cancellationToken)
     {
         using var connection = _connectionFactory.CreateConnection();
-        var sql = "SELECT Id, IdCurso, Material, Fecha FROM Clases WHERE Id = @Id";
-        var clase = await connection.QuerySingleOrDefaultAsync<Clase>(new CommandDefinition(sql, new { Id = IdClase }, cancellationToken: cancellationToken));
-        return clase;
+        var sql = "SELECT Id, IdCurso, Material, Fecha FROM Clases WHERE Id = @IdClase";
+        return await connection.QuerySingleOrDefaultAsync<Clase>(new CommandDefinition(sql, new { IdClase }, cancellationToken: cancellationToken));
     }
 
     public async Task<List<Estudiante>> ObtenerEstudiantesInscriptosEnCurso(Guid IdCurso, CancellationToken cancellationToken)
     {
         using var connection = _connectionFactory.CreateConnection();
         var sql = @"SELECT e.* FROM Estudiantes e
-JOIN Inscripciones i ON i.EstudianteId = e.Id
-WHERE i.CursoId = @IdCurso";
-        var estudiantes = await connection.QueryAsync<Estudiante>(new CommandDefinition(sql, new { IdCurso }, cancellationToken: cancellationToken));
+                    JOIN Inscripciones i ON i.IdEstudiante = e.Id
+                    WHERE i.CursoId = @IdCurso";
+        var estudiantes = await connection.QueryAsync<Estudiante>(sql, new { IdCurso });
         return estudiantes.ToList();
     }
 }
