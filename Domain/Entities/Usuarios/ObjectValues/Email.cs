@@ -2,7 +2,7 @@
 
 public record Email
 {
-    private string valorEmail;
+    public string valorEmail { get; private set; }
 
     private Email(string valorEmail) => this.valorEmail = valorEmail;
 

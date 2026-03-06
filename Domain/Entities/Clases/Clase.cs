@@ -34,18 +34,23 @@ public class Clase : Entity
     }
 
     // Constructor interno para reconstrucción desde BD
-    private Clase(Guid id, Guid idCurso, string material, DateTime fecha, EstadoClase estado) : base(id)
+    private Clase(Guid id, Guid idCurso, string material, DateTime fecha, EstadoClase estado, 
+        List<Asistencia> asistencias, List<Consulta> consultas) : base(id)
     {
         this.IdCurso = idCurso;
         this.Material = material;
         this.Fecha = fecha;
         this.Estado = estado;
+        this._asistencias = asistencias;
+        this._consultas = consultas;
     }
     
-    public static Clase ReconstruirClase(Guid id, Guid idCurso, string material, DateTime fecha, EstadoClase estado)
+    public static Clase ReconstruirClase(Guid id, Guid idCurso, string material, DateTime fecha, EstadoClase estado,
+        List<Asistencia> asistencias, List<Consulta> consultas)
     {
-        return new Clase(id, idCurso, material, fecha, estado);
+        return new Clase(id, idCurso, material, fecha, estado, asistencias, consultas);
     }
+
 
     public static Clase CrearClase(Guid IdCurso, string material)
     {
@@ -107,7 +112,7 @@ public class Clase : Entity
         if (this._consultas == null)
             this._consultas = new List<Consulta>();
         
-        Consulta consulta = new Consulta(IdEstudiante,titulo, descripcion, DateTime.UtcNow);
+        Consulta consulta = new Consulta(this.Id,IdEstudiante,titulo, descripcion, DateTime.UtcNow);
         this._consultas.Add(consulta);
         this.RaiseDomainEvent(new ConsultaCargada(this.IdCurso, IdEstudiante ,consulta.FechaConsulta));
         

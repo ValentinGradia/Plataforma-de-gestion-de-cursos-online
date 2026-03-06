@@ -24,7 +24,7 @@ public abstract class Usuario : Entity
     
     public string Apellido { get; protected set; }
     
-    protected DateTime FechaRegistro { get; init; }
+    public DateTime FechaRegistro { get; init; }
     
     public Roles Rol { get; protected set; }
     

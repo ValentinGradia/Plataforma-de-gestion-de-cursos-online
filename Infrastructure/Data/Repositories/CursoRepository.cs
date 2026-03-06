@@ -11,6 +11,7 @@ using PlataformaDeGestionDeCursosOnline.Domain.Entities.Estudiantes;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Examenes;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Examenes.ObjectValues;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Inscripciones;
+using PlataformaDeGestionDeCursosOnline.Domain.Entities.ObjectValues;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Profesores;
 using static PlataformaDeGestionDeCursosOnline.Domain.Entities.Clase;
 
@@ -18,7 +19,6 @@ namespace PlataformaDeGestionDeCursosOnline.Infrastructure.Data.Repositories;
 
 public class CursoRepository(IDbConnectionFactory _connectionFactory) : ICursoRepository
 {
-    
     public async Task GuardarAsync(Curso curso)
     {
         using var connection = _connectionFactory.CreateConnection();
@@ -26,12 +26,32 @@ public class CursoRepository(IDbConnectionFactory _connectionFactory) : ICursoRe
         await connection.ExecuteAsync(sql, new { Id = curso.Id, Nombre = curso.Nombre, Temario = curso.Temario, FechaInicio = curso.Duracion.Inicio, FechaFin = curso.Duracion.Fin });
     }
 
-    public async Task ActualizarAsync(Curso clase, CancellationToken cancellationToken)
+    public async Task ActualizarAsync(Curso curso, CancellationToken cancellationToken)
     {
         using var connection = _connectionFactory.CreateConnection();
-        var sql = "UPDATE Cursos SET Nombre = @Nombre, Temario = @Temario WHERE Id = @Id";
-        await connection.ExecuteAsync(new CommandDefinition(sql, new { Id = clase.Id, Nombre = clase.Nombre, Temario = clase.Temario }, cancellationToken: cancellationToken));
+        var sql = @"UPDATE Cursos 
+                    SET Nombre = @Nombre, 
+                        Temario = @Temario,
+                        Estado = @Estado,
+                        FechaInicio = @FechaInicio,
+                        FechaFin = @FechaFin
+                    WHERE Id = @Id";
+
+        await connection.ExecuteAsync(new CommandDefinition(
+            sql,
+            new
+            {
+                Id         = curso.Id,
+                Nombre     = curso.Nombre,
+                Temario    = curso.Temario,
+                Estado     = curso.Estado,
+                FechaInicio = curso.Duracion.Inicio,
+                FechaFin    = curso.Duracion.Fin
+            },
+            cancellationToken: cancellationToken
+        ));
     }
+
 
     public async Task<Curso?> ObtenerPorIdAsync(Guid id, CancellationToken cancellationToken = default)
     {
@@ -100,16 +120,9 @@ public class CursoRepository(IDbConnectionFactory _connectionFactory) : ICursoRe
         var examenesRows    = (await multi.ReadAsync()).ToList();
         var inscripcionRows = (await multi.ReadAsync()).ToList();
 
-        List<Clase> clases = clasesRows
-            .Where(r => r.Id != null)
-            .Select(r => Clase.ReconstruirClase(
-                id:       (Guid)r.Id,
-                idCurso:  (Guid)r.IdCurso,
-                material: (string)r.Material,
-                fecha:    (DateTime)r.Fecha,
-                estado:   (EstadoClase)r.Estado
-            ))
-            .ToList();
+        var clasesTasks = clasesRows.Select(r => this.ObtenerClasePorId((Guid)r.Id,cancellationToken));
+        var clasesCargadas = await Task.WhenAll(clasesTasks);
+        List<Clase> clases = clasesCargadas.Where(c => c is not null).Select(c => c!).ToList();
         
         List<Examen> examenes = examenesRows
             .Where(r => r.Id != null)
@@ -198,22 +211,79 @@ public class CursoRepository(IDbConnectionFactory _connectionFactory) : ICursoRe
     public async Task<IEnumerable<CursoDTO>> ObtenerTodosAsync()
     {
         using var connection = _connectionFactory.CreateConnection();
-        var sql = "SELECT Id, IdProfesor, Estado, Nombre, Tmeario, FechaInicio, FechaFin FROM Cursos";
+        var sql = "SELECT Id, IdProfesor, Estado, Nombre, Temario, FechaInicio, FechaFin FROM Cursos";
         return await connection.QueryAsync<CursoDTO>(sql);
     }
 
     public async Task<Curso> ObtenerCursoPorIdModeloExamen(Guid IdModeloExamen, CancellationToken cancellationToken)
     {
         using var connection = _connectionFactory.CreateConnection();
-        var sql = "SELECT c.Id, c.Nombre, c.Temario FROM Cursos c JOIN ModelosExamen me ON me.CursoId = c.Id WHERE me.Id = @IdModeloExamen";
-        return await connection.QuerySingleOrDefaultAsync<Curso>(sql, new { IdModeloExamen });
+        var sql = "SELECT c.Id FROM Cursos c JOIN ModelosExamen me ON me.IdCurso = c.Id WHERE me.Id = @IdModeloExamen";
+        var IdCurso =  await connection.QuerySingleOrDefaultAsync<Guid>(sql, new { IdModeloExamen });
+        
+        if (IdCurso == Guid.Empty)
+            throw new InvalidOperationException($"No se encontró un curso para el modelo de examen {IdModeloExamen}");
+        
+        //Reutilizamos el metodo ObtenerPorIdAsync para obtener el curso completo con toda su informacion,
+        //dado que ya tenemos el Id del curso.
+        return await ObtenerPorIdAsync(IdCurso, cancellationToken) ;
     }
 
     public async Task<Clase?> ObtenerClasePorId(Guid IdClase, CancellationToken cancellationToken)
     {
         using var connection = _connectionFactory.CreateConnection();
-        var sql = "SELECT Id, IdCurso, Material, Fecha FROM Clases WHERE Id = @IdClase";
-        return await connection.QuerySingleOrDefaultAsync<Clase>(new CommandDefinition(sql, new { IdClase }, cancellationToken: cancellationToken));
+        var sqlClase = @"
+        SELECT Id, Material, Estado, Fecha, IdCurso
+        FROM Clases
+        WHERE Id = @IdClase";
+        
+        var sqlAsistencias = @"
+        SELECT Id, IdInscripcionEstudiante, IdClase, Presente
+        FROM Asistencias
+        WHERE IdClase = @IdClase";
+        
+        var sqlConsultas = "SELECT * from Consultas WHERE IdClase = @IdClase";
+        
+        var sql = sqlClase + ";" + sqlAsistencias + ";" + sqlConsultas;
+        
+        using var multi = await connection.QueryMultipleAsync(sql, new { IdClase });
+        
+        //Clase solo devuelve una, por eso usamos readFirstOrDefault
+        var claseRow      =  await multi.ReadFirstOrDefaultAsync();
+        var asistenciasRows    = (await multi.ReadAsync()).ToList();
+        var consultasRows = (await multi.ReadAsync()).ToList();
+        
+        // Mapear asistencias
+        var asistencias = asistenciasRows
+            .Select(r => Asistencia.ReconstruirAsistencia(
+                id:                     (Guid)r.Id,
+                idInscripcionEstudiante:(Guid)r.IdInscripcionEstudiante,
+                idClase:                (Guid)r.IdClase,
+                presente:               (bool)r.Presente
+            ))
+            .ToList();
+        
+        var consultas = consultasRows
+            .Select(r => new Consulta(
+                IdClase:       (Guid)r.IdClase,
+                IdEstudiante:  (Guid)r.IdEstudiante,
+                Titulo:        (string)r.Titulo,
+                Descripcion:   (string)r.Descripcion,
+                FechaConsulta: (DateTime)r.FechaConsulta
+            ))
+            .ToList();
+        
+        
+        return Clase.ReconstruirClase(
+            id:          (Guid)claseRow.Id,
+            idCurso:     (Guid)claseRow.IdCurso,
+            material:    (string)claseRow.Material,
+            fecha:       (DateTime)claseRow.Fecha,
+            estado:      (EstadoClase)claseRow.Estado,
+            asistencias: asistencias,
+            consultas: consultas
+        );
+        
     }
 
     public async Task<List<Estudiante>> ObtenerEstudiantesInscriptosEnCurso(Guid IdCurso, CancellationToken cancellationToken)

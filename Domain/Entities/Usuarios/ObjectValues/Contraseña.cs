@@ -2,7 +2,7 @@
 
 public record Contraseña
 {
-    private string ValorContraseña;
+    public string ValorContraseña { get; private set; }
 
     private Contraseña(string valorContraseña) => this.ValorContraseña = valorContraseña;
 
