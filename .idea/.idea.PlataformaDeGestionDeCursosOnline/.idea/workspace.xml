@@ -8,10 +8,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4cca0346-ece8-48e6-a84f-8553af71af3a" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.PlataformaDeGestionDeCursosOnline/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PlataformaDeGestionDeCursosOnline/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Infrastructure/Data/Repositories/UsuarioRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastructure/Data/Repositories/UsuarioRepository.cs" afterDir="false" />
-    </list>
+    <list default="true" id="4cca0346-ece8-48e6-a84f-8553af71af3a" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -245,7 +242,7 @@
       <workItem from="1772677477916" duration="4283000" />
       <workItem from="1772744153490" duration="3272000" />
       <workItem from="1772809167811" duration="479000" />
-      <workItem from="1772810519566" duration="6362000" />
+      <workItem from="1772810519566" duration="7040000" />
     </task>
     <servers />
   </component>
