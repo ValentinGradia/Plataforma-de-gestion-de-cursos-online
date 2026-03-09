@@ -18,9 +18,14 @@ internal class DarDeBajaEstudianteCommandHandler (IEstudianteRepository estudian
         try
         {
             Curso curso = await cursoRepository.ObtenerPorIdAsync(request.IdCurso, cancellationToken);
-
             curso.DarseDeBajaEstudiante(request.IdEstudiante);
-            
+
+            // Reflejar en BD que el curso ya no está en los activos del estudiante
+            Estudiante estudiante = await estudianteRepository.ObtenerPorIdAsync(request.IdEstudiante, cancellationToken);
+            estudiante.CompletarCurso(request.IdCurso);
+            await estudianteRepository.ActualizarCursosActivosAsync(estudiante, cancellationToken);
+
+            await _unitOfWork.SaveChangesAsync(cancellationToken);
             return Result.Success();
         }
         catch (ArgumentNullException e)

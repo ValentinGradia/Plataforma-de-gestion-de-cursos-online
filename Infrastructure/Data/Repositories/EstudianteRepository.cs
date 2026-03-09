@@ -107,5 +107,60 @@ public class EstudianteRepository(IDbConnectionFactory _connectionFactory) : IEs
 
         return rows.Select(row => Estudiante.ReconstruirEstudiante(row)).Cast<Estudiante>().ToList();
     }
-    
+
+    public async Task ActualizarCursosActivosAsync(Estudiante estudiante, CancellationToken cancellationToken)
+    {
+        using var connection = _connectionFactory.CreateConnection();
+
+        // Eliminar todos los cursos activos actuales del estudiante
+        const string sqlEliminar = @"DELETE FROM EstudianteCursosActivos 
+                                     WHERE EstudianteId = @EstudianteId";
+
+        await connection.ExecuteAsync(new CommandDefinition(
+            sqlEliminar,
+            new { EstudianteId = estudiante.Id },
+            cancellationToken: cancellationToken
+        ));
+
+        // Insertar el estado actual de cursos activos
+        const string sqlInsertar = @"INSERT INTO EstudianteCursosActivos (EstudianteId, CursoId) 
+                                     VALUES (@EstudianteId, @CursoId)";
+
+        foreach (var cursoId in estudiante.CursosInscritosActualmente)
+        {
+            await connection.ExecuteAsync(new CommandDefinition(
+                sqlInsertar,
+                new { EstudianteId = estudiante.Id, CursoId = cursoId },
+                cancellationToken: cancellationToken
+            ));
+        }
+    }
+
+    public async Task ActualizarHistorialCursosAsync(Estudiante estudiante, CancellationToken cancellationToken)
+    {
+        using var connection = _connectionFactory.CreateConnection();
+
+        // Eliminar el historial actual del estudiante
+        const string sqlEliminar = @"DELETE FROM EstudianteHistorialCursos 
+                                     WHERE EstudianteId = @EstudianteId";
+
+        await connection.ExecuteAsync(new CommandDefinition(
+            sqlEliminar,
+            new { EstudianteId = estudiante.Id },
+            cancellationToken: cancellationToken
+        ));
+
+        // Insertar el estado actual del historial
+        const string sqlInsertar = @"INSERT INTO EstudianteHistorialCursos (EstudianteId, CursoId) 
+                                     VALUES (@EstudianteId, @CursoId)";
+
+        foreach (var cursoId in estudiante.HistorialDeCursos)
+        {
+            await connection.ExecuteAsync(new CommandDefinition(
+                sqlInsertar,
+                new { EstudianteId = estudiante.Id, CursoId = cursoId },
+                cancellationToken: cancellationToken
+            ));
+        }
+    }
 }
