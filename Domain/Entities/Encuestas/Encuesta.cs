@@ -44,6 +44,28 @@ public class Encuesta : Entity
         FechaCreacion = fechaCreacion;
     }
 
+    public static Encuesta Reconstruir(
+        Guid id,
+        Guid idCurso,
+        Guid? idEstudiante,
+        int calificacionCurso,
+        int calificacionMaterial,
+        int calificacionDocente,
+        string comentarios,
+        DateTime fechaCreacion)
+    {
+        return new Encuesta(
+            id,
+            idCurso,
+            idEstudiante,
+            new Calificacion(calificacionCurso),
+            new Calificacion(calificacionMaterial),
+            new Calificacion(calificacionDocente),
+            comentarios,
+            fechaCreacion
+        );
+    }
+
     public static Encuesta Crear(
         Guid idCurso,
         Guid? idEstudiante,
