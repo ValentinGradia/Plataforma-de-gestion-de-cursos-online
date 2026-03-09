@@ -3,6 +3,7 @@ using PlataformaDeGestionDeCursosOnline.Application.Commands.Cursos;
 using PlataformaDeGestionDeCursosOnline.Domain.Abstractions;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Cursos;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Estudiantes;
+using PlataformaDeGestionDeCursosOnline.Domain.Entities.Profesores;
 using PlataformaDeGestionDeCursosOnline.Domain.GlobalInterfaces;
 
 namespace PlataformaDeGestionDeCursosOnline.Application.Handlers.Commands.Cursos;
@@ -10,7 +11,8 @@ namespace PlataformaDeGestionDeCursosOnline.Application.Handlers.Commands.Cursos
 internal class FinalizarCursoCommandHandler(
     IUnitOfWork unitOfWork,
     ICursoRepository cursoRepository,
-    IEstudianteRepository estudianteRepository
+    IEstudianteRepository estudianteRepository,
+    IProfesorRepository profesorRepository
 ) : ICommandHandler<FinalizarCursoCommand, Result>
 {
     public async Task<Result> Handle(FinalizarCursoCommand request, CancellationToken cancellationToken)
@@ -33,7 +35,12 @@ internal class FinalizarCursoCommandHandler(
             await estudianteRepository.ActualizarHistorialCursosAsync(estudiante, cancellationToken);
         }
 
-        // 4. Finalizar el curso
+        // 4. Obtener el profesor y eliminar el curso de su lista de cursos a cargo
+        Profesor? profesor = await profesorRepository.ObtenerPorIdAsync(curso.IdProfesor, cancellationToken);
+
+        profesor.EliminarCursoACargo(request.IdCurso);
+        
+        // 5. Finalizar el curso
         curso.FinalizarCurso();
 
         await unitOfWork.SaveChangesAsync(cancellationToken);

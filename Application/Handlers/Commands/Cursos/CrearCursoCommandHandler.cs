@@ -14,8 +14,11 @@ internal class CrearCursoCommandHandler(ICursoRepository cursoRepository, IProfe
     public async Task<Guid> Handle(CrearCursoCommand request, CancellationToken cancellationToken)
     {
         Curso curso = Curso.CrearCurso(request.IdProfesor, request.temario, request.nombreCurso, request.inicio, request.fin);
-
+        Task<Profesor>? taskProfesor =  profesorRepository.ObtenerPorIdAsync(curso.IdProfesor, cancellationToken);
+        
         await cursoRepository.GuardarAsync(curso);
+        Profesor profesor = await taskProfesor;
+        profesor.AgregarCursoACargo(curso.Id);
         await _unitOfWork.SaveChangesAsync();
 
         return curso.Id;
