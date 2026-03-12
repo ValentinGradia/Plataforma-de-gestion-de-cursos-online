@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using FluentValidation;
+using Microsoft.Extensions.DependencyInjection;
+using PlataformaDeGestionDeCursosOnline.Application.Behaviors;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Cursos;
 using PlataformaDeGestionDeCursosOnline.Domain.GlobalInterfaces;
 using PlataformaDeGestionDeCursosOnline.Infrastructure.Data;
@@ -18,14 +20,20 @@ public static class DependencyInjection
         //de esta fora vamos a poder inyectar los servicios que vayamos creando,
         //agrega MediatR a nuestro proyecto (Commands -> Handlers, Querys -> Handlers,
         // Notifications -> Handlers, Events -> Handlers)
-        services.AddMediatR(cfg => 
-            cfg.RegisterServicesFromAssembly(typeof(DependencyInjection).Assembly));
+        services.AddMediatR(cfg =>
+        {
+            cfg.RegisterServicesFromAssembly(typeof(DependencyInjection).Assembly);
+            cfg.AddOpenBehavior(typeof(ValidationBehavior<,>));
+        });
         
         //Aca vamos a registrar todos los servicios de aplicacion
         services.AddScoped<IInscripcionService,InscripcionService>();
 
         // --- Registramos fábrica de conexiones y repositorios Dapper (Infrastructure) ---
         services.AddSingleton<IDbConnectionFactory, DbConnectionFactory>();
+        
+        services.AddValidatorsFromAssembly(typeof(DependencyInjection).Assembly); // ->  Todo esto es para registrar todos los validadores de FluentValidation que
+        //tengamos en el proyecto, sin necesidad de registrarlos uno por uno.
 
         services.AddScoped<ICursoRepository, CursoRepository>();
         services.AddScoped<IUsuarioRepository, UsuarioRepository>();
