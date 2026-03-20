@@ -1,10 +1,7 @@
 ﻿using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
+using PlataformaDeGestionDeCursosOnline.Application.Abstractions.Email;
 using PlataformaDeGestionDeCursosOnline.Application.Behaviors;
-using PlataformaDeGestionDeCursosOnline.Domain.Entities.Cursos;
-using PlataformaDeGestionDeCursosOnline.Domain.GlobalInterfaces;
-using PlataformaDeGestionDeCursosOnline.Infrastructure.Data;
-using PlataformaDeGestionDeCursosOnline.Infrastructure.Data.Repositories;
 
 namespace PlataformaDeGestionDeCursosOnline.Application;
 
@@ -25,19 +22,12 @@ public static class DependencyInjection
             cfg.RegisterServicesFromAssembly(typeof(DependencyInjection).Assembly);
             cfg.AddOpenBehavior(typeof(ValidationBehavior<,>));
         });
-        
-        //Aca vamos a registrar todos los servicios de aplicacion
-        services.AddScoped<IInscripcionService,InscripcionService>();
 
-        // --- Registramos fábrica de conexiones y repositorios Dapper (Infrastructure) ---
-        services.AddSingleton<IDbConnectionFactory, DbConnectionFactory>();
-        
+        services.AddScoped<IEmailService, EmailService>();
+
         services.AddValidatorsFromAssembly(typeof(DependencyInjection).Assembly); // ->  Todo esto es para registrar todos los validadores de FluentValidation que
         //tengamos en el proyecto, sin necesidad de registrarlos uno por uno.
 
-        services.AddScoped<ICursoRepository, CursoRepository>();
-        services.AddScoped<IUsuarioRepository, UsuarioRepository>();
-        services.AddScoped<IEncuestasRepository, EncuestasRepository>();
 
         return services;
     }
