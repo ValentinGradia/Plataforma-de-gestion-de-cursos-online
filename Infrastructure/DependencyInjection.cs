@@ -1,5 +1,6 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using PlataformaDeGestionDeCursosOnline.Application.Abstractions.Email;
 using PlataformaDeGestionDeCursosOnline.Domain.GlobalInterfaces;
 using PlataformaDeGestionDeCursosOnline.Infrastructure.Data;
 using PlataformaDeGestionDeCursosOnline.Infrastructure.Data.Repositories;
@@ -14,6 +15,7 @@ public static class DependencyInjection
         
         services.AddSingleton<IDbConnectionFactory, DbConnectionFactory>();
         
+        services.AddScoped<IEmailService, EmailService>();
         
         services.AddScoped<ICursoRepository, CursoRepository>();
         services.AddScoped<IUsuarioRepository, UsuarioRepository>();

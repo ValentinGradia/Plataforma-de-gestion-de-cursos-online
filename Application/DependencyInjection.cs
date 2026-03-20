@@ -23,8 +23,6 @@ public static class DependencyInjection
             cfg.AddOpenBehavior(typeof(ValidationBehavior<,>));
         });
 
-        services.AddScoped<IEmailService, EmailService>();
-
         services.AddValidatorsFromAssembly(typeof(DependencyInjection).Assembly); // ->  Todo esto es para registrar todos los validadores de FluentValidation que
         //tengamos en el proyecto, sin necesidad de registrarlos uno por uno.
 
