@@ -1,0 +1,12 @@
+Dentro de la carpeta configuration vamos a establecer las configuraciones de nuestras entidades con respecto
+a la base de datos, es decir, vamos a establecer las relaciones entre las tablas, los tipos de datos,
+las claves primarias , foraneas, etc.
+
+*OwnsOne: Es una forma de establecer una relacion de propiedades de la entidad. Por ejemplo, si nuestra entidad tiene un object value
+el cual tiene 4 valores atomicos, podemos establecer una relacion de ownsone para que esos valores atomicos se guarden en la misma tabla que la entidad principal, 
+es decir, no se crea una tabla aparte para ese object value, sino que se guardan en la misma tabla que la entidad principal con el nombre del campo (Ejemplo: Direccion).
+
+*HasConversion: Convierte una propiedad a un valor atomico, Ideal para OV simples que solo contienen un campo (Ejemplo : DNI).
+
+*Para extender las funcionalidades de las entidades, podemos heredar nuestras configuraciones de una clase base, en este caso IEntityTypeConfiguration<T>, 
+la cual nos permite establecer las configuraciones de nuestras entidades de una forma mas ordenada y reutilizable.

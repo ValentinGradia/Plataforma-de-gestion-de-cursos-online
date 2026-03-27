@@ -8,7 +8,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4cca0346-ece8-48e6-a84f-8553af71af3a" name="Changes" comment="" />
+    <list default="true" id="4cca0346-ece8-48e6-a84f-8553af71af3a" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Infrastructure/Configurations/Documentacion.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Infrastructure/Configurations/EstudianteConfiguration.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Infrastructure/Configurations/UsuarioConfiguration.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.PlataformaDeGestionDeCursosOnline/.idea/copilotDiffState.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PlataformaDeGestionDeCursosOnline/.idea/copilotDiffState.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.PlataformaDeGestionDeCursosOnline/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PlataformaDeGestionDeCursosOnline/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Infrastructure/DependencyInjection.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastructure/DependencyInjection.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlataformaDeGestionDeCursosOnline.sln.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/PlataformaDeGestionDeCursosOnline.sln.DotSettings.user" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/rider.project.model.nuget.info" beforeDir="false" afterPath="$PROJECT_DIR$/obj/rider.project.model.nuget.info" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -19,9 +28,9 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/53e6ca45b2ab48c69c9246eefb4c55c8c90938/59/1f5f9930/DateTime.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/868844f68a5d8246b18953a21c5955e2dbdf23e25646411e16b1c18abf417b/IEntityTypeConfiguration.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/8ec21527aa44f579e8bf1c3da086fc449e4345b0e3174c12b3868c13b3536ab/INotificationHandler.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/b57427c37fcbd61dde2a6082502b8b1ac5124dafef4895130b269fa121bf5a/DefaultValidatorExtensions.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Application/Abstractions/Email/IEmailService.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Application/Abstractions/Messaging/ICommand.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Application/Abstractions/Messaging/ICommandHandler.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Application/Abstractions/Messaging/IQuery.cs" root0="FORCE_HIGHLIGHTING" />
@@ -148,6 +157,7 @@
     <setting file="file://$PROJECT_DIR$/Domain/DTOs/InscripcionDTO.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Domain/DTOs/ProfesorDTO.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Domain/DTOs/UsuarioDTO.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Domain/DependencyInjection.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Domain/Entities/Cursos/Events/CursoIniciado.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Domain/Entities/Cursos/Exceptions/EstudianteNoPerteneceAlCurso.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Domain/SharedInterfaces/ICursoRepository.cs" root0="FORCE_HIGHLIGHTING" />
@@ -155,10 +165,15 @@
     <setting file="file://$PROJECT_DIR$/Domain/SharedInterfaces/IEstudianteRepository.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Domain/SharedInterfaces/IProfesorRepository.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Domain/SharedInterfaces/IUsuarioRepository.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Infrastructure/ApplicationDbContext.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Infrastructure/Configurations/UsuarioConfiguration.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Infrastructure/Data/Repositories/EncuestasRepository.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Infrastructure/Data/Repositories/EstudianteRepository.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Infrastructure/Data/Repositories/ProfesorRepository.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Infrastructure/Data/Repositories/UsuarioRepository.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Infrastructure/DependencyInjection.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Infrastructure/Email/EmailService.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Infrastructure/Email/IEmailService.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProblemsViewState">
@@ -279,6 +294,9 @@
       <workItem from="1773057470818" duration="4771000" />
       <workItem from="1773073834650" duration="3097000" />
       <workItem from="1773281775786" duration="3328000" />
+      <workItem from="1773964210674" duration="8088000" />
+      <workItem from="1774580190728" duration="4014000" />
+      <workItem from="1774646276778" duration="1045000" />
     </task>
     <servers />
   </component>

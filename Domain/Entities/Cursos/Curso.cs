@@ -12,7 +12,6 @@ using PlataformaDeGestionDeCursosOnline.Domain.Entities.Examenes;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Examenes.ObjectValues;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Exceptions;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Inscripciones;
-using PlataformaDeGestionDeCursosOnline.Domain.Entities.ObjectValues;
 
 namespace PlataformaDeGestionDeCursosOnline.Domain.Entities.Cursos;
 

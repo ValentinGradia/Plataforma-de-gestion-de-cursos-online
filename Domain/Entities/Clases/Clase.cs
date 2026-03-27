@@ -1,10 +1,10 @@
 ﻿using System.Runtime.InteropServices.JavaScript;
 using PlataformaDeGestionDeCursosOnline.Domain.Abstractions;
+using PlataformaDeGestionDeCursosOnline.Domain.Entities.Clases.ObjectValues;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Cursos;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Enums;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Events;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Exceptions;
-using PlataformaDeGestionDeCursosOnline.Domain.Entities.ObjectValues;
 
 namespace PlataformaDeGestionDeCursosOnline.Domain.Entities;
 

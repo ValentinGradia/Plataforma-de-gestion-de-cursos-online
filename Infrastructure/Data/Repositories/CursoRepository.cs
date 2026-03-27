@@ -2,6 +2,7 @@ using System.Data;
 using Dapper;
 using PlataformaDeGestionDeCursosOnline.Application.DTOs;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities;
+using PlataformaDeGestionDeCursosOnline.Domain.Entities.Clases.ObjectValues;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Cursos;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Cursos.Notas;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Cursos.ObjectValues;
@@ -11,7 +12,6 @@ using PlataformaDeGestionDeCursosOnline.Domain.Entities.Estudiantes;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Examenes;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Examenes.ObjectValues;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Inscripciones;
-using PlataformaDeGestionDeCursosOnline.Domain.Entities.ObjectValues;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Profesores;
 using static PlataformaDeGestionDeCursosOnline.Domain.Entities.Clase;
 
@@ -264,12 +264,13 @@ public class CursoRepository(IDbConnectionFactory _connectionFactory) : ICursoRe
             .ToList();
         
         var consultas = consultasRows
-            .Select(r => new Consulta(
-                IdClase:       (Guid)r.IdClase,
-                IdEstudiante:  (Guid)r.IdEstudiante,
-                Titulo:        (string)r.Titulo,
-                Descripcion:   (string)r.Descripcion,
-                FechaConsulta: (DateTime)r.FechaConsulta
+            .Select(r => Consulta.Reconstruir(
+                id:            (Guid)r.Id,
+                idClase:       (Guid)r.IdClase,
+                idEstudiante:  (Guid)r.IdEstudiante,
+                titulo:        (string)r.Titulo,
+                descripcion:   (string)r.Descripcion,
+                fechaConsulta: (DateTime)r.FechaConsulta
             ))
             .ToList();
         
