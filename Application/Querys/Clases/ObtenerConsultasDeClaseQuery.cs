@@ -1,6 +1,5 @@
 using PlataformaDeGestionDeCursosOnline.Application.Abstractions.Messaging;
 using PlataformaDeGestionDeCursosOnline.Domain.Abstractions;
-using PlataformaDeGestionDeCursosOnline.Domain.Entities.ObjectValues;
 
 namespace PlataformaDeGestionDeCursosOnline.Application.Querys.Clases;
 

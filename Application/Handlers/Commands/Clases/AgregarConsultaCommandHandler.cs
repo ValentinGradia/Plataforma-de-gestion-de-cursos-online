@@ -6,7 +6,6 @@ using PlataformaDeGestionDeCursosOnline.Domain.Entities;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Cursos;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Cursos.Exceptions;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Estudiantes;
-using PlataformaDeGestionDeCursosOnline.Domain.Entities.ObjectValues;
 using PlataformaDeGestionDeCursosOnline.Domain.GlobalInterfaces;
 
 namespace PlataformaDeGestionDeCursosOnline.Application.Exceptions.Clases;

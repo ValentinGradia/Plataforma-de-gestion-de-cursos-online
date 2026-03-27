@@ -13,7 +13,6 @@ using PlataformaDeGestionDeCursosOnline.Domain.Entities.Examenes;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Examenes.ObjectValues;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Inscripciones;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Profesores;
-using static PlataformaDeGestionDeCursosOnline.Domain.Entities.Clase;
 
 namespace PlataformaDeGestionDeCursosOnline.Infrastructure.Data.Repositories;
 
@@ -55,32 +54,52 @@ public class CursoRepository(IDbConnectionFactory _connectionFactory) : ICursoRe
 
     public async Task<Curso?> ObtenerPorIdAsync(Guid id, CancellationToken cancellationToken = default)
     {
-        
         using var connection = _connectionFactory.CreateConnection();
 
-        //query para el curso + profesor
+        // query para el curso + profesor
         var sqlCurso = @"
             SELECT 
-                c.Id,
+                c.Id AS CursoId,
                 c.Nombre,
                 c.Temario,
                 c.Estado,
                 c.FechaInicio,
                 c.FechaFin,
-                p.Id AS IdProfesor
+                c.IdProfesor AS IdProfesor
             FROM Cursos c 
             LEFT JOIN Profesores p ON p.Id = c.IdProfesor 
             WHERE c.Id = @Id";
 
-        //query para el curso + clases
+        // query para clases + asistencias + consultas (evita N+1 por cada clase)
         var sqlClases = @"
-            SELECT * FROM Clases WHERE IdCurso = @Id";
-        
-        //query para el curso + examenes
+            SELECT 
+                c.Id                AS ClaseId,
+                c.IdCurso           AS ClaseIdCurso,
+                c.Material          AS ClaseMaterial,
+                c.Estado            AS ClaseEstado,
+                c.Fecha             AS ClaseFecha,
+
+                a.Id                        AS IdAsistencia,
+                a.IdInscripcionEstudiante   AS IdAsistenciaInscripcionEstudiante,
+                a.IdClase                   AS IdAsistencaClase,
+                a.Presente                  AS AsistenciaPresente,
+
+                co.Id               AS ConsultaId,
+                co.IdClase          AS ConsultaIdClase,
+                co.IdEstudiante     AS ConsultaIdEstudiante,
+                co.Titulo           AS ConsultaTitulo,
+                co.Descripcion      AS ConsultaDescripcion,
+                co.FechaConsulta    AS ConsultaFechaConsulta
+            FROM Clases c
+            LEFT JOIN Asistencias a ON a.IdClase = c.Id
+            LEFT JOIN Consultas co ON co.IdClase = c.Id
+            WHERE c.IdCurso = @Id";
+
+        // query para el curso + examenes
         var sqlExamenes = @"
             SELECT * FROM Examenes WHERE IdCurso = @Id";
-        
-        //query para el curso + inscripciones + asistencias + entregas del examen
+
+        // query para el curso + inscripciones + asistencias + entregas del examen
         var sqlInscripciones = @"
             SELECT 
                 i.Id                        AS IdInscripcion,
@@ -109,21 +128,57 @@ public class CursoRepository(IDbConnectionFactory _connectionFactory) : ICursoRe
             LEFT JOIN Asistencias a         ON a.IdInscripcionEstudiante = i.Id
             LEFT JOIN EntregasDelExamen e   ON e.IdInscripcionEstudiante = i.Id
             WHERE i.IdCurso = @Id";
-        
+
         var sql = sqlCurso + ";" + sqlClases + ";" + sqlExamenes + ";" + sqlInscripciones;
 
-        //Ejecutamos las 4 queries en una sola llamada a la base de datos.
         using var multi = await connection.QueryMultipleAsync(sql, new { Id = id });
 
-        var cursoRow        = await multi.ReadFirstOrDefaultAsync();//devuelve solo una fila, la del curso + profesor
-        var clasesRows      = (await multi.ReadAsync()).ToList();
-        var examenesRows    = (await multi.ReadAsync()).ToList();
+        var cursoRow = await multi.ReadFirstOrDefaultAsync();
+        var clasesRows = (await multi.ReadAsync()).ToList();
+        var examenesRows = (await multi.ReadAsync()).ToList();
         var inscripcionRows = (await multi.ReadAsync()).ToList();
 
-        var clasesTasks = clasesRows.Select(r => this.ObtenerClasePorId((Guid)r.Id,cancellationToken));
-        var clasesCargadas = await Task.WhenAll(clasesTasks);
-        List<Clase> clases = clasesCargadas.Where(c => c is not null).Select(c => c!).ToList();
-        
+        List<Clase> clases = clasesRows
+            .Where(r => r.ClaseId != null)
+            .GroupBy(r => (Guid)r.ClaseId)
+            .Select(g =>
+            {
+                var first = g.First();
+
+                var asistencias = g
+                    .Where(r => r.IdAsistencia != null)
+                    .Select(r => Asistencia.ReconstruirAsistencia(
+                        id: (Guid)r.IdAsistencia,
+                        idInscripcionEstudiante: (Guid)r.IdAsistenciaInscripcionEstudiante,
+                        idClase: (Guid)r.IdAsistencaClase,
+                        presente: (bool)r.AsistenciaPresente
+                    ))
+                    .ToList();
+
+                var consultas = g
+                    .Where(r => r.ConsultaId != null)
+                    .Select(r => Consulta.Reconstruir(
+                        id: (Guid)r.ConsultaId,
+                        idClase: (Guid)r.ConsultaIdClase,
+                        idEstudiante: (Guid)r.ConsultaIdEstudiante,
+                        titulo: (string)r.ConsultaTitulo,
+                        descripcion: (string)r.ConsultaDescripcion,
+                        fechaConsulta: (DateTime)r.ConsultaFechaConsulta
+                    ))
+                    .ToList();
+
+                return Clase.ReconstruirClase(
+                    id: (Guid)first.ClaseId,
+                    idCurso: (Guid)first.ClaseIdCurso,
+                    material: (string)first.ClaseMaterial,
+                    fecha: (DateTime)first.ClaseFecha,
+                    estado: (EstadoClase)first.ClaseEstado,
+                    asistencias: asistencias,
+                    consultas: consultas
+                );
+            })
+            .ToList();
+
         List<Examen> examenes = examenesRows
             .Where(r => r.Id != null)
             .Select(row => Examen.ReconstruirExamen(
@@ -135,7 +190,7 @@ public class CursoRepository(IDbConnectionFactory _connectionFactory) : ICursoRe
                     fechaExamenCargado: (DateTime)row.FechaExamenCargado)
             )
             .ToList<Examen>();
-        
+
         List<Inscripcion> inscripciones = inscripcionRows
             .GroupBy(r => (Guid)r.IdInscripcion)
             .Select(g =>
@@ -150,54 +205,53 @@ public class CursoRepository(IDbConnectionFactory _connectionFactory) : ICursoRe
                         presente: (bool)r.AsistenciaPresente
                     ))
                     .ToList();
-                    
+
                 var entregasExamenes = g
-                        .Where(r => r.IdEntrega != null)
-                        .Select(r => EntregaDelExamen.ReconstruirEntrega(
-                            id: (Guid)r.IdEntrega,
-                            idExamen: (Guid)r.IdExamen,
-                            estudianteIdInscripcion: (Guid)r.IdEntregaInscripcionEstudiante,
-                            tipo: (TipoExamen)r.TipoEntregaExamen,
-                            respuesta: (string)r.EntregaExamenRespuesta,
-                            fechaEntregado: (DateTime)r.EntregaFechaEntrega,
-                            fechaLimite: (DateTime)r.EntregaFechaLimiteExamen,
-                            nota: r.EntregaNota != null ? new Nota((decimal)r.EntregaNota) : null,
-                            comentarioDocente: r.EntregaComentarioDocente != null ? (string)r.EntregaComentarioDocente : null
-                        ))
+                    .Where(r => r.IdEntrega != null)
+                    .Select(r => EntregaDelExamen.ReconstruirEntrega(
+                        id: (Guid)r.IdEntrega,
+                        idExamen: (Guid)r.IdExamen,
+                        estudianteIdInscripcion: (Guid)r.IdEntregaInscripcionEstudiante,
+                        tipo: (TipoExamen)r.TipoEntregaExamen,
+                        respuesta: (string)r.EntregaExamenRespuesta,
+                        fechaEntregado: (DateTime)r.EntregaFechaEntrega,
+                        fechaLimite: (DateTime)r.EntregaFechaLimiteExamen,
+                        nota: r.EntregaNota != null ? new Nota((decimal)r.EntregaNota) : null,
+                        comentarioDocente: r.EntregaComentarioDocente != null ? (string)r.EntregaComentarioDocente : null
+                    ))
                     .ToList();
 
                 return Inscripcion.ReconstruirInscripcion(
-                    id:                   (Guid)firstRowInscripcion.IdInscripcion,
-                    idEstudiante:         (Guid)firstRowInscripcion.IdInscripcionEstudiante,
-                    idCurso:              (Guid)firstRowInscripcion.IdCurso,
-                    fechaInscripcion:     (DateTime)firstRowInscripcion.FechaInscripcion,
-                    activa:               (bool)firstRowInscripcion.Activa,
+                    id: (Guid)firstRowInscripcion.IdInscripcion,
+                    idEstudiante: (Guid)firstRowInscripcion.IdInscripcionEstudiante,
+                    idCurso: (Guid)firstRowInscripcion.IdCurso,
+                    fechaInscripcion: (DateTime)firstRowInscripcion.FechaInscripcion,
+                    activa: (bool)firstRowInscripcion.Activa,
                     porcentajeAsistencia: (double)firstRowInscripcion.PorcentajeAsistencia,
-                    entregas:             (List<EntregaDelExamen>)entregasExamenes,
-                    asistencias:          (List<Asistencia>)asistencias
+                    entregas: (List<EntregaDelExamen>)entregasExamenes,
+                    asistencias: (List<Asistencia>)asistencias
                 );
             })
             .ToList();
 
         if (cursoRow is null)
             return null;
-        
+
         DateRange duracion = DateRange.CrearDateRange(
             (DateTime)cursoRow.FechaInicio,
             (DateTime)cursoRow.FechaFin
         );
-        
-        
+
         Curso curso = Curso.ReconstruirCurso(
-            id:            (Guid)cursoRow.CursoId,
-            idProfesor:    (Guid)cursoRow.IdProfesor, 
-            temario:       (string)cursoRow.Temario,
-            nombre:        (string)cursoRow.Nombre,
-            estado:        (EstadoCurso)cursoRow.Estado,
-            duracion:      duracion,
+            id: (Guid)cursoRow.CursoId,
+            idProfesor: (Guid)cursoRow.IdProfesor,
+            temario: (string)cursoRow.Temario,
+            nombre: (string)cursoRow.Nombre,
+            estado: (EstadoCurso)cursoRow.Estado,
+            duracion: duracion,
             inscripciones: inscripciones,
-            examenes:      examenes,
-            clases:        clases
+            examenes: examenes,
+            clases: clases
         );
 
         return curso;
@@ -287,12 +341,259 @@ public class CursoRepository(IDbConnectionFactory _connectionFactory) : ICursoRe
         
     }
 
+    public async Task InsertarClaseAsync(Clase clase, CancellationToken cancellationToken)
+    {
+        using var connection = _connectionFactory.CreateConnection();
+        const string sql = @"INSERT INTO Clases (Id, IdCurso, Material, Estado, Fecha)
+                             VALUES (@Id, @IdCurso, @Material, @Estado, @Fecha)";
+
+        await connection.ExecuteAsync(new CommandDefinition(
+            sql,
+            new
+            {
+                Id = clase.Id,
+                IdCurso = clase.IdCurso,
+                Material = clase.Material,
+                Estado = clase.Estado,
+                Fecha = clase.Fecha
+            },
+            cancellationToken: cancellationToken));
+    }
+
+    public async Task ActualizarClaseAsync(Clase clase, CancellationToken cancellationToken)
+    {
+        using var connection = _connectionFactory.CreateConnection();
+        const string sql = @"UPDATE Clases
+                             SET Material = @Material,
+                                 Estado = @Estado,
+                                 Fecha = @Fecha
+                             WHERE Id = @Id";
+
+        await connection.ExecuteAsync(new CommandDefinition(
+            sql,
+            new
+            {
+                Id = clase.Id,
+                Material = clase.Material,
+                Estado = clase.Estado,
+                Fecha = clase.Fecha
+            },
+            cancellationToken: cancellationToken));
+    }
+
+    public async Task<Examen?> ObtenerExamenPorIdAsync(Guid idExamen, CancellationToken cancellationToken)
+    {
+        using var connection = _connectionFactory.CreateConnection();
+        const string sql = @"SELECT Id, IdCurso, TipoExamen, TemaExamen, FechaLimiteDeEntrega, FechaExamenCargado
+                             FROM Examenes
+                             WHERE Id = @IdExamen";
+
+        var row = await connection.QueryFirstOrDefaultAsync(new CommandDefinition(
+            sql,
+            new { IdExamen = idExamen },
+            cancellationToken: cancellationToken));
+
+        if (row is null)
+            return null;
+
+        return Examen.ReconstruirExamen(
+            id: (Guid)row.Id,
+            idCurso: (Guid)row.IdCurso,
+            tipoExamen: (TipoExamen)row.TipoExamen,
+            temaExamen: (string)row.TemaExamen,
+            fechaLimiteDeEntrega: (DateTime)row.FechaLimiteDeEntrega,
+            fechaExamenCargado: (DateTime)row.FechaExamenCargado);
+    }
+
+    public async Task InsertarExamenAsync(Examen examen, CancellationToken cancellationToken)
+    {
+        using var connection = _connectionFactory.CreateConnection();
+        const string sql = @"INSERT INTO Examenes (Id, IdCurso, TipoExamen, TemaExamen, FechaLimiteDeEntrega, FechaExamenCargado)
+                             VALUES (@Id, @IdCurso, @TipoExamen, @TemaExamen, @FechaLimiteDeEntrega, @FechaExamenCargado)";
+
+        await connection.ExecuteAsync(new CommandDefinition(
+            sql,
+            new
+            {
+                Id = examen.Id,
+                IdCurso = examen.IdCurso,
+                TipoExamen = examen.Tipo,
+                TemaExamen = examen.TemaExamen,
+                FechaLimiteDeEntrega = examen.FechaLimiteDeEntrega,
+                FechaExamenCargado = examen.FechaExamenCargado
+            },
+            cancellationToken: cancellationToken));
+    }
+
+    public async Task ActualizarExamenAsync(Examen examen, CancellationToken cancellationToken)
+    {
+        using var connection = _connectionFactory.CreateConnection();
+        const string sql = @"UPDATE Examenes
+                             SET TipoExamen = @TipoExamen,
+                                 TemaExamen = @TemaExamen,
+                                 FechaLimiteDeEntrega = @FechaLimiteDeEntrega
+                             WHERE Id = @Id";
+
+        await connection.ExecuteAsync(new CommandDefinition(
+            sql,
+            new
+            {
+                Id = examen.Id,
+                TipoExamen = examen.Tipo,
+                TemaExamen = examen.TemaExamen,
+                FechaLimiteDeEntrega = examen.FechaLimiteDeEntrega
+            },
+            cancellationToken: cancellationToken));
+    }
+
+    public async Task<EntregaDelExamen?> ObtenerEntregaExamenPorIdAsync(Guid idEntrega, CancellationToken cancellationToken)
+    {
+        using var connection = _connectionFactory.CreateConnection();
+        const string sql = @"SELECT Id, IdExamen, IdInscripcionEstudiante, TipoExamen, Respuesta, FechaEntrega, FechaLimiteExamen, ValorNota, ComentarioDocente
+                             FROM EntregasDelExamen
+                             WHERE Id = @IdEntrega";
+
+        var row = await connection.QueryFirstOrDefaultAsync(new CommandDefinition(
+            sql,
+            new { IdEntrega = idEntrega },
+            cancellationToken: cancellationToken));
+
+        if (row is null)
+            return null;
+
+        return EntregaDelExamen.ReconstruirEntrega(
+            id: (Guid)row.Id,
+            idExamen: (Guid)row.IdExamen,
+            estudianteIdInscripcion: (Guid)row.IdInscripcionEstudiante,
+            tipo: (TipoExamen)row.TipoExamen,
+            respuesta: (string)row.Respuesta,
+            fechaEntregado: (DateTime)row.FechaEntrega,
+            fechaLimite: (DateTime)row.FechaLimiteExamen,
+            nota: row.ValorNota != null ? new Nota((decimal)row.ValorNota) : null,
+            comentarioDocente: row.ComentarioDocente != null ? (string)row.ComentarioDocente : null);
+    }
+
+    public async Task InsertarEntregaExamenAsync(EntregaDelExamen entrega, Guid idExamen, CancellationToken cancellationToken)
+    {
+        using var connection = _connectionFactory.CreateConnection();
+        const string sql = @"INSERT INTO EntregasDelExamen (Id, IdExamen, IdInscripcionEstudiante, TipoExamen, Respuesta, FechaEntrega, FechaLimiteExamen, ValorNota, ComentarioDocente)
+                             VALUES (@Id, @IdExamen, @IdInscripcionEstudiante, @TipoExamen, @Respuesta, @FechaEntrega, @FechaLimiteExamen, @ValorNota, @ComentarioDocente)";
+
+        await connection.ExecuteAsync(new CommandDefinition(
+            sql,
+            new
+            {
+                Id = entrega.Id,
+                IdExamen = idExamen,
+                IdInscripcionEstudiante = entrega.IdInscripcionEstudiante,
+                TipoExamen = entrega.Tipo,
+                Respuesta = entrega.Respuesta,
+                FechaEntrega = entrega.FechaEntregado,
+                FechaLimiteExamen = entrega.FechaLimiteExamen,
+                ValorNota = entrega.Nota != null ? entrega.Nota.Valor : (decimal?)null,
+                ComentarioDocente = entrega.ComentarioDocente
+            },
+            cancellationToken: cancellationToken));
+    }
+
+    public async Task ActualizarEntregaExamenAsync(EntregaDelExamen entrega, CancellationToken cancellationToken)
+    {
+        using var connection = _connectionFactory.CreateConnection();
+        const string sql = @"UPDATE EntregasDelExamen
+                             SET TipoExamen = @TipoExamen,
+                                 Respuesta = @Respuesta,
+                                 FechaEntrega = @FechaEntrega,
+                                 FechaLimiteExamen = @FechaLimiteExamen,
+                                 ValorNota = @ValorNota,
+                                 ComentarioDocente = @ComentarioDocente
+                             WHERE Id = @Id";
+
+        await connection.ExecuteAsync(new CommandDefinition(
+            sql,
+            new
+            {
+                Id = entrega.Id,
+                TipoExamen = entrega.Tipo,
+                Respuesta = entrega.Respuesta,
+                FechaEntrega = entrega.FechaEntregado,
+                FechaLimiteExamen = entrega.FechaLimiteExamen,
+                ValorNota = entrega.Nota != null ? entrega.Nota.Valor : (decimal?)null,
+                ComentarioDocente = entrega.ComentarioDocente
+            },
+            cancellationToken: cancellationToken));
+    }
+
+    public async Task<Consulta?> ObtenerConsultaPorIdAsync(Guid idConsulta, CancellationToken cancellationToken)
+    {
+        using var connection = _connectionFactory.CreateConnection();
+        const string sql = @"SELECT Id, IdClase, IdEstudiante, Titulo, Descripcion, FechaConsulta
+                             FROM Consultas
+                             WHERE Id = @IdConsulta";
+
+        var row = await connection.QueryFirstOrDefaultAsync(new CommandDefinition(
+            sql,
+            new { IdConsulta = idConsulta },
+            cancellationToken: cancellationToken));
+
+        if (row is null)
+            return null;
+
+        return Consulta.Reconstruir(
+            id: (Guid)row.Id,
+            idClase: (Guid)row.IdClase,
+            idEstudiante: (Guid)row.IdEstudiante,
+            titulo: (string)row.Titulo,
+            descripcion: (string)row.Descripcion,
+            fechaConsulta: (DateTime)row.FechaConsulta);
+    }
+
+    public async Task InsertarConsultaAsync(Consulta consulta, CancellationToken cancellationToken)
+    {
+        using var connection = _connectionFactory.CreateConnection();
+        const string sql = @"INSERT INTO Consultas (Id, IdClase, IdEstudiante, Titulo, Descripcion, FechaConsulta)
+                             VALUES (@Id, @IdClase, @IdEstudiante, @Titulo, @Descripcion, @FechaConsulta)";
+
+        await connection.ExecuteAsync(new CommandDefinition(
+            sql,
+            new
+            {
+                Id = consulta.Id,
+                IdClase = consulta.IdClase,
+                IdEstudiante = consulta.IdEstudiante,
+                Titulo = consulta.Titulo,
+                Descripcion = consulta.Descripcion,
+                FechaConsulta = consulta.FechaConsulta
+            },
+            cancellationToken: cancellationToken));
+    }
+
+    public async Task ActualizarConsultaAsync(Consulta consulta, CancellationToken cancellationToken)
+    {
+        using var connection = _connectionFactory.CreateConnection();
+        const string sql = @"UPDATE Consultas
+                             SET Titulo = @Titulo,
+                                 Descripcion = @Descripcion,
+                                 FechaConsulta = @FechaConsulta
+                             WHERE Id = @Id";
+
+        await connection.ExecuteAsync(new CommandDefinition(
+            sql,
+            new
+            {
+                Id = consulta.Id,
+                Titulo = consulta.Titulo,
+                Descripcion = consulta.Descripcion,
+                FechaConsulta = consulta.FechaConsulta
+            },
+            cancellationToken: cancellationToken));
+    }
+
     public async Task<List<Estudiante>> ObtenerEstudiantesInscriptosEnCurso(Guid IdCurso, CancellationToken cancellationToken)
     {
         using var connection = _connectionFactory.CreateConnection();
         var sql = @"SELECT e.* FROM Estudiantes e
                     JOIN Inscripciones i ON i.IdEstudiante = e.Id
-                    WHERE i.CursoId = @IdCurso";
+                    WHERE i.IdCurso = @IdCurso";
         var estudiantes = await connection.QueryAsync<Estudiante>(sql, new { IdCurso });
         return estudiantes.ToList();
     }
