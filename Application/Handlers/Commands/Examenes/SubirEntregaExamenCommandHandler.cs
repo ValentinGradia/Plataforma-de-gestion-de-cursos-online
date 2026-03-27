@@ -34,18 +34,19 @@ internal class SubirEntregaExamenCommandHandler : ICommandHandler<SubirEntregaEx
             request.Tipo,
             request.Respuesta,
             request.FechaLimite);
-        
+
         Task<Estudiante> tareaEstudiante = this._estudianteRepository.ObtenerPorIdAsync(request.IdEstudiante, cancellationToken);
         Curso curso = await this._cursoRepository.ObtenerPorIdAsync(request.IdCurso, cancellationToken);
 
         Estudiante estudiante = await tareaEstudiante;
-        
+
         Inscripcion inscripcion = curso.ObtenerInscripcionPorEstudiante(estudiante.Id);
-        
+
         inscripcion.AgregarEntregaAlHistorial(entrega);
-        
+
+        await this._cursoRepository.InsertarEntregaExamenAsync(entrega, request.IdExamen, cancellationToken);
         await this._unitOfWork.SaveChangesAsync();
-        
+
         return entrega.Id;
     }
 }

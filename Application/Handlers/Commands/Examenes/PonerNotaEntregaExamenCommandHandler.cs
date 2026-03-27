@@ -22,10 +22,15 @@ internal class PonerNotaEntregaExamenCommandHandler : ICommandHandler<PonerNotaE
     public async Task<Result> Handle(PonerNotaEntregaExamenCommand request, CancellationToken cancellationToken)
     {
         Curso curso = await this._cursoRepository.ObtenerPorIdAsync(request.IdCurso, cancellationToken);
-            
+
         curso.CargarCalificacionAEntregaDeExamen(request.IdEntregaExamen, request.IdProfesor, request.NuevaNota);
 
-        this._unitOfWork.SaveChangesAsync();
+        EntregaDelExamen? entrega = await this._cursoRepository.ObtenerEntregaExamenPorIdAsync(request.IdEntregaExamen, cancellationToken);
+        if (entrega is null)
+            return Result.Failure(new Exception("No se encontro la entrega de examen."));
+
+        await this._cursoRepository.ActualizarEntregaExamenAsync(entrega, cancellationToken);
+        await this._unitOfWork.SaveChangesAsync();
         return Result.Success();
     }
 }

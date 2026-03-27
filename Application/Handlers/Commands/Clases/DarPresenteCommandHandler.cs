@@ -29,7 +29,7 @@ internal class DarPresenteCommandHandler : ICommandHandler<DarPresenteCommand, R
     public async Task<Result> Handle(DarPresenteCommand request, CancellationToken cancellationToken)
     {
         Task<Curso> TaskCurso = this._cursoRepository.ObtenerPorIdAsync(request.IdCurso, cancellationToken);
-        
+
         Curso curso = await TaskCurso;
         try
         {
@@ -41,8 +41,8 @@ internal class DarPresenteCommandHandler : ICommandHandler<DarPresenteCommand, R
 
             Inscripcion inscripcion = curso.ObtenerInscripcionPorId(request.IdInscripcionEstudiante);
             inscripcion.AgregarAsistencia(asistenciaEstudiante);
-            
-                    
+
+            await this._cursoRepository.ActualizarClaseAsync(clase, cancellationToken);
             await this._unitOfWork.SaveChangesAsync();
             return Result.Success();
         }

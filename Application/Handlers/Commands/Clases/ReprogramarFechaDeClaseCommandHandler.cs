@@ -22,12 +22,13 @@ internal class ReprogramarFechaDeClaseCommandHandler : ICommandHandler<Reprogram
     public async Task<Result> Handle(ReprogramarFechaDeClaseCommand request, CancellationToken cancellationToken)
     {
         Curso curso = await this._curseRepository.ObtenerPorIdAsync(request.IdCurso, cancellationToken);
-        
+
         Clase clase = curso.ObtenerClase(request.IdClase);
-        
+
         clase.ReprogramarClase(request.NuevaFecha);
-        
+
+        await this._curseRepository.ActualizarClaseAsync(clase, cancellationToken);
         await this._unitOfWork.SaveChangesAsync();
-        return Result.Success(); 
+        return Result.Success();
     }
 }

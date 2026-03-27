@@ -21,11 +21,12 @@ internal class ActualizarMaterialCommandHandler : ICommandHandler<ActualizarMate
     public async Task<Result> Handle(ActualizarMaterialCommand request, CancellationToken cancellationToken)
     {
         Curso curso = await this._cursoRepository.ObtenerPorIdAsync(request.IdCurso, cancellationToken);
-        
+
         Clase clase = curso.ObtenerClase(request.IdClase);
-        
+
         clase.ActualizarMaterial(request.NuevoMaterial);
-        
+
+        await this._cursoRepository.ActualizarClaseAsync(clase, cancellationToken);
         await this._unitOfWork.SaveChangesAsync();
         return Result.Success();
     }

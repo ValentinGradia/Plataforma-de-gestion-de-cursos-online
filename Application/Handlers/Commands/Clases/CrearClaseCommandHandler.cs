@@ -20,11 +20,13 @@ internal class CrearClaseCommandHandler : ICommandHandler<CrearClaseCommand, Gui
     
     public async Task<Guid> Handle(CrearClaseCommand request, CancellationToken cancellationToken)
     {
-        
         Curso curso = await this._cursoRepository.ObtenerPorIdAsync(request.IdCurso, cancellationToken);
-        Guid IdClase = curso.IniciarClase(request.Material);
-        
+        Guid idClase = curso.IniciarClase(request.Material);
+
+        Clase claseCreada = curso.ObtenerClase(idClase);
+        await this._cursoRepository.InsertarClaseAsync(claseCreada, cancellationToken);
+
         await this._unitOfWork.SaveChangesAsync();
-        return IdClase;
+        return idClase;
     }
 }

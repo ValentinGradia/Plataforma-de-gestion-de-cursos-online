@@ -21,18 +21,20 @@ internal class SubirModeloExamenCommandHandler : ICommandHandler<SubirModeloExam
 
     public async Task<Guid> Handle(SubirModeloExamenCommand request, CancellationToken cancellationToken)
     {
-        
+
         Examen modeloExamen = Examen.CrearExamen(
             request.IdCurso,
             request.Tipo,
             request.TemaExamen,
             request.FechaLimite
         );
-        
+
         Curso curso = await _cursos.ObtenerPorIdAsync(request.IdCurso, cancellationToken);
         curso.CargarExamen(modeloExamen);
-        _unitOfWork.SaveChangesAsync();
-        
+
+        await _cursos.InsertarExamenAsync(modeloExamen, cancellationToken);
+        await _unitOfWork.SaveChangesAsync();
+
         return modeloExamen.Id;
 
     }

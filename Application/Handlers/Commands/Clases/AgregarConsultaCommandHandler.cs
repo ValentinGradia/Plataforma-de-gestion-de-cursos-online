@@ -7,6 +7,7 @@ using PlataformaDeGestionDeCursosOnline.Domain.Entities.Cursos;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Cursos.Exceptions;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Estudiantes;
 using PlataformaDeGestionDeCursosOnline.Domain.GlobalInterfaces;
+using PlataformaDeGestionDeCursosOnline.Domain.Entities.Clases.ObjectValues;
 
 namespace PlataformaDeGestionDeCursosOnline.Application.Exceptions.Clases;
 
@@ -35,14 +36,17 @@ internal class AgregarConsultaCommandHandler : ICommandHandler<AgregarConsultaCo
         {
             return Result.Failure(new NotFoundException());
         }
-        
+
         Clase clase = curso.ObtenerClase(request.IdClase);
 
         try
         {
             curso.ValidarSiElEstudianteNoPerteneceAlCurso(user.Id);
-            
+
             clase.AgregarConsulta(request.Titulo,request.Descripcion, user.Id);
+
+            Consulta consultaCreada = clase._consultas.Last();
+            await this._cursoRepository.InsertarConsultaAsync(consultaCreada, cancellationToken);
 
             await this._unitOfWork.SaveChangesAsync();
             return Result.Success();
@@ -51,6 +55,6 @@ internal class AgregarConsultaCommandHandler : ICommandHandler<AgregarConsultaCo
         {
             return Result.Failure(e);
         }
-        
+
     }
 }
