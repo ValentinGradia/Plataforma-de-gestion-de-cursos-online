@@ -58,6 +58,14 @@ public class Estudiante : Usuario
 
         _cursosInscritosActualmente.Add(cursoId);
     }
+    
+    public void DesinscribirDeCurso(Guid cursoId)
+    {
+        if (!_cursosInscritosActualmente.Contains(cursoId))
+            throw new InvalidOperationException("No está inscrito en este curso.");
+
+        _cursosInscritosActualmente.Remove(cursoId);
+    }
 
     public void CompletarCurso(Guid cursoId)
     {
