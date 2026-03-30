@@ -1,6 +1,6 @@
 ﻿using PlataformaDeGestionDeCursosOnline.Domain.Abstractions;
 
-namespace PlataformaDeGestionDeCursosOnline.Domain.Entities.Enums;
+namespace PlataformaDeGestionDeCursosOnline.Domain.Entities.Clases;
 
 public class Asistencia : Entity
 {

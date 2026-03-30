@@ -32,8 +32,7 @@ internal class SubirEntregaExamenCommandHandler : ICommandHandler<SubirEntregaEx
             request.IdExamen,
             request.IdEstudiante,
             request.Tipo,
-            request.Respuesta,
-            request.FechaLimite);
+            request.Respuesta);
 
         Task<Estudiante> tareaEstudiante = this._estudianteRepository.ObtenerPorIdAsync(request.IdEstudiante, cancellationToken);
         Curso curso = await this._cursoRepository.ObtenerPorIdAsync(request.IdCurso, cancellationToken);

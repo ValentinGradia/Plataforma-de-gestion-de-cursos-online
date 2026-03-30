@@ -2,6 +2,7 @@ using System.Data;
 using Dapper;
 using PlataformaDeGestionDeCursosOnline.Application.DTOs;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities;
+using PlataformaDeGestionDeCursosOnline.Domain.Entities.Clases;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Clases.ObjectValues;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Cursos;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Cursos.Notas;
@@ -215,7 +216,6 @@ public class CursoRepository(IDbConnectionFactory _connectionFactory) : ICursoRe
                         tipo: (TipoExamen)r.TipoEntregaExamen,
                         respuesta: (string)r.EntregaExamenRespuesta,
                         fechaEntregado: (DateTime)r.EntregaFechaEntrega,
-                        fechaLimite: (DateTime)r.EntregaFechaLimiteExamen,
                         nota: r.EntregaNota != null ? new Nota((decimal)r.EntregaNota) : null,
                         comentarioDocente: r.EntregaComentarioDocente != null ? (string)r.EntregaComentarioDocente : null
                     ))
@@ -468,7 +468,6 @@ public class CursoRepository(IDbConnectionFactory _connectionFactory) : ICursoRe
             tipo: (TipoExamen)row.TipoExamen,
             respuesta: (string)row.Respuesta,
             fechaEntregado: (DateTime)row.FechaEntrega,
-            fechaLimite: (DateTime)row.FechaLimiteExamen,
             nota: row.ValorNota != null ? new Nota((decimal)row.ValorNota) : null,
             comentarioDocente: row.ComentarioDocente != null ? (string)row.ComentarioDocente : null);
     }
@@ -489,7 +488,6 @@ public class CursoRepository(IDbConnectionFactory _connectionFactory) : ICursoRe
                 TipoExamen = entrega.Tipo,
                 Respuesta = entrega.Respuesta,
                 FechaEntrega = entrega.FechaEntregado,
-                FechaLimiteExamen = entrega.FechaLimiteExamen,
                 ValorNota = entrega.Nota != null ? entrega.Nota.Valor : (decimal?)null,
                 ComentarioDocente = entrega.ComentarioDocente
             },
@@ -516,7 +514,6 @@ public class CursoRepository(IDbConnectionFactory _connectionFactory) : ICursoRe
                 TipoExamen = entrega.Tipo,
                 Respuesta = entrega.Respuesta,
                 FechaEntrega = entrega.FechaEntregado,
-                FechaLimiteExamen = entrega.FechaLimiteExamen,
                 ValorNota = entrega.Nota != null ? entrega.Nota.Valor : (decimal?)null,
                 ComentarioDocente = entrega.ComentarioDocente
             },
