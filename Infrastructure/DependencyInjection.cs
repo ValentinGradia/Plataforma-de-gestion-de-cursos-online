@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using PlataformaDeGestionDeCursosOnline.Application.Abstractions.Email;
+using PlataformaDeGestionDeCursosOnline.Domain.Abstractions;
 using PlataformaDeGestionDeCursosOnline.Domain.GlobalInterfaces;
 using PlataformaDeGestionDeCursosOnline.Infrastructure.Data;
 using PlataformaDeGestionDeCursosOnline.Infrastructure.Data.Repositories;
@@ -30,6 +31,10 @@ public static class DependencyInjection
             //Sirve para ejecutar los procesos de migraciones
             options.UseNpgsql(connectionString).UseSnakeCaseNamingConvention(); // En postgreSQL, es común usar snake_case para los nombres de tablas y columnas
         });
+        
+        // Registramos el UnitOfWork, que es el contexto de la base de datos, para que se pueda inyectar en los servicios y repositorios que lo necesiten. En nuestro
+        // caso es para los domain events.
+        services.AddScoped<IUnitOfWork>(sp => sp.GetRequiredService<ApplicationDbContext>());
 
         return services;
     }
