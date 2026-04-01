@@ -1,5 +1,6 @@
 using System.Data;
 using Dapper;
+using Microsoft.EntityFrameworkCore;
 using PlataformaDeGestionDeCursosOnline.Application.DTOs;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Clases;
@@ -17,18 +18,18 @@ using PlataformaDeGestionDeCursosOnline.Domain.Entities.Profesores;
 
 namespace PlataformaDeGestionDeCursosOnline.Infrastructure.Data.Repositories;
 
-public class CursoRepository(IDbConnectionFactory _connectionFactory) : ICursoRepository
+public class CursoRepository(ApplicationDbContext dbContext) : Repository<Curso>(dbContext), ICursoRepository
 {
     public async Task GuardarAsync(Curso curso)
     {
-        using var connection = _connectionFactory.CreateConnection();
+        using var connection = DbContext.Database.GetDbConnection();
         var sql = "INSERT INTO Cursos (Id, Nombre, Temario, FechaInicio, FechaFin) VALUES (@Id, @Nombre, @Temario, @FechaInicio, @FechaFin)";
         await connection.ExecuteAsync(sql, new { Id = curso.Id, Nombre = curso.Nombre, Temario = curso.Temario, FechaInicio = curso.Duracion.Inicio, FechaFin = curso.Duracion.Fin });
     }
 
     public async Task ActualizarAsync(Curso curso, CancellationToken cancellationToken)
     {
-        using var connection = _connectionFactory.CreateConnection();
+        using var connection = DbContext.Database.GetDbConnection();
         var sql = @"UPDATE Cursos 
                     SET Nombre = @Nombre, 
                         Temario = @Temario,
@@ -55,7 +56,7 @@ public class CursoRepository(IDbConnectionFactory _connectionFactory) : ICursoRe
 
     public async Task<Curso?> ObtenerPorIdAsync(Guid id, CancellationToken cancellationToken = default)
     {
-        using var connection = _connectionFactory.CreateConnection();
+        using var connection = DbContext.Database.GetDbConnection();
 
         // query para el curso + profesor
         var sqlCurso = @"
@@ -264,14 +265,14 @@ public class CursoRepository(IDbConnectionFactory _connectionFactory) : ICursoRe
 
     public async Task<IEnumerable<CursoDTO>> ObtenerTodosAsync()
     {
-        using var connection = _connectionFactory.CreateConnection();
+        using var connection = DbContext.Database.GetDbConnection();
         var sql = "SELECT Id, IdProfesor, Estado, Nombre, Temario, FechaInicio, FechaFin FROM Cursos";
         return await connection.QueryAsync<CursoDTO>(sql);
     }
 
     public async Task<Curso> ObtenerCursoPorIdModeloExamen(Guid IdModeloExamen, CancellationToken cancellationToken)
     {
-        using var connection = _connectionFactory.CreateConnection();
+        using var connection = DbContext.Database.GetDbConnection();
         var sql = "SELECT c.Id FROM Cursos c JOIN ModelosExamen me ON me.IdCurso = c.Id WHERE me.Id = @IdModeloExamen";
         var IdCurso =  await connection.QuerySingleOrDefaultAsync<Guid>(sql, new { IdModeloExamen });
         
@@ -285,7 +286,7 @@ public class CursoRepository(IDbConnectionFactory _connectionFactory) : ICursoRe
 
     public async Task<Clase?> ObtenerClasePorId(Guid IdClase, CancellationToken cancellationToken)
     {
-        using var connection = _connectionFactory.CreateConnection();
+        using var connection = DbContext.Database.GetDbConnection();
         var sqlClase = @"
         SELECT Id, Material, Estado, Fecha, IdCurso
         FROM Clases
@@ -343,7 +344,7 @@ public class CursoRepository(IDbConnectionFactory _connectionFactory) : ICursoRe
 
     public async Task InsertarClaseAsync(Clase clase, CancellationToken cancellationToken)
     {
-        using var connection = _connectionFactory.CreateConnection();
+        using var connection = DbContext.Database.GetDbConnection();
         const string sql = @"INSERT INTO Clases (Id, IdCurso, Material, Estado, Fecha)
                              VALUES (@Id, @IdCurso, @Material, @Estado, @Fecha)";
 
@@ -362,7 +363,7 @@ public class CursoRepository(IDbConnectionFactory _connectionFactory) : ICursoRe
 
     public async Task ActualizarClaseAsync(Clase clase, CancellationToken cancellationToken)
     {
-        using var connection = _connectionFactory.CreateConnection();
+        using var connection = DbContext.Database.GetDbConnection();
         const string sql = @"UPDATE Clases
                              SET Material = @Material,
                                  Estado = @Estado,
@@ -383,7 +384,7 @@ public class CursoRepository(IDbConnectionFactory _connectionFactory) : ICursoRe
 
     public async Task<Examen?> ObtenerExamenPorIdAsync(Guid idExamen, CancellationToken cancellationToken)
     {
-        using var connection = _connectionFactory.CreateConnection();
+        using var connection = DbContext.Database.GetDbConnection();
         const string sql = @"SELECT Id, IdCurso, TipoExamen, TemaExamen, FechaLimiteDeEntrega, FechaExamenCargado
                              FROM Examenes
                              WHERE Id = @IdExamen";
@@ -407,7 +408,7 @@ public class CursoRepository(IDbConnectionFactory _connectionFactory) : ICursoRe
 
     public async Task InsertarExamenAsync(Examen examen, CancellationToken cancellationToken)
     {
-        using var connection = _connectionFactory.CreateConnection();
+        using var connection = DbContext.Database.GetDbConnection();
         const string sql = @"INSERT INTO Examenes (Id, IdCurso, TipoExamen, TemaExamen, FechaLimiteDeEntrega, FechaExamenCargado)
                              VALUES (@Id, @IdCurso, @TipoExamen, @TemaExamen, @FechaLimiteDeEntrega, @FechaExamenCargado)";
 
@@ -427,7 +428,7 @@ public class CursoRepository(IDbConnectionFactory _connectionFactory) : ICursoRe
 
     public async Task ActualizarExamenAsync(Examen examen, CancellationToken cancellationToken)
     {
-        using var connection = _connectionFactory.CreateConnection();
+        using var connection = DbContext.Database.GetDbConnection();
         const string sql = @"UPDATE Examenes
                              SET TipoExamen = @TipoExamen,
                                  TemaExamen = @TemaExamen,
@@ -448,7 +449,7 @@ public class CursoRepository(IDbConnectionFactory _connectionFactory) : ICursoRe
 
     public async Task<EntregaDelExamen?> ObtenerEntregaExamenPorIdAsync(Guid idEntrega, CancellationToken cancellationToken)
     {
-        using var connection = _connectionFactory.CreateConnection();
+        using var connection = DbContext.Database.GetDbConnection();
         const string sql = @"SELECT Id, IdExamen, IdInscripcionEstudiante, TipoExamen, Respuesta, FechaEntrega, FechaLimiteExamen, ValorNota, ComentarioDocente
                              FROM EntregasDelExamen
                              WHERE Id = @IdEntrega";
@@ -474,7 +475,7 @@ public class CursoRepository(IDbConnectionFactory _connectionFactory) : ICursoRe
 
     public async Task InsertarEntregaExamenAsync(EntregaDelExamen entrega, Guid idExamen, CancellationToken cancellationToken)
     {
-        using var connection = _connectionFactory.CreateConnection();
+        using var connection = DbContext.Database.GetDbConnection();
         const string sql = @"INSERT INTO EntregasDelExamen (Id, IdExamen, IdInscripcionEstudiante, TipoExamen, Respuesta, FechaEntrega, FechaLimiteExamen, ValorNota, ComentarioDocente)
                              VALUES (@Id, @IdExamen, @IdInscripcionEstudiante, @TipoExamen, @Respuesta, @FechaEntrega, @FechaLimiteExamen, @ValorNota, @ComentarioDocente)";
 
@@ -496,7 +497,7 @@ public class CursoRepository(IDbConnectionFactory _connectionFactory) : ICursoRe
 
     public async Task ActualizarEntregaExamenAsync(EntregaDelExamen entrega, CancellationToken cancellationToken)
     {
-        using var connection = _connectionFactory.CreateConnection();
+        using var connection = DbContext.Database.GetDbConnection();
         const string sql = @"UPDATE EntregasDelExamen
                              SET TipoExamen = @TipoExamen,
                                  Respuesta = @Respuesta,
@@ -522,7 +523,7 @@ public class CursoRepository(IDbConnectionFactory _connectionFactory) : ICursoRe
 
     public async Task<Consulta?> ObtenerConsultaPorIdAsync(Guid idConsulta, CancellationToken cancellationToken)
     {
-        using var connection = _connectionFactory.CreateConnection();
+        using var connection = DbContext.Database.GetDbConnection();
         const string sql = @"SELECT Id, IdClase, IdEstudiante, Titulo, Descripcion, FechaConsulta
                              FROM Consultas
                              WHERE Id = @IdConsulta";
@@ -546,7 +547,7 @@ public class CursoRepository(IDbConnectionFactory _connectionFactory) : ICursoRe
 
     public async Task InsertarConsultaAsync(Consulta consulta, CancellationToken cancellationToken)
     {
-        using var connection = _connectionFactory.CreateConnection();
+        using var connection = DbContext.Database.GetDbConnection();
         const string sql = @"INSERT INTO Consultas (Id, IdClase, IdEstudiante, Titulo, Descripcion, FechaConsulta)
                              VALUES (@Id, @IdClase, @IdEstudiante, @Titulo, @Descripcion, @FechaConsulta)";
 
@@ -566,7 +567,7 @@ public class CursoRepository(IDbConnectionFactory _connectionFactory) : ICursoRe
 
     public async Task ActualizarConsultaAsync(Consulta consulta, CancellationToken cancellationToken)
     {
-        using var connection = _connectionFactory.CreateConnection();
+        using var connection = DbContext.Database.GetDbConnection();
         const string sql = @"UPDATE Consultas
                              SET Titulo = @Titulo,
                                  Descripcion = @Descripcion,
@@ -587,7 +588,7 @@ public class CursoRepository(IDbConnectionFactory _connectionFactory) : ICursoRe
 
     public async Task<List<Estudiante>> ObtenerEstudiantesInscriptosEnCurso(Guid IdCurso, CancellationToken cancellationToken)
     {
-        using var connection = _connectionFactory.CreateConnection();
+        using var connection = DbContext.Database.GetDbConnection();
         var sql = @"SELECT e.* FROM Estudiantes e
                     JOIN Inscripciones i ON i.IdEstudiante = e.Id
                     WHERE i.IdCurso = @IdCurso";

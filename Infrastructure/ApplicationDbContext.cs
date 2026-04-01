@@ -11,6 +11,14 @@ public class ApplicationDbContext : DbContext, IUnitOfWork
     {
     }
 
+    // Aplicamos las configuraciones de nuestras entidades utilizando el método ApplyConfigurationsFromAssembly,
+    // que busca todas las clases que implementan IEntityTypeConfiguration en el ensamblado actual y las aplica automáticamente.
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);
+        base.OnModelCreating(modelBuilder);
+    }
+
     // public async Task SaveChangesAsync(CancellationToken cancellationToken = default)
     // {
     //     await base.SaveChangesAsync(cancellationToken);

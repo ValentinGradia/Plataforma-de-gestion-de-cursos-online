@@ -1,5 +1,6 @@
 using System.Data;
 using Dapper;
+using Microsoft.EntityFrameworkCore;
 using PlataformaDeGestionDeCursosOnline.Application.DTOs;
 using PlataformaDeGestionDeCursosOnline.Domain;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities;
@@ -12,18 +13,11 @@ using PlataformaDeGestionDeCursosOnline.Domain.GlobalObjectValues;
 
 namespace PlataformaDeGestionDeCursosOnline.Infrastructure.Data.Repositories;
 
-public class UsuarioRepository : IUsuarioRepository
+public class UsuarioRepository(ApplicationDbContext dbContext) : Repository<Usuario>(dbContext), IUsuarioRepository
 {
-    private readonly IDbConnectionFactory _connectionFactory;
-
-    public UsuarioRepository(IDbConnectionFactory connectionFactory)
-    {
-        _connectionFactory = connectionFactory;
-    }
-
     public async Task GuardarAsync(Usuario objeto)
     {
-        using var connection = _connectionFactory.CreateConnection();
+        using var connection = DbContext.Database.GetDbConnection();
         var sql = @"INSERT INTO Usuarios 
                         (Id, Nombre, Apellido, Email, Contraseña, Dni, Rol, Pais, Ciudad, Calle, Altura, FechaRegistro) 
                     VALUES 
@@ -48,14 +42,14 @@ public class UsuarioRepository : IUsuarioRepository
 
     public async Task ActualizarAsync(Usuario usuario, CancellationToken cancellationToken)
     {
-        using var connection = _connectionFactory.CreateConnection();
+        using var connection = DbContext.Database.GetDbConnection();
         var sql = "UPDATE Usuarios SET Nombre = @Nombre, Apellido = @Apellido, Email = @Email WHERE Id = @Id";
         await connection.ExecuteAsync(new CommandDefinition(sql, new { Id = usuario.Id, Nombre = usuario.Nombre, Apellido = usuario.Apellido, Email = usuario.Email.valorEmail}, cancellationToken: cancellationToken));
     }
 
     public async Task<Usuario?> ObtenerPorIdAsync(Guid id, CancellationToken cancellationToken = default)
     {
-        using var connection = _connectionFactory.CreateConnection();
+        using var connection = DbContext.Database.GetDbConnection();
         var sql = @"SELECT Id, Nombre, Apellido, Email, Contraseña, Dni, Rol, 
                            Pais, Ciudad, Calle, Altura, FechaRegistro, Especialidad 
                     FROM Usuarios WHERE Id = @Id";
@@ -106,7 +100,7 @@ public class UsuarioRepository : IUsuarioRepository
 
     public async Task<IEnumerable<Usuario>> ObtenerTodosAsync()
     {
-        using var connection = _connectionFactory.CreateConnection();
+        using var connection = DbContext.Database.GetDbConnection();
         var sql = @"SELECT Id, Nombre, Apellido, Email, Contraseña, Dni, Rol, 
                            Pais, Ciudad, Calle, Altura, FechaRegistro, Especialidad 
                     FROM Usuarios";
@@ -150,7 +144,7 @@ public class UsuarioRepository : IUsuarioRepository
 
     public async Task<UsuarioDTO?> VerDatosUsuario(Guid id, CancellationToken cancellationToken = default)
     {
-        using var connection = _connectionFactory.CreateConnection();
+        using var connection = DbContext.Database.GetDbConnection();
         var sql = "SELECT Id, Email, Nombre, Apellido FROM Usuarios WHERE Id = @Id";
         return await connection.QuerySingleOrDefaultAsync<UsuarioDTO>(new CommandDefinition(sql, new { Id = id }, cancellationToken: cancellationToken));
     }

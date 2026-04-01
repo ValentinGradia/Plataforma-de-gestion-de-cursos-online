@@ -1,15 +1,16 @@
 using Dapper;
+using Microsoft.EntityFrameworkCore;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Estudiantes;
 using PlataformaDeGestionDeCursosOnline.Domain.GlobalInterfaces;
 using PlataformaDeGestionDeCursosOnline.Domain.GlobalObjectValues;
 
 namespace PlataformaDeGestionDeCursosOnline.Infrastructure.Data.Repositories;
 
-public class EstudianteRepository(IDbConnectionFactory _connectionFactory) : IEstudianteRepository
+public class EstudianteRepository(ApplicationDbContext dbContext) : Repository<Estudiante>(dbContext), IEstudianteRepository
 {
     public async Task GuardarAsync(Estudiante estudiante)
     {
-        using var connection = _connectionFactory.CreateConnection();
+        using var connection = DbContext.Database.GetDbConnection();
         var sql = @"INSERT INTO Usuarios 
                         (Id, Nombre, Apellido, Email, Contraseña, Dni, Rol, Pais, Ciudad, Calle, Altura, FechaRegistro) 
                     VALUES 
@@ -34,7 +35,7 @@ public class EstudianteRepository(IDbConnectionFactory _connectionFactory) : IEs
 
     public async Task ActualizarAsync(Estudiante estudiante, CancellationToken cancellationToken)
     {
-        using var connection = _connectionFactory.CreateConnection();
+        using var connection = DbContext.Database.GetDbConnection();
         var sql = @"UPDATE Usuarios 
                     SET Nombre    = @Nombre,
                         Apellido  = @Apellido,
@@ -64,7 +65,7 @@ public class EstudianteRepository(IDbConnectionFactory _connectionFactory) : IEs
 
     public async Task<Estudiante?> ObtenerPorIdAsync(Guid id, CancellationToken cancellationToken = default)
     {
-        using var connection = _connectionFactory.CreateConnection();
+        using var connection = DbContext.Database.GetDbConnection();
         var sql = @"SELECT Id, Nombre, Apellido, Email, Contraseña, Dni, 
                            Pais, Ciudad, Calle, Altura, FechaRegistro
                     FROM Usuarios
@@ -82,7 +83,7 @@ public class EstudianteRepository(IDbConnectionFactory _connectionFactory) : IEs
 
     public async Task<IEnumerable<Estudiante>> ObtenerTodosAsync()
     {
-        using var connection = _connectionFactory.CreateConnection();
+        using var connection = DbContext.Database.GetDbConnection();
         var sql = @"SELECT Id, Nombre, Apellido, Email, Contraseña, Dni,
                            Pais, Ciudad, Calle, Altura, FechaRegistro
                     FROM Usuarios
@@ -95,7 +96,7 @@ public class EstudianteRepository(IDbConnectionFactory _connectionFactory) : IEs
 
     public async Task<List<Estudiante>> ObtenerPorIdsAsync(IEnumerable<Guid> ids, CancellationToken cancellationToken)
     {
-        using var connection = _connectionFactory.CreateConnection();
+        using var connection = DbContext.Database.GetDbConnection();
         var sql = @"SELECT Id, Nombre, Apellido, Email, Contraseña, Dni,
                            Pais, Ciudad, Calle, Altura, FechaRegistro
                     FROM Usuarios
@@ -110,7 +111,7 @@ public class EstudianteRepository(IDbConnectionFactory _connectionFactory) : IEs
 
     public async Task ActualizarCursosActivosAsync(Estudiante estudiante, CancellationToken cancellationToken)
     {
-        using var connection = _connectionFactory.CreateConnection();
+        using var connection = DbContext.Database.GetDbConnection();
 
         // Eliminar todos los cursos activos actuales del estudiante
         const string sqlEliminar = @"DELETE FROM EstudianteCursosActivos 
@@ -138,7 +139,7 @@ public class EstudianteRepository(IDbConnectionFactory _connectionFactory) : IEs
 
     public async Task ActualizarHistorialCursosAsync(Estudiante estudiante, CancellationToken cancellationToken)
     {
-        using var connection = _connectionFactory.CreateConnection();
+        using var connection = DbContext.Database.GetDbConnection();
 
         // Eliminar el historial actual del estudiante
         const string sqlEliminar = @"DELETE FROM EstudianteHistorialCursos 
@@ -166,7 +167,7 @@ public class EstudianteRepository(IDbConnectionFactory _connectionFactory) : IEs
 
     public async Task<IEnumerable<Guid>> ObtenerCursosActivosDeEstudianteAsync(Guid idEstudiante, CancellationToken cancellationToken)
     {
-        using var connection = _connectionFactory.CreateConnection();
+        using var connection = DbContext.Database.GetDbConnection();
         
         var sql = "SELECT IdCurso FROM EstudianteCursosActivos WHERE IdEstudiante = @IdEstudiante";
 
@@ -180,7 +181,7 @@ public class EstudianteRepository(IDbConnectionFactory _connectionFactory) : IEs
 
     public async Task<IEnumerable<Guid>> ObtenerHistorialCursosDeEstudianteAsync(Guid idEstudiante, CancellationToken cancellationToken)
     {
-        using var connection = _connectionFactory.CreateConnection();
+        using var connection = DbContext.Database.GetDbConnection();
         
         var sql = "SELECT IdCurso FROM EstudianteHistorialCursos WHERE IdEstudiante = @IdEstudiante";
 

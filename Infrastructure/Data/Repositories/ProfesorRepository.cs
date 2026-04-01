@@ -1,15 +1,16 @@
 using Dapper;
+using Microsoft.EntityFrameworkCore;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Profesores;
 using PlataformaDeGestionDeCursosOnline.Domain.GlobalInterfaces;
 using PlataformaDeGestionDeCursosOnline.Infrastructure.Data;
 
 namespace PlataformaDeGestionDeCursosOnline.Infrastructure.Data.Repositories;
 
-public class ProfesorRepository(IDbConnectionFactory _connectionFactory) : IProfesorRepository
+public class ProfesorRepository(ApplicationDbContext dbContext) : Repository<Profesor>(dbContext), IProfesorRepository
 {
     public async Task GuardarAsync(Profesor profesor)
     {
-        using var connection = _connectionFactory.CreateConnection();
+        using var connection = DbContext.Database.GetDbConnection();
         var sql = @"INSERT INTO Usuarios 
                         (Id, Nombre, Apellido, Email, Contraseña, Dni, Rol, Pais, Ciudad, Calle, Altura, FechaRegistro, Especialidad) 
                     VALUES 
@@ -35,7 +36,7 @@ public class ProfesorRepository(IDbConnectionFactory _connectionFactory) : IProf
 
     public async Task ActualizarAsync(Profesor profesor, CancellationToken cancellationToken)
     {
-        using var connection = _connectionFactory.CreateConnection();
+        using var connection = DbContext.Database.GetDbConnection();
         var sql = @"UPDATE Usuarios 
                     SET Nombre       = @Nombre,
                         Apellido     = @Apellido,
@@ -67,7 +68,7 @@ public class ProfesorRepository(IDbConnectionFactory _connectionFactory) : IProf
 
     public async Task<Profesor?> ObtenerPorIdAsync(Guid id, CancellationToken cancellationToken = default)
     {
-        using var connection = _connectionFactory.CreateConnection();
+        using var connection = DbContext.Database.GetDbConnection();
         var sql = @"SELECT Id, Nombre, Apellido, Email, Contraseña, Dni, 
                            Pais, Ciudad, Calle, Altura, FechaRegistro, Especialidad
                     FROM Usuarios
@@ -98,7 +99,7 @@ public class ProfesorRepository(IDbConnectionFactory _connectionFactory) : IProf
 
     public async Task<IEnumerable<Profesor>> ObtenerTodosAsync()
     {
-        using var connection = _connectionFactory.CreateConnection();
+        using var connection = DbContext.Database.GetDbConnection();
         var sql = @"SELECT Id, Nombre, Apellido, Email, Contraseña, Dni,
                            Pais, Ciudad, Calle, Altura, FechaRegistro, Especialidad
                     FROM Usuarios

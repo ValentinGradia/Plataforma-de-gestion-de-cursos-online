@@ -1,0 +1,2 @@
+La clase Repository es la clase base que permite que cada repositorio de las entidades accedan a la conexion a la base de datos para cuando
+realicen consultas o guarden cambios en la base de datos.
