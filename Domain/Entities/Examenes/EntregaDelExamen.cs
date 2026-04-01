@@ -7,7 +7,7 @@ namespace PlataformaDeGestionDeCursosOnline.Domain.Entities.Examenes.ObjectValue
 
 public class EntregaDelExamen : Entity
 {
-    private Guid IdExamen { get; }
+    public Guid IdExamen { get; private set; }
     //La inscripcion del estudiante al curso es unico y no se repite. Por eso almacenamos
     //el id de inscripcion del estudiante y no el id del estudiante.
     public Guid IdInscripcionEstudiante{ get; private set; }

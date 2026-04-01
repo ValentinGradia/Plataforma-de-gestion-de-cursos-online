@@ -16,14 +16,21 @@ internal class DesinscribirEstudianteCommandHandler(IUnitOfWork unitOfWork, ICur
         Curso curso = await cursoRepository.ObtenerPorIdAsync(request.IdCurso, cancellationToken);
         
         Estudiante estudiante = await _estudianteRepository.ObtenerPorIdAsync(request.IdEstudiante, cancellationToken);
-        estudiante.DesinscribirDeCurso(request.IdCurso);
-        
-        Inscripcion inscripcion = Inscripcion.CrearInscripcion(request.IdEstudiante, request.IdCurso);
-        inscripcionService.DesinscribirEstudiante(inscripcion, curso!);
-        
-        await _estudianteRepository.ActualizarCursosActivosAsync(estudiante, cancellationToken);
+        try
+        {
+            estudiante.DesinscribirDeCurso(request.IdCurso);
+            
+            Inscripcion inscripcion = Inscripcion.CrearInscripcion(request.IdEstudiante, request.IdCurso);
+            inscripcionService.DesinscribirEstudiante(inscripcion, curso!);
+            
+            await _estudianteRepository.ActualizarCursosActivosAsync(estudiante, cancellationToken);
 
-        await unitOfWork.SaveChangesAsync(cancellationToken);
-        return Result.Success();
+            await unitOfWork.SaveChangesAsync(cancellationToken);
+            return Result.Success();
+        }
+        catch (InvalidOperationException e)
+        {
+            return Result.Failure(e);
+        }
     }
 }

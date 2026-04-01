@@ -10,3 +10,6 @@ es decir, no se crea una tabla aparte para ese object value, sino que se guardan
 
 *Para extender las funcionalidades de las entidades, podemos heredar nuestras configuraciones de una clase base, en este caso IEntityTypeConfiguration<T>, 
 la cual nos permite establecer las configuraciones de nuestras entidades de una forma mas ordenada y reutilizable.
+
+*Ignore : Es una forma de indicar que una propiedad no debe ser mapeada a la base de datos, es decir, no se crea una columna para esa propiedad en la tabla correspondiente. 
+Esto mas que nada en casos en donde le pasamos la entidad al builder, y queremos que algunas propiedades no se mapeen a la base de datos.

@@ -6,7 +6,7 @@ using PlataformaDeGestionDeCursosOnline.Domain.GlobalInterfaces;
 
 namespace PlataformaDeGestionDeCursosOnline.Application.Handlers.Commands.Encuestas;
 
-public class ModificarEncuestaCommandHandler : ICommandHandler<ModificarEncuestaCommand, Result>
+internal class ModificarEncuestaCommandHandler : ICommandHandler<ModificarEncuestaCommand, Result>
 {
     private readonly IUnitOfWork _unitOfWork;
     private readonly IEncuestasRepository _encuestasRepository;

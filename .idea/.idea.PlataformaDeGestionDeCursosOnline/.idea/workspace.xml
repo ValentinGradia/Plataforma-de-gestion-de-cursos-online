@@ -9,7 +9,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4cca0346-ece8-48e6-a84f-8553af71af3a" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.PlataformaDeGestionDeCursosOnline/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PlataformaDeGestionDeCursosOnline/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Infrastructure/Configurations/AsistenciaConfiguration.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Infrastructure/Configurations/ClaseConfiguration.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Infrastructure/Configurations/ConsultaConfiguration.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Infrastructure/Configurations/CursoConfiguration.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Infrastructure/Configurations/EncuestaConfiguration.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Infrastructure/Configurations/EntregaDelExamenConfiguration.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Infrastructure/Configurations/ExamenConfiguration.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Infrastructure/Configurations/InscripcionConfiguration.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/Handlers/Commands/Cursos/DesinscribirEstudianteCommandHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/Handlers/Commands/Cursos/DesinscribirEstudianteCommandHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/Handlers/Commands/Encuestas/ModificarEncuestaCommandHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/Handlers/Commands/Encuestas/ModificarEncuestaCommandHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Domain/Entities/Examenes/EntregaDelExamen.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/Entities/Examenes/EntregaDelExamen.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Infrastructure/Configurations/Documentacion.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastructure/Configurations/Documentacion.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Infrastructure/Configurations/UsuarioConfiguration.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastructure/Configurations/UsuarioConfiguration.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,6 +57,7 @@
     <setting file="file://$PROJECT_DIR$/Application/Commands/Cursos/Clases/ReprogramarFechaDeClaseCommand.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Application/Commands/Cursos/CrearCursoCommand.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Application/Commands/Cursos/DarDeBajaEstudianteCommand.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Application/Commands/Cursos/DesinscribirEstudiante.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Application/Commands/Cursos/Examenes/PonerNotaEntregaExamenCommand.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Application/Commands/Cursos/Examenes/SubirEntregaExamenCommand.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Application/Commands/Cursos/Examenes/SubirModeloExamenCommand.cs" root0="FORCE_HIGHLIGHTING" />
@@ -71,6 +84,7 @@
     <setting file="file://$PROJECT_DIR$/Application/Handlers/Commands/Cursos/CambiarProfesorCommandHandler.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Application/Handlers/Commands/Cursos/CrearCursoCommandHandler.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Application/Handlers/Commands/Cursos/DarDeBajaEstudianteCommandHandler.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Application/Handlers/Commands/Cursos/DesinscribirEstudianteCommandHandler.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Application/Handlers/Commands/Cursos/DomainEvents/CursoIniciadoDomainEventHandler.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Application/Handlers/Commands/Cursos/DomainEvents/ExamenSubidoDomainEventHandler.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Application/Handlers/Commands/Cursos/FinalizarCursoCommandHandler.cs" root0="FORCE_HIGHLIGHTING" />
@@ -159,6 +173,13 @@
     <setting file="file://$PROJECT_DIR$/Domain/SharedInterfaces/IProfesorRepository.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Domain/SharedInterfaces/IUsuarioRepository.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Infrastructure/ApplicationDbContext.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Infrastructure/Configurations/AsistenciaConfiguration.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Infrastructure/Configurations/ClaseConfiguration.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Infrastructure/Configurations/ConsultaConfiguration.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Infrastructure/Configurations/CursoConfiguration.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Infrastructure/Configurations/EncuestaConfiguration.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Infrastructure/Configurations/EntregaDelExamenConfiguration.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Infrastructure/Configurations/InscripcionConfiguration.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Infrastructure/Configurations/UsuarioConfiguration.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Infrastructure/Data/Repositories/EncuestasRepository.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Infrastructure/Data/Repositories/EstudianteRepository.cs" root0="FORCE_HIGHLIGHTING" />
@@ -290,6 +311,7 @@
       <workItem from="1773964210674" duration="8088000" />
       <workItem from="1774580190728" duration="4014000" />
       <workItem from="1774646276778" duration="6715000" />
+      <workItem from="1774875935416" duration="8638000" />
     </task>
     <servers />
   </component>
