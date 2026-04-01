@@ -1,5 +1,6 @@
 using MediatR;
 using Microsoft.EntityFrameworkCore;
+using PlataformaDeGestionDeCursosOnline.Application.Exceptions;
 using PlataformaDeGestionDeCursosOnline.Domain.Abstractions;
 
 namespace PlataformaDeGestionDeCursosOnline.Infrastructure;
@@ -26,11 +27,19 @@ public class ApplicationDbContext : DbContext, IUnitOfWork
     //Sobre escribimos el metodo porque DBcontext ya lo implementa
     public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
     {
-        var result = await base.SaveChangesAsync(cancellationToken); //Confirmamos todas las transacciones que estan en memorio
-        
-        await PublishDomainEventsAsync(); //Publicamos los eventos de dominio que se hayan generado durante la transacción
-        
-        return result;
+        try
+        {
+            var result = await base.SaveChangesAsync(cancellationToken); //Confirmamos todas las transacciones que estan en memorio
+            
+            await PublishDomainEventsAsync(); //Publicamos los eventos de dominio que se hayan generado durante la transacción
+            
+            return result;
+        }
+        // Este ex de dispara cuando hay un problema de violacion de reglas de la BBDD 
+        catch (DbUpdateConcurrencyException e)
+        {
+            throw new ConcurrencyException("La excepcion por concurrencia se disparó",e);
+        }
     }
     
     private async Task PublishDomainEventsAsync()

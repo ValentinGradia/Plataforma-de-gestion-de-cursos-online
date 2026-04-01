@@ -9,19 +9,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4cca0346-ece8-48e6-a84f-8553af71af3a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Infrastructure/Configurations/AsistenciaConfiguration.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Infrastructure/Configurations/ClaseConfiguration.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Infrastructure/Configurations/ConsultaConfiguration.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Infrastructure/Configurations/CursoConfiguration.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Infrastructure/Configurations/EncuestaConfiguration.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Infrastructure/Configurations/EntregaDelExamenConfiguration.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Infrastructure/Configurations/ExamenConfiguration.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Infrastructure/Configurations/InscripcionConfiguration.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Application/Handlers/Commands/Cursos/DesinscribirEstudianteCommandHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/Handlers/Commands/Cursos/DesinscribirEstudianteCommandHandler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Application/Handlers/Commands/Encuestas/ModificarEncuestaCommandHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/Handlers/Commands/Encuestas/ModificarEncuestaCommandHandler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Domain/Entities/Examenes/EntregaDelExamen.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/Entities/Examenes/EntregaDelExamen.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Infrastructure/Configurations/Documentacion.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastructure/Configurations/Documentacion.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Infrastructure/Configurations/UsuarioConfiguration.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastructure/Configurations/UsuarioConfiguration.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Application/Exceptions/ConcurrencyException.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Infrastructure/ApplicationDbContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastructure/ApplicationDbContext.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,6 +24,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/53e6ca45b2ab48c69c9246eefb4c55c8c90938/59/1f5f9930/DateTime.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/868844f68a5d8246b18953a21c5955e2dbdf23e25646411e16b1c18abf417b/IEntityTypeConfiguration.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/8ec21527aa44f579e8bf1c3da086fc449e4345b0e3174c12b3868c13b3536ab/INotificationHandler.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/aacc74311ca994f12b71cddb22241be9d6654c65e94f5985c5488dee396916f/DbContext.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/b57427c37fcbd61dde2a6082502b8b1ac5124dafef4895130b269fa121bf5a/DefaultValidatorExtensions.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Application/Abstractions/Messaging/ICommand.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Application/Abstractions/Messaging/ICommandHandler.cs" root0="FORCE_HIGHLIGHTING" />
@@ -71,6 +61,7 @@
     <setting file="file://$PROJECT_DIR$/Application/Commands/Usuarios/ActualizarDatosPersonalesCommand.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Application/Commands/Usuarios/ActualizarDireccionCommand.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Application/DependencyInjection.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Application/Exceptions/ConcurrencyException.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Application/Exceptions/NotFoundException.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Application/ExceptionsApplication/ValidationException.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Application/Handlers/Commands/Clases/ActualizarMaterialCommandHandler.cs" root0="FORCE_HIGHLIGHTING" />
@@ -180,10 +171,12 @@
     <setting file="file://$PROJECT_DIR$/Infrastructure/Configurations/EncuestaConfiguration.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Infrastructure/Configurations/EntregaDelExamenConfiguration.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Infrastructure/Configurations/InscripcionConfiguration.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Infrastructure/Configurations/ProfesorConfiguration.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Infrastructure/Configurations/UsuarioConfiguration.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Infrastructure/Data/Repositories/EncuestasRepository.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Infrastructure/Data/Repositories/EstudianteRepository.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Infrastructure/Data/Repositories/ProfesorRepository.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Infrastructure/Data/Repositories/Repository.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Infrastructure/Data/Repositories/UsuarioRepository.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Infrastructure/DependencyInjection.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Infrastructure/Email/EmailService.cs" root0="FORCE_HIGHLIGHTING" />
@@ -205,23 +198,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;ml.llm.LLMConfigurable&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "git-widget-placeholder": "main",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "com.github.copilot.settings.customization.CustomizationConfigurable",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected=".NET Project.PlataformaDeGestionDeCursosOnline">
     <configuration name="PlataformaDeGestionDeCursosOnline" type="DotNetProject" factoryName=".NET Project">
       <option name="EXE_PATH" value="" />
@@ -312,6 +305,7 @@
       <workItem from="1774580190728" duration="4014000" />
       <workItem from="1774646276778" duration="6715000" />
       <workItem from="1774875935416" duration="8638000" />
+      <workItem from="1775008606437" duration="7131000" />
     </task>
     <servers />
   </component>
