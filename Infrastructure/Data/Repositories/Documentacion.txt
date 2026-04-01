@@ -1,2 +1,6 @@
 La clase Repository es la clase base que permite que cada repositorio de las entidades accedan a la conexion a la base de datos para cuando
 realicen consultas o guarden cambios en la base de datos.
+
+Dentro de los repositorios, cuando llamamos a un metodo del repo y usamos GetDbConnection(), EF te da el objeto DbConnection asociado a ese 
+contexto. Esto porque ahora los repos heredan de Repository, y Repository tiene un constructor que recibe el contexto, 
+entonces cada repo tiene acceso a ese contexto y por lo tanto a su conexion.

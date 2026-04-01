@@ -14,15 +14,12 @@ public static class DependencyInjection
     public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
     {
         
-        services.AddSingleton<IDbConnectionFactory, DbConnectionFactory>();
-        
         services.AddScoped<IEmailService, EmailService>();
          
         services.AddScoped<ICursoRepository, CursoRepository>();
         services.AddScoped<IUsuarioRepository, UsuarioRepository>();
         services.AddScoped<IEncuestasRepository, EncuestasRepository>();
         services.AddScoped<IProfesorRepository, ProfesorRepository>();
-        services.AddScoped<IUsuarioRepository, UsuarioRepository>();
         
         //Cadena de conexion para inicializar los servicios de Entity framework Y Dapper, se obtiene del appsettings.json
         var connectionString = configuration.GetConnectionString("Database") ?? throw new ArgumentNullException(nameof(configuration));
