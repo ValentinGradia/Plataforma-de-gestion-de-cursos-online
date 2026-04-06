@@ -1,0 +1,436 @@
+{
+  "version": "1.0.0",
+  "source": "SDD/spec.md",
+  "description": "Mapa de ejecucion de casos de uso: action -> command/query + parametros",
+  "conventions": {
+    "querySuffix": "Query",
+    "commandSuffix": "Command",
+    "idempotency": {
+      "query": true,
+      "command": false
+    }
+  },
+  "tools": [
+    {
+      "action": "actualizar_datos_personales",
+      "execution": {
+        "type": "command",
+        "handler": "ActualizarDatosPersonalesCommand"
+      },
+      "parameters": [
+        { "name": "usuarioId", "type": "number", "required": true },
+        { "name": "nombre", "type": "string", "required": true },
+        { "name": "apellido", "type": "string", "required": true },
+        { "name": "fechaNacimiento", "type": "string", "required": true }
+      ]
+    },
+    {
+      "action": "actualizar_direccion",
+      "execution": {
+        "type": "command",
+        "handler": "ActualizarDireccionCommand"
+      },
+      "parameters": [
+        { "name": "usuarioId", "type": "number", "required": true },
+        { "name": "calle", "type": "string", "required": true },
+        { "name": "numero", "type": "string", "required": true },
+        { "name": "ciudad", "type": "string", "required": true },
+        { "name": "provincia", "type": "string", "required": true },
+        { "name": "codigoPostal", "type": "string", "required": true }
+      ]
+    },
+    {
+      "action": "actualizar_contacto",
+      "execution": {
+        "type": "command",
+        "handler": "ActualizarContactoCommand"
+      },
+      "parameters": [
+        { "name": "usuarioId", "type": "number", "required": true },
+        { "name": "email", "type": "string", "required": true },
+        { "name": "telefono", "type": "string", "required": true }
+      ]
+    },
+    {
+      "action": "obtener_perfil_usuario",
+      "execution": {
+        "type": "query",
+        "handler": "ObtenerPerfilUsuarioQuery"
+      },
+      "parameters": [
+        { "name": "usuarioId", "type": "number", "required": true }
+      ]
+    },
+    {
+      "action": "inscribir_estudiante_a_curso",
+      "execution": {
+        "type": "command",
+        "handler": "InscribirEstudianteACursoCommand"
+      },
+      "parameters": [
+        { "name": "cursoId", "type": "number", "required": true },
+        { "name": "estudianteId", "type": "number", "required": true }
+      ]
+    },
+    {
+      "action": "desinscribir_estudiante",
+      "execution": {
+        "type": "command",
+        "handler": "DesinscribirEstudiante"
+      },
+      "parameters": [
+        { "name": "cursoId", "type": "number", "required": true },
+        { "name": "estudianteId", "type": "number", "required": true }
+      ]
+    },
+    {
+      "action": "obtener_cursos_inscriptos_actualmente",
+      "execution": {
+        "type": "query",
+        "handler": "ObtenerCursosInscriptosActualmente"
+      },
+      "parameters": [
+        { "name": "estudianteId", "type": "number", "required": true }
+      ]
+    },
+    {
+      "action": "cancelar_inscripcion",
+      "execution": {
+        "type": "command",
+        "handler": "CancelarInscripcionCommand"
+      },
+      "parameters": [
+        { "name": "inscripcionId", "type": "number", "required": true },
+        { "name": "estudianteId", "type": "number", "required": true }
+      ],
+      "status": "pending_implementation"
+    },
+    {
+      "action": "acceder_clases_curso",
+      "execution": {
+        "type": "query",
+        "handler": "ObtenerClasesPorCursoQuery"
+      },
+      "parameters": [
+        { "name": "cursoId", "type": "number", "required": true },
+        { "name": "estudianteId", "type": "number", "required": true }
+      ],
+      "status": "pending_implementation"
+    },
+    {
+      "action": "entregar_examen",
+      "execution": {
+        "type": "command",
+        "handler": "SubirEntregaExamenCommand"
+      },
+      "parameters": [
+        { "name": "examenId", "type": "number", "required": true },
+        { "name": "estudianteId", "type": "number", "required": true }
+      ]
+    },
+    {
+      "action": "obtener_detalle_entrega_examen",
+      "execution": {
+        "type": "query",
+        "handler": "ObtenerDetalleEntregaExamenQuery"
+      },
+      "parameters": [
+        { "name": "entregaExamenId", "type": "number", "required": true },
+        { "name": "estudianteId", "type": "number", "required": true }
+      ]
+    },
+    {
+      "action": "obtener_nota_de_entrega_examen",
+      "execution": {
+        "type": "query",
+        "handler": "ObtenerNotaDeEntregaExamenQuery"
+      },
+      "parameters": [
+        { "name": "entregaExamenId", "type": "number", "required": true },
+        { "name": "estudianteId", "type": "number", "required": true }
+      ]
+    },
+    {
+      "action": "obtener_encuestas_por_curso",
+      "execution": {
+        "type": "query",
+        "handler": "ObtenerEncuestasPorCursoQuery"
+      },
+      "parameters": [
+        { "name": "cursoId", "type": "number", "required": true },
+        { "name": "estudianteId", "type": "number", "required": true }
+      ]
+    },
+    {
+      "action": "obtener_encuesta_por_id",
+      "execution": {
+        "type": "query",
+        "handler": "ObtenerEncuestaPorIdQuery"
+      },
+      "parameters": [
+        { "name": "encuestaId", "type": "number", "required": true },
+        { "name": "estudianteId", "type": "number", "required": true }
+      ]
+    },
+    {
+      "action": "crear_curso",
+      "execution": {
+        "type": "command",
+        "handler": "CrearCursoCommand"
+      },
+      "parameters": [
+        { "name": "profesorId", "type": "number", "required": true },
+        { "name": "titulo", "type": "string", "required": true },
+        { "name": "descripcion", "type": "string", "required": true },
+        { "name": "fechaInicio", "type": "string", "required": true },
+        { "name": "fechaFin", "type": "string", "required": true },
+        { "name": "cupoMaximo", "type": "number", "required": true }
+      ]
+    },
+    {
+      "action": "actualizar_temario",
+      "execution": {
+        "type": "command",
+        "handler": "ActualizarTemarioCommand"
+      },
+      "parameters": [
+        { "name": "cursoId", "type": "number", "required": true },
+        { "name": "profesorId", "type": "number", "required": true },
+        { "name": "temario", "type": "string", "required": true }
+      ]
+    },
+    {
+      "action": "cambiar_profesor",
+      "execution": {
+        "type": "command",
+        "handler": "CambiarProfesorCommand"
+      },
+      "parameters": [
+        { "name": "cursoId", "type": "number", "required": true },
+        { "name": "profesorActualId", "type": "number", "required": true },
+        { "name": "nuevoProfesorId", "type": "number", "required": true }
+      ]
+    },
+    {
+      "action": "crear_clase",
+      "execution": {
+        "type": "command",
+        "handler": "CrearClaseCommand"
+      },
+      "parameters": [
+        { "name": "cursoId", "type": "number", "required": true },
+        { "name": "profesorId", "type": "number", "required": true },
+        { "name": "titulo", "type": "string", "required": true },
+        { "name": "fechaProgramada", "type": "string", "required": true },
+        { "name": "material", "type": "string", "required": true }
+      ]
+    },
+    {
+      "action": "reprogramar_fecha_de_clase",
+      "execution": {
+        "type": "command",
+        "handler": "ReprogramarFechaDeClaseCommand"
+      },
+      "parameters": [
+        { "name": "claseId", "type": "number", "required": true },
+        { "name": "profesorId", "type": "number", "required": true },
+        { "name": "nuevaFecha", "type": "string", "required": true }
+      ]
+    },
+    {
+      "action": "actualizar_material",
+      "execution": {
+        "type": "command",
+        "handler": "ActualizarMaterialCommand"
+      },
+      "parameters": [
+        { "name": "claseId", "type": "number", "required": true },
+        { "name": "profesorId", "type": "number", "required": true },
+        { "name": "material", "type": "string", "required": true }
+      ]
+    },
+    {
+      "action": "dar_presente",
+      "execution": {
+        "type": "command",
+        "handler": "DarPresenteCommand"
+      },
+      "parameters": [
+        { "name": "claseId", "type": "number", "required": true },
+        { "name": "estudianteId", "type": "number", "required": true },
+        { "name": "presente", "type": "boolean", "required": true }
+      ]
+    },
+    {
+      "action": "agregar_consulta",
+      "execution": {
+        "type": "command",
+        "handler": "AgregarConsultaCommand"
+      },
+      "parameters": [
+        { "name": "claseId", "type": "number", "required": true },
+        { "name": "profesorId", "type": "number", "required": true },
+        { "name": "consulta", "type": "string", "required": true }
+      ]
+    },
+    {
+      "action": "finalizar_clase",
+      "execution": {
+        "type": "command",
+        "handler": "FinalizarClaseCommand"
+      },
+      "parameters": [
+        { "name": "claseId", "type": "number", "required": true },
+        { "name": "profesorId", "type": "number", "required": true }
+      ]
+    },
+    {
+      "action": "finalizar_curso",
+      "execution": {
+        "type": "command",
+        "handler": "FinalizarCursoCommand"
+      },
+      "parameters": [
+        { "name": "cursoId", "type": "number", "required": true },
+        { "name": "profesorId", "type": "number", "required": true }
+      ]
+    },
+    {
+      "action": "dar_de_baja_estudiante",
+      "execution": {
+        "type": "command",
+        "handler": "DarDeBajaEstudianteCommand"
+      },
+      "parameters": [
+        { "name": "cursoId", "type": "number", "required": true },
+        { "name": "profesorId", "type": "number", "required": true },
+        { "name": "estudianteId", "type": "number", "required": true },
+        { "name": "motivo", "type": "string", "required": true }
+      ]
+    },
+    {
+      "action": "obtener_informacion_curso_por_id",
+      "execution": {
+        "type": "query",
+        "handler": "ObtenerInformacionCursoPorIdQuery"
+      },
+      "parameters": [
+        { "name": "cursoId", "type": "number", "required": true },
+        { "name": "profesorId", "type": "number", "required": true }
+      ]
+    },
+    {
+      "action": "obtener_estudiantes_inscriptos_curso",
+      "execution": {
+        "type": "query",
+        "handler": "ObtenerEstudiantesInscriptosCursoQuery"
+      },
+      "parameters": [
+        { "name": "cursoId", "type": "number", "required": true },
+        { "name": "profesorId", "type": "number", "required": true }
+      ]
+    },
+    {
+      "action": "obtener_informacion_clase",
+      "execution": {
+        "type": "query",
+        "handler": "ObtenerInformacionClaseQuery"
+      },
+      "parameters": [
+        { "name": "claseId", "type": "number", "required": true },
+        { "name": "profesorId", "type": "number", "required": true }
+      ]
+    },
+    {
+      "action": "obtener_asistencias_de_clase",
+      "execution": {
+        "type": "query",
+        "handler": "ObtenerAsistenciasDeClase"
+      },
+      "parameters": [
+        { "name": "claseId", "type": "number", "required": true },
+        { "name": "profesorId", "type": "number", "required": true }
+      ]
+    },
+    {
+      "action": "obtener_consultas_de_clase",
+      "execution": {
+        "type": "query",
+        "handler": "ObtenerConsultasDeClaseQuery"
+      },
+      "parameters": [
+        { "name": "claseId", "type": "number", "required": true },
+        { "name": "profesorId", "type": "number", "required": true }
+      ]
+    },
+    {
+      "action": "crear_encuesta",
+      "execution": {
+        "type": "command",
+        "handler": "CrearEncuestaCommand"
+      },
+      "parameters": [
+        { "name": "cursoId", "type": "number", "required": true },
+        { "name": "profesorId", "type": "number", "required": true },
+        { "name": "titulo", "type": "string", "required": true },
+        { "name": "preguntas", "type": "string[]", "required": true }
+      ]
+    },
+    {
+      "action": "modificar_encuesta",
+      "execution": {
+        "type": "command",
+        "handler": "ModificarEncuestaCommand"
+      },
+      "parameters": [
+        { "name": "encuestaId", "type": "number", "required": true },
+        { "name": "profesorId", "type": "number", "required": true },
+        { "name": "titulo", "type": "string", "required": true },
+        { "name": "preguntas", "type": "string[]", "required": true }
+      ]
+    },
+    {
+      "action": "obtener_mejores_resenas_por_curso",
+      "execution": {
+        "type": "query",
+        "handler": "ObtenerMejoresReseñasPorCursoQuery"
+      },
+      "parameters": [
+        { "name": "cursoId", "type": "number", "required": true },
+        { "name": "profesorId", "type": "number", "required": true }
+      ]
+    },
+    {
+      "action": "obtener_peores_resenas_por_curso",
+      "execution": {
+        "type": "query",
+        "handler": "ObtenerPeoresReseñasPorCursoQuery"
+      },
+      "parameters": [
+        { "name": "cursoId", "type": "number", "required": true },
+        { "name": "profesorId", "type": "number", "required": true }
+      ]
+    },
+    {
+      "action": "obtener_perfil_profesor_por_id",
+      "execution": {
+        "type": "query",
+        "handler": "ObtenerPerfilProfesorPorIdQuery"
+      },
+      "parameters": [
+        { "name": "profesorId", "type": "number", "required": true }
+      ]
+    },
+    {
+      "action": "obtener_perfil_estudiante_por_id",
+      "execution": {
+        "type": "query",
+        "handler": "ObtenerPerfilEstudiantePorIdQuery"
+      },
+      "parameters": [
+        { "name": "estudianteId", "type": "number", "required": true }
+      ]
+    }
+  ]
+}
+

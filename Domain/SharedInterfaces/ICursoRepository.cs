@@ -5,6 +5,7 @@ using PlataformaDeGestionDeCursosOnline.Domain.Entities.Cursos;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Examenes;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Examenes.ObjectValues;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Estudiantes;
+using PlataformaDeGestionDeCursosOnline.Domain.Entities.Inscripciones;
 
 namespace PlataformaDeGestionDeCursosOnline.Domain.GlobalInterfaces;
 
@@ -35,4 +36,6 @@ public interface ICursoRepository : IRepository<Curso>
 
     Task<List<Estudiante>> ObtenerEstudiantesInscriptosEnCurso(Guid IdCurso, CancellationToken cancellationToken);
 
+    Task<Inscripcion?> ObtenerInscripcionPorIdEstudianteYCursoAsync(Guid idEstudiante, Guid idCurso, CancellationToken cancellationToken);
+    Task<List<EntregaDelExamen>> ObtenerEntregasDeExamenesPorIdInscripcionAsync(Guid idInscripcionEstudiante, CancellationToken cancellationToken);
 }

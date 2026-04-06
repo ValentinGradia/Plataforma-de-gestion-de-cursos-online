@@ -13,16 +13,26 @@ internal class DesinscribirEstudianteCommandHandler(IUnitOfWork unitOfWork, ICur
 {
     public async Task<Result> Handle(DesinscribirEstudiante request, CancellationToken cancellationToken)
     {
-        Curso curso = await cursoRepository.ObtenerPorIdAsync(request.IdCurso, cancellationToken);
-        
-        Estudiante estudiante = await _estudianteRepository.ObtenerPorIdAsync(request.IdEstudiante, cancellationToken);
+        Curso? curso = await cursoRepository.ObtenerPorIdAsync(request.IdCurso, cancellationToken);
+        if (curso is null)
+            return Result.Failure(new ArgumentException("No se encontró el curso con el ID proporcionado."));
+
+        Estudiante? estudiante = await _estudianteRepository.ObtenerPorIdAsync(request.IdEstudiante, cancellationToken);
+        if (estudiante is null)
+            return Result.Failure(new ArgumentException("No se encontró el estudiante con el ID proporcionado."));
+
+        Inscripcion? inscripcion = await cursoRepository.ObtenerInscripcionPorIdEstudianteYCursoAsync(
+            request.IdEstudiante,
+            request.IdCurso,
+            cancellationToken);
+
+        if (inscripcion is null)
+            return Result.Failure(new ArgumentException("No se encontró una inscripción activa para el estudiante en el curso."));
+
         try
         {
             estudiante.DesinscribirDeCurso(request.IdCurso);
-            
-            Inscripcion inscripcion = Inscripcion.CrearInscripcion(request.IdEstudiante, request.IdCurso);
-            inscripcionService.DesinscribirEstudiante(inscripcion, curso!);
-            
+            inscripcionService.DesinscribirEstudiante(inscripcion, curso);
             await _estudianteRepository.ActualizarCursosActivosAsync(estudiante, cancellationToken);
 
             await unitOfWork.SaveChangesAsync(cancellationToken);

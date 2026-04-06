@@ -284,6 +284,49 @@ public class CursoRepository(ApplicationDbContext dbContext) : Repository<Curso>
         return await ObtenerPorIdAsync(IdCurso, cancellationToken) ;
     }
 
+    private static List<Asistencia> MapearAsistencias(IEnumerable<dynamic> asistenciasRows)
+    {
+        return asistenciasRows
+            .Where(r => r.Id != null)
+            .Select(r => Asistencia.ReconstruirAsistencia(
+                id: (Guid)r.Id,
+                idInscripcionEstudiante: (Guid)r.IdInscripcionEstudiante,
+                idClase: (Guid)r.IdClase,
+                presente: (bool)r.Presente
+            ))
+            .ToList();
+    }
+
+    private async Task<List<Asistencia>> ObtenerAsistenciasPorIdClaseAsync(Guid idClase, CancellationToken cancellationToken)
+    {
+        using var connection = DbContext.Database.GetDbConnection();
+        const string sql = @"SELECT Id, IdInscripcionEstudiante, IdClase, Presente
+                             FROM Asistencias
+                             WHERE IdClase = @IdClase";
+
+        var rows = await connection.QueryAsync(new CommandDefinition(
+            sql,
+            new { IdClase = idClase },
+            cancellationToken: cancellationToken));
+
+        return MapearAsistencias(rows);
+    }
+
+    private async Task<List<Asistencia>> ObtenerAsistenciasPorIdInscripcionEstudianteAsync(Guid idInscripcionEstudiante, CancellationToken cancellationToken)
+    {
+        using var connection = DbContext.Database.GetDbConnection();
+        const string sql = @"SELECT Id, IdInscripcionEstudiante, IdClase, Presente
+                             FROM Asistencias
+                             WHERE IdInscripcionEstudiante = @IdInscripcionEstudiante";
+
+        var rows = await connection.QueryAsync(new CommandDefinition(
+            sql,
+            new { IdInscripcionEstudiante = idInscripcionEstudiante },
+            cancellationToken: cancellationToken));
+
+        return MapearAsistencias(rows);
+    }
+
     public async Task<Clase?> ObtenerClasePorId(Guid IdClase, CancellationToken cancellationToken)
     {
         using var connection = DbContext.Database.GetDbConnection();
@@ -291,33 +334,22 @@ public class CursoRepository(ApplicationDbContext dbContext) : Repository<Curso>
         SELECT Id, Material, Estado, Fecha, IdCurso
         FROM Clases
         WHERE Id = @IdClase";
-        
-        var sqlAsistencias = @"
-        SELECT Id, IdInscripcionEstudiante, IdClase, Presente
-        FROM Asistencias
-        WHERE IdClase = @IdClase";
-        
+
         var sqlConsultas = "SELECT * from Consultas WHERE IdClase = @IdClase";
-        
-        var sql = sqlClase + ";" + sqlAsistencias + ";" + sqlConsultas;
-        
+
+        var sql = sqlClase + ";" + sqlConsultas;
+
         using var multi = await connection.QueryMultipleAsync(sql, new { IdClase });
-        
+
         //Clase solo devuelve una, por eso usamos readFirstOrDefault
-        var claseRow      =  await multi.ReadFirstOrDefaultAsync();
-        var asistenciasRows    = (await multi.ReadAsync()).ToList();
+        var claseRow = await multi.ReadFirstOrDefaultAsync();
         var consultasRows = (await multi.ReadAsync()).ToList();
-        
-        // Mapear asistencias
-        var asistencias = asistenciasRows
-            .Select(r => Asistencia.ReconstruirAsistencia(
-                id:                     (Guid)r.Id,
-                idInscripcionEstudiante:(Guid)r.IdInscripcionEstudiante,
-                idClase:                (Guid)r.IdClase,
-                presente:               (bool)r.Presente
-            ))
-            .ToList();
-        
+
+        if (claseRow is null)
+            return null;
+
+        var asistencias = await ObtenerAsistenciasPorIdClaseAsync(IdClase, cancellationToken);
+
         var consultas = consultasRows
             .Select(r => Consulta.Reconstruir(
                 id:            (Guid)r.Id,
@@ -328,8 +360,8 @@ public class CursoRepository(ApplicationDbContext dbContext) : Repository<Curso>
                 fechaConsulta: (DateTime)r.FechaConsulta
             ))
             .ToList();
-        
-        
+
+
         return Clase.ReconstruirClase(
             id:          (Guid)claseRow.Id,
             idCurso:     (Guid)claseRow.IdCurso,
@@ -339,7 +371,7 @@ public class CursoRepository(ApplicationDbContext dbContext) : Repository<Curso>
             asistencias: asistencias,
             consultas: consultas
         );
-        
+
     }
 
     public async Task InsertarClaseAsync(Clase clase, CancellationToken cancellationToken)
@@ -594,5 +626,70 @@ public class CursoRepository(ApplicationDbContext dbContext) : Repository<Curso>
                     WHERE i.IdCurso = @IdCurso";
         var estudiantes = await connection.QueryAsync<Estudiante>(sql, new { IdCurso });
         return estudiantes.ToList();
+    }
+
+    public async Task<Inscripcion?> ObtenerInscripcionPorIdEstudianteYCursoAsync(Guid idEstudiante, Guid idCurso, CancellationToken cancellationToken)
+    {
+        using var connection = DbContext.Database.GetDbConnection();
+        var sql = @"
+            SELECT
+                Id,
+                IdCurso,
+                IdEstudiante,
+                FechaInscripcion,
+                Activa,
+                PorcentajeAsistencia
+            FROM Inscripciones
+            WHERE IdEstudiante = @IdEstudiante AND IdCurso = @IdCurso";
+
+        var row = await connection.QuerySingleOrDefaultAsync(new CommandDefinition(
+            sql,
+            new { IdEstudiante = idEstudiante, IdCurso = idCurso },
+            cancellationToken: cancellationToken
+        ));
+
+        if (row is null)
+            return null;
+
+        var asistencias = await ObtenerAsistenciasPorIdInscripcionEstudianteAsync((Guid)row.Id, cancellationToken);
+        var entregas = await ObtenerEntregasDeExamenesPorIdInscripcionAsync((Guid)row.Id, cancellationToken);
+
+        return Inscripcion.ReconstruirInscripcion(
+            id: (Guid)row.Id,
+            idEstudiante: (Guid)row.IdEstudiante,
+            idCurso: (Guid)row.IdCurso,
+            fechaInscripcion: (DateTime)row.FechaInscripcion,
+            activa: (bool)row.Activa,
+            porcentajeAsistencia: (double)row.PorcentajeAsistencia,
+            entregas: entregas,
+            asistencias: asistencias
+        );
+    }
+
+    public async Task<List<EntregaDelExamen>> ObtenerEntregasDeExamenesPorIdInscripcionAsync(Guid idInscripcionEstudiante, CancellationToken cancellationToken)
+    {
+        using var connection = DbContext.Database.GetDbConnection();
+        const string sql = @"SELECT Id, IdExamen, IdInscripcionEstudiante, TipoExamen, Respuesta, FechaEntrega, ValorNota, ComentarioDocente
+                             FROM EntregasDelExamen
+                             WHERE IdInscripcionEstudiante = @IdInscripcionEstudiante";
+
+        var rows = await connection.QueryAsync(new CommandDefinition(
+            sql,
+            new { IdInscripcionEstudiante = idInscripcionEstudiante },
+            cancellationToken: cancellationToken));
+
+        return rows
+            .Where(r => r.Id != null)
+            .Select(r => EntregaDelExamen.ReconstruirEntrega(
+                id: (Guid)r.Id,
+                idExamen: (Guid)r.IdExamen,
+                estudianteIdInscripcion: (Guid)r.IdInscripcionEstudiante,
+                tipo: (TipoExamen)r.TipoExamen,
+                respuesta: (string)r.Respuesta,
+                fechaEntregado: (DateTime)r.FechaEntrega,
+                nota: r.ValorNota != null ? new Nota((decimal)r.ValorNota) : null,
+                comentarioDocente: r.ComentarioDocente != null ? (string)r.ComentarioDocente : null
+            ))
+            .ToList();
     }
 }
