@@ -9,7 +9,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4cca0346-ece8-48e6-a84f-8553af71af3a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Presentation/Controllers/Cursos/CursoController.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Presentation/Controllers/Encuestas/EncuestaController.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Presentation/Controllers/Estudiantes/EstudianteController.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Presentation/Controllers/Examenes/ExamenController.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Presentation/Controllers/Inscripciones/InscripcionController.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Presentation/Controllers/Profesores/ProfesorController.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Presentation/Controllers/Usuarios/UsuarioController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.PlataformaDeGestionDeCursosOnline/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PlataformaDeGestionDeCursosOnline/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -182,6 +188,12 @@
     <setting file="file://$PROJECT_DIR$/Infrastructure/Email/IEmailService.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Presentation/Controllers/Clases/ClaseController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Presentation/Controllers/Cursos/CursoController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Presentation/Controllers/Encuestas/EncuestaController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Presentation/Controllers/Estudiantes/EstudianteController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Presentation/Controllers/Examenes/ExamenController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Presentation/Controllers/Inscripciones/InscripcionController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Presentation/Controllers/Profesores/ProfesorController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Presentation/Controllers/Usuarios/UsuarioController.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProblemsViewState">
@@ -309,7 +321,7 @@
       <workItem from="1775008606437" duration="7131000" />
       <workItem from="1775029683277" duration="3493000" />
       <workItem from="1775481800460" duration="17340000" />
-      <workItem from="1775599031334" duration="4341000" />
+      <workItem from="1775599031334" duration="6500000" />
     </task>
     <servers />
   </component>
