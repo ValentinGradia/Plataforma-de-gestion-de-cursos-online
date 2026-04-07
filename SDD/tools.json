@@ -4,11 +4,7 @@
   "description": "Mapa de ejecucion de casos de uso: action -> command/query + parametros",
   "conventions": {
     "querySuffix": "Query",
-    "commandSuffix": "Command",
-    "idempotency": {
-      "query": true,
-      "command": false
-    }
+    "commandSuffix": "Command"
   },
   "tools": [
     {
@@ -433,4 +429,3 @@
     }
   ]
 }
-
