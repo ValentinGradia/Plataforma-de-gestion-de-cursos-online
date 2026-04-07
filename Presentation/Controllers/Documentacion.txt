@@ -1,0 +1,5 @@
+El controller se comunica con la capa application enviandole un mensaje -> Command o Query, dependiendo de la accion que se quiera realizar, 
+el controller se encarga de recibir la respuesta y devolverla al cliente,  ya sea una vista o un json.
+
+Vamos a utilizar la interfaz Sender de MediatR para enviar los mensajes a la capa application, esta interfaz se encarga de resolver el handler 
+correspondiente y ejecutar la logica de negocio.
