@@ -10,11 +10,11 @@ internal class ExamenConfiguration : IEntityTypeConfiguration<Examen>
 {
     public void Configure(EntityTypeBuilder<Examen> builder)
     {
-        builder.ToTable("examenes");
+        builder.ToTable("Examenes");
         builder.HasKey(e => e.Id);
 
         builder.Property(e => e.IdCurso)
-            .HasColumnName("id_curso")
+            .HasColumnName("IdCurso")
             .IsRequired();
         
         builder.HasOne<Curso>()
@@ -22,20 +22,20 @@ internal class ExamenConfiguration : IEntityTypeConfiguration<Examen>
             .HasForeignKey(i => i.IdCurso);
 
         builder.Property(e => e.TemaExamen)
-            .HasColumnName("tema_examen")
+            .HasColumnName("TemaExamen")
             .HasMaxLength(500)
             .IsRequired();
 
         builder.Property(e => e.FechaLimiteDeEntrega)
-            .HasColumnName("fecha_limite_entrega")
+            .HasColumnName("FechaLimiteDeEntrega")
             .IsRequired();
 
         builder.Property(e => e.FechaExamenCargado)
-            .HasColumnName("fecha_examen_cargado")
+            .HasColumnName("FechaExamenCargado")
             .IsRequired();
 
         builder.Property(e => e.Tipo)
-            .HasColumnName("tipo")
+            .HasColumnName("Tipo")
             .HasConversion<int>()
             .IsRequired();
     }

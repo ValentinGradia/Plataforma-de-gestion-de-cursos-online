@@ -9,11 +9,11 @@ internal class CursoConfiguration : IEntityTypeConfiguration<Curso>
 {
     public void Configure(EntityTypeBuilder<Curso> builder)
     {
-        builder.ToTable("cursos");
+        builder.ToTable("Cursos");
         builder.HasKey(c => c.Id);
 
         builder.Property(c => c.IdProfesor)
-            .HasColumnName("id_profesor")
+            .HasColumnName("IdProfesor")
             .IsRequired();
 
         builder.HasOne<Profesor>()
@@ -21,28 +21,28 @@ internal class CursoConfiguration : IEntityTypeConfiguration<Curso>
             .HasForeignKey(c => c.IdProfesor);
 
         builder.Property(c => c.Estado)
-            .HasColumnName("estado")
+            .HasColumnName("Estado")
             .HasConversion<int>()
             .IsRequired();
 
         builder.Property(c => c.Nombre)
-            .HasColumnName("nombre")
+            .HasColumnName("Nombre")
             .HasMaxLength(150)
             .IsRequired();
 
         builder.Property(c => c.Temario)
-            .HasColumnName("temario")
+            .HasColumnName("Temario")
             .HasMaxLength(2000)
             .IsRequired();
 
         builder.OwnsOne(c => c.Duracion, duracion =>
         {
             duracion.Property(d => d.Inicio)
-                .HasColumnName("fecha_inicio")
+                .HasColumnName("FechaInicio")
                 .IsRequired();
 
             duracion.Property(d => d.Fin)
-                .HasColumnName("fecha_fin")
+                .HasColumnName("FechaFin")
                 .IsRequired();
         });
 

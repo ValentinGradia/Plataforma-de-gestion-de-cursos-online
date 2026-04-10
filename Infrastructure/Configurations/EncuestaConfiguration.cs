@@ -12,11 +12,11 @@ internal class EncuestaConfiguration : IEntityTypeConfiguration<Encuesta>
 {
     public void Configure(EntityTypeBuilder<Encuesta> builder)
     {
-        builder.ToTable("encuestas");
+        builder.ToTable("Encuestas");
         builder.HasKey(e => e.Id);
 
         builder.Property(e => e.IdCurso)
-            .HasColumnName("id_curso")
+            .HasColumnName("IdCurso")
             .IsRequired();
         
         builder.HasOne<Curso>()
@@ -24,39 +24,39 @@ internal class EncuestaConfiguration : IEntityTypeConfiguration<Encuesta>
             .HasForeignKey(e => e.IdCurso);
 
         builder.Property(e => e.IdEstudiante)
-            .HasColumnName("id_estudiante");
+            .HasColumnName("IdEstudiante");
         
         builder.HasOne<Estudiante>()
             .WithMany()
             .HasForeignKey(e => e.IdEstudiante);
 
         builder.Property(e => e.CalificacionCurso)
-            .HasColumnName("calificacion_curso")
+            .HasColumnName("CalificacionCurso")
             .HasConversion(
                 c => c.Valor,
                 v => new Calificacion(v))
             .IsRequired();
 
         builder.Property(e => e.CalificacionMaterial)
-            .HasColumnName("calificacion_material")
+            .HasColumnName("CalificacionMaterial")
             .HasConversion(
                 c => c.Valor,
                 v => new Calificacion(v))
             .IsRequired();
 
         builder.Property(e => e.CalificacionDocente)
-            .HasColumnName("calificacion_docente")
+            .HasColumnName("CalificacionDocente")
             .HasConversion(
                 c => c.Valor,
                 v => new Calificacion(v))
             .IsRequired();
 
         builder.Property(e => e.Comentarios)
-            .HasColumnName("comentarios")
+            .HasColumnName("Comentarios")
             .HasMaxLength(2000);
 
         builder.Property(e => e.FechaCreacion)
-            .HasColumnName("fecha_creacion")
+            .HasColumnName("FechaCreacion")
             .IsRequired();
     }
 }

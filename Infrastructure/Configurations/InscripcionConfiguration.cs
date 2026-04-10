@@ -14,7 +14,7 @@ internal class InscripcionConfiguration : IEntityTypeConfiguration<Inscripcion>
         builder.HasKey(i => i.Id);
 
         builder.Property(i => i.IdEstudiante)
-            .HasColumnName("id_estudiante")
+            .HasColumnName("IdEstudiante")
             .IsRequired();
 
         builder.HasOne<Estudiante>()
@@ -22,7 +22,7 @@ internal class InscripcionConfiguration : IEntityTypeConfiguration<Inscripcion>
             .HasForeignKey(i => i.IdEstudiante);
 
         builder.Property(i => i.IdCurso)
-            .HasColumnName("id_curso")
+            .HasColumnName("IdCurso")
             .IsRequired();
         
         builder.HasOne<Curso>()
@@ -30,15 +30,15 @@ internal class InscripcionConfiguration : IEntityTypeConfiguration<Inscripcion>
             .HasForeignKey(i => i.IdCurso);
 
         builder.Property(i => i.FechaInscripcion)
-            .HasColumnName("fecha_inscripcion")
+            .HasColumnName("FechaInscripcion")
             .IsRequired();
 
         builder.Property(i => i.Activa)
-            .HasColumnName("activa")
+            .HasColumnName("Activa")
             .IsRequired();
 
         builder.Property(i => i.porcentajeAsistencia)
-            .HasColumnName("porcentaje_asistencia")
+            .HasColumnName("PorcentajeAsistencia")
             .IsRequired();
 
         builder.Ignore("_historialEntregas");

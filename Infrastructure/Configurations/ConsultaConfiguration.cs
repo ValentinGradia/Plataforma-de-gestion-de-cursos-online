@@ -10,11 +10,11 @@ internal class ConsultaConfiguration : IEntityTypeConfiguration<Consulta>
 {
     public void Configure(EntityTypeBuilder<Consulta> builder)
     {
-        builder.ToTable("consultas");
+        builder.ToTable("Consultas");
         builder.HasKey(c => c.Id);
 
         builder.Property(c => c.IdClase)
-            .HasColumnName("id_clase")
+            .HasColumnName("IdClase")
             .IsRequired();
 
         builder.HasOne<Clase>()
@@ -22,7 +22,7 @@ internal class ConsultaConfiguration : IEntityTypeConfiguration<Consulta>
             .HasForeignKey(c => c.IdClase);
         
         builder.Property(c => c.IdEstudiante)
-            .HasColumnName("id_estudiante")
+            .HasColumnName("IdEstudiante")
             .IsRequired();
         
         builder.HasOne<Estudiante>()
@@ -30,17 +30,17 @@ internal class ConsultaConfiguration : IEntityTypeConfiguration<Consulta>
             .HasForeignKey(c => c.IdEstudiante);
 
         builder.Property(c => c.Titulo)
-            .HasColumnName("titulo")
+            .HasColumnName("Titulo")
             .HasMaxLength(200)
             .IsRequired();
 
         builder.Property(c => c.Descripcion)
-            .HasColumnName("descripcion")
+            .HasColumnName("Descripcion")
             .HasMaxLength(4000)
             .IsRequired();
 
         builder.Property(c => c.FechaConsulta)
-            .HasColumnName("fecha_consulta")
+            .HasColumnName("FechaConsulta")
             .IsRequired();
     }
 }

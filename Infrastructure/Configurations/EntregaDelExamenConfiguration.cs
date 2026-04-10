@@ -12,11 +12,11 @@ internal class EntregaDelExamenConfiguration : IEntityTypeConfiguration<EntregaD
 {
     public void Configure(EntityTypeBuilder<EntregaDelExamen> builder)
     {
-        builder.ToTable("entregas_examen");
+        builder.ToTable("EntregasExamen");
         builder.HasKey(e => e.Id);
 
         builder.Property(e => e.IdExamen)
-            .HasColumnName("id_examen")
+            .HasColumnName("IdExamen")
             .IsRequired();
         
         builder.HasOne<Examen>()
@@ -24,7 +24,7 @@ internal class EntregaDelExamenConfiguration : IEntityTypeConfiguration<EntregaD
             .HasForeignKey(e => e.IdExamen);
 
         builder.Property(e => e.IdInscripcionEstudiante)
-            .HasColumnName("id_inscripcion_estudiante")
+            .HasColumnName("IdInscripcionEstudiante")
             .IsRequired();
         
         builder.HasOne<Inscripcion>()
@@ -32,25 +32,25 @@ internal class EntregaDelExamenConfiguration : IEntityTypeConfiguration<EntregaD
             .HasForeignKey(e => e.IdInscripcionEstudiante);
 
         builder.Property(e => e.Tipo)
-            .HasColumnName("tipo")
+            .HasColumnName("Tipo")
             .HasConversion<int>()
             .IsRequired();
 
         builder.Property(e => e.Respuesta)
-            .HasColumnName("respuesta")
+            .HasColumnName("Respuesta")
             .HasMaxLength(4000)
             .IsRequired();
 
         builder.Property(e => e.FechaEntregado)
-            .HasColumnName("fecha_entregado")
+            .HasColumnName("FechaEntregado")
             .IsRequired();
 
         builder.Property(e => e.ComentarioDocente)
-            .HasColumnName("comentario_docente")
+            .HasColumnName("ComentarioDocente")
             .HasMaxLength(2000);
 
         builder.Property(e => e.Nota)
-            .HasColumnName("nota")
+            .HasColumnName("Nota")
             .HasConversion(
                 nota => nota == null ? (decimal?)null : nota.Valor,
                 valor => valor.HasValue ? new Nota(valor.Value) : null);

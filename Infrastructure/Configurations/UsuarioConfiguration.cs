@@ -12,35 +12,35 @@ internal class UsuarioConfiguration : IEntityTypeConfiguration<Usuario>
 {
     public void Configure(EntityTypeBuilder<Usuario> builder)
     {
-        builder.ToTable("usuarios");
+        builder.ToTable("Usuarios");
         builder.HasKey(u => u.Id);
-        builder.Property(u => u.Nombre).HasColumnName("nombre").HasMaxLength(50).IsRequired();
-        builder.Property(u => u.Apellido).HasColumnName("apellido").HasMaxLength(100).IsRequired();
+        builder.Property(u => u.Nombre).HasColumnName("Nombre").HasMaxLength(50).IsRequired();
+        builder.Property(u => u.Apellido).HasColumnName("Apellido").HasMaxLength(100).IsRequired();
 
         builder.OwnsOne(u => u.Direccion, direccion =>
         {
             direccion.Property(d => d.Pais)
-                .HasColumnName("pais")
+                .HasColumnName("Pais")
                 .HasMaxLength(100)
                 .IsRequired();
 
             direccion.Property(d => d.Ciudad)
-                .HasColumnName("ciudad")
+                .HasColumnName("Ciudad")
                 .HasMaxLength(100)
                 .IsRequired();
 
             direccion.Property(d => d.Calle)
-                .HasColumnName("calle")
+                .HasColumnName("Calle")
                 .HasMaxLength(150)
                 .IsRequired();
 
             direccion.Property(d => d.Altura)
-                .HasColumnName("altura")
+                .HasColumnName("Altura")
                 .IsRequired();
         });
 
         builder.Property(u => u.Email)
-            .HasColumnName("email")
+            .HasColumnName("Email")
             .HasMaxLength(150)
             .HasConversion(
                 email => email.valorEmail,
@@ -48,15 +48,15 @@ internal class UsuarioConfiguration : IEntityTypeConfiguration<Usuario>
             .IsRequired();
 
         builder.Property(u => u.Contraseña)
-            .HasColumnName("contraseña")
+            .HasColumnName("Contrasea")
             .HasMaxLength(255)
             .HasConversion(
-                contraseña => contraseña.ValorContraseña,
+                contrasea => contrasea.ValorContraseña,
                 valor => Contraseña.CrearContraseña(valor))
             .IsRequired();
         
         builder.Property(u => u.Dni)
-            .HasColumnName("dni")
+            .HasColumnName("Dni")
             .HasMaxLength(20)
             .HasConversion(
                 dni => dni.Valor,
@@ -64,22 +64,22 @@ internal class UsuarioConfiguration : IEntityTypeConfiguration<Usuario>
             .IsRequired();
 
         //Distinguimos subtipos de usuario mediante un discriminator
-        builder.HasDiscriminator<Roles>("rol")
+        builder.HasDiscriminator<Roles>("Rol")
             .HasValue<Estudiante>(Roles.Estudiante)
             .HasValue<Profesor>(Roles.Profesor);
         
-        //Casteamos el enum a string para que sea más legible en la base de datos
+        //Casteamos el enum a string para que sea ms legible en la base de datos
         builder
-            .Property("rol")
+            .Property("Rol")
             .HasConversion<string>();
 
         builder.Property(u => u.FechaRegistro)
-            .HasColumnName("fecha_registro")
+            .HasColumnName("FechaRegistro")
             .HasDefaultValueSql("CURRENT_TIMESTAMP")
             .IsRequired();
         
         builder.Property("Especialidad")
-            .HasColumnName("especialidad")
+            .HasColumnName("Especialidad")
             .HasMaxLength(100)
             .IsRequired(false);
         

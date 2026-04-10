@@ -10,11 +10,11 @@ internal class AsistenciaConfiguration : IEntityTypeConfiguration<Asistencia>
 {
     public void Configure(EntityTypeBuilder<Asistencia> builder)
     {
-        builder.ToTable("asistencias");
+        builder.ToTable("Asistencias");
         builder.HasKey(a => a.Id);
 
         builder.Property(a => a.IdInscripcionEstudiante)
-            .HasColumnName("id_inscripcion_estudiante")
+            .HasColumnName("IdInscripcionEstudiante")
             .IsRequired();
         
         builder.HasOne<Inscripcion>()
@@ -22,7 +22,7 @@ internal class AsistenciaConfiguration : IEntityTypeConfiguration<Asistencia>
             .HasForeignKey(a => a.IdInscripcionEstudiante);
 
         builder.Property(a => a.IdClase)
-            .HasColumnName("id_clase")
+            .HasColumnName("IdClase")
             .IsRequired();
         
         builder.HasOne<Clase>()
@@ -30,7 +30,7 @@ internal class AsistenciaConfiguration : IEntityTypeConfiguration<Asistencia>
             .HasForeignKey(a => a.IdClase);
 
         builder.Property(a => a.Presente)
-            .HasColumnName("presente")
+            .HasColumnName("Presente")
             .IsRequired();
     }
 }
