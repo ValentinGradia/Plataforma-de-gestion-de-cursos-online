@@ -31,10 +31,10 @@ internal class DesinscribirEstudianteCommandHandler(IUnitOfWork unitOfWork, ICur
 
         try
         {
-            estudiante.DesinscribirDeCurso(request.IdCurso);
             inscripcionService.DesinscribirEstudiante(inscripcion, curso);
-            await _estudianteRepository.ActualizarCursosActivosAsync(estudiante, cancellationToken);
+            await _estudianteRepository.ActualizarCursosActivosAInactivosAsync(inscripcion.Id, cancellationToken);
 
+            await cursoRepository.ActualizarAsync(curso, cancellationToken);
             await unitOfWork.SaveChangesAsync(cancellationToken);
             return Result.Success();
         }

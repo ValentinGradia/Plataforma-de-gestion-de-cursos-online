@@ -150,5 +150,5 @@ public class ClaseController(ISender sender) : ControllerBase
             ? (result.Data is null ? Ok("La operación fue exitosa.") : Ok(result.Data))
             : BadRequest(result.ErrorMessage);
     }
-    
+
 }

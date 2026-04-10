@@ -67,11 +67,22 @@ internal class UsuarioConfiguration : IEntityTypeConfiguration<Usuario>
         builder.HasDiscriminator<Roles>("rol")
             .HasValue<Estudiante>(Roles.Estudiante)
             .HasValue<Profesor>(Roles.Profesor);
+        
+        //Casteamos el enum a string para que sea más legible en la base de datos
+        builder
+            .Property("rol")
+            .HasConversion<string>();
 
         builder.Property(u => u.FechaRegistro)
             .HasColumnName("fecha_registro")
             .HasDefaultValueSql("CURRENT_TIMESTAMP")
             .IsRequired();
+        
+        builder.Property("Especialidad")
+            .HasColumnName("especialidad")
+            .HasMaxLength(100)
+            .IsRequired(false);
+        
 
         // La propiedad Especialidad se configura en ProfesorConfiguration.
     }

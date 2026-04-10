@@ -16,6 +16,8 @@ public class EntregaDelExamen : Entity
     public Nota? Nota { get; private set; }
     public DateTime FechaEntregado { get; private set; }
     public string? ComentarioDocente { get; private set; }
+    
+    private EntregaDelExamen() : base() { }
 
     private EntregaDelExamen(Guid idExamen, Guid estudianteIdInscripcion, TipoExamen tipo , string respuesta) : base(Guid.NewGuid())
     {

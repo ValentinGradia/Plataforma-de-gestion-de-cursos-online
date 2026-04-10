@@ -12,16 +12,10 @@ public class Consulta : Entity
     public DateTime FechaConsulta { get; private set; }
 
     // Constructor para mapeo/serialización (p. ej. Dapper). Mantenerlo privado para uso interno.
-    private Consulta() : base(default)
-    {
-        IdClase = default;
-        IdEstudiante = default;
-        Titulo = string.Empty;
-        Descripcion = string.Empty;
-        FechaConsulta = default;
-    }
+    private Consulta() : base(){}
 
-    // Constructor para crear una nueva consulta desde el código de dominio
+
+// Constructor para crear una nueva consulta desde el código de dominio
     public Consulta(Guid idClase, Guid idEstudiante, string titulo, string descripcion, DateTime fechaConsulta)
         : base(Guid.NewGuid())
     {

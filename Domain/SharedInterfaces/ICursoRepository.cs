@@ -21,6 +21,8 @@ public interface ICursoRepository : IRepository<Curso>
     Task<Examen?> ObtenerExamenPorIdAsync(Guid idExamen, CancellationToken cancellationToken);
     Task InsertarExamenAsync(Examen examen, CancellationToken cancellationToken);
     Task ActualizarExamenAsync(Examen examen, CancellationToken cancellationToken);
+    Task CrearInscripcionAsync(Inscripcion inscripcion, CancellationToken cancellationToken);
+    Task ActualizarInscripcionAsync(Inscripcion inscripcion, CancellationToken cancellationToken);
 
     Task<EntregaDelExamen?> ObtenerEntregaExamenPorIdAsync(Guid idEntrega, CancellationToken cancellationToken);
     Task InsertarEntregaExamenAsync(EntregaDelExamen entrega, Guid idExamen, CancellationToken cancellationToken);

@@ -1,6 +1,7 @@
 using System.Data;
 using Dapper;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage; // Para GetDbTransaction()
 using PlataformaDeGestionDeCursosOnline.Application.DTOs;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Clases;
@@ -35,8 +36,11 @@ public class CursoRepository(ApplicationDbContext dbContext) : Repository<Curso>
                         Temario = @Temario,
                         Estado = @Estado,
                         FechaInicio = @FechaInicio,
-                        FechaFin = @FechaFin
+                        FechaFin = @FechaFin,
+                        IdProfesor = @IdProfesor
                     WHERE Id = @Id";
+
+        var transaction = DbContext.Database.CurrentTransaction?.GetDbTransaction();
 
         await connection.ExecuteAsync(new CommandDefinition(
             sql,
@@ -47,8 +51,47 @@ public class CursoRepository(ApplicationDbContext dbContext) : Repository<Curso>
                 Temario    = curso.Temario,
                 Estado     = curso.Estado,
                 FechaInicio = curso.Duracion.Inicio,
-                FechaFin    = curso.Duracion.Fin
+                FechaFin    = curso.Duracion.Fin,
+                IdProfesor = curso.IdProfesor
             },
+            transaction: transaction,
+            cancellationToken: cancellationToken
+        ));
+
+        foreach (var clase in curso._clases.ToList())
+        {
+            await ActualizarClaseAsync(clase, cancellationToken);
+        }
+
+        foreach (var examen in curso._examenes.ToList())
+        {
+            await ActualizarExamenAsync(examen, cancellationToken);
+        }
+
+        foreach (var inscripcion in curso.Inscripciones.ToList())
+        {
+            await ActualizarInscripcionAsync(inscripcion, cancellationToken);
+        }
+        
+    }
+
+    public async Task ActualizarInscripcionAsync(Inscripcion inscripcion, CancellationToken cancellationToken)
+    {
+        using var connection = DbContext.Database.GetDbConnection();
+        var sql = @"UPDATE Inscripciones 
+                    SET Activa = @Activa, 
+                        PorcentajeAsistencia = @PorcentajeAsistencia
+                    WHERE Id = @Id";
+
+        await connection.ExecuteAsync(new CommandDefinition(
+            sql,
+            new
+            {
+                Id = inscripcion.Id,
+                Activa = inscripcion.Activa,
+                PorcentajeAsistencia = inscripcion.porcentajeAsistencia
+            },
+            transaction: DbContext.Database.CurrentTransaction?.GetDbTransaction(),
             cancellationToken: cancellationToken
         ));
     }
@@ -475,6 +518,26 @@ public class CursoRepository(ApplicationDbContext dbContext) : Repository<Curso>
                 TipoExamen = examen.Tipo,
                 TemaExamen = examen.TemaExamen,
                 FechaLimiteDeEntrega = examen.FechaLimiteDeEntrega
+            },
+            cancellationToken: cancellationToken));
+    }
+
+    public async Task CrearInscripcionAsync(Inscripcion inscripcion, CancellationToken cancellationToken)
+    {
+        using var connection = DbContext.Database.GetDbConnection();
+        const string sql = @"INSERT INTO Inscripciones (Id, IdEstudiante, IdCurso, FechaInscripcion, Activa, PorcentajeAsistencia)
+                             VALUES (@Id, @IdEstudiante, @IdCurso, @FechaInscripcion, @Activa, @PorcentajeAsistencia)";
+
+        await connection.ExecuteAsync(new CommandDefinition(
+            sql,
+            new
+            {
+                Id = inscripcion.Id,
+                IdEstudiante = inscripcion.IdEstudiante,
+                IdCurso = inscripcion.IdCurso,
+                FechaInscripcion = inscripcion.FechaInscripcion,
+                Activa = inscripcion.Activa,
+                PorcentajeAsistencia = inscripcion.porcentajeAsistencia
             },
             cancellationToken: cancellationToken));
     }

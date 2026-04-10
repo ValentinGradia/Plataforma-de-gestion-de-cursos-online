@@ -17,8 +17,8 @@ internal class ActualizarDuracionCommandHandler(ICursoRepository cursoRepository
 
         curso!.ActualizarDuracion(request.NuevaDuracion);
 
+        await cursoRepository.ActualizarAsync(curso, cancellationToken);
         await _unitOfWork.SaveChangesAsync();
         return Result.Success();
     }
 }
-

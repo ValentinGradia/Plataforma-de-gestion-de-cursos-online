@@ -9,13 +9,57 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4cca0346-ece8-48e6-a84f-8553af71af3a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Presentation/Controllers/Encuestas/EncuestaController.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Presentation/Controllers/Estudiantes/EstudianteController.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Presentation/Controllers/Examenes/ExamenController.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Presentation/Controllers/Inscripciones/InscripcionController.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Presentation/Controllers/Profesores/ProfesorController.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Presentation/Controllers/Usuarios/UsuarioController.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Presentation/Extensions/ApplicationBuilderExtensions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.PlataformaDeGestionDeCursosOnline/.idea/copilotDiffState.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PlataformaDeGestionDeCursosOnline/.idea/copilotDiffState.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.PlataformaDeGestionDeCursosOnline/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PlataformaDeGestionDeCursosOnline/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/Commands/Cursos/DarDeBajaEstudianteCommand.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/Handlers/Commands/Cursos/ActualizarDuracionCommandHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/Handlers/Commands/Cursos/ActualizarDuracionCommandHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/Handlers/Commands/Cursos/ActualizarTemarioCommandHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/Handlers/Commands/Cursos/ActualizarTemarioCommandHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/Handlers/Commands/Cursos/CambiarProfesorCommandHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/Handlers/Commands/Cursos/CambiarProfesorCommandHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/Handlers/Commands/Cursos/DarDeBajaEstudianteCommandHandler.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/Handlers/Commands/Cursos/DesinscribirEstudianteCommandHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/Handlers/Commands/Cursos/DesinscribirEstudianteCommandHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/Handlers/Commands/Cursos/FinalizarCursoCommandHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/Handlers/Commands/Cursos/FinalizarCursoCommandHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/Handlers/Commands/Cursos/InscribirEstudianteACursoCommandHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/Handlers/Commands/Cursos/InscribirEstudianteACursoCommandHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/Handlers/Commands/Examenes/SubirModeloExamenCommandHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/Handlers/Commands/Examenes/SubirModeloExamenCommandHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/Validators/Cursos/DarDeBajaEstudianteCommandValidator.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Domain/Abstractions/Entity.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/Abstractions/Entity.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Domain/Entities/Clases/Asistencia.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/Entities/Clases/Asistencia.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Domain/Entities/Clases/Clase.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/Entities/Clases/Clase.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Domain/Entities/Clases/Consulta.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/Entities/Clases/Consulta.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Domain/Entities/Cursos/Curso.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/Entities/Cursos/Curso.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Domain/Entities/Encuestas/Encuesta.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/Entities/Encuestas/Encuesta.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Domain/Entities/Estudiantes/Estudiante.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/Entities/Estudiantes/Estudiante.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Domain/Entities/Examenes/EntregaDelExamen.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/Entities/Examenes/EntregaDelExamen.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Domain/Entities/Examenes/Examen.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/Entities/Examenes/Examen.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Domain/Entities/Inscripciones/Inscripcion.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/Entities/Inscripciones/Inscripcion.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Domain/Entities/Profesores/Profesor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/Entities/Profesores/Profesor.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Domain/Entities/Usuarios/Usuario.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/Entities/Usuarios/Usuario.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Domain/SharedInterfaces/ICursoRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/SharedInterfaces/ICursoRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Domain/SharedInterfaces/IEstudianteRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/SharedInterfaces/IEstudianteRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Infrastructure/ApplicationDbContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastructure/ApplicationDbContext.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Infrastructure/Configurations/InscripcionConfiguration.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastructure/Configurations/InscripcionConfiguration.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Infrastructure/Configurations/ProfesorConfiguration.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Infrastructure/Configurations/UsuarioConfiguration.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastructure/Configurations/UsuarioConfiguration.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Infrastructure/Data/Repositories/CursoRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastructure/Data/Repositories/CursoRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Infrastructure/Data/Repositories/EstudianteRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastructure/Data/Repositories/EstudianteRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Presentation/Controllers/Clases/ClaseController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Presentation/Controllers/Clases/ClaseController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Presentation/Controllers/Cursos/CursoController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Presentation/Controllers/Cursos/CursoController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Presentation/Presentation.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Presentation/Presentation.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Presentation/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Presentation/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Presentation/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/Presentation/appsettings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Presentation/obj/Presentation.csproj.nuget.dgspec.json" beforeDir="false" afterPath="$PROJECT_DIR$/Presentation/obj/Presentation.csproj.nuget.dgspec.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Presentation/obj/Presentation.csproj.nuget.g.props" beforeDir="false" afterPath="$PROJECT_DIR$/Presentation/obj/Presentation.csproj.nuget.g.props" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Presentation/obj/Presentation.csproj.nuget.g.targets" beforeDir="false" afterPath="$PROJECT_DIR$/Presentation/obj/Presentation.csproj.nuget.g.targets" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Presentation/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/Presentation/obj/project.assets.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Presentation/obj/project.nuget.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Presentation/obj/project.nuget.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net8.0/PlataformaDeGestionDeCursosOnline.dll" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/net8.0/PlataformaDeGestionDeCursosOnline.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net8.0/PlataformaDeGestionDeCursosOnline.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/net8.0/PlataformaDeGestionDeCursosOnline.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/PlataformaDeGestionDeCursosOnline.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net8.0/PlataformaDeGestionDeCursosOnline.csproj.CoreCompileInputs.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/PlataformaDeGestionDeCursosOnline.dll" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net8.0/PlataformaDeGestionDeCursosOnline.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/PlataformaDeGestionDeCursosOnline.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net8.0/PlataformaDeGestionDeCursosOnline.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/PlataformaDeGestionDeCursosOnline.sourcelink.json" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net8.0/PlataformaDeGestionDeCursosOnline.sourcelink.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/ref/PlataformaDeGestionDeCursosOnline.dll" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net8.0/ref/PlataformaDeGestionDeCursosOnline.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/refint/PlataformaDeGestionDeCursosOnline.dll" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net8.0/refint/PlataformaDeGestionDeCursosOnline.dll" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -194,6 +238,7 @@
     <setting file="file://$PROJECT_DIR$/Presentation/Controllers/Inscripciones/InscripcionController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Presentation/Controllers/Profesores/ProfesorController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Presentation/Controllers/Usuarios/UsuarioController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Presentation/Extensions/ApplicationBuilderExtensions.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProblemsViewState">
@@ -224,7 +269,7 @@
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.intellij.platform.ide.impl.presentationAssistant.PresentationAssistantConfigurable&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -321,7 +366,9 @@
       <workItem from="1775008606437" duration="7131000" />
       <workItem from="1775029683277" duration="3493000" />
       <workItem from="1775481800460" duration="17340000" />
-      <workItem from="1775599031334" duration="6500000" />
+      <workItem from="1775599031334" duration="12228000" />
+      <workItem from="1775658475874" duration="5800000" />
+      <workItem from="1775785952984" duration="1444000" />
     </task>
     <servers />
   </component>

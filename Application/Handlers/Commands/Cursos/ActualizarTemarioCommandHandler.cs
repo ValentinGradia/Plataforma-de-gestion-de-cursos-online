@@ -16,8 +16,9 @@ internal class ActualizarTemarioCommandHandler(ICursoRepository cursoRepository,
         
         curso!.ActualizarTemario(request.Temario);
 
+        await cursoRepository.ActualizarAsync(curso, cancellationToken);
         await _unitOfWork.SaveChangesAsync();
+
         return Result.Success();
     }
 }
-

@@ -28,6 +28,8 @@ public abstract class Usuario : Entity
     
     public Roles Rol { get; protected set; }
     
+    private Usuario() : base() { }
+    
     protected Usuario(
         string pais,
         string ciudad,

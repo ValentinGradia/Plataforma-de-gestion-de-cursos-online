@@ -25,6 +25,8 @@ public class Clase : Entity
     public IReadOnlyCollection<Asistencia> Asistencias => this._asistencias;
     
     public  List<Consulta> _consultas { get; private set; } 
+    
+    private Clase() : base() { }
 
     private Clase(Guid Idcurso, string material) : base(Guid.NewGuid())
     {

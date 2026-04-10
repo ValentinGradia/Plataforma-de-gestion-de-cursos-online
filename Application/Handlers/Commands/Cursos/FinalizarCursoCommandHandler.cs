@@ -3,6 +3,7 @@ using PlataformaDeGestionDeCursosOnline.Application.Commands.Cursos;
 using PlataformaDeGestionDeCursosOnline.Domain.Abstractions;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Cursos;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Estudiantes;
+using PlataformaDeGestionDeCursosOnline.Domain.Entities.Inscripciones;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Profesores;
 using PlataformaDeGestionDeCursosOnline.Domain.GlobalInterfaces;
 
@@ -21,21 +22,15 @@ internal class FinalizarCursoCommandHandler(
         Curso? curso = await cursoRepository.ObtenerPorIdAsync(request.IdCurso, cancellationToken);
         if (curso is null)
             return Result.Failure(new Exception("No se encontró el curso con el ID proporcionado."));
+        
 
-        // 2. Obtener todos los estudiantes inscritos en el curso
-        List<Estudiante> estudiantes = await cursoRepository.ObtenerEstudiantesInscriptosEnCurso(request.IdCurso, cancellationToken);
-
-        // 3. Para cada estudiante: mover el curso de inscritosActualmente -> historialDeCursos
-        foreach (Estudiante estudiante in estudiantes)
+        // 2. Para cada inscripcion: mover el inscripcion a inactiva 
+        foreach (Inscripcion inscripcion in curso.Inscripciones)
         {
-            estudiante.CompletarCurso(request.IdCurso);
-
-            // Sincronizar ambas tablas en BD
-            await estudianteRepository.ActualizarCursosActivosAsync(estudiante, cancellationToken);
-            await estudianteRepository.ActualizarHistorialCursosAsync(estudiante, cancellationToken);
+            await estudianteRepository.ActualizarCursosActivosAInactivosAsync(inscripcion.IdCurso, cancellationToken);
         }
 
-        // 4. Obtener el profesor y eliminar el curso de su lista de cursos a cargo
+        // 3. Obtener el profesor y eliminar el curso de su lista de cursos a cargo
         Profesor? profesor = await profesorRepository.ObtenerPorIdAsync(curso.IdProfesor, cancellationToken);
 
         profesor.EliminarCursoACargo(request.IdCurso);
@@ -43,6 +38,7 @@ internal class FinalizarCursoCommandHandler(
         // 5. Finalizar el curso
         curso.FinalizarCurso();
 
+        await cursoRepository.ActualizarAsync(curso, cancellationToken);
         await unitOfWork.SaveChangesAsync(cancellationToken);
         return Result.Success();
     }

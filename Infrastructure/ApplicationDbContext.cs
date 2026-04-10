@@ -18,6 +18,7 @@ public class ApplicationDbContext : DbContext, IUnitOfWork
 
     // Aplicamos las configuraciones de nuestras entidades utilizando el método ApplyConfigurationsFromAssembly,
     // que busca todas las clases que implementan IEntityTypeConfiguration en el ensamblado actual y las aplica automáticamente.
+    //En nuestro caso iria a buscar los archivos de configuration de cada entidad.
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);
@@ -29,7 +30,9 @@ public class ApplicationDbContext : DbContext, IUnitOfWork
     {
         try
         {
-            var result = await base.SaveChangesAsync(cancellationToken); //Confirmamos todas las transacciones que estan en memorio
+            var result = await base.SaveChangesAsync(cancellationToken); //Confirmamos todas las transacciones que estan en memoria
+            //Aca el EF core se encarga de inspeccionar el Change Tracker (rastreador de cambios) para detectar todas las entidades que han sido modificadas,
+            //agregadas o eliminadas durante la transacción.
             
             await PublishDomainEventsAsync(); //Publicamos los eventos de dominio que se hayan generado durante la transacción
             

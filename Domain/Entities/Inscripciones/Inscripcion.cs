@@ -19,15 +19,12 @@ public class Inscripcion : Entity
     public Guid IdCurso { get; private set; }
     public DateTime FechaInscripcion { get; private set; }
     public bool Activa { get; private set; }
-    private readonly List<EntregaDelExamen> _historialEntregas;
-    private readonly List<Asistencia> _asistenciasDelEstudiante;
+    private readonly List<EntregaDelExamen> _historialEntregas = new List<EntregaDelExamen>();
+    private readonly List<Asistencia> _asistenciasDelEstudiante = new List<Asistencia>();
     public double porcentajeAsistencia { get; private set; }
     
-    public Inscripcion() : base(Guid.NewGuid())
-    {
-        this._historialEntregas = new List<EntregaDelExamen>();
-        this._asistenciasDelEstudiante = new List<Asistencia>();
-    }
+    private Inscripcion() : base() {}
+    
 
     // Constructor interno para reconstrucción desde BD
     private Inscripcion(Guid id, Guid idEstudiante, Guid idCurso, DateTime fechaInscripcion, bool activa, double porcentajeAsistencia, List<EntregaDelExamen>? entregas,

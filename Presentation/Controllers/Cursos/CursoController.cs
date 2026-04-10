@@ -124,22 +124,7 @@ public class CursoController(ISender sender) : ControllerBase
             ? (result.Data is null ? Ok("La operación fue exitosa.") : Ok(result.Data))
             : BadRequest(result.ErrorMessage);
     }
-
-    [HttpPost("dar-de-baja-estudiante")]
-    public async Task<IActionResult> DarDeBajaEstudiante([FromBody] DarDeBajaEstudianteCommand? command)
-    {
-        if (command is null)
-            return BadRequest("Request body is required.");
-
-        if (command.IdCurso == Guid.Empty || command.IdEstudiante == Guid.Empty)
-            return BadRequest("IdCurso o IdEstudiante inválido.");
-
-        var result = await sender.Send(command);
-
-        return result.IsSuccess
-            ? (result.Data is null ? Ok("La operación fue exitosa.") : Ok(result.Data))
-            : BadRequest(result.ErrorMessage);
-    }
+    
 
     [HttpPost("desinscribir-estudiante")]
     public async Task<IActionResult> DesinscribirEstudiante([FromBody] DesinscribirEstudiante? command)

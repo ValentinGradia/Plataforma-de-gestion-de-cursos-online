@@ -10,7 +10,7 @@ internal class InscripcionConfiguration : IEntityTypeConfiguration<Inscripcion>
 {
     public void Configure(EntityTypeBuilder<Inscripcion> builder)
     {
-        builder.ToTable("inscripciones");
+        builder.ToTable("Inscripciones");
         builder.HasKey(i => i.Id);
 
         builder.Property(i => i.IdEstudiante)

@@ -10,12 +10,6 @@ namespace PlataformaDeGestionDeCursosOnline.Domain.Entities.Estudiantes;
 public class Estudiante : Usuario 
 {
     
-    private List<Guid?> _cursosInscritosActualmente = new List<Guid?>();
-    private List<Guid?> _historialDeCursos = new List<Guid?>();
-    
-    
-    public ReadOnlyCollection<Guid?> CursosInscritosActualmente => _cursosInscritosActualmente.AsReadOnly();
-    public ReadOnlyCollection<Guid?> HistorialDeCursos => _historialDeCursos.AsReadOnly();
 
     public Estudiante(string pais, string ciudad, string calle, int altura, string email, string contraseña, string dni, string nombre, string apellido) : base(pais, ciudad, calle, altura, email, contraseña, dni, nombre, apellido, Roles.Estudiante)
     {
@@ -51,26 +45,5 @@ public class Estudiante : Usuario
         );
     }
     
-    public void InscribirEnCurso(Guid cursoId)
-    {
-        if (_cursosInscritosActualmente.Contains(cursoId))
-            throw new InvalidOperationException("Ya está inscrito en este curso.");
-
-        _cursosInscritosActualmente.Add(cursoId);
-    }
-    
-    public void DesinscribirDeCurso(Guid cursoId)
-    {
-        if (!_cursosInscritosActualmente.Contains(cursoId))
-            throw new InvalidOperationException("No está inscrito en este curso.");
-
-        _cursosInscritosActualmente.Remove(cursoId);
-    }
-
-    public void CompletarCurso(Guid cursoId)
-    {
-        _cursosInscritosActualmente.Remove(cursoId);
-        _historialDeCursos.Add(cursoId);
-    }
 
 }

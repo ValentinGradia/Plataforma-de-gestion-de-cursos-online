@@ -16,6 +16,8 @@ public class Asistencia : Entity
         Presente = presente;
     }
     
+    private Asistencia():base(){}
+    
     // Constructor interno para reconstrucción desde BD
     private Asistencia(Guid id,Guid idClase ,Guid idInscripcionEstudiante, bool presente) : base(id)
     {

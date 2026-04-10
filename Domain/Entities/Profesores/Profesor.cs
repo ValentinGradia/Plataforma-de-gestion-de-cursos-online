@@ -97,6 +97,5 @@ public sealed class Profesor : Usuario
     {
         CursosQueEstaACargo.Remove(idCurso);
     }
-
-    public IReadOnlyCollection<Guid> ObtenerCursosACargo() => CursosQueEstaACargo.AsReadOnly();
+    
 }

@@ -109,67 +109,26 @@ public class EstudianteRepository(ApplicationDbContext dbContext) : Repository<E
         return rows.Select(row => Estudiante.ReconstruirEstudiante(row)).Cast<Estudiante>().ToList();
     }
 
-    public async Task ActualizarCursosActivosAsync(Estudiante estudiante, CancellationToken cancellationToken)
+    public async Task ActualizarCursosActivosAInactivosAsync(Guid idInscripcion, CancellationToken cancellationToken)
     {
         using var connection = DbContext.Database.GetDbConnection();
 
         // Eliminar todos los cursos activos actuales del estudiante
-        const string sqlEliminar = @"DELETE FROM EstudianteCursosActivos 
-                                     WHERE IdEstudiante = @IdEstudiante";
+        const string sqlActualizar = @"UPDATE Inscripciones SET activa = FALSE  
+                                     WHERE id = @IdInscripcion ";
 
         await connection.ExecuteAsync(new CommandDefinition(
-            sqlEliminar,
-            new { IdEstudiante = estudiante.Id },
+            sqlActualizar,
+            new { IdInscripcion = idInscripcion },
             cancellationToken: cancellationToken
         ));
-
-        // Insertar el estado actual de cursos activos
-        const string sqlInsertar = @"INSERT INTO EstudianteCursosActivos (IdEstudiante, IdCurso) 
-                                     VALUES (@IdEstudiante, @IdCurso)";
-
-        foreach (var cursoId in estudiante.CursosInscritosActualmente)
-        {
-            await connection.ExecuteAsync(new CommandDefinition(
-                sqlInsertar,
-                new { IdEstudiante = estudiante.Id, IdCurso = cursoId },
-                cancellationToken: cancellationToken
-            ));
-        }
     }
-
-    public async Task ActualizarHistorialCursosAsync(Estudiante estudiante, CancellationToken cancellationToken)
-    {
-        using var connection = DbContext.Database.GetDbConnection();
-
-        // Eliminar el historial actual del estudiante
-        const string sqlEliminar = @"DELETE FROM EstudianteHistorialCursos 
-                                     WHERE IdEstudiante = @IdEstudiante";
-
-        await connection.ExecuteAsync(new CommandDefinition(
-            sqlEliminar,
-            new { IdEstudiante = estudiante.Id },
-            cancellationToken: cancellationToken
-        ));
-
-        // Insertar el estado actual del historial
-        const string sqlInsertar = @"INSERT INTO EstudianteHistorialCursos (IdEstudiante, IdCurso) 
-                                     VALUES (@IdEstudiante, @IdCurso)";
-
-        foreach (var cursoId in estudiante.HistorialDeCursos)
-        {
-            await connection.ExecuteAsync(new CommandDefinition(
-                sqlInsertar,
-                new { IdEstudiante = estudiante.Id, IdCurso = cursoId },
-                cancellationToken: cancellationToken
-            ));
-        }
-    }
-
+    
     public async Task<IEnumerable<Guid>> ObtenerCursosActivosDeEstudianteAsync(Guid idEstudiante, CancellationToken cancellationToken)
     {
         using var connection = DbContext.Database.GetDbConnection();
         
-        var sql = "SELECT IdCurso FROM EstudianteCursosActivos WHERE IdEstudiante = @IdEstudiante";
+        var sql = "SELECT IdCurso FROM Inscripciones WHERE IdEstudiante = @IdEstudiante AND Activa = TRUE";
 
         var cursosActivos = await connection.QueryAsync<Guid>(new CommandDefinition(
             sql,
@@ -183,7 +142,7 @@ public class EstudianteRepository(ApplicationDbContext dbContext) : Repository<E
     {
         using var connection = DbContext.Database.GetDbConnection();
         
-        var sql = "SELECT IdCurso FROM EstudianteHistorialCursos WHERE IdEstudiante = @IdEstudiante";
+        var sql = "SELECT IdCurso FROM Inscripciones WHERE IdEstudiante = @IdEstudiante";
 
         var historialDeCursos = await connection.QueryAsync<Guid>(new CommandDefinition(
             sql,

@@ -14,6 +14,8 @@ public class Examen : Entity
     public DateTime FechaLimiteDeEntrega { get; private set; }
     public DateTime FechaExamenCargado { get; private set; }
     public TipoExamen Tipo { get; private set; }
+    
+    private Examen() : base() {}
 
     private Examen(Guid idCurso ,TipoExamen tipoExamen ,string temaExamen, DateTime fechaLimiteDeEntrega) : base(Guid.NewGuid())
     {

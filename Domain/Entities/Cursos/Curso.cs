@@ -22,7 +22,7 @@ public class Curso : Entity, ICicloDeVidaDelCurso
     public DateRange Duracion { get; private set; }
     public string Nombre { get; private set; }
     public string Temario { get; private set; }
-    private readonly List<Examen> _examenes;
+    public readonly List<Examen> _examenes;
     public readonly List<Clase> _clases;
     private int limiteDeEstudiantes = 30;
     public int cantidadDeInscriptos => this._inscripcionesEstudiantes.Count;
@@ -35,6 +35,8 @@ public class Curso : Entity, ICicloDeVidaDelCurso
     {
         return this._inscripcionesEstudiantes.FirstOrDefault(i => i.IdEstudiante == idEstudiante);
     }
+    
+    private Curso() : base() { }
 
     private Curso(Guid profesorId, string temario, string nombre, DateTime inicio, DateTime fin) : base(
         Guid.NewGuid())

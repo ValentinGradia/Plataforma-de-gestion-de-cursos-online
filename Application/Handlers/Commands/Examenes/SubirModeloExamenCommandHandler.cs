@@ -33,6 +33,8 @@ internal class SubirModeloExamenCommandHandler : ICommandHandler<SubirModeloExam
         curso.CargarExamen(modeloExamen);
 
         await _cursos.InsertarExamenAsync(modeloExamen, cancellationToken);
+        await _cursos.ActualizarAsync(curso, cancellationToken);
+
         await _unitOfWork.SaveChangesAsync();
 
         return modeloExamen.Id;

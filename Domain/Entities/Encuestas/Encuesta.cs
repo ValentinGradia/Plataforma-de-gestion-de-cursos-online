@@ -13,6 +13,8 @@ public class Encuesta : Entity
     public Calificacion CalificacionDocente { get; private set; }
     public string Comentarios { get; private set; }
     public DateTime FechaCreacion { get; private set; }
+    
+    private Encuesta():base(){}
 
     private Encuesta(
         Guid cursoId,

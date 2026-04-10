@@ -16,10 +16,10 @@ internal class CambiarProfesorCommandHandler(ICursoRepository cursoRepository, I
         Curso? curso = await cursoRepository.ObtenerPorIdAsync(request.IdCurso, cancellationToken);
         
         
-        curso.CambiarProfesor(request.IdProfesor);
+        curso!.CambiarProfesor(request.IdProfesor);
 
+        await cursoRepository.ActualizarAsync(curso, cancellationToken);
         await _unitOfWork.SaveChangesAsync();
         return Result.Success();
     }
 }
-

@@ -4,6 +4,7 @@ using Microsoft.Extensions.Hosting;
 using PlataformaDeGestionDeCursosOnline.Application;
 using PlataformaDeGestionDeCursosOnline.Domain;
 using PlataformaDeGestionDeCursosOnline.Infrastructure;
+using PlataformaDeGestionDeCursosOnline.Presentation.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,6 +24,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
 }
 
+app.ApplyMigrations(); //Ejecutamos la migracion
 app.MapControllers();
 
 app.Run();
