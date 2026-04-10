@@ -1,9 +1,9 @@
 ﻿using PlataformaDeGestionDeCursosOnline.Domain.Abstractions;
-using PlataformaDeGestionDeCursosOnline.Domain.Entities.Cursos;
-using PlataformaDeGestionDeCursosOnline.Domain.Entities.Cursos.Events;
-using PlataformaDeGestionDeCursosOnline.Domain.Entities.Cursos.Notas;
+using PlataformaDeGestionDeCursosOnline.Domain.Entities.Examenes.Enums;
+using PlataformaDeGestionDeCursosOnline.Domain.Entities.Examenes.Events;
+using PlataformaDeGestionDeCursosOnline.Domain.Entities.Examenes.ObjectValues;
 
-namespace PlataformaDeGestionDeCursosOnline.Domain.Entities.Examenes.ObjectValues;
+namespace PlataformaDeGestionDeCursosOnline.Domain.Entities.Examenes;
 
 public class EntregaDelExamen : Entity
 {

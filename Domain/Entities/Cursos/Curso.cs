@@ -1,16 +1,16 @@
 ﻿using System.Runtime.CompilerServices;
 using PlataformaDeGestionDeCursosOnline.Domain.Abstractions;
+using PlataformaDeGestionDeCursosOnline.Domain.Entities.Clases;
+using PlataformaDeGestionDeCursosOnline.Domain.Entities.Clases.Enums;
+using PlataformaDeGestionDeCursosOnline.Domain.Entities.Cursos.Enums;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Cursos.Events;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Cursos.Exceptions;
-using PlataformaDeGestionDeCursosOnline.Domain.Entities.Cursos.Notas;
+using PlataformaDeGestionDeCursosOnline.Domain.Entities.Cursos.Interfaces;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Cursos.ObjectValues;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Encuestas;
-using PlataformaDeGestionDeCursosOnline.Domain.Entities.Enums;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Profesores;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Estudiantes;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Examenes;
-using PlataformaDeGestionDeCursosOnline.Domain.Entities.Examenes.ObjectValues;
-using PlataformaDeGestionDeCursosOnline.Domain.Entities.Exceptions;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Inscripciones;
 
 namespace PlataformaDeGestionDeCursosOnline.Domain.Entities.Cursos;

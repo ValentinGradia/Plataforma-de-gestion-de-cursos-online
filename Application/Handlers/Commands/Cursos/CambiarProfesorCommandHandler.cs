@@ -1,11 +1,10 @@
 using PlataformaDeGestionDeCursosOnline.Application.Abstractions.Messaging;
 using PlataformaDeGestionDeCursosOnline.Application.Commands.Cursos;
-using PlataformaDeGestionDeCursosOnline.Application.Cursos.InscribirEstudianteACurso;
 using PlataformaDeGestionDeCursosOnline.Domain.Abstractions;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Cursos;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Profesores;
-using PlataformaDeGestionDeCursosOnline.Domain.GlobalInterfaces;
 using PlataformaDeGestionDeCursosOnline.Application.Exceptions;
+using PlataformaDeGestionDeCursosOnline.Domain.SharedInterfaces;
 
 namespace PlataformaDeGestionDeCursosOnline.Application.Handlers.Commands.Cursos;
 

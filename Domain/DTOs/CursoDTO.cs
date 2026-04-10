@@ -1,8 +1,7 @@
-using PlataformaDeGestionDeCursosOnline.Domain.Entities.Cursos;
+using PlataformaDeGestionDeCursosOnline.Domain.Entities.Cursos.Enums;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Cursos.ObjectValues;
-using PlataformaDeGestionDeCursosOnline.Domain.Entities.Profesores;
 
-namespace PlataformaDeGestionDeCursosOnline.Application.DTOs;
+namespace PlataformaDeGestionDeCursosOnline.Domain.DTOs;
 
 public class CursoDTO
 {

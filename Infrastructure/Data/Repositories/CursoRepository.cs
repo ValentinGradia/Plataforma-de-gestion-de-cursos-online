@@ -1,21 +1,21 @@
 using System.Data;
 using Dapper;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Storage; // Para GetDbTransaction()
-using PlataformaDeGestionDeCursosOnline.Application.DTOs;
+using Microsoft.EntityFrameworkCore.Storage;
+using PlataformaDeGestionDeCursosOnline.Domain.DTOs; // Para GetDbTransaction()
 using PlataformaDeGestionDeCursosOnline.Domain.Entities;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Clases;
-using PlataformaDeGestionDeCursosOnline.Domain.Entities.Clases.ObjectValues;
+using PlataformaDeGestionDeCursosOnline.Domain.Entities.Clases.Enums;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Cursos;
-using PlataformaDeGestionDeCursosOnline.Domain.Entities.Cursos.Notas;
+using PlataformaDeGestionDeCursosOnline.Domain.Entities.Cursos.Enums;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Cursos.ObjectValues;
-using PlataformaDeGestionDeCursosOnline.Domain.Entities.Enums;
-using PlataformaDeGestionDeCursosOnline.Domain.GlobalInterfaces;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Estudiantes;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Examenes;
+using PlataformaDeGestionDeCursosOnline.Domain.Entities.Examenes.Enums;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Examenes.ObjectValues;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Inscripciones;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Profesores;
+using PlataformaDeGestionDeCursosOnline.Domain.SharedInterfaces;
 
 namespace PlataformaDeGestionDeCursosOnline.Infrastructure.Data.Repositories;
 

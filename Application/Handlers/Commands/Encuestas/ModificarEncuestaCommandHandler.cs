@@ -2,7 +2,7 @@ using PlataformaDeGestionDeCursosOnline.Application.Abstractions.Messaging;
 using PlataformaDeGestionDeCursosOnline.Application.Commands.Encuestas;
 using PlataformaDeGestionDeCursosOnline.Domain.Abstractions;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Encuestas;
-using PlataformaDeGestionDeCursosOnline.Domain.GlobalInterfaces;
+using PlataformaDeGestionDeCursosOnline.Domain.SharedInterfaces;
 
 namespace PlataformaDeGestionDeCursosOnline.Application.Handlers.Commands.Encuestas;
 

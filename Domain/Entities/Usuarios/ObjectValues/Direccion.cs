@@ -1,6 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-
-namespace PlataformaDeGestionDeCursosOnline.Domain.GlobalObjectValues;
+﻿namespace PlataformaDeGestionDeCursosOnline.Domain.Entities.Usuarios.ObjectValues;
 
 public record Direccion
 {

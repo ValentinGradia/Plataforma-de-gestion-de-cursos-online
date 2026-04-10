@@ -1,4 +1,4 @@
-﻿namespace PlataformaDeGestionDeCursosOnline.Domain.GlobalInterfaces;
+﻿namespace PlataformaDeGestionDeCursosOnline.Domain.SharedInterfaces;
 
 public interface IFactory<T>
 {

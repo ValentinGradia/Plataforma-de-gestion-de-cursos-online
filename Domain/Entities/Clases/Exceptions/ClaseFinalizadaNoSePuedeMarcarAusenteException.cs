@@ -1,4 +1,4 @@
-﻿namespace PlataformaDeGestionDeCursosOnline.Domain.Entities.Exceptions;
+﻿namespace PlataformaDeGestionDeCursosOnline.Domain.Entities.Clases.Exceptions;
 
 public class ClaseFinalizadaNoSePuedeMarcarPresenteException : Exception
 {

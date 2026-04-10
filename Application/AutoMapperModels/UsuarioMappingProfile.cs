@@ -1,5 +1,5 @@
 using AutoMapper;
-using PlataformaDeGestionDeCursosOnline.Application.DTOs;
+using PlataformaDeGestionDeCursosOnline.Domain.DTOs;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Usuarios;
 
 namespace PlataformaDeGestionDeCursosOnline.Application.AutoMapperModels;

@@ -1,7 +1,7 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using PlataformaDeGestionDeCursosOnline.Application.Abstractions.Messaging;
-using PlataformaDeGestionDeCursosOnline.Application.Commands.Examenes;
+using PlataformaDeGestionDeCursosOnline.Application.Commands.Cursos.Examenes;
 using PlataformaDeGestionDeCursosOnline.Application.Querys.Examenes;
 using PlataformaDeGestionDeCursosOnline.Domain.Abstractions;
 

@@ -1,11 +1,11 @@
 using PlataformaDeGestionDeCursosOnline.Application.Abstractions.Messaging;
-using PlataformaDeGestionDeCursosOnline.Application.Commands.Clases;
+using PlataformaDeGestionDeCursosOnline.Application.Commands.Cursos.Clases;
 using PlataformaDeGestionDeCursosOnline.Domain.Abstractions;
-using PlataformaDeGestionDeCursosOnline.Domain.Entities;
+using PlataformaDeGestionDeCursosOnline.Domain.Entities.Clases;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Cursos;
-using PlataformaDeGestionDeCursosOnline.Domain.GlobalInterfaces;
+using PlataformaDeGestionDeCursosOnline.Domain.SharedInterfaces;
 
-namespace PlataformaDeGestionDeCursosOnline.Application.Exceptions.Clases;
+namespace PlataformaDeGestionDeCursosOnline.Application.Handlers.Commands.Clases;
 
 internal class CrearClaseCommandHandler : ICommandHandler<CrearClaseCommand, Guid>
 {

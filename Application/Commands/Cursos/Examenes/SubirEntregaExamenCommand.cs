@@ -1,8 +1,7 @@
 ﻿using PlataformaDeGestionDeCursosOnline.Application.Abstractions.Messaging;
-using PlataformaDeGestionDeCursosOnline.Domain.Abstractions;
-using PlataformaDeGestionDeCursosOnline.Domain.Entities.Cursos;
+using PlataformaDeGestionDeCursosOnline.Domain.Entities.Examenes.Enums;
 
-namespace PlataformaDeGestionDeCursosOnline.Application.Commands.Examenes;
+namespace PlataformaDeGestionDeCursosOnline.Application.Commands.Cursos.Examenes;
 
 //Agregamos el ID del curso porque nosotros vamos a operar directamente sobre el curso
 //no sobre la inscripcion directamente. Entonces, para subir la entrega del examen, necesitamos

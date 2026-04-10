@@ -1,11 +1,11 @@
 using AutoMapper;
 using PlataformaDeGestionDeCursosOnline.Application.Abstractions.Messaging;
-using PlataformaDeGestionDeCursosOnline.Application.DTOs;
 using PlataformaDeGestionDeCursosOnline.Application.Querys.Usuarios;
 using PlataformaDeGestionDeCursosOnline.Domain.Abstractions;
-using PlataformaDeGestionDeCursosOnline.Domain.GlobalInterfaces;
 using PlataformaDeGestionDeCursosOnline.Domain;
+using PlataformaDeGestionDeCursosOnline.Domain.DTOs;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Usuarios;
+using PlataformaDeGestionDeCursosOnline.Domain.SharedInterfaces;
 
 namespace PlataformaDeGestionDeCursosOnline.Application.Handlers.Querys.Usuarios;
 

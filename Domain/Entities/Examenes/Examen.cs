@@ -1,7 +1,6 @@
 ﻿using PlataformaDeGestionDeCursosOnline.Domain.Abstractions;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Cursos;
-using PlataformaDeGestionDeCursosOnline.Domain.Entities.Cursos.Notas;
-using PlataformaDeGestionDeCursosOnline.Domain.Entities.Examenes.ObjectValues;
+using PlataformaDeGestionDeCursosOnline.Domain.Entities.Examenes.Enums;
 
 namespace PlataformaDeGestionDeCursosOnline.Domain.Entities.Examenes;
 

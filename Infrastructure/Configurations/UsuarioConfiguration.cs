@@ -3,8 +3,8 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Estudiantes;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Profesores;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Usuarios;
-using PlataformaDeGestionDeCursosOnline.Domain.Enum;
-using PlataformaDeGestionDeCursosOnline.Domain.GlobalObjectValues;
+using PlataformaDeGestionDeCursosOnline.Domain.Entities.Usuarios.Enums;
+using PlataformaDeGestionDeCursosOnline.Domain.Entities.Usuarios.ObjectValues;
 
 namespace PlataformaDeGestionDeCursosOnline.Infrastructure.Configurations;
 
@@ -44,7 +44,7 @@ internal class UsuarioConfiguration : IEntityTypeConfiguration<Usuario>
             .HasMaxLength(150)
             .HasConversion(
                 email => email.valorEmail,
-                valor => Email.CrearEmail(valor))
+                valor => Domain.Entities.Usuarios.ObjectValues.Email.CrearEmail(valor))
             .IsRequired();
 
         builder.Property(u => u.Contraseña)
@@ -78,7 +78,7 @@ internal class UsuarioConfiguration : IEntityTypeConfiguration<Usuario>
             .HasDefaultValueSql("CURRENT_TIMESTAMP")
             .IsRequired();
         
-        builder.Property("Especialidad")
+        builder.Property<string>("Especialidad")
             .HasColumnName("Especialidad")
             .HasMaxLength(100)
             .IsRequired(false);

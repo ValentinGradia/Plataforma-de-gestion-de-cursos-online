@@ -1,0 +1,11 @@
+C:\Users\valen\RiderProjects\Plataforma-de-gestion-de-cursos-online\Domain\bin\Debug\net10.0\Domain.deps.json
+C:\Users\valen\RiderProjects\Plataforma-de-gestion-de-cursos-online\Domain\bin\Debug\net10.0\Domain.dll
+C:\Users\valen\RiderProjects\Plataforma-de-gestion-de-cursos-online\Domain\bin\Debug\net10.0\Domain.pdb
+C:\Users\valen\RiderProjects\Plataforma-de-gestion-de-cursos-online\Domain\obj\Debug\net10.0\Domain.csproj.AssemblyReference.cache
+C:\Users\valen\RiderProjects\Plataforma-de-gestion-de-cursos-online\Domain\obj\Debug\net10.0\Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\valen\RiderProjects\Plataforma-de-gestion-de-cursos-online\Domain\obj\Debug\net10.0\Domain.csproj.CoreCompileInputs.cache
+C:\Users\valen\RiderProjects\Plataforma-de-gestion-de-cursos-online\Domain\obj\Debug\net10.0\Domain.sourcelink.json
+C:\Users\valen\RiderProjects\Plataforma-de-gestion-de-cursos-online\Domain\obj\Debug\net10.0\Domain.dll
+C:\Users\valen\RiderProjects\Plataforma-de-gestion-de-cursos-online\Domain\obj\Debug\net10.0\refint\Domain.dll
+C:\Users\valen\RiderProjects\Plataforma-de-gestion-de-cursos-online\Domain\obj\Debug\net10.0\Domain.pdb
+C:\Users\valen\RiderProjects\Plataforma-de-gestion-de-cursos-online\Domain\obj\Debug\net10.0\ref\Domain.dll

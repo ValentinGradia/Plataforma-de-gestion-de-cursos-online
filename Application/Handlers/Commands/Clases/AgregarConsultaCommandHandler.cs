@@ -1,15 +1,14 @@
 using PlataformaDeGestionDeCursosOnline.Application.Abstractions.Messaging;
-using PlataformaDeGestionDeCursosOnline.Application.Commands.Clases;
-using PlataformaDeGestionDeCursosOnline.Domain;
+using PlataformaDeGestionDeCursosOnline.Application.Commands.Cursos.Clases;
+using PlataformaDeGestionDeCursosOnline.Application.Exceptions;
 using PlataformaDeGestionDeCursosOnline.Domain.Abstractions;
-using PlataformaDeGestionDeCursosOnline.Domain.Entities;
+using PlataformaDeGestionDeCursosOnline.Domain.Entities.Clases;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Cursos;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Cursos.Exceptions;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Estudiantes;
-using PlataformaDeGestionDeCursosOnline.Domain.GlobalInterfaces;
-using PlataformaDeGestionDeCursosOnline.Domain.Entities.Clases.ObjectValues;
+using PlataformaDeGestionDeCursosOnline.Domain.SharedInterfaces;
 
-namespace PlataformaDeGestionDeCursosOnline.Application.Exceptions.Clases;
+namespace PlataformaDeGestionDeCursosOnline.Application.Handlers.Commands.Clases;
 
 internal class AgregarConsultaCommandHandler : ICommandHandler<AgregarConsultaCommand,Result>
 {

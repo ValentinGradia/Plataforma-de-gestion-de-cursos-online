@@ -1,7 +1,6 @@
-﻿namespace PlataformaDeGestionDeCursosOnline.Domain.Entities.Clases.ObjectValues;
+﻿using PlataformaDeGestionDeCursosOnline.Domain.Abstractions;
 
-using System;
-using PlataformaDeGestionDeCursosOnline.Domain.Abstractions;
+namespace PlataformaDeGestionDeCursosOnline.Domain.Entities.Clases;
 
 public class Consulta : Entity
 {

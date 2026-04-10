@@ -9,90 +9,166 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4cca0346-ece8-48e6-a84f-8553af71af3a" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Application/Email/IEmailService.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Infrastructure/DesignTimeDbContextFactory.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.PlataformaDeGestionDeCursosOnline/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PlataformaDeGestionDeCursosOnline/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Application/Application.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Application/Application.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Application/bin/Debug/net8.0/Application.deps.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Application/bin/Debug/net8.0/Application.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Application/bin/Debug/net8.0/Application.pdb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Application/bin/Debug/net8.0/PlataformaDeGestionDeCursosOnline.deps.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Application/bin/Debug/net8.0/PlataformaDeGestionDeCursosOnline.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Application/bin/Debug/net8.0/PlataformaDeGestionDeCursosOnline.exe" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Application/bin/Debug/net8.0/PlataformaDeGestionDeCursosOnline.pdb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Application/bin/Debug/net8.0/PlataformaDeGestionDeCursosOnline.runtimeconfig.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Application/bin/Debug/net9.0/Application.deps.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Application/bin/Debug/net9.0/Application.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Application/bin/Debug/net9.0/Application.pdb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Application/obj/Application.csproj.nuget.dgspec.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Application/obj/Application.csproj.nuget.g.props" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Application/obj/Application.csproj.nuget.g.targets" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Application/obj/Debug/net8.0/Applicat.44B5EDA2.Up2Date" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Application/obj/Debug/net8.0/Application.GeneratedMSBuildEditorConfig.editorconfig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Application/obj/Debug/net8.0/Application.GlobalUsings.g.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Application/obj/Debug/net8.0/Application.assets.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Application/obj/Debug/net8.0/Application.csproj.AssemblyReference.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Application/obj/Debug/net8.0/Application.csproj.CoreCompileInputs.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Application/obj/Debug/net8.0/Application.csproj.FileListAbsolute.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Application/obj/Debug/net8.0/Application.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Application/obj/Debug/net8.0/Application.pdb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Application/obj/Debug/net8.0/Application.sourcelink.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Application/obj/Debug/net8.0/ref/Application.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Application/obj/Debug/net8.0/refint/Application.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Application/obj/Debug/net9.0/.NETCoreApp,Version=v9.0.AssemblyAttributes.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Application/obj/Debug/net9.0/Application.AssemblyInfo.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Application/obj/Debug/net9.0/Application.AssemblyInfoInputs.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Application/obj/Debug/net9.0/Application.GeneratedMSBuildEditorConfig.editorconfig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Application/obj/Debug/net9.0/Application.GlobalUsings.g.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Application/obj/Debug/net9.0/Application.assets.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Application/obj/Debug/net9.0/Application.csproj.CoreCompileInputs.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Application/obj/Debug/net9.0/Application.csproj.FileListAbsolute.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Application/obj/Debug/net9.0/Application.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Application/obj/Debug/net9.0/Application.pdb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Application/obj/Debug/net9.0/Application.sourcelink.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Application/obj/Debug/net9.0/ref/Application.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Application/obj/Debug/net9.0/refint/Application.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Application/obj/project.assets.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Application/obj/project.nuget.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Application/obj/project.packagespec.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Application/obj/rider.project.model.nuget.info" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Application/obj/rider.project.restore.info" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/AutoMapperModels/ClaseMappingProfile.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/AutoMapperModels/ClaseMappingProfile.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/AutoMapperModels/CursoMappingProfile.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/AutoMapperModels/CursoMappingProfile.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/AutoMapperModels/EstudianteMappingProfile.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/AutoMapperModels/EstudianteMappingProfile.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/AutoMapperModels/InscripcionMappingProfile.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/AutoMapperModels/InscripcionMappingProfile.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/AutoMapperModels/ProfesorMappingProfile.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/AutoMapperModels/ProfesorMappingProfile.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/AutoMapperModels/UsuarioMappingProfile.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/AutoMapperModels/UsuarioMappingProfile.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/Commands/Cursos/Clases/ActualizarMaterialCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/Commands/Cursos/Clases/ActualizarMaterialCommand.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/Commands/Cursos/Clases/AgregarConsultaCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/Commands/Cursos/Clases/AgregarConsultaCommand.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/Commands/Cursos/Clases/CrearClaseCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/Commands/Cursos/Clases/CrearClaseCommand.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/Commands/Cursos/Clases/DarPresenteCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/Commands/Cursos/Clases/DarPresenteCommand.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/Commands/Cursos/Clases/FinalizarClaseCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/Commands/Cursos/Clases/FinalizarClaseCommand.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/Commands/Cursos/Clases/ReprogramarFechaDeClaseCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/Commands/Cursos/Clases/ReprogramarFechaDeClaseCommand.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/Commands/Cursos/Examenes/PonerNotaEntregaExamenCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/Commands/Cursos/Examenes/PonerNotaEntregaExamenCommand.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/Commands/Cursos/Examenes/SubirEntregaExamenCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/Commands/Cursos/Examenes/SubirEntregaExamenCommand.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/Commands/Cursos/Examenes/SubirModeloExamenCommand.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/Commands/Cursos/Examenes/SubirModeloExamenCommand.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/DependencyInjection.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/DependencyInjection.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/Handlers/Commands/Clases/ActualizarMaterialCommandHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/Handlers/Commands/Clases/ActualizarMaterialCommandHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/Handlers/Commands/Clases/AgregarConsultaCommandHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/Handlers/Commands/Clases/AgregarConsultaCommandHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/Handlers/Commands/Clases/CrearClaseCommandHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/Handlers/Commands/Clases/CrearClaseCommandHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/Handlers/Commands/Clases/DarPresenteCommandHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/Handlers/Commands/Clases/DarPresenteCommandHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/Handlers/Commands/Clases/DomainEvents/AgregarConsultaDomainEventHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/Handlers/Commands/Clases/DomainEvents/AgregarConsultaDomainEventHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/Handlers/Commands/Clases/FinalizarClaseCommandHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/Handlers/Commands/Clases/FinalizarClaseCommandHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/Handlers/Commands/Clases/ReprogramarFechaDeClaseCommandHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/Handlers/Commands/Clases/ReprogramarFechaDeClaseCommandHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/Handlers/Commands/Cursos/ActualizarDuracionCommandHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/Handlers/Commands/Cursos/ActualizarDuracionCommandHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/Handlers/Commands/Cursos/ActualizarTemarioCommandHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/Handlers/Commands/Cursos/ActualizarTemarioCommandHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/Handlers/Commands/Cursos/CambiarProfesorCommandHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/Handlers/Commands/Cursos/CambiarProfesorCommandHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/Handlers/Commands/Cursos/CrearCursoCommandHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/Handlers/Commands/Cursos/CrearCursoCommandHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/Handlers/Commands/Cursos/DesinscribirEstudianteCommandHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/Handlers/Commands/Cursos/DesinscribirEstudianteCommandHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/Handlers/Commands/Cursos/DomainEvents/CursoIniciadoDomainEventHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/Handlers/Commands/Cursos/DomainEvents/CursoIniciadoDomainEventHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/Handlers/Commands/Cursos/DomainEvents/ExamenSubidoDomainEventHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/Handlers/Commands/Cursos/DomainEvents/ExamenSubidoDomainEventHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/Handlers/Commands/Cursos/FinalizarCursoCommandHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/Handlers/Commands/Cursos/FinalizarCursoCommandHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/Handlers/Commands/Cursos/InscribirEstudianteACursoCommandHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/Handlers/Commands/Cursos/InscribirEstudianteACursoCommandHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/Handlers/Commands/Encuestas/CrearEncuestaCommandHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/Handlers/Commands/Encuestas/CrearEncuestaCommandHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/Handlers/Commands/Encuestas/ModificarEncuestaCommandHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/Handlers/Commands/Encuestas/ModificarEncuestaCommandHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/Handlers/Commands/Estudiantes/CrearEstudianteCommandHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/Handlers/Commands/Estudiantes/CrearEstudianteCommandHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/Handlers/Commands/Examenes/DomainEvents/NotaCargadaDomainEventHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/Handlers/Commands/Examenes/DomainEvents/NotaCargadaDomainEventHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/Handlers/Commands/Examenes/PonerNotaEntregaExamenCommandHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/Handlers/Commands/Examenes/PonerNotaEntregaExamenCommandHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/Handlers/Commands/Examenes/SubirEntregaExamenCommandHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/Handlers/Commands/Examenes/SubirEntregaExamenCommandHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/Handlers/Commands/Examenes/SubirModeloExamenCommandHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/Handlers/Commands/Examenes/SubirModeloExamenCommandHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/Handlers/Commands/Profesores/CrearProfesorCommandHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/Handlers/Commands/Profesores/CrearProfesorCommandHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/Handlers/Commands/Usuarios/ActualizarContactoCommandHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/Handlers/Commands/Usuarios/ActualizarContactoCommandHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/Handlers/Commands/Usuarios/ActualizarDatosPersonalesCommandHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/Handlers/Commands/Usuarios/ActualizarDatosPersonalesCommandHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/Handlers/Commands/Usuarios/ActualizarDireccionCommandHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/Handlers/Commands/Usuarios/ActualizarDireccionCommandHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/Handlers/Querys/Clases/ObtenerAsistenciasDeClaseQueryHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/Handlers/Querys/Clases/ObtenerAsistenciasDeClaseQueryHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/Handlers/Querys/Clases/ObtenerConsultasDeClaseQueryHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/Handlers/Querys/Clases/ObtenerConsultasDeClaseQueryHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/Handlers/Querys/Clases/ObtenerInformacionClaseQueryHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/Handlers/Querys/Clases/ObtenerInformacionClaseQueryHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/Handlers/Querys/Cursos/ObtenerClasesPorCursoQueryHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/Handlers/Querys/Cursos/ObtenerClasesPorCursoQueryHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/Handlers/Querys/Cursos/ObtenerEstudiantesInscriptosCursoQueryHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/Handlers/Querys/Cursos/ObtenerEstudiantesInscriptosCursoQueryHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/Handlers/Querys/Cursos/ObtenerInformacionCursoPorIdQueryHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/Handlers/Querys/Cursos/ObtenerInformacionCursoPorIdQueryHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/Handlers/Querys/Encuestas/ObtenerEncuestaPorIdQueryHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/Handlers/Querys/Encuestas/ObtenerEncuestaPorIdQueryHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/Handlers/Querys/Encuestas/ObtenerEncuestasPorCursoQueryHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/Handlers/Querys/Encuestas/ObtenerEncuestasPorCursoQueryHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/Handlers/Querys/Encuestas/ObtenerMejoresReseñasPorCursoQueryHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/Handlers/Querys/Encuestas/ObtenerMejoresReseñasPorCursoQueryHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/Handlers/Querys/Encuestas/ObtenerPeoresReseñasPorCursoQueryHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/Handlers/Querys/Encuestas/ObtenerPeoresReseñasPorCursoQueryHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/Handlers/Querys/Estudiantes/ObtenerCursosInscriptosActualmenteQueryHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/Handlers/Querys/Estudiantes/ObtenerCursosInscriptosActualmenteQueryHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/Handlers/Querys/Estudiantes/ObtenerHistorialDeCursosQueryHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/Handlers/Querys/Estudiantes/ObtenerHistorialDeCursosQueryHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/Handlers/Querys/Estudiantes/ObtenerPerfilEstudiantePorIdQueryHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/Handlers/Querys/Estudiantes/ObtenerPerfilEstudiantePorIdQueryHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/Handlers/Querys/Examenes/ObtenerDetalleEntregaExamenQueryHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/Handlers/Querys/Examenes/ObtenerDetalleEntregaExamenQueryHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/Handlers/Querys/Examenes/ObtenerDetalleExamenQueryHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/Handlers/Querys/Examenes/ObtenerDetalleExamenQueryHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/Handlers/Querys/Examenes/ObtenerNotaDeEntregaExamenQueryHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/Handlers/Querys/Examenes/ObtenerNotaDeEntregaExamenQueryHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/Handlers/Querys/Inscripciones/ObtenerEntregasDeCursadaQueryHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/Handlers/Querys/Inscripciones/ObtenerEntregasDeCursadaQueryHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/Handlers/Querys/Inscripciones/ObtenerInformacionDeInscripcionQueryHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/Handlers/Querys/Inscripciones/ObtenerInformacionDeInscripcionQueryHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/Handlers/Querys/Inscripciones/ObtenerPorcentajeDeAsistenciaPorCursoQueryHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/Handlers/Querys/Inscripciones/ObtenerPorcentajeDeAsistenciaPorCursoQueryHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/Handlers/Querys/Profesores/ObtenerPerfilProfesorPorIdQueryHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/Handlers/Querys/Profesores/ObtenerPerfilProfesorPorIdQueryHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/Handlers/Querys/Usuarios/ObtenerPerfilUsuarioQueryHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/Handlers/Querys/Usuarios/ObtenerPerfilUsuarioQueryHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/Querys/Clases/ObtenerInformacionClaseQuery.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/Querys/Clases/ObtenerInformacionClaseQuery.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/Querys/Cursos/ObtenerClasesPorCursoQuery.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/Querys/Cursos/ObtenerClasesPorCursoQuery.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/Querys/Cursos/ObtenerEstudiantesInscriptosCursoQuery.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/Querys/Cursos/ObtenerEstudiantesInscriptosCursoQuery.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/Querys/Cursos/ObtenerInformacionCursoPorIdQuery.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/Querys/Cursos/ObtenerInformacionCursoPorIdQuery.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/Querys/Examenes/ObtenerDetalleEntregaExamenQuery.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/Querys/Examenes/ObtenerDetalleEntregaExamenQuery.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/Querys/Examenes/ObtenerNotaDeEntregaExamenQuery.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/Querys/Examenes/ObtenerNotaDeEntregaExamenQuery.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/Querys/Inscripciones/ObtenerEntregasDeCursadaQuery.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/Querys/Inscripciones/ObtenerEntregasDeCursadaQuery.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/Querys/Inscripciones/ObtenerInformacionDeInscripcionQuery.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/Querys/Inscripciones/ObtenerInformacionDeInscripcionQuery.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/Validators/Clases/ActualizarMaterialCommandValidator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/Validators/Clases/ActualizarMaterialCommandValidator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/Validators/Clases/AgregarConsultaCommandValidator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/Validators/Clases/AgregarConsultaCommandValidator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/Validators/Clases/CrearClaseCommandValidator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/Validators/Clases/CrearClaseCommandValidator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/Validators/Clases/DarPresenteCommandValidator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/Validators/Clases/DarPresenteCommandValidator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/Validators/Clases/FinalizarClaseCommandValidator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/Validators/Clases/FinalizarClaseCommandValidator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/Validators/Clases/ReprogramarFechaDeClaseCommandValidator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/Validators/Clases/ReprogramarFechaDeClaseCommandValidator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/Validators/Examenes/PonerNotaEntregaExamenCommandValidator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/Validators/Examenes/PonerNotaEntregaExamenCommandValidator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/Validators/Examenes/SubirEntregaExamenCommandValidator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/Validators/Examenes/SubirEntregaExamenCommandValidator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/Validators/Examenes/SubirModeloExamenCommandValidator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/Validators/Examenes/SubirModeloExamenCommandValidator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Domain/DTOs/ClaseDTO.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/DTOs/ClaseDTO.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Domain/DTOs/CursoDTO.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/DTOs/CursoDTO.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Domain/DTOs/EstudianteDTO.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/DTOs/EstudianteDTO.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Domain/DTOs/InscripcionDTO.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/DTOs/InscripcionDTO.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Domain/DTOs/ProfesorDTO.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/DTOs/ProfesorDTO.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Domain/DTOs/UsuarioDTO.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/DTOs/UsuarioDTO.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Domain/DependencyInjection.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/DependencyInjection.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Domain/Domain.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/Domain.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Domain/obj/Domain.csproj.nuget.dgspec.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Domain/obj/Domain.csproj.nuget.g.props" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Domain/obj/Domain.csproj.nuget.g.targets" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Domain/obj/project.assets.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Domain/obj/project.nuget.cache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Domain/Entities/Clases/Clase.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/Entities/Clases/Clase.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Domain/Entities/Clases/Consulta.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/Entities/Clases/Consulta.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Domain/Entities/Clases/Enums/EstadoClase.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/Entities/Clases/Enums/EstadoClase.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Domain/Entities/Clases/Events/ConsultaCargada.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/Entities/Clases/Events/ConsultaCargada.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Domain/Entities/Clases/Exceptions/AsistenciaYaCargadaException.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/Entities/Clases/Exceptions/AsistenciaYaCargadaException.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Domain/Entities/Clases/Exceptions/ClaseFinalizadaNoSePuedeMarcarAusenteException.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/Entities/Clases/Exceptions/ClaseFinalizadaNoSePuedeMarcarAusenteException.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Domain/Entities/Cursos/Curso.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/Entities/Cursos/Curso.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Domain/Entities/Cursos/Enums/EstadoCurso.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/Entities/Cursos/Enums/EstadoCurso.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Domain/Entities/Cursos/Interfaces/ICicloDeVidaDelCurso.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/Entities/Cursos/Interfaces/ICicloDeVidaDelCurso.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Domain/Entities/Cursos/Interfaces/IInscripcionService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/Entities/Cursos/Interfaces/IInscripcionService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Domain/Entities/Cursos/Services/InscripcionService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/Entities/Cursos/Services/InscripcionService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Domain/Entities/Estudiantes/Estudiante.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/Entities/Estudiantes/Estudiante.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Domain/Entities/Examenes/EntregaDelExamen.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/Entities/Examenes/EntregaDelExamen.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Domain/Entities/Examenes/Enums/TipoExamen.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/Entities/Examenes/Enums/TipoExamen.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Domain/Entities/Examenes/Events/NotaCargada.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/Entities/Examenes/Events/NotaCargada.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Domain/Entities/Examenes/Examen.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/Entities/Examenes/Examen.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Domain/Entities/Examenes/ObjectValues/Nota.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/Entities/Examenes/ObjectValues/Nota.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Domain/Entities/Inscripciones/Inscripcion.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/Entities/Inscripciones/Inscripcion.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Domain/Entities/Profesores/Profesor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/Entities/Profesores/Profesor.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Domain/Entities/Usuarios/Enums/Roles.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/Entities/Usuarios/Enums/Roles.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Domain/Entities/Usuarios/ObjectValues/Contraseña.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/Entities/Usuarios/ObjectValues/Contraseña.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Domain/Entities/Usuarios/ObjectValues/DNI.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/Entities/Usuarios/ObjectValues/DNI.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Domain/Entities/Usuarios/ObjectValues/Direccion.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/Entities/Usuarios/ObjectValues/Direccion.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Domain/Entities/Usuarios/ObjectValues/Email.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/Entities/Usuarios/ObjectValues/Email.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Domain/Entities/Usuarios/Usuario.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/Entities/Usuarios/Usuario.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Domain/SharedInterfaces/ICursoRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/SharedInterfaces/ICursoRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Domain/SharedInterfaces/IEncuestasRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/SharedInterfaces/IEncuestasRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Domain/SharedInterfaces/IEstudianteRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/SharedInterfaces/IEstudianteRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Domain/SharedInterfaces/IFactory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/SharedInterfaces/IFactory.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Domain/SharedInterfaces/IProfesorRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/SharedInterfaces/IProfesorRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Domain/SharedInterfaces/IRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/SharedInterfaces/IRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Domain/SharedInterfaces/IUsuarioRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/SharedInterfaces/IUsuarioRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Infrastructure/ApplicationDbContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastructure/ApplicationDbContext.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Infrastructure/Configurations/ClaseConfiguration.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastructure/Configurations/ClaseConfiguration.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Infrastructure/Configurations/ConsultaConfiguration.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastructure/Configurations/ConsultaConfiguration.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Infrastructure/Configurations/EntregaDelExamenConfiguration.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastructure/Configurations/EntregaDelExamenConfiguration.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Infrastructure/Configurations/ExamenConfiguration.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastructure/Configurations/ExamenConfiguration.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Infrastructure/Configurations/UsuarioConfiguration.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastructure/Configurations/UsuarioConfiguration.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Infrastructure/Data/Repositories/CursoRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastructure/Data/Repositories/CursoRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Infrastructure/Data/Repositories/EncuestasRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastructure/Data/Repositories/EncuestasRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Infrastructure/Data/Repositories/EstudianteRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastructure/Data/Repositories/EstudianteRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Infrastructure/Data/Repositories/ProfesorRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastructure/Data/Repositories/ProfesorRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Infrastructure/Data/Repositories/UsuarioRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastructure/Data/Repositories/UsuarioRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Infrastructure/DependencyInjection.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastructure/DependencyInjection.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Infrastructure/Email/EmailService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Application/Email/EmailService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Infrastructure/Email/IEmailService.cs" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Infrastructure/Infrastructure.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastructure/Infrastructure.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Infrastructure/obj/Infrastructure.csproj.nuget.dgspec.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Infrastructure/obj/Infrastructure.csproj.nuget.g.props" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Infrastructure/obj/Infrastructure.csproj.nuget.g.targets" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Infrastructure/obj/project.assets.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Infrastructure/obj/project.nuget.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlataformaDeGestionDeCursosOnline.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/PlataformaDeGestionDeCursosOnline.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlataformaDeGestionDeCursosOnline.sln.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/PlataformaDeGestionDeCursosOnline.sln.DotSettings.user" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Presentation/Controllers/Clases/ClaseController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Presentation/Controllers/Clases/ClaseController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Presentation/Controllers/Examenes/ExamenController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Presentation/Controllers/Examenes/ExamenController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Presentation/Presentation.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Presentation/Presentation.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Presentation/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Presentation/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Presentation/obj/Debug/net10.0/Presentation.assets.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Presentation/obj/Debug/net10.0/Presentation.assets.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Presentation/obj/Debug/net10.0/Presentation.csproj.FileListAbsolute.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Presentation/obj/Debug/net10.0/Presentation.csproj.FileListAbsolute.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Presentation/obj/Presentation.csproj.nuget.dgspec.json" beforeDir="false" afterPath="$PROJECT_DIR$/Presentation/obj/Presentation.csproj.nuget.dgspec.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Presentation/obj/Presentation.csproj.nuget.g.props" beforeDir="false" afterPath="$PROJECT_DIR$/Presentation/obj/Presentation.csproj.nuget.g.props" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Presentation/obj/Presentation.csproj.nuget.g.targets" beforeDir="false" afterPath="$PROJECT_DIR$/Presentation/obj/Presentation.csproj.nuget.g.targets" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Presentation/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/Presentation/obj/project.assets.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Presentation/obj/project.nuget.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Presentation/obj/project.nuget.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/Debug/net8.0/PlataformaDeGestionDeCursosOnline.dll" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/net8.0/PlataformaDeGestionDeCursosOnline.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/Debug/net8.0/PlataformaDeGestionDeCursosOnline.exe" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/net8.0/PlataformaDeGestionDeCursosOnline.exe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/Debug/net8.0/PlataformaDeGestionDeCursosOnline.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/net8.0/PlataformaDeGestionDeCursosOnline.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/PlataformaDeGestionDeCursosOnline.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net8.0/PlataformaDeGestionDeCursosOnline.csproj.AssemblyReference.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/PlataformaDeGestionDeCursosOnline.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net8.0/PlataformaDeGestionDeCursosOnline.csproj.CoreCompileInputs.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/PlataformaDeGestionDeCursosOnline.csproj.FileListAbsolute.txt" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net8.0/PlataformaDeGestionDeCursosOnline.csproj.FileListAbsolute.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/PlataformaDeGestionDeCursosOnline.dll" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net8.0/PlataformaDeGestionDeCursosOnline.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/PlataformaDeGestionDeCursosOnline.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net8.0/PlataformaDeGestionDeCursosOnline.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/PlataformaDeGestionDeCursosOnline.sourcelink.json" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net8.0/PlataformaDeGestionDeCursosOnline.sourcelink.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/apphost.exe" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net8.0/apphost.exe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/ref/PlataformaDeGestionDeCursosOnline.dll" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net8.0/ref/PlataformaDeGestionDeCursosOnline.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/refint/PlataformaDeGestionDeCursosOnline.dll" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net8.0/refint/PlataformaDeGestionDeCursosOnline.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/PlataformaDeGestionDeCursosOnline.csproj.nuget.dgspec.json" beforeDir="false" afterPath="$PROJECT_DIR$/obj/PlataformaDeGestionDeCursosOnline.csproj.nuget.dgspec.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/PlataformaDeGestionDeCursosOnline.csproj.nuget.g.props" beforeDir="false" afterPath="$PROJECT_DIR$/obj/PlataformaDeGestionDeCursosOnline.csproj.nuget.g.props" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/PlataformaDeGestionDeCursosOnline.csproj.nuget.g.targets" beforeDir="false" afterPath="$PROJECT_DIR$/obj/PlataformaDeGestionDeCursosOnline.csproj.nuget.g.targets" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/obj/project.assets.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/project.nuget.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/project.nuget.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/project.packagespec.json" beforeDir="false" afterPath="$PROJECT_DIR$/obj/project.packagespec.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/rider.project.model.nuget.info" beforeDir="false" afterPath="$PROJECT_DIR$/obj/rider.project.model.nuget.info" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/obj/rider.project.restore.info" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net10.0/PlataformaDeGestionDeCursosOnline.dll" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/net10.0/PlataformaDeGestionDeCursosOnline.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net10.0/PlataformaDeGestionDeCursosOnline.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/net10.0/PlataformaDeGestionDeCursosOnline.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net10.0/PlataformaDeGestionDeCursosOnline.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net10.0/PlataformaDeGestionDeCursosOnline.csproj.AssemblyReference.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net10.0/PlataformaDeGestionDeCursosOnline.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net10.0/PlataformaDeGestionDeCursosOnline.csproj.CoreCompileInputs.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net10.0/PlataformaDeGestionDeCursosOnline.dll" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net10.0/PlataformaDeGestionDeCursosOnline.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net10.0/PlataformaDeGestionDeCursosOnline.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net10.0/PlataformaDeGestionDeCursosOnline.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net10.0/PlataformaDeGestionDeCursosOnline.sourcelink.json" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net10.0/PlataformaDeGestionDeCursosOnline.sourcelink.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net10.0/ref/PlataformaDeGestionDeCursosOnline.dll" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net10.0/ref/PlataformaDeGestionDeCursosOnline.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net10.0/refint/PlataformaDeGestionDeCursosOnline.dll" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net10.0/refint/PlataformaDeGestionDeCursosOnline.dll" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -108,6 +184,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/8ec21527aa44f579e8bf1c3da086fc449e4345b0e3174c12b3868c13b3536ab/INotificationHandler.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/aacc74311ca994f12b71cddb22241be9d6654c65e94f5985c5488dee396916f/DbContext.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/b57427c37fcbd61dde2a6082502b8b1ac5124dafef4895130b269fa121bf5a/DefaultValidatorExtensions.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/fc93f9613ce5192d12612ee1e55980988597b5d7aef66f40dd4b6898437a19/WebApplicationBuilder.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Application/Abstractions/Messaging/ICommand.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Application/Abstractions/Messaging/ICommandHandler.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Application/Abstractions/Messaging/IQuery.cs" root0="FORCE_HIGHLIGHTING" />
@@ -257,6 +334,7 @@
     <setting file="file://$PROJECT_DIR$/Infrastructure/Data/Repositories/Repository.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Infrastructure/Data/Repositories/UsuarioRepository.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Infrastructure/DependencyInjection.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Infrastructure/DesignTimeDbContextFactory.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Infrastructure/Email/EmailService.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Infrastructure/Email/IEmailService.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Presentation/Controllers/Clases/ClaseController.cs" root0="FORCE_HIGHLIGHTING" />
@@ -401,7 +479,7 @@
       <workItem from="1775658475874" duration="5800000" />
       <workItem from="1775785952984" duration="1750000" />
       <workItem from="1775847348977" duration="1429000" />
-      <workItem from="1775848995030" duration="4374000" />
+      <workItem from="1775848995030" duration="14812000" />
     </task>
     <servers />
   </component>

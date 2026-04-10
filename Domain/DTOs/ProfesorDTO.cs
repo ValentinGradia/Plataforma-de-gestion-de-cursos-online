@@ -1,6 +1,6 @@
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Cursos;
 
-namespace PlataformaDeGestionDeCursosOnline.Application.DTOs;
+namespace PlataformaDeGestionDeCursosOnline.Domain.DTOs;
 
 //Relacion por agregacion para solo utilizar los datos del usuario sin obligatoriamente
 //exponer la entidad completa de Usuario dentro de ProfesorDTO.

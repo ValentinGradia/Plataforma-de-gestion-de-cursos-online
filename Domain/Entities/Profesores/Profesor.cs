@@ -1,8 +1,8 @@
-﻿using System.Runtime.CompilerServices;
+﻿﻿using System.Runtime.CompilerServices;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Cursos;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Usuarios;
-using PlataformaDeGestionDeCursosOnline.Domain.Enum;
-using PlataformaDeGestionDeCursosOnline.Domain.GlobalObjectValues;
+using PlataformaDeGestionDeCursosOnline.Domain.Entities.Usuarios.Enums;
+using PlataformaDeGestionDeCursosOnline.Domain.Entities.Usuarios.ObjectValues;
 
 namespace PlataformaDeGestionDeCursosOnline.Domain.Entities.Profesores;
 
@@ -11,6 +11,8 @@ public sealed class Profesor : Usuario
     private List<Guid> CursosQueEstaACargo = new();
     public string Especialidad { get; private set; }
     
+    private Profesor() { }
+
     private Profesor( 
         string pais,
         string ciudad,

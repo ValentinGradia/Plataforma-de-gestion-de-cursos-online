@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities;
-using PlataformaDeGestionDeCursosOnline.Domain.Entities.Clases.ObjectValues;
+using PlataformaDeGestionDeCursosOnline.Domain.Entities.Clases;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Estudiantes;
 
 namespace PlataformaDeGestionDeCursosOnline.Infrastructure.Configurations;

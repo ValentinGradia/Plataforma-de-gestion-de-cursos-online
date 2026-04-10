@@ -2,7 +2,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Cursos;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Examenes;
-using PlataformaDeGestionDeCursosOnline.Domain.Entities.Examenes.ObjectValues;
 
 namespace PlataformaDeGestionDeCursosOnline.Infrastructure.Configurations;
 

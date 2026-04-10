@@ -1,4 +1,4 @@
-namespace PlataformaDeGestionDeCursosOnline.Application.DTOs;
+namespace PlataformaDeGestionDeCursosOnline.Domain.DTOs;
 
 public class InscripcionDTO
 {

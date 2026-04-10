@@ -4,8 +4,8 @@ using System.Reflection;
 using System.Text;
 using System.Text.Json;
 using PlataformaDeGestionDeCursosOnline.Domain.Abstractions;
-using PlataformaDeGestionDeCursosOnline.Domain.Enum;
-using PlataformaDeGestionDeCursosOnline.Domain.GlobalObjectValues;
+using PlataformaDeGestionDeCursosOnline.Domain.Entities.Usuarios.Enums;
+using PlataformaDeGestionDeCursosOnline.Domain.Entities.Usuarios.ObjectValues;
 
 namespace PlataformaDeGestionDeCursosOnline.Domain.Entities.Usuarios;
 
@@ -28,7 +28,7 @@ public abstract class Usuario : Entity
     
     public Roles Rol { get; protected set; }
     
-    private Usuario() : base() { }
+    protected Usuario() : base() { }
     
     protected Usuario(
         string pais,
@@ -64,6 +64,7 @@ public abstract class Usuario : Entity
         this.FechaRegistro = fechaRegistro;
         this.Rol = rol;
     }
+    
 
     public void CambiarContraseña(string nuevaContraseña)
     {

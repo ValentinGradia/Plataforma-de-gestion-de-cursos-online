@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
-using Microsoft.Extensions.DependencyInjection;
-using PlataformaDeGestionDeCursosOnline.Application.Abstractions.Email;
 using PlataformaDeGestionDeCursosOnline.Application.Behaviors;
+using Microsoft.Extensions.DependencyInjection;
+using PlataformaDeGestionDeCursosOnline.Application.Email;
 
 namespace PlataformaDeGestionDeCursosOnline.Application;
 
@@ -22,6 +22,8 @@ public static class DependencyInjection
             cfg.RegisterServicesFromAssembly(typeof(DependencyInjection).Assembly);
             cfg.AddOpenBehavior(typeof(ValidationBehavior<,>));
         });
+        services.AddScoped<IEmailService, EmailService>();
+        
 
         services.AddValidatorsFromAssembly(typeof(DependencyInjection).Assembly); // ->  Todo esto es para registrar todos los validadores de FluentValidation que
         //tengamos en el proyecto, sin necesidad de registrarlos uno por uno.

@@ -1,8 +1,8 @@
 using System.Data;
 using Dapper;
 using Microsoft.EntityFrameworkCore;
-using PlataformaDeGestionDeCursosOnline.Domain.GlobalInterfaces;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Encuestas;
+using PlataformaDeGestionDeCursosOnline.Domain.SharedInterfaces;
 
 namespace PlataformaDeGestionDeCursosOnline.Infrastructure.Data.Repositories;
 

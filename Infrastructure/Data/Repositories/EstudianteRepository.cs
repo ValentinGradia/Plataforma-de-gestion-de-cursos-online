@@ -1,8 +1,7 @@
 using Dapper;
 using Microsoft.EntityFrameworkCore;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Estudiantes;
-using PlataformaDeGestionDeCursosOnline.Domain.GlobalInterfaces;
-using PlataformaDeGestionDeCursosOnline.Domain.GlobalObjectValues;
+using PlataformaDeGestionDeCursosOnline.Domain.SharedInterfaces;
 
 namespace PlataformaDeGestionDeCursosOnline.Infrastructure.Data.Repositories;
 

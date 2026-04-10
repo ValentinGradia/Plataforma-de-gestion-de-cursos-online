@@ -1,13 +1,9 @@
-﻿using System.Runtime.InteropServices.JavaScript;
-using PlataformaDeGestionDeCursosOnline.Domain.Abstractions;
-using PlataformaDeGestionDeCursosOnline.Domain.Entities.Clases;
-using PlataformaDeGestionDeCursosOnline.Domain.Entities.Clases.ObjectValues;
-using PlataformaDeGestionDeCursosOnline.Domain.Entities.Cursos;
-using PlataformaDeGestionDeCursosOnline.Domain.Entities.Enums;
-using PlataformaDeGestionDeCursosOnline.Domain.Entities.Events;
-using PlataformaDeGestionDeCursosOnline.Domain.Entities.Exceptions;
+﻿using PlataformaDeGestionDeCursosOnline.Domain.Abstractions;
+using PlataformaDeGestionDeCursosOnline.Domain.Entities.Clases.Enums;
+using PlataformaDeGestionDeCursosOnline.Domain.Entities.Clases.Events;
+using PlataformaDeGestionDeCursosOnline.Domain.Entities.Clases.Exceptions;
 
-namespace PlataformaDeGestionDeCursosOnline.Domain.Entities;
+namespace PlataformaDeGestionDeCursosOnline.Domain.Entities.Clases;
 
 //Los metodos de iniciar clase, finalizar y demas los va a menajar el curso porque
 //es el curso quien asigna las clases y cambia los estados. La clase no puede existir sin

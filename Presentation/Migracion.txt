@@ -1,0 +1,8 @@
+Al crear o hacer migraciones siempre es importante aclarar en que proyecto se encuentra el DbContext y luego declarar donde
+se ejecuta la app.
+En nuestro caso: Presentation es el proyecto donde se ejecuta la app y Infrastructure es el proyecto donde se encuentra el DbContext.
+
+--project = dónde vive el DbContext
+--startup-project = cómo se arranca la app
+
+Ef core no tiene que adivinar cada cosa, sino que nosotros debemos especificar cada cosa para que sepa donde buscar.

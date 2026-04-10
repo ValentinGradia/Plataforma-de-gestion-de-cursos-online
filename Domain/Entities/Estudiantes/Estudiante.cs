@@ -1,15 +1,16 @@
-﻿using System.Collections.ObjectModel;
+﻿﻿using System.Collections.ObjectModel;
 using PlataformaDeGestionDeCursosOnline.Domain.Abstractions;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Cursos;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Usuarios;
-using PlataformaDeGestionDeCursosOnline.Domain.Enum;
-using PlataformaDeGestionDeCursosOnline.Domain.GlobalObjectValues;
+using PlataformaDeGestionDeCursosOnline.Domain.Entities.Usuarios.Enums;
+using PlataformaDeGestionDeCursosOnline.Domain.Entities.Usuarios.ObjectValues;
 
 namespace PlataformaDeGestionDeCursosOnline.Domain.Entities.Estudiantes;
 
 public class Estudiante : Usuario 
 {
-    
+    private Estudiante() : base()
+    { }
 
     public Estudiante(string pais, string ciudad, string calle, int altura, string email, string contraseña, string dni, string nombre, string apellido) : base(pais, ciudad, calle, altura, email, contraseña, dni, nombre, apellido, Roles.Estudiante)
     {

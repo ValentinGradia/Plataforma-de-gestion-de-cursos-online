@@ -1,6 +1,8 @@
 using Microsoft.Extensions.DependencyInjection;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Cursos;
-using PlataformaDeGestionDeCursosOnline.Domain.GlobalInterfaces;
+using Microsoft.Extensions.DependencyInjection;
+using PlataformaDeGestionDeCursosOnline.Domain.Entities.Cursos.Interfaces;
+using PlataformaDeGestionDeCursosOnline.Domain.Entities.Cursos.Services;
 
 namespace PlataformaDeGestionDeCursosOnline.Domain;
 

@@ -1,13 +1,11 @@
-using PlataformaDeGestionDeCursosOnline.Application.DTOs;
-using PlataformaDeGestionDeCursosOnline.Domain.Entities;
-using PlataformaDeGestionDeCursosOnline.Domain.Entities.Clases.ObjectValues;
+using PlataformaDeGestionDeCursosOnline.Domain.DTOs;
+using PlataformaDeGestionDeCursosOnline.Domain.Entities.Clases;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Cursos;
-using PlataformaDeGestionDeCursosOnline.Domain.Entities.Examenes;
-using PlataformaDeGestionDeCursosOnline.Domain.Entities.Examenes.ObjectValues;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Estudiantes;
+using PlataformaDeGestionDeCursosOnline.Domain.Entities.Examenes;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Inscripciones;
 
-namespace PlataformaDeGestionDeCursosOnline.Domain.GlobalInterfaces;
+namespace PlataformaDeGestionDeCursosOnline.Domain.SharedInterfaces;
 
 public interface ICursoRepository : IRepository<Curso>
 {

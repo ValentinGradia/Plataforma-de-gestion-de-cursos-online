@@ -1,6 +1,6 @@
 using PlataformaDeGestionDeCursosOnline.Application.Abstractions.Messaging;
 using PlataformaDeGestionDeCursosOnline.Domain.Abstractions;
 
-namespace PlataformaDeGestionDeCursosOnline.Application.Commands.Clases;
+namespace PlataformaDeGestionDeCursosOnline.Application.Commands.Cursos.Clases;
 
 public record ReprogramarFechaDeClaseCommand(Guid IdCurso, Guid IdClase, DateTime NuevaFecha) : ICommand<Result>;

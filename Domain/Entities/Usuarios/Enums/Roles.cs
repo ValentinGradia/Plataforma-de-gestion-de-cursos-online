@@ -1,4 +1,4 @@
-﻿namespace PlataformaDeGestionDeCursosOnline.Domain.Enum;
+﻿namespace PlataformaDeGestionDeCursosOnline.Domain.Entities.Usuarios.Enums;
 
 public enum Roles
 {

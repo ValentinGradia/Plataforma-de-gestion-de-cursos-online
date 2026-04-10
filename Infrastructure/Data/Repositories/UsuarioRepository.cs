@@ -1,15 +1,16 @@
 using System.Data;
 using Dapper;
 using Microsoft.EntityFrameworkCore;
-using PlataformaDeGestionDeCursosOnline.Application.DTOs;
+using Microsoft.EntityFrameworkCore.Internal;
 using PlataformaDeGestionDeCursosOnline.Domain;
+using PlataformaDeGestionDeCursosOnline.Domain.Entities.Usuarios.ObjectValues;
+using PlataformaDeGestionDeCursosOnline.Domain.DTOs;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Estudiantes;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Profesores;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Usuarios;
-using PlataformaDeGestionDeCursosOnline.Domain.Enum;
-using PlataformaDeGestionDeCursosOnline.Domain.GlobalInterfaces;
-using PlataformaDeGestionDeCursosOnline.Domain.GlobalObjectValues;
+using PlataformaDeGestionDeCursosOnline.Domain.Entities.Usuarios.Enums;
+using PlataformaDeGestionDeCursosOnline.Domain.SharedInterfaces;
 
 namespace PlataformaDeGestionDeCursosOnline.Infrastructure.Data.Repositories;
 
@@ -60,33 +61,21 @@ public class UsuarioRepository(ApplicationDbContext dbContext) : Repository<Usua
 
         if (row is null)
             return null;
-
-        // Construir los value objects
-        Direccion direccion  = Direccion.CrearDireccion((string)row.Pais, (string)row.Ciudad, (string)row.Calle, (int)row.Altura);
-        Email email      = Email.CrearEmail((string)row.Email);
-        Contraseña contrasena = Contraseña.CrearContraseña((string)row.Contraseña);
-        DNI dni        = DNI.CrearDNI((string)row.Dni);
         Roles rol        = Enum.Parse<Roles>((string)row.Rol);
 
         // Instanciar la clase concreta según el rol
         Usuario usuario = rol switch
         {
-            Roles.Estudiante => new Estudiante(
+            Roles.Estudiante => Estudiante.ReconstruirEstudiante(row),
+            Roles.Profesor => Profesor.Reconstruir(
                 id:            (Guid)row.Id,
-                direccion:     direccion,
-                email:         email,
-                contraseña:    contrasena,
-                dni:           dni,
-                nombre:        (string)row.Nombre,
-                apellido:      (string)row.Apellido,
-                fechaRegistro: (DateTime)row.FechaRegistro
-            ),
-            Roles.Profesor => new Profesor(
-                id:            (Guid)row.Id,
-                direccion:     direccion,
-                email:         email,
-                contraseña:    contrasena,
-                dni:           dni,
+                pais:       (string)row.Pais,
+                ciudad:     (string)row.Ciudad,
+                calle:      (string)row.Calle,
+                altura:     (int)row.Altura,
+                email:      (string)row.Email,
+                contraseña:    row.Contraseña,
+                dni:           row.DNI,
                 nombre:        (string)row.Nombre,
                 apellido:      (string)row.Apellido,
                 fechaRegistro: (DateTime)row.FechaRegistro,
@@ -107,39 +96,32 @@ public class UsuarioRepository(ApplicationDbContext dbContext) : Repository<Usua
 
         var rows = await connection.QueryAsync(sql);
 
-        return rows.Select(row =>
+        var result_rows = rows.Select(row =>
         {
-            Direccion direccion  = Direccion.CrearDireccion((string)row.Pais, (string)row.Ciudad, (string)row.Calle, (int)row.Altura);
-            Email email          = Email.CrearEmail((string)row.Email);
-            Contraseña contrasena = Contraseña.CrearContraseña((string)row.Contraseña);
-            DNI dni              = DNI.CrearDNI((string)row.Dni);
             Roles rol            = Enum.Parse<Roles>((string)row.Rol);
 
-            return rol switch
+            Usuario user = rol switch
             {
-                Roles.Estudiante => (Usuario)new Estudiante(
+                Roles.Estudiante => Estudiante.ReconstruirEstudiante(row),
+                Roles.Profesor => Profesor.Reconstruir(
                     id:            (Guid)row.Id,
-                    direccion:     direccion,
-                    email:         email,
-                    contraseña:    contrasena,
-                    dni:           dni,
-                    nombre:        (string)row.Nombre,
-                    apellido:      (string)row.Apellido,
-                    fechaRegistro: (DateTime)row.FechaRegistro
-                ),
-                Roles.Profesor => new Profesor(
-                    id:            (Guid)row.Id,
-                    direccion:     direccion,
-                    email:         email,
-                    contraseña:    contrasena,
-                    dni:           dni,
+                    pais:       (string)row.Pais,
+                    ciudad:     (string)row.Ciudad,
+                    calle:      (string)row.Calle,
+                    altura:     (int)row.Altura,
+                    email:      (string)row.Email,
+                    contraseña:    row.Contraseña,
+                    dni:           row.Dni,
                     nombre:        (string)row.Nombre,
                     apellido:      (string)row.Apellido,
                     fechaRegistro: (DateTime)row.FechaRegistro,
                     especialidad:  (string)row.Especialidad
                 )
             };
+            return user;
         });
+        
+        return result_rows.Cast<Usuario>();
     }
 
     public async Task<UsuarioDTO?> VerDatosUsuario(Guid id, CancellationToken cancellationToken = default)

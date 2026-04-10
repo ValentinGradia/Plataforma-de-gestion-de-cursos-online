@@ -1,7 +1,6 @@
-﻿using PlataformaDeGestionDeCursosOnline.Domain.Entities.Estudiantes;
-using PlataformaDeGestionDeCursosOnline.Domain.Entities.Inscripciones;
+﻿using PlataformaDeGestionDeCursosOnline.Domain.Entities.Inscripciones;
 
-namespace PlataformaDeGestionDeCursosOnline.Domain.Entities.Cursos;
+namespace PlataformaDeGestionDeCursosOnline.Domain.Entities.Cursos.Interfaces;
 
 //creamos una interfaz para el servicio de inscripcion
 public interface IInscripcionService

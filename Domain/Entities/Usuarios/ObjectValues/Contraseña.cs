@@ -1,4 +1,4 @@
-﻿namespace PlataformaDeGestionDeCursosOnline.Domain.GlobalObjectValues;
+﻿namespace PlataformaDeGestionDeCursosOnline.Domain.Entities.Usuarios.ObjectValues;
 
 public record Contraseña
 {

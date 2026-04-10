@@ -1,5 +1,5 @@
 using FluentValidation;
-using PlataformaDeGestionDeCursosOnline.Application.Commands.Examenes;
+using PlataformaDeGestionDeCursosOnline.Application.Commands.Cursos.Examenes;
 using PlataformaDeGestionDeCursosOnline.Application.Validators.Shared;
 
 namespace PlataformaDeGestionDeCursosOnline.Application.Validators.Examenes;

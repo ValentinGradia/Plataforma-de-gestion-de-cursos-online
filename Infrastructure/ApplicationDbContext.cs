@@ -8,10 +8,21 @@ namespace PlataformaDeGestionDeCursosOnline.Infrastructure;
 //Agregamos nuestra clase principal de Db Context, que hereda de DbContext y de IUnitOfWork para manejar las transacciones
 public class ApplicationDbContext : DbContext, IUnitOfWork
 {
-    private readonly IPublisher _publisher;
+    private readonly IPublisher? _publisher;
     
     //OPtion pertenece a la cadena conexion, y se inyecta a través del constructor
-    public ApplicationDbContext(DbContextOptions options, IPublisher publisher) : base(options)
+    
+    
+    //Creamos otro constructor solo para EF
+    //Resultado
+    //Run time -> Usa el constructor con IPublisher
+    //Design time / Migraciones-> Usa el constructor sin IPublisher, porque en ese momento no tenemos acceso
+    public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+        : base(options)
+    {
+    }
+    
+    public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options, IPublisher publisher) : base(options)
     {
         _publisher = publisher;
     }
@@ -47,6 +58,10 @@ public class ApplicationDbContext : DbContext, IUnitOfWork
     
     private async Task PublishDomainEventsAsync()
     {
+        if(_publisher == null) return; //Si el publisher es null, no hacemos nada,
+        //esto es para evitar problemas en el diseño de migraciones, porque en ese momento no tenemos acceso al publisher
+        
+        
         //Obtenemos todas las entidades que tienen eventos de dominio pendientes
         var domainEntities = ChangeTracker.Entries<Entity>()
             .Select(e => e.Entity)

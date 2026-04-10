@@ -1,6 +1,6 @@
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Estudiantes;
 
-namespace PlataformaDeGestionDeCursosOnline.Domain.GlobalInterfaces;
+namespace PlataformaDeGestionDeCursosOnline.Domain.SharedInterfaces;
 
 public interface IEstudianteRepository : IRepository<Estudiante>
 {

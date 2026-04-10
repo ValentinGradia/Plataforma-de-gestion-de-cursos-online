@@ -1,10 +1,10 @@
 using PlataformaDeGestionDeCursosOnline.Application.Abstractions.Messaging;
 using PlataformaDeGestionDeCursosOnline.Application.Querys.Clases;
 using PlataformaDeGestionDeCursosOnline.Domain.Abstractions;
-using PlataformaDeGestionDeCursosOnline.Domain.Entities;
-using PlataformaDeGestionDeCursosOnline.Domain.GlobalInterfaces;
+using PlataformaDeGestionDeCursosOnline.Domain.Entities.Clases;
+using PlataformaDeGestionDeCursosOnline.Domain.SharedInterfaces;
 
-namespace PlataformaDeGestionDeCursosOnline.Application.Handlers.Querys;
+namespace PlataformaDeGestionDeCursosOnline.Application.Handlers.Querys.Clases;
 
 internal class ObtenerConsultasDeClaseQueryHandler(ICursoRepository cursoRepository) : IQueryHandler<ObtenerConsultasDeClaseQuery, Result>
 {

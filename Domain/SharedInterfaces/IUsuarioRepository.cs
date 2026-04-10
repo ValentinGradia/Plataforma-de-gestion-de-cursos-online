@@ -1,8 +1,7 @@
-using PlataformaDeGestionDeCursosOnline.Application.DTOs;
-using PlataformaDeGestionDeCursosOnline.Domain.Entities;
+using PlataformaDeGestionDeCursosOnline.Domain.DTOs;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Usuarios;
 
-namespace PlataformaDeGestionDeCursosOnline.Domain.GlobalInterfaces;
+namespace PlataformaDeGestionDeCursosOnline.Domain.SharedInterfaces;
 
 public interface IUsuarioRepository : IRepository<Usuario>
 {

@@ -1,4 +1,4 @@
-﻿namespace PlataformaDeGestionDeCursosOnline.Domain.Entities.Cursos;
+﻿namespace PlataformaDeGestionDeCursosOnline.Domain.Entities.Cursos.Enums;
 
 public enum EstadoCurso
 {

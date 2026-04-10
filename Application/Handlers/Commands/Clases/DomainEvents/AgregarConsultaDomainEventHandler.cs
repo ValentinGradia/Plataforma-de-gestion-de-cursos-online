@@ -1,15 +1,11 @@
 using MediatR;
-using PlataformaDeGestionDeCursosOnline.Application.Abstractions.Email;
-using PlataformaDeGestionDeCursosOnline.Domain;
-using PlataformaDeGestionDeCursosOnline.Domain.Entities;
+using PlataformaDeGestionDeCursosOnline.Application.Email;
+using PlataformaDeGestionDeCursosOnline.Application.Exceptions;
+using PlataformaDeGestionDeCursosOnline.Domain.Entities.Clases.Events;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Cursos;
-using PlataformaDeGestionDeCursosOnline.Domain.Entities.Events;
 using PlataformaDeGestionDeCursosOnline.Domain.Entities.Usuarios;
-using PlataformaDeGestionDeCursosOnline.Domain.GlobalInterfaces;
+using PlataformaDeGestionDeCursosOnline.Domain.SharedInterfaces;
 
-namespace PlataformaDeGestionDeCursosOnline.Application.Exceptions.Clases.DomainEvents;
-
-//Componente que consume el domain event de consulta cargada
 internal class AgregarConsultaDomainEventHandler : INotificationHandler<ConsultaCargada>
 {
 

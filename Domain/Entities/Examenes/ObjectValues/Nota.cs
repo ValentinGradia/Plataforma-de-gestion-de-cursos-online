@@ -1,6 +1,4 @@
-﻿using PlataformaDeGestionDeCursosOnline.Domain.Entities.Estudiantes;
-
-namespace PlataformaDeGestionDeCursosOnline.Domain.Entities.Cursos.Notas;
+﻿namespace PlataformaDeGestionDeCursosOnline.Domain.Entities.Examenes.ObjectValues;
 
 //va a ser un record porque las notas de los examenes son inmutables una vez asignadas.
 //Luego, no deberia contener el curso o un estudiante -> porque la nota la maneja el curso

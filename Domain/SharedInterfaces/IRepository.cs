@@ -1,4 +1,4 @@
-﻿namespace PlataformaDeGestionDeCursosOnline.Domain.GlobalInterfaces;
+﻿namespace PlataformaDeGestionDeCursosOnline.Domain.SharedInterfaces;
 
 //Los repositorios no tienen logica de negocio, solo se encargan de la persistencia de los objetos
 public interface IRepository<T>
