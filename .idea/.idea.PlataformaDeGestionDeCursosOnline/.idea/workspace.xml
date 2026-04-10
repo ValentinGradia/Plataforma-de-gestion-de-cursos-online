@@ -10,6 +10,89 @@
   <component name="ChangeListManager">
     <list default="true" id="4cca0346-ece8-48e6-a84f-8553af71af3a" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.PlataformaDeGestionDeCursosOnline/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.PlataformaDeGestionDeCursosOnline/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/Application.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Application/Application.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/bin/Debug/net8.0/Application.deps.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/bin/Debug/net8.0/Application.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/bin/Debug/net8.0/Application.pdb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/bin/Debug/net8.0/PlataformaDeGestionDeCursosOnline.deps.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/bin/Debug/net8.0/PlataformaDeGestionDeCursosOnline.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/bin/Debug/net8.0/PlataformaDeGestionDeCursosOnline.exe" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/bin/Debug/net8.0/PlataformaDeGestionDeCursosOnline.pdb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/bin/Debug/net8.0/PlataformaDeGestionDeCursosOnline.runtimeconfig.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/bin/Debug/net9.0/Application.deps.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/bin/Debug/net9.0/Application.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/bin/Debug/net9.0/Application.pdb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/obj/Application.csproj.nuget.dgspec.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/obj/Application.csproj.nuget.g.props" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/obj/Application.csproj.nuget.g.targets" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/obj/Debug/net8.0/Applicat.44B5EDA2.Up2Date" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/obj/Debug/net8.0/Application.GeneratedMSBuildEditorConfig.editorconfig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/obj/Debug/net8.0/Application.GlobalUsings.g.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/obj/Debug/net8.0/Application.assets.cache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/obj/Debug/net8.0/Application.csproj.AssemblyReference.cache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/obj/Debug/net8.0/Application.csproj.CoreCompileInputs.cache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/obj/Debug/net8.0/Application.csproj.FileListAbsolute.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/obj/Debug/net8.0/Application.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/obj/Debug/net8.0/Application.pdb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/obj/Debug/net8.0/Application.sourcelink.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/obj/Debug/net8.0/ref/Application.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/obj/Debug/net8.0/refint/Application.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/obj/Debug/net9.0/.NETCoreApp,Version=v9.0.AssemblyAttributes.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/obj/Debug/net9.0/Application.AssemblyInfo.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/obj/Debug/net9.0/Application.AssemblyInfoInputs.cache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/obj/Debug/net9.0/Application.GeneratedMSBuildEditorConfig.editorconfig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/obj/Debug/net9.0/Application.GlobalUsings.g.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/obj/Debug/net9.0/Application.assets.cache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/obj/Debug/net9.0/Application.csproj.CoreCompileInputs.cache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/obj/Debug/net9.0/Application.csproj.FileListAbsolute.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/obj/Debug/net9.0/Application.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/obj/Debug/net9.0/Application.pdb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/obj/Debug/net9.0/Application.sourcelink.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/obj/Debug/net9.0/ref/Application.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/obj/Debug/net9.0/refint/Application.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/obj/project.assets.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/obj/project.nuget.cache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/obj/project.packagespec.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/obj/rider.project.model.nuget.info" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/obj/rider.project.restore.info" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Domain/DependencyInjection.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/DependencyInjection.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Domain/Domain.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Domain/Domain.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Domain/obj/Domain.csproj.nuget.dgspec.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Domain/obj/Domain.csproj.nuget.g.props" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Domain/obj/Domain.csproj.nuget.g.targets" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Domain/obj/project.assets.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Domain/obj/project.nuget.cache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Infrastructure/Infrastructure.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Infrastructure/Infrastructure.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Infrastructure/obj/Infrastructure.csproj.nuget.dgspec.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Infrastructure/obj/Infrastructure.csproj.nuget.g.props" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Infrastructure/obj/Infrastructure.csproj.nuget.g.targets" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Infrastructure/obj/project.assets.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Infrastructure/obj/project.nuget.cache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PlataformaDeGestionDeCursosOnline.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/PlataformaDeGestionDeCursosOnline.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Presentation/Presentation.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Presentation/Presentation.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Presentation/obj/Presentation.csproj.nuget.dgspec.json" beforeDir="false" afterPath="$PROJECT_DIR$/Presentation/obj/Presentation.csproj.nuget.dgspec.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Presentation/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/Presentation/obj/project.assets.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Presentation/obj/project.nuget.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Presentation/obj/project.nuget.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net8.0/PlataformaDeGestionDeCursosOnline.dll" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/net8.0/PlataformaDeGestionDeCursosOnline.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net8.0/PlataformaDeGestionDeCursosOnline.exe" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/net8.0/PlataformaDeGestionDeCursosOnline.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net8.0/PlataformaDeGestionDeCursosOnline.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/net8.0/PlataformaDeGestionDeCursosOnline.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/PlataformaDeGestionDeCursosOnline.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net8.0/PlataformaDeGestionDeCursosOnline.csproj.AssemblyReference.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/PlataformaDeGestionDeCursosOnline.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net8.0/PlataformaDeGestionDeCursosOnline.csproj.CoreCompileInputs.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/PlataformaDeGestionDeCursosOnline.csproj.FileListAbsolute.txt" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net8.0/PlataformaDeGestionDeCursosOnline.csproj.FileListAbsolute.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/PlataformaDeGestionDeCursosOnline.dll" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net8.0/PlataformaDeGestionDeCursosOnline.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/PlataformaDeGestionDeCursosOnline.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net8.0/PlataformaDeGestionDeCursosOnline.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/PlataformaDeGestionDeCursosOnline.sourcelink.json" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net8.0/PlataformaDeGestionDeCursosOnline.sourcelink.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/apphost.exe" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net8.0/apphost.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/ref/PlataformaDeGestionDeCursosOnline.dll" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net8.0/ref/PlataformaDeGestionDeCursosOnline.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net8.0/refint/PlataformaDeGestionDeCursosOnline.dll" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net8.0/refint/PlataformaDeGestionDeCursosOnline.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/PlataformaDeGestionDeCursosOnline.csproj.nuget.dgspec.json" beforeDir="false" afterPath="$PROJECT_DIR$/obj/PlataformaDeGestionDeCursosOnline.csproj.nuget.dgspec.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/PlataformaDeGestionDeCursosOnline.csproj.nuget.g.props" beforeDir="false" afterPath="$PROJECT_DIR$/obj/PlataformaDeGestionDeCursosOnline.csproj.nuget.g.props" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/PlataformaDeGestionDeCursosOnline.csproj.nuget.g.targets" beforeDir="false" afterPath="$PROJECT_DIR$/obj/PlataformaDeGestionDeCursosOnline.csproj.nuget.g.targets" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/obj/project.assets.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/project.nuget.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/project.nuget.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/project.packagespec.json" beforeDir="false" afterPath="$PROJECT_DIR$/obj/project.packagespec.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/rider.project.model.nuget.info" beforeDir="false" afterPath="$PROJECT_DIR$/obj/rider.project.model.nuget.info" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/obj/rider.project.restore.info" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,7 +128,6 @@
     <setting file="file://$PROJECT_DIR$/Application/Commands/Cursos/Clases/FinalizarClaseCommand.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Application/Commands/Cursos/Clases/ReprogramarFechaDeClaseCommand.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Application/Commands/Cursos/CrearCursoCommand.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Application/Commands/Cursos/DarDeBajaEstudianteCommand.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Application/Commands/Cursos/DesinscribirEstudiante.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Application/Commands/Cursos/Examenes/PonerNotaEntregaExamenCommand.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Application/Commands/Cursos/Examenes/SubirEntregaExamenCommand.cs" root0="FORCE_HIGHLIGHTING" />
@@ -73,7 +155,6 @@
     <setting file="file://$PROJECT_DIR$/Application/Handlers/Commands/Cursos/ActualizarDuracionCommandHandler.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Application/Handlers/Commands/Cursos/CambiarProfesorCommandHandler.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Application/Handlers/Commands/Cursos/CrearCursoCommandHandler.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Application/Handlers/Commands/Cursos/DarDeBajaEstudianteCommandHandler.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Application/Handlers/Commands/Cursos/DesinscribirEstudianteCommandHandler.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Application/Handlers/Commands/Cursos/DomainEvents/CursoIniciadoDomainEventHandler.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Application/Handlers/Commands/Cursos/DomainEvents/ExamenSubidoDomainEventHandler.cs" root0="FORCE_HIGHLIGHTING" />
@@ -133,7 +214,6 @@
     <setting file="file://$PROJECT_DIR$/Application/Validators/Clases/ReprogramarFechaDeClaseCommandValidator.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Application/Validators/Cursos/CambiarProfesorCommandValidator.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Application/Validators/Cursos/CrearCursoCommandValidator.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Application/Validators/Cursos/DarDeBajaEstudianteCommandValidator.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Application/Validators/Cursos/FinalizarCursoCommandValidator.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Application/Validators/Cursos/InscribirEstudianteACursoCommandValidator.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Application/Validators/Encuestas/CrearEncuestaCommandValidator.cs" root0="FORCE_HIGHLIGHTING" />
@@ -170,7 +250,6 @@
     <setting file="file://$PROJECT_DIR$/Infrastructure/Configurations/EncuestaConfiguration.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Infrastructure/Configurations/EntregaDelExamenConfiguration.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Infrastructure/Configurations/InscripcionConfiguration.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Infrastructure/Configurations/ProfesorConfiguration.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Infrastructure/Configurations/UsuarioConfiguration.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Infrastructure/Data/Repositories/EncuestasRepository.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Infrastructure/Data/Repositories/EstudianteRepository.cs" root0="FORCE_HIGHLIGHTING" />
@@ -189,6 +268,8 @@
     <setting file="file://$PROJECT_DIR$/Presentation/Controllers/Profesores/ProfesorController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Presentation/Controllers/Usuarios/UsuarioController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Presentation/Extensions/ApplicationBuilderExtensions.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/obj/PlataformaDeGestionDeCursosOnline.csproj.nuget.dgspec.json" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/obj/project.assets.json" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProblemsViewState">
@@ -319,7 +400,8 @@
       <workItem from="1775599031334" duration="12228000" />
       <workItem from="1775658475874" duration="5800000" />
       <workItem from="1775785952984" duration="1750000" />
-      <workItem from="1775847348977" duration="536000" />
+      <workItem from="1775847348977" duration="1429000" />
+      <workItem from="1775848995030" duration="4374000" />
     </task>
     <servers />
   </component>
