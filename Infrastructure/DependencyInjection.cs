@@ -18,6 +18,7 @@ public static class DependencyInjection
         services.AddScoped<IUsuarioRepository, UsuarioRepository>();
         services.AddScoped<IEncuestasRepository, EncuestasRepository>();
         services.AddScoped<IProfesorRepository, ProfesorRepository>();
+        services.AddScoped<IEstudianteRepository, EstudianteRepository>();
         
         
         //Cadena de conexion para inicializar los servicios de Entity framework Y Dapper, se obtiene del appsettings.json

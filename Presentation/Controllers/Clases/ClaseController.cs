@@ -52,9 +52,8 @@ public class ClaseController(ISender sender) : ControllerBase
     
     //COMMANDS
     [HttpPost]
-    public async Task<IActionResult> CrearClase([FromBody] Guid idCurso, [FromBody] string material)
+    public async Task<IActionResult> CrearClase([FromBody] CrearClaseCommand command)
     {
-        ICommand<Guid> command = new CrearClaseCommand(idCurso, material);
 
         var result = await sender.Send(command);
 
